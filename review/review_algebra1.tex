@@ -1,0 +1,503 @@
+\documentclass[a4paper]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[top=2.6cm,bottom=2.8cm,left=2.6cm,right=2.6cm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue]{hyperref}
+
+\linespread{1.25}
+
+\title{Algebra I 全书考前复习}
+\author{}
+\date{2026-06-29}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{第0章：总览}
+\phantomsection
+\addcontentsline{toc}{section}{第0章：总览}
+
+《Algebra I》主要分成四块：
+\[
+\text{域论与 Galois 理论}
+\to
+\text{模论}
+\to
+\text{环论}
+\to
+\text{表示论}.
+\]
+
+如果只记主线，可以概括成：
+\begin{itemize}
+  \item 第一章把“域扩张的对称性”组织成 Galois 理论。
+  \item 第二章把模分解、张量积、链条件这些基础工具系统化。
+  \item 第三章把半单环、Jacobson 根、中心单代数和 Brauer 群连起来。
+  \item 第四章把这些代数工具放进有限群表示。
+\end{itemize}
+
+\section{第1章：Fields and Galois Theory}
+
+\subsection{1.1--1.3 基本扩张、代数元、分裂域}
+
+\paragraph{最基本概念}
+\begin{itemize}
+  \item 域扩张 \(K/F\) 的次数是向量空间维数 \([K:F]\)。
+  \item 若 \(F\subset E\subset K\) 是有限扩张塔，则
+  \[
+    [K:F]=[K:E][E:F].
+  \]
+  \item 元 \(u\in K\) 对 \(F\) 代数，指它满足某个非零多项式。
+  \item 若 \(u\) 代数，则有最小多项式，且
+  \[
+    [F(u):F]=\deg m_u(X).
+  \]
+\end{itemize}
+
+\paragraph{分裂域}
+给定 \(f\in F[X]\)，其 splitting field 是包含全部根的最小扩张域。
+考试里要立刻想到：
+\begin{itemize}
+  \item splitting field 存在；
+  \item 对有限次多项式，splitting field 是有限扩张；
+  \item 分裂域是后面定义 normal extension 的标准来源。
+\end{itemize}
+
+\subsection{1.4--1.6 可分、正规、Galois 扩张}
+
+\paragraph{三层结构}
+\begin{itemize}
+  \item \textbf{separable}: 最小多项式没有重根。
+  \item \textbf{normal}: 不可约多项式只要有一个根落在扩张里，就完全裂开。
+  \item \textbf{Galois}: 同时 normal 和 separable。
+\end{itemize}
+
+\paragraph{必须会背的结论}
+有限扩张 \(K/F\) 是 Galois，当且仅当
+\[
+|{\rm Gal}(K/F)|=[K:F].
+\]
+
+\paragraph{Galois 对应}
+若 \(K/F\) 有限 Galois，则中间域与 Galois 群子群反向一一对应：
+\[
+E \longleftrightarrow {\rm Gal}(K/E),\qquad
+H \longleftrightarrow K^H.
+\]
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item normal 讲“根都在不在”。
+  \item separable 讲“根重不重”。
+  \item Galois 就是“扩张和自同构群精确匹配”。
+\end{itemize}
+
+\subsection{1.7--1.9 多项式的 Galois 群与典型例子}
+
+\paragraph{考法}
+常见任务是：
+\begin{itemize}
+  \item 计算某个多项式的 splitting field；
+  \item 估计或确定 Galois 群；
+  \item 用判别式、根的置换结构判断群落在哪个置换群里。
+\end{itemize}
+
+\paragraph{记忆点}
+\begin{itemize}
+  \item 多项式的 Galois 群本质上是根集上的置换群。
+  \item 不可约 \(n\) 次多项式的 Galois 群可视为 \(S_n\) 的子群。
+  \item 判别式常用来区分群是否落在 \(A_n\) 中。
+\end{itemize}
+
+\subsection{1.10 Finite fields}
+
+\paragraph{核心结论}
+\begin{itemize}
+  \item 任意有限域的阶都是 \(p^n\)。
+  \item 对每个 \(p^n\)，存在且仅存在一个（同构意义下）有限域 \(\mathbb F_{p^n}\)。
+  \item \(\mathbb F_{p^n}^\times\) 是循环群。
+\end{itemize}
+
+\paragraph{Galois 结构}
+\[
+{\rm Gal}(\mathbb F_{p^n}/\mathbb F_p)
+\cong
+\mathbb Z/n\mathbb Z,
+\]
+由 Frobenius 自同构 \(x\mapsto x^p\) 生成。
+
+\subsection{1.11--1.14 圆分扩张、可解性、尺规作图}
+
+\paragraph{圆分扩张}
+加入 \(n\) 次单位根得到 cyclotomic extension \( \mathbb Q(\zeta_n)\)。
+要点：
+\begin{itemize}
+  \item 其 Galois 群与 \((\mathbb Z/n\mathbb Z)^\times\) 相关。
+  \item cyclotomic polynomial 是这里的核心对象。
+\end{itemize}
+
+\paragraph{根式扩张与群可解性}
+全书一个主结论是：
+\[
+\text{方程可由根式解}
+\Longrightarrow
+\text{相应 Galois 群可解}.
+\]
+反过来在适当条件下也成立，于是得到“高次方程是否可根式求解”由 Galois 群决定。
+
+\paragraph{作图问题}
+尺规作图可行性归结为域扩张次数是否是 \(2\) 的幂。
+因此很多经典不可作图问题，实质上是扩张次数不是 \(2^m\)。
+
+\subsection{1.15--1.20 无限 Galois、范数迹、上同调、Kummer、Artin--Schreier、超越扩张}
+
+\paragraph{Infinite Galois theory}
+无限 Galois 扩张里，Galois 群要带上 Krull 拓扑，中间域对应闭子群。
+
+\paragraph{Norm and trace}
+对有限扩张 \(K/F\)，范数和迹是两个基本不变量：
+\[
+N_{K/F}:K^\times\to F^\times,\qquad
+{\rm Tr}_{K/F}:K\to F.
+\]
+它们既可从线性代数定义，也可在 Galois 情形下写成共轭元的乘积与和。
+
+\paragraph{Galois cohomology}
+这是把群作用、Hilbert 90、Kummer 理论等统一起来的语言工具。
+
+\paragraph{Kummer theory}
+在含足够单位根的情形下，某些 abelian extension 可写成加入 \(n\) 次根得到的扩张。
+
+\paragraph{Artin--Schreier}
+特征 \(p\) 情形里，次数 \(p\) 的典型扩张由
+\[
+X^p-X-a
+\]
+控制，这是 Kummer 在正特征下的替代物。
+
+\paragraph{超越扩张}
+要知道 transcendence basis、超越次数的概念；它们是后面几何维数与函数域维数的前奏。
+
+\paragraph{第一章考前清单}
+\begin{itemize}
+  \item 会定义 algebraic / transcendental / separable / normal / Galois。
+  \item 会写最小多项式与 \([F(u):F]\)。
+  \item 会说 Galois 对应。
+  \item 知道有限域唯一性与乘法群循环。
+  \item 知道“根式可解 \(\leftrightarrow\) Galois 群可解”的方向。
+\end{itemize}
+
+\section{第2章：Module Theory}
+
+\subsection{2.1--2.4 模、自由模、有限生成模、正合列}
+
+\paragraph{基础对象}
+\begin{itemize}
+  \item \(R\)-模是把线性代数从域推广到一般环。
+  \item 自由模有基，形如 \(R^{(I)}\)。
+  \item 有限生成模是后面分解理论和链条件理论的主战场。
+\end{itemize}
+
+\paragraph{正合列}
+必须熟悉：
+\[
+0\to M'\to M\to M''\to 0.
+\]
+它表示 \(M'\) 嵌入 \(M\)，且 \(M''\cong M/M'\)。
+
+\paragraph{考前提示}
+模论里很多定理都在回答两个问题：
+\begin{itemize}
+  \item 模能不能分解？
+  \item 模的分解是否唯一？
+\end{itemize}
+
+\subsection{2.5--2.8 链条件、Hilbert basis、Schur、Jordan--H\"older}
+
+\paragraph{链条件}
+\begin{itemize}
+  \item Noetherian：升链稳定。
+  \item Artinian：降链稳定。
+  \item finite length：同时满足两者，并存在 composition series。
+\end{itemize}
+
+\paragraph{Hilbert basis theorem}
+若 \(R\) Noetherian，则 \(R[X]\) 也是 Noetherian。
+这是后面交换代数反复使用的基础。
+
+\paragraph{Schur 引理}
+简单模之间的非零同态必为同构；特别地简单模的自同态环是除环。
+
+\paragraph{Jordan--H\"older}
+有限长度模的 composition series 长度唯一，simple factors 只差排列。
+
+\subsection{2.9--2.11 半单模、不可分解模、Krull--Schmidt}
+
+\paragraph{半单模}
+半单模就是简单模的直和。
+要会立刻联想到：
+\begin{itemize}
+  \item 每个子模都是直和项；
+  \item 短正合列自动分裂；
+  \item 结构最好，几乎像线性代数。
+\end{itemize}
+
+\paragraph{不可分解模}
+若模不能写成两个非零子模的直和，则称 indecomposable。
+
+\paragraph{Krull--Schmidt}
+在适当有限性条件下，模分解成 indecomposable 的方式唯一到重排和同构。
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item Jordan--H\"older 讨论 simple factors 的唯一性。
+  \item Krull--Schmidt 讨论 indecomposable direct summands 的唯一性。
+  \item 这两个唯一性不是一回事。
+\end{itemize}
+
+\subsection{2.12--2.13 张量积}
+
+\paragraph{定义思想}
+张量积 \(M\otimes_R N\) 用来线性化双线性映射的 universal property。
+
+\paragraph{必须记住的性质}
+\begin{itemize}
+  \item 张量积是函子性的。
+  \item 对直和分配，但一般不对直积分配。
+  \item 标量扩张、base change、代数张量积都靠它表达。
+\end{itemize}
+
+\paragraph{第二章考前清单}
+\begin{itemize}
+  \item 会写短正合列。
+  \item 会区分 Noetherian / Artinian / finite length。
+  \item 会说 Schur 引理和 Jordan--H\"older。
+  \item 会说半单模的等价表述。
+  \item 会说 Krull--Schmidt 的唯一性对象。
+  \item 会说张量积的 universal property。
+\end{itemize}
+
+\section{第3章：Ring Theory}
+
+\subsection{3.1--3.2 半单环、单环、Wedderburn--Artin}
+
+\paragraph{核心思想}
+环作为左模看自己，半单环就是这个左模半单。
+
+\paragraph{Wedderburn--Artin 定理}
+这是本章第一核心定理：
+\[
+R \text{ 半单}
+\Longleftrightarrow
+R\cong \prod_i M_{n_i}(D_i),
+\]
+其中 \(D_i\) 是除环。
+
+\paragraph{意义}
+它把所有半单环完全分类为矩阵环和除环的有限直积。
+
+\subsection{3.3--3.5 Jacobson radical, nil ideals, semiprimitive / semiprimary}
+
+\paragraph{Jacobson 根}
+\[
+J(R)=\bigcap \{\text{所有极大左理想}\}.
+\]
+也可理解为“所有简单模都看不见的元素”。
+
+\paragraph{要点}
+\begin{itemize}
+  \item \(R/J(R)\) 记录了环的半单部分。
+  \item semiprimitive 指 \(J(R)=0\)。
+  \item semiprimary 则要求 Jacobson 根幂零且商环半单。
+\end{itemize}
+
+\paragraph{nil 与 nilpotent}
+要分清：
+\begin{itemize}
+  \item nil ideal：每个元素都幂零；
+  \item nilpotent ideal：整个理想某个幂为零。
+\end{itemize}
+
+\subsection{3.6--3.7 Density theorem, primitive rings}
+
+\paragraph{Jacobson density theorem}
+这是联系环和表示的关键定理。直观上说，环作用在半单模上“足够稠密”，能逼近所有线性变换。
+
+\paragraph{primitive ring}
+primitive ring 是拥有 faithful simple module 的环。
+它比 semiprimitive 更强，和表示论联系很紧。
+
+\subsection{3.8 Central simple algebras}
+
+\paragraph{定义}
+有限维 \(F\)-代数 \(A\) 若既简单又满足中心 \(Z(A)=F\)，则称为 central simple algebra。
+
+\paragraph{基本图景}
+\begin{itemize}
+  \item 任意 central simple algebra 在代数闭包上都会裂开成矩阵环。
+  \item 一个 split 的 central simple algebra 就是 \(M_n(F)\)。
+  \item 双中心化定理和分裂域理论是这里的主工具。
+\end{itemize}
+
+\paragraph{必须记住的例子}
+\begin{itemize}
+  \item \(M_n(F)\)。
+  \item 四元数代数是典型非平凡例子。
+\end{itemize}
+
+\subsection{3.9 Brauer groups}
+
+\paragraph{定义思想}
+central simple algebras 按 Morita 型的“相似”关系分类，得到 Brauer 群 \({\rm Br}(F)\)。
+
+\paragraph{记忆点}
+\begin{itemize}
+  \item 群运算由张量积给出。
+  \item 单位元对应 split algebra。
+  \item 对有限域，Brauer 群平凡，这是经典结果。
+\end{itemize}
+
+\paragraph{第三章考前清单}
+\begin{itemize}
+  \item 会写 Wedderburn--Artin 结构定理。
+  \item 知道 Jacobson 根控制“非半单部分”。
+  \item 会区分 semiprimitive 与 semiprimary。
+  \item 知道 central simple algebra 的 split / division / matrix 结构图景。
+  \item 知道 Brauer 群由中心单代数模去相似关系得到。
+\end{itemize}
+
+\section{第4章：Representation Theory}
+
+\subsection{4.1--4.4 表示、群代数、特征标、基本例子}
+
+\paragraph{表示的基本等价}
+群表示与群代数模是同一回事：
+\[
+\text{\(F\)-representation of } G
+\Longleftrightarrow
+F[G]\text{-module}.
+\]
+
+\paragraph{Maschke 定理的背景}
+当 \({\rm char}(F)\nmid |G|\) 时，\(F[G]\) 半单，因此表示完全可约。
+这几乎是有限群复表示论的起点。
+
+\paragraph{特征标}
+特征标
+\[
+\chi_V(g)=\operatorname{tr}(\rho_V(g))
+\]
+把表示线性化成类函数。
+
+\paragraph{必须会的正交关系}
+复表示论里，Schur 正交关系是计算不可约表示分解的核心。
+
+\subsection{4.5--4.6 诱导表示、Frobenius reciprocity、Clifford}
+
+\paragraph{诱导表示}
+从子群 \(H\subset G\) 的表示构造 \(G\) 的表示，是有限群表示论最核心的构造之一。
+
+\paragraph{Frobenius reciprocity}
+这是 restriction 和 induction 的伴随关系，必须熟悉其公式和使用方式。
+
+\paragraph{Clifford 定理}
+研究正规子群上的限制后，整体表示如何分解，是表示从正规子群向上提升的核心工具。
+
+\subsection{4.7--4.10 算术性、超可解群、诱导定理、有理性}
+
+\paragraph{Arithmetic considerations}
+这里主要关心特征标值、整性、代数整数性质等算术信息。
+
+\paragraph{Supersolvable groups}
+超可解群的表示论结构更接近“逐层由线性角色拼出来”。
+
+\paragraph{Brauer induction}
+Brauer 诱导定理说明很多特征标可由较简单子群的诱导角色生成，这是结构定理级别的结果。
+
+\paragraph{Rationality}
+讨论表示是否可在较小域上实现，以及复表示下降到有理数域或其他子域的条件。
+
+\subsection{4.11 对称群表示}
+
+\paragraph{核心对象}
+对称群表示是组合与表示论结合最紧的经典主题。
+这里要记住：
+\begin{itemize}
+  \item 不可约表示与分拆密切相关。
+  \item Young diagram / Specht module 是标准语言。
+\end{itemize}
+
+\paragraph{第四章考前清单}
+\begin{itemize}
+  \item 会把表示和群代数模互相转化。
+  \item 知道 \({\rm char}(F)\nmid |G|\) 时表示完全可约。
+  \item 会用特征标和正交关系判断不可约性与分解。
+  \item 知道 induction / restriction / Frobenius reciprocity 的关系。
+  \item 知道 Brauer induction 是强结构工具。
+\end{itemize}
+
+\section*{全书关系图}
+\phantomsection
+\addcontentsline{toc}{section}{全书关系图}
+
+\[
+\text{域扩张}
+\to
+\text{Galois 群}
+\to
+\text{群的结构与可解性};
+\]
+\[
+\text{模分解}
+\to
+\text{半单模}
+\to
+\text{半单环};
+\]
+\[
+\text{Jacobson 根}
+\to
+\text{把环拆成半单部分和根部分};
+\]
+\[
+\text{中心单代数}
+\to
+\text{Brauer 群};
+\]
+\[
+\text{群代数}
+\to
+\text{有限群表示}
+\to
+\text{特征标理论}.
+\]
+
+从考试视角看，全书最该抓住的是下面几条定理链：
+\begin{itemize}
+  \item Galois 扩张 \(\leftrightarrow\) 自同构群 \(\leftrightarrow\) 中间域。
+  \item finite length \(\to\) Jordan--H\"older；indecomposable decomposition \(\to\) Krull--Schmidt。
+  \item 半单环 \(\leftrightarrow\) Wedderburn--Artin 分解。
+  \item 群表示 \(\leftrightarrow\) 群代数模；半单性 \(\to\) 特征标分解。
+\end{itemize}
+
+\section*{最后总清单}
+\phantomsection
+\addcontentsline{toc}{section}{最后总清单}
+
+\begin{itemize}
+  \item 会定义 algebraic, separable, normal, Galois。
+  \item 会写 Galois 对应和有限域的基本结论。
+  \item 会区分 Noetherian, Artinian, finite length。
+  \item 会说 Schur 引理、Jordan--H\"older、Krull--Schmidt。
+  \item 会说张量积的 universal property。
+  \item 会写 Wedderburn--Artin 定理。
+  \item 知道 Jacobson 根的角色。
+  \item 会定义 central simple algebra 和 Brauer 群。
+  \item 会把群表示看成群代数模。
+  \item 会用特征标、正交关系、Frobenius reciprocity 做基本判断。
+\end{itemize}
+
+\end{document}

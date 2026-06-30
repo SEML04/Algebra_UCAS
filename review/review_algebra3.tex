@@ -1,0 +1,784 @@
+\documentclass[a4paper]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[top=2.6cm,bottom=2.8cm,left=2.6cm,right=2.6cm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,pdfpagelabels=false]{hyperref}
+\usepackage{bookmark}
+
+\linespread{1.25}
+
+\title{Algebra III 全书考前复习}
+\author{}
+\date{2026-06-29}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{第0章：总览}
+\phantomsection
+\addcontentsline{toc}{section}{第0章：总览}
+
+这门课的主线是：从谱与局部化出发，建立 Noether 环、整扩张、分次与完备化、维数理论，再进入
+Cohen--Macaulay、normal、regular 这些最核心的交换代数对象。
+
+如果只记一条总路线，可以记成：
+\[
+\text{Spec 与局部化}
+\to
+\text{flat / integral}
+\to
+\text{Noether / Artin / primary decomposition},
+\]
+\[
+\text{completion 与 Hilbert 函数}
+\to
+\text{dimension}
+\to
+\text{CM / normal / regular}.
+\]
+
+\section{第1章：Rings and Modules}
+
+\subsection{1.1 Prime ideals}
+
+\paragraph{核心对象}
+\begin{itemize}
+  \item 素理想 \(\mathfrak p\): \(A/\mathfrak p\) 是整环。
+  \item 极大理想 \(\mathfrak m\): \(A/\mathfrak m\) 是域。
+  \item 谱空间 \(\operatorname{Spec}A\): 所有素理想组成的集合。
+\end{itemize}
+
+\paragraph{必须掌握的事实}
+\begin{itemize}
+  \item 任意非零环至少有一个极大理想。
+  \item 任意环同态 \(f:A\to B\) 诱导连续映射
+  \[
+    f^*:\operatorname{Spec}B\to \operatorname{Spec}A,\qquad
+    \mathfrak q\mapsto f^{-1}(\mathfrak q).
+  \]
+  \item 幂零根
+  \[
+    \operatorname{nilrad}(A)=\bigcap_{\mathfrak p\in \operatorname{Spec}A}\mathfrak p.
+  \]
+  \item 理想根
+  \[
+    \sqrt I=\bigcap_{\mathfrak p\supset I}\mathfrak p.
+  \]
+\end{itemize}
+
+\paragraph{Zariski 拓扑}
+闭集定义为
+\[
+V(I)=\{\mathfrak p\in \operatorname{Spec}A\mid I\subset \mathfrak p\}.
+\]
+要会立刻写出：
+\[
+V(0)=\operatorname{Spec}A,\qquad V(1)=\varnothing,\qquad
+V(IJ)=V(I)\cup V(J).
+\]
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item 交换代数里很多命题本质上都在讨论 \(\operatorname{Spec}A\) 上的几何行为。
+  \item “闭点”通常对应极大理想。
+  \item \(\operatorname{Spec}(A/I)\) 应直接想到 \(V(I)\)。
+\end{itemize}
+
+\subsection{1.2 Nakayama lemma}
+
+\paragraph{Jacobson 根与局部环}
+\begin{itemize}
+  \item Jacobson 根
+  \[
+    J(A)=\bigcap_{\mathfrak m\in \operatorname{MaxSpec}A}\mathfrak m.
+  \]
+  \item 局部环就是只有唯一极大理想的环。
+\end{itemize}
+
+\paragraph{Nakayama 引理}
+这是全书最常用工具之一。常见形式是：若 \(M\) 为有限生成 \(A\)-模，\(\mathfrak a\subset J(A)\)，且
+\[
+\mathfrak aM=M,
+\]
+则 \(M=0\)。
+
+\paragraph{最常用推论}
+\begin{itemize}
+  \item 在局部环 \((A,\mathfrak m)\) 中，若 \(x_1,\dots,x_r\) 在 \(M/\mathfrak mM\) 中生成，则它们生成 \(M\)。
+  \item \(M/\mathfrak mM\) 的 \(k=A/\mathfrak m\)-维数就是 \(M\) 的最少生成元个数。
+\end{itemize}
+
+\paragraph{考前提示}
+很多“最少生成元个数”的结论，本质上都靠 Nakayama。
+
+\section{第2章：Localization}
+
+\subsection{2.1--2.2 局部化}
+
+\paragraph{要点}
+\begin{itemize}
+  \item 给定乘法集 \(S\subset A\)，构造 \(S^{-1}A\)、\(S^{-1}M\)。
+  \item 最重要的特例是
+  \[
+    A_{\mathfrak p}=(A\setminus \mathfrak p)^{-1}A.
+  \]
+  \item \(A_{\mathfrak p}\) 是局部环，极大理想是 \(\mathfrak pA_{\mathfrak p}\)。
+\end{itemize}
+
+\paragraph{谱的行为}
+\[
+\operatorname{Spec}(S^{-1}A)\cong \{\mathfrak p\in \operatorname{Spec}A\mid \mathfrak p\cap S=\varnothing\}.
+\]
+特别地，
+\[
+\operatorname{Spec}(A_{\mathfrak p})\cong \{\mathfrak q\in \operatorname{Spec}A\mid \mathfrak q\subset \mathfrak p\}.
+\]
+
+\paragraph{模论要点}
+\begin{itemize}
+  \item 局部化是正合函子。
+  \item \(S^{-1}A\) 是 flat 的 \(A\)-代数。
+  \item 模为零可以局部检验：
+  \[
+    M=0 \Longleftrightarrow M_{\mathfrak m}=0 \text{ 对所有极大理想 } \mathfrak m.
+  \]
+\end{itemize}
+
+\paragraph{考前提示}
+交换代数里的“局部化后看”几乎是默认动作。很多全局命题先化成局部命题，再在局部环里证明。
+
+\section{第3章：Flatness}
+
+\subsection{3.1 Flat modules}
+
+\paragraph{定义}
+\(M\) 是 flat，当且仅当函子
+\[
+-\otimes_A M
+\]
+正合。
+
+\paragraph{等价刻画}
+\begin{itemize}
+  \item flat 等价于 \(\operatorname{Tor}_1^A(M,N)=0\) 对所有 \(N\)。
+  \item 也可用有限生成理想的张量单射性来判别。
+  \item flat 性可以局部检验：
+  \[
+    M \text{ flat over } A
+    \Longleftrightarrow
+    M_{\mathfrak p} \text{ flat over } A_{\mathfrak p}\ \forall \mathfrak p.
+  \]
+\end{itemize}
+
+\paragraph{有限生成情形}
+有限生成 flat 模在局部环上是自由模；这让 flat 和“局部自由”联系起来。
+
+\subsection{3.2 Faithful flatness}
+
+\paragraph{定义}
+faithfully flat 比 flat 更强，表示张量后不仅保持正合，还能反映正合性。
+
+\paragraph{常用判别}
+\begin{itemize}
+  \item \(M\) faithfully flat
+  \(\Longleftrightarrow\)
+  \(M\) flat 且对任何非零模 \(N\)，有 \(N\otimes_A M\neq 0\)。
+  \item 对环同态 \(A\to B\)，
+  \[
+    B \text{ faithfully flat over } A
+    \Longleftrightarrow
+    B \text{ flat 且 } \operatorname{Spec}B\to \operatorname{Spec}A \text{ 满射}.
+  \]
+\end{itemize}
+
+\subsection{3.3 Flat ring homomorphisms}
+
+\paragraph{最重要结论}
+flat 环同态满足 \textbf{going-down}。
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item integral 扩张给 going-up。
+  \item flat 扩张给 going-down。
+  \item 这两个方向在后续维数理论中反复出现。
+\end{itemize}
+
+\section{第4章：Integral extensions}
+
+\subsection{4.1 Integral dependence, going-up, going-down}
+
+\paragraph{定义}
+元素 \(x\in B\) 对 \(A\) 积分，指满足首一方程
+\[
+x^n+a_1x^{n-1}+\cdots+a_n=0,\qquad a_i\in A.
+\]
+
+\paragraph{必须会的结论}
+\begin{itemize}
+  \item 有限生成 \(A\)-模中的元素都积分。
+  \item integral closure 在扩张中形成子环。
+  \item 积分性对商与局部化稳定。
+\end{itemize}
+
+\paragraph{谱上的性质}
+若 \(A\subset B\) 为 integral 扩张，则
+\begin{itemize}
+  \item \(\operatorname{Spec}B\to \operatorname{Spec}A\) 满射；
+  \item lying-over 成立；
+  \item going-up 成立。
+\end{itemize}
+
+\paragraph{整闭}
+整环 \(A\) 在分式域中整闭，称为 integrally closed 或 normal domain。
+要会记住：
+\[
+A \text{ 整闭}
+\Longleftrightarrow
+A_{\mathfrak p} \text{ 对所有 } \mathfrak p \text{ 整闭}.
+\]
+
+\paragraph{going-down}
+若 \(A\subset B\) 是 integral 扩张且 \(A\) 整闭，则 going-down 成立。
+
+\subsection{4.2 Integral closures and valuation rings}
+
+\paragraph{valuation ring}
+对分式域 \(K\) 中的子环 \(B\)，若任意 \(0\neq x\in K\) 满足 \(x\in B\) 或 \(x^{-1}\in B\)，则 \(B\) 是 valuation ring。
+
+\paragraph{关键思想}
+整闭包可以写成所有包含原环的 valuation rings 的交。
+
+\paragraph{意义}
+valuation ring 是“尽可能线性排序”的局部模型，常用来检测整闭性。
+
+\subsection{4.3 Noether normalization and Nullstellensatz}
+
+\paragraph{Noether normalization}
+若 \(A\) 是有限生成 \(k\)-代数，则存在代数无关元 \(t_1,\dots,t_d\)，使得
+\[
+A \text{ integral over } k[t_1,\dots,t_d].
+\]
+
+\paragraph{弱零点定理}
+若 \(A\) 是有限生成 \(k\)-代数且是域，则在代数闭域情形下 \(A\) 其实就是 \(k\)。
+
+\paragraph{Hilbert Nullstellensatz}
+最大理想与几何点对应，是代数几何和交换代数接轨的核心定理。
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item Noether normalization 是“有限生成代数有限覆盖一个多项式环”。
+  \item 它直接导向后面的超越维数公式。
+\end{itemize}
+
+\section{第5章：Noetherian and Artinian rings}
+
+\subsection{5.1 Chain conditions}
+
+\paragraph{定义}
+\begin{itemize}
+  \item Noetherian: 满足升链条件。
+  \item Artinian: 满足降链条件。
+  \item finite length: 有 composition series。
+\end{itemize}
+
+\paragraph{必须会的结论}
+\begin{itemize}
+  \item 模 Noetherian 当且仅当每个子模有限生成。
+  \item finite length 等价于同时 Noetherian 与 Artinian。
+  \item composition series 的长度唯一，这就是 Jordan--H\"older 型结论。
+\end{itemize}
+
+\subsection{5.2 Noetherian rings}
+
+\paragraph{最关键判别}
+\[
+A \text{ Noetherian}
+\Longleftrightarrow
+\text{每个理想有限生成}.
+\]
+
+\paragraph{稳定性}
+\begin{itemize}
+  \item 有限生成模、商环、有限模扩张、局部化都保持 Noetherian。
+  \item Hilbert basis theorem:
+  \[
+    A \text{ Noetherian} \Rightarrow A[X] \text{ Noetherian}.
+  \]
+  因而
+  \[
+    A[X_1,\dots,X_n] \text{ Noetherian}.
+  \]
+\end{itemize}
+
+\subsection{5.3 Artinian rings}
+
+\paragraph{核心结论}
+\begin{itemize}
+  \item Artinian 环中每个素理想都是极大理想。
+  \item
+  \[
+    J(A)=\operatorname{nilrad}(A),
+  \]
+  且该理想幂零。
+  \item Artinian 环只有有限多个极大理想。
+  \item
+  \[
+    A \text{ Artinian}
+    \Longleftrightarrow
+    A \text{ Noetherian 且 } \dim A=0.
+  \]
+\end{itemize}
+
+\paragraph{结构定理}
+Artinian 环唯一分解成有限个 Artinian 局部环的直积。
+
+\paragraph{局部情形}
+Noether 局部环满足
+\[
+\mathfrak m^n=0 \text{ for some } n
+\Longleftrightarrow
+A \text{ Artinian}.
+\]
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item “Artinian = 零维 Noetherian” 是高频口号。
+  \item Artinian 局部环中，每个元素不是单位就是幂零元。
+\end{itemize}
+
+\section{第6章：Associated primes and Primary decomposition}
+
+\subsection{6.1 Associated primes}
+
+\paragraph{定义}
+\[
+\operatorname{Ass}(M)=\{\operatorname{ann}(x)\mid x\in M\}.
+\]
+
+\paragraph{关系}
+\begin{itemize}
+  \item \(\operatorname{Ass}(M)\subset \operatorname{Supp}(M)\)。
+  \item \(\operatorname{Supp}(M)\) 的极小元就是 associated primes 中的极小元。
+  \item 对有限生成模，\(\operatorname{Ass}(M)\) 是有限集。
+\end{itemize}
+
+\paragraph{为什么重要}
+associated primes 记录了模的“零因子来源”和不可约几何成分。
+
+\subsection{6.2 Primary decomposition}
+
+\paragraph{定义}
+子模或理想可写成若干 primary 子模（或 primary ideals）的交。
+
+\paragraph{最重要的结论}
+\begin{itemize}
+  \item Noether 环上的有限生成模都有 primary decomposition。
+  \item 不可约冗余去掉后，出现的根理想集合是唯一的。
+  \item 极小 associated primes 对应的 primary 成分是唯一决定的。
+\end{itemize}
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item 记住“存在性靠 Noether，唯一性只保留到某种有限程度”。
+  \item primary decomposition 是后面研究高度、unmixed、CM 性质的基础。
+\end{itemize}
+
+\section{第7章：One-dimensional integrally closed Noetherian domains}
+
+\subsection{7.1 DVR and Dedekind domains}
+
+\paragraph{DVR}
+离散赋值环是最基本的一维局部模型。对 Noether 局部整环 \(A\)，一维且整闭时会导向 DVR。
+
+\paragraph{Dedekind domain}
+Dedekind 整环定义为：
+\begin{itemize}
+  \item Noetherian；
+  \item \(\dim A=1\)；
+  \item integrally closed。
+\end{itemize}
+
+\paragraph{核心结论}
+\begin{itemize}
+  \item Dedekind 整环的每个非零素理想都是极大理想。
+  \item 每个非零理想唯一分解为素理想幂的乘积。
+  \item 非零素理想局部化后得到 DVR。
+\end{itemize}
+
+\paragraph{例子}
+\begin{itemize}
+  \item PID 是 Dedekind 整环。
+  \item 数域整数环是 Dedekind 整环。
+\end{itemize}
+
+\subsection{7.2 Fractional ideals}
+
+\paragraph{关键观点}
+Dedekind 整环可以用分式理想完全刻画。
+
+\paragraph{必须记住的判别}
+\begin{itemize}
+  \item 局部整环 \(A\) 是 DVR
+  \(\Longleftrightarrow\)
+  每个非零分式理想可逆。
+  \item 整环 \(A\) 是 Dedekind
+  \(\Longleftrightarrow\)
+  每个非零分式理想可逆。
+\end{itemize}
+
+\paragraph{类群}
+Dedekind 整环的非零分式理想模去主分式理想，得到 ideal class group。
+要记住：
+\[
+\operatorname{Cl}(A)=0
+\Longleftrightarrow
+A \text{ 是 PID}
+\Longleftrightarrow
+A \text{ 是 UFD}.
+\]
+
+\paragraph{考前提示}
+第七章的主旨是：一维整闭 Noetherian 整环的结构已经非常刚性，几乎完全由理想理论控制。
+
+\section{第8章：Graded rings and Completions}
+
+\subsection{8.1 Graded rings and modules}
+
+\paragraph{核心作用}
+分次结构是研究 Hilbert 函数、associated graded ring、Rees 代数的入口。
+
+\paragraph{要点}
+\begin{itemize}
+  \item 分次 Noether 性可以转化成 \(A_0\) 的 Noether 性与有限生成性。
+  \item 后面会把局部环上的 filtration 转成分次对象来研究。
+\end{itemize}
+
+\subsection{8.2 Artin--Rees lemma}
+
+\paragraph{内容}
+若 \(A\) Noetherian，\(I\subset A\) 理想，\(N\subset M\) 有限生成模，则 \(I\)-adic filtration 与子模交的行为最终稳定。
+
+\paragraph{意义}
+\begin{itemize}
+  \item 它控制 \(N\cap I^nM\) 的形状。
+  \item 它是完备化正合性、局部 flat 判别、Hilbert 多项式理论的关键技术工具。
+\end{itemize}
+
+\subsection{8.3 Local criterion of flatness}
+
+\paragraph{主旨}
+在 Noether 局部环境中，flatness 可用模掉 \(\mathfrak m\) 后的信息和 \(\operatorname{Tor}\) 消失来判别。
+
+\paragraph{考前提示}
+这节常和 Nakayama、Artin--Rees 一起联动，是同调控制局部性质的典型例子。
+
+\subsection{8.4 Topology and completion}
+
+\paragraph{\(I\)-adic topology}
+理想幂
+\[
+I^0\supset I\supset I^2\supset \cdots
+\]
+定义 \(I\)-adic topology，其完备化是
+\[
+\widehat A=\varprojlim A/I^n.
+\]
+
+\paragraph{要点}
+\begin{itemize}
+  \item 完备化是函子性的。
+  \item 在 Noether 情形，有限生成模的完备化与正合列兼容。
+  \item 完备化后的局部环仍是局部环。
+\end{itemize}
+
+\subsection{8.5 Applications to Noetherian rings}
+
+\paragraph{高频结论}
+\begin{itemize}
+  \item Noether 环的完备化仍是 Noether 环。
+  \item associated graded ring 和 completion 紧密相关。
+  \item 稳定 filtration 与 \(I\)-adic topology 给出同样的渐近信息。
+\end{itemize}
+
+\paragraph{考前提示}
+第八章是第九章维数理论的技术准备章。
+
+\section{第9章：Dimension theory of Noetherian rings}
+
+\subsection{总框架}
+
+\paragraph{定义}
+\begin{itemize}
+  \item
+  \[
+    \dim A=\sup\{\text{素理想严格链长度}\}.
+  \]
+  \item 对 \(\mathfrak p\in\operatorname{Spec}A\),
+  \[
+    \operatorname{ht}\mathfrak p=\dim A_{\mathfrak p}.
+  \]
+  \item 对理想 \(I\),
+  \[
+    \operatorname{ht}I=\inf_{\mathfrak p\supset I}\operatorname{ht}\mathfrak p.
+  \]
+\end{itemize}
+
+\paragraph{基本不等式}
+\[
+\operatorname{ht}I+\dim A/I\le \dim A.
+\]
+
+\subsection{9.1 Hilbert functions}
+
+\paragraph{主线}
+对分次环和分次模，Hilbert 级数是有理函数；当生成元次数为 \(1\) 时，长度函数最终由多项式给出。
+
+\paragraph{最重要信息}
+\begin{itemize}
+  \item Hilbert 多项式的次数记录了维数信息。
+  \item 非零因子模掉一次，会把相关次数降 \(1\)。
+\end{itemize}
+
+\subsection{9.2 Noether 局部环的维数理论}
+
+\paragraph{核心定理}
+设 \((A,\mathfrak m)\) 为 Noether 局部环，则
+\[
+\dim A=d(A)=\nu(A),
+\]
+其中 \(d(A)\) 来自 Hilbert 多项式次数，\(\nu(A)\) 是 \(\mathfrak m\)-primary 理想最少生成元个数（III.Thm 9.2.7）。
+
+\paragraph{系统参数}
+若 \(\dim A=d\)，生成 \(\mathfrak m\)-primary 理想的一组 \(d\) 个元素称为 system of parameters。
+
+\paragraph{高频推论}
+\begin{itemize}
+  \item
+  \[
+    \dim A\le \dim_k(\mathfrak m/\mathfrak m^2).
+  \]
+  \item 若 \(I=(x_1,\dots,x_r)\)，则
+  \[
+    \operatorname{ht}I\le r.
+  \]
+  \item 若 \(x\in \mathfrak m\) 是非零因子，则
+  \[
+    \dim A/(x)=\dim A-1.
+  \]
+  \item 完备化不改变维数。
+\end{itemize}
+
+\subsection{9.3 Transcendental dimension}
+
+\paragraph{维数公式}
+若 \(A\) 是有限生成 \(k\)-代数整环，\(K=\operatorname{Frac}(A)\)，则
+\[
+\dim A=\operatorname{tr.deg}_k K.
+\]
+
+\paragraph{意义}
+这是代数几何维数与交换代数维数统一的关键点。
+
+\paragraph{考前速记}
+\begin{itemize}
+  \item 局部环维数由参数组长度控制。
+  \item Hilbert 多项式次数就是维数。
+  \item 高度估计 \(\operatorname{ht}(x_1,\dots,x_r)\le r\) 必须熟。
+\end{itemize}
+
+\section{第10章：Cohen--Macaulay, Normal, Regular}
+
+\subsection{10.1 Regular local rings}
+
+\paragraph{定义}
+对 Noether 局部环 \((A,\mathfrak m,k)\)，若
+\[
+\dim A=\dim_k(\mathfrak m/\mathfrak m^2),
+\]
+则 \(A\) 为 regular local ring。
+
+\paragraph{关键判别}
+\[
+A \text{ regular}
+\Longleftrightarrow
+G_{\mathfrak m}(A)\cong k[t_1,\dots,t_d].
+\]
+
+\paragraph{直接后果}
+\begin{itemize}
+  \item 完备化保持 regular。
+  \item \(k[[X_1,\dots,X_d]]\) 是 regular local ring。
+  \item DVR 是一维 regular local ring。
+  \item regular local ring 是整环，并且整闭，事实上还是 UFD。
+\end{itemize}
+
+\subsection{10.2 Regular sequences, Koszul complex, depth}
+
+\paragraph{正则列}
+\(a_1,\dots,a_r\) 是 \(M\)-regular sequence，表示每一步都不是前一步商模上的零因子，并且最终没有把模整个杀掉。
+
+\paragraph{depth}
+\[
+\operatorname{depth}_I M
+=
+\text{理想 } I \text{ 中最长 } M\text{-regular sequence 的长度}.
+\]
+
+\paragraph{Koszul 复形}
+Koszul 复形是检测正则列的显式工具。若 \(x_1,\dots,x_n\) 是 \(M\)-regular，则
+\[
+H_p(x,M)=0\quad (p>0),\qquad H_0(x,M)=M/xM.
+\]
+
+\paragraph{考前提示}
+\begin{itemize}
+  \item 正则列是“没有隐藏零因子”的序列。
+  \item depth 衡量的是模的深度，而不是维数。
+  \item 以后 CM 的定义就是 depth 和维数相等。
+\end{itemize}
+
+\subsection{10.3 Cohen--Macaulay rings}
+
+\paragraph{定义}
+对有限生成非零模 \(M\)，若
+\[
+\operatorname{depth}M=\dim M,
+\]
+则称 \(M\) 是 Cohen--Macaulay。
+
+\paragraph{关键结论}
+\begin{itemize}
+  \item regular sequence 模掉后，CM 性保持。
+  \item 局部化保持 CM。
+  \item regular local ring 一定是 CM。
+  \item 在 CM 局部环中，高度、depth、参数组、正则列之间高度统一。
+\end{itemize}
+
+\paragraph{必须会的口号}
+\[
+\text{Cohen--Macaulay}=\text{depth 尽可能大}.
+\]
+
+\subsection{10.4 Normal rings}
+
+\paragraph{定义}
+Noether 环 \(A\) 是 normal，如果每个 \(A_{\mathfrak p}\) 都是整闭整环。
+
+\paragraph{一维情形}
+一维 Noether 局部环中，
+\[
+\text{regular}
+\Longleftrightarrow
+\text{normal}
+\Longleftrightarrow
+\text{DVR}.
+\]
+
+\paragraph{Serre 判别}
+对 Noether 环，
+\[
+A \text{ normal}
+\Longleftrightarrow
+(S_2)+(R_1).
+\]
+
+\paragraph{考前理解}
+\begin{itemize}
+  \item \((R_1)\) 管余维 \(1\) 处的 regular 性。
+  \item \((S_2)\) 管整体深度不能太差。
+\end{itemize}
+
+\subsection{10.5 Homological dimension and Regular rings}
+
+\paragraph{全局维数}
+\[
+\operatorname{gl.dim}A=\sup_M \operatorname{proj.dim}M.
+\]
+
+\paragraph{局部判别}
+对 Noether 局部环 \((A,\mathfrak m,k)\)，有
+\[
+\operatorname{gl.dim}A=\operatorname{proj.dim}_A k.
+\]
+
+\paragraph{Serre 对 regular 的同调刻画}
+\[
+A \text{ regular}
+\Longleftrightarrow
+\operatorname{gl.dim}A=\dim A
+\Longleftrightarrow
+\operatorname{gl.dim}A<\infty.
+\]
+
+\paragraph{Auslander--Buchsbaum}
+若 \(M\) 有有限投射维数，则
+\[
+\operatorname{proj.dim}M+\operatorname{depth}M=\operatorname{depth}A.
+\]
+
+\paragraph{考前提示}
+regular 不只是“极大理想生成元个数刚好等于维数”，也等价于“同调维数有限”。
+
+\section*{全书关系图}
+\phantomsection
+\addcontentsline{toc}{section}{全书关系图}
+
+\[
+\text{localization} \Rightarrow \text{把问题化到局部环};
+\]
+\[
+\text{flat} \Rightarrow \text{控制张量与 going-down};
+\]
+\[
+\text{integral} \Rightarrow \text{控制谱映射与 going-up};
+\]
+\[
+\text{Noetherian} \Rightarrow \text{有限性、primary decomposition、Artin--Rees};
+\]
+\[
+\text{completion + graded} \Rightarrow \text{Hilbert 函数与维数理论};
+\]
+\[
+\text{dimension} \Rightarrow \text{参数组、高度估计、超越次数};
+\]
+\[
+\text{regular} \Rightarrow \text{Cohen--Macaulay and normal}.
+\]
+
+更具体地：
+\[
+\text{regular} \Rightarrow \text{Cohen--Macaulay} \Rightarrow (S_k)\ \text{行为良好},
+\]
+\[
+\text{regular} \Rightarrow \text{normal},
+\qquad
+\text{normal} \Longleftrightarrow (S_2)+(R_1)\ \text{(Noether)}.
+\]
+
+\section*{最后的考前清单}
+\phantomsection
+\addcontentsline{toc}{section}{最后的考前清单}
+
+\begin{itemize}
+  \item 会写出 \(\operatorname{Spec}A\)、\(V(I)\)、\(\sqrt I\)、\(\operatorname{nilrad}(A)\)。
+  \item 会用 Nakayama 引理判断最少生成元个数。
+  \item 会写出局部化后谱和模的变化。
+  \item 知道 flat 的三个核心标签：张量正合、\(\operatorname{Tor}_1=0\)、可局部检验。
+  \item 知道 integral 的三个核心标签：首一方程、谱满射、going-up。
+  \item 会说 Hilbert basis theorem。
+  \item 知道 Artinian \(=\) 零维 Noetherian。
+  \item 知道 associated primes 和 primary decomposition 的作用。
+  \item 知道 Dedekind 整环等价于“一维 Noetherian 整闭”，且非零理想唯一分解。
+  \item 知道完备化与 Artin--Rees 是第九章的技术准备。
+  \item 会背 Krull 维数定理的局部版本：\(\dim A=d(A)=\nu(A)\)。
+  \item 会用高度估计 \(\operatorname{ht}(x_1,\dots,x_r)\le r\)。
+  \item 知道 regular sequence、depth、Koszul complex 三者关系。
+  \item 知道 CM 的定义是 depth \(=\) dim。
+  \item 知道 normal 的 Serre 判别和 regular 的 Serre 同调判别。
+\end{itemize}
+
+\end{document}

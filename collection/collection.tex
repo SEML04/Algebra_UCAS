@@ -1,0 +1,2605 @@
+﻿\documentclass[a4paper]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{bbm}
+\usepackage{bm}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{appendix}
+\usepackage{ulem}
+\usepackage{color}
+\usepackage[top=3.4cm, bottom=3.6cm, left=3.6cm, right=3.6cm]{geometry}
+\usepackage{tikz-cd}
+
+\theoremstyle{definition}
+\newtheorem{definition}{定义}[section]
+\newtheorem{example}{题目/例题}[section]
+\newtheoremstyle{analysis}
+  {3pt}{3pt}
+  {\normalfont}
+  {}
+  {\bfseries}
+  {.}
+  { }
+  {}
+\theoremstyle{analysis}
+\newtheorem{remark}{辨析}[section]
+\theoremstyle{plain}
+\newtheorem{theorem}{定理}
+
+\linespread{1.5}
+
+\title{代数概念与题目整理}
+\author{Ray}
+\date{}
+
+\begin{document}
+
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  \newgeometry{top=1cm,bottom=1cm,left=1cm,right=1cm}
+  \vspace*{\fill}
+  \includegraphics[
+    width=\dimexpr\paperwidth-2cm\relax,
+    height=\dimexpr\paperheight-2cm\relax,
+    keepaspectratio
+  ]{cover-collection.jpg}\par
+  \vspace*{\fill}
+  \restoregeometry
+\end{titlepage}
+
+\begin{titlepage}
+  \thispagestyle{empty}
+  \centering
+  \vspace*{0.25\textheight}
+  \includegraphics[width=0.48\textwidth]{logo-collection-2.png}\par
+  {\zihao{0}\bfseries 代数概念与题目整理\par}
+  \vspace{0.8cm}
+  {\Large Ray\par}
+\end{titlepage}
+
+\tableofcontents
+\newpage
+
+\section{概念辨析}
+
+这里记录容易混淆的定义、命题条件与常见误解。
+
+\subsection{根理想与谱}\label{subsec:radicals-spectrum}
+
+\begin{remark}
+Jacobson 根由极大理想控制，而幂零根由素理想控制：
+\[
+  J(A)=\bigcap_{\mathfrak m\in \operatorname{MaxSpec} A}\mathfrak m,
+\]
+\[
+  \operatorname{nilrad}(A)=\sqrt{0}
+  =\bigcap_{\mathfrak p\in \operatorname{Spec} A}\mathfrak p.
+\]
+若 \(A\) 是 Noether 环，则还可写成极小素理想的有限交：
+\[
+  \sqrt{0}
+  =\bigcap_{\mathfrak p\in \operatorname{MinSpec} A}\mathfrak p.
+\]
+这里应说“极小素理想”，而不是一般的“极小理想”。
+\end{remark}
+
+\subsection{Artin 环与 Noether 环}\label{subsec:artin-noether}
+
+\begin{remark}
+Artin 环是维数为零的 Noether 环，因此
+\[
+  \operatorname{Spec} A=\operatorname{MaxSpec} A
+  \qquad (\mathrm{III.Prop}\ 5.3.2),
+\]
+从而
+\[
+  J(A)=\sqrt{0}
+  \qquad (\mathrm{III.Cor}\ 5.3.3),
+\]
+并且该理想幂零：
+\[
+  J(A)^N=0 \qquad (N\gg 0)
+  \qquad (\mathrm{III.Prop}\ 5.3.6).
+\]
+此外，Artin 环只有有限多个极大理想 \((\mathrm{III.Prop}\ 5.3.5)\)，并可分解为有限个 Artin 局部环的直积。
+\end{remark}
+
+\subsection{局部环与链条件}\label{subsec:local-chain}
+
+\begin{remark}
+\phantomsection\label{rem:local-chain-counterexample}
+Artin 局部环中每个元素不是单位就是幂零元，但“局部且极大理想幂零”本身并不能推出 Artin 性。
+若 \(A\) 是 Artin 局部环，极大理想为 \(\mathfrak m\)，则对任意 \(x\in A\)，有
+\[
+  x\notin \mathfrak m \Rightarrow x\in A^\times,\qquad
+  x\in \mathfrak m=\operatorname{nilrad}(A) \Rightarrow x \text{ 幂零}.
+\]
+
+反例：取域 \(k\)，令 \(V\) 为无限维 \(k\)-向量空间，并定义
+\[
+  A=k\oplus V,\qquad
+  (a,v)(b,w)=(ab,aw+bv).
+\]
+则 \(A\) 是交换局部环，其极大理想为
+\[
+  \mathfrak m=0\oplus V,
+\]
+且 \(\mathfrak m^2=0\)。但它不是 Artin 环，因为存在无限严格下降的理想链。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:local-chain-noether}
+一般局部环的理想不必全是 \(\mathfrak m^n\)；若所有理想都形如 \(\mathfrak m^n\)，则该局部环必为 Noether。
+
+反例：取
+\[
+  A=k[x,y]_{(x,y)},
+\]
+则 \(A\) 是局部环，极大理想为 \(\mathfrak m=(x,y)\)，但理想 \((x)\) 不是任何 \(\mathfrak m^n\)。
+
+若局部环 \(A\) 的所有理想都形如 \(\mathfrak m^n\)（以及 \(0\)），则理想全序排列，故满足 ACC；因此 \(A\) 是 Noether 局部环。
+\end{remark}
+
+\subsection{Prop 5.3.12 相关辨析}\label{subsec:prop5312}
+
+\begin{remark}
+\phantomsection\label{rem:prop5312-chain}
+若所有理想都只是 \(\mathfrak m^n\)，则必有
+\[
+  \dim_k(\mathfrak m/\mathfrak m^2)\le 1.
+\]
+在 Artin 局部环语境下，这正是
+\[
+  \text{每个理想都是主理想}
+  \Longleftrightarrow
+  \mathfrak m \text{ 为主理想}
+  \Longleftrightarrow
+  \dim_k(\mathfrak m/\mathfrak m^2)\le 1
+\]
+的内容，即 \((\mathrm{III.Prop}\ 5.3.12)\)。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:prop5312-nakayama}
+由 \(\dim_k(\mathfrak m/\mathfrak m^2)=1\) 推出 \(\mathfrak m\) 为主理想时，必须先有 \(\mathfrak m\) 有限生成。
+
+在 \((\mathrm{III.Prop}\ 5.3.12)\) 中，书上假设 \(A\) 是 Artin 局部环；由 \((\mathrm{III.Thm}\ 5.3.8)\) 可知 Artin 环必为 Noether 环，因此 \(\mathfrak m\) 自动有限生成，此时才能对 \(\mathfrak m\) 使用 Nakayama 引理。
+
+若去掉有限生成条件，仅有
+\[
+  \dim_k(\mathfrak m/\mathfrak m^2)=1
+\]
+并不能推出 \(\mathfrak m\) 是主理想。可取
+\[
+  B=\bigcup_{n\ge 1} k[[t^{1/n}]],
+\]
+记其极大理想为 \(\mathfrak n\)，则 \(\mathfrak n^2=\mathfrak n\) 且 \(\mathfrak n\) 非有限生成。再构造平凡扩张
+\[
+  A=B\ltimes k,
+\]
+则 \(A\) 的极大理想 \(\mathfrak m\) 满足
+\[
+  \mathfrak m/\mathfrak m^2\cong k,
+\]
+因而 \(\dim_k(\mathfrak m/\mathfrak m^2)=1\)，但 \(\mathfrak m\) 仍非主理想。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:prop5312-noether}
+\((\mathrm{III.Prop}\ 5.3.12)\) 的条件“\(A\) 是 Artin 局部环”可以放宽为“\(A\) 是 Noether 局部环”，且三条条件仍等价。
+
+关键替代仅在于：Artin 情形用到 \(\mathfrak m\) 幂零；Noether 局部环中则可改用 Krull 交定理
+\[
+  \bigcap_{n\ge 0}\mathfrak m^n=0.
+\]
+因此书中证明同样可以推广。
+\end{remark}
+
+\subsection{Associated primes 与局部化}\label{subsec:ass-localization}
+
+\begin{remark}
+\phantomsection\label{rem:ass-localization-formula}
+\((\mathrm{III.Cor}\ 6.1.5)\) 可以看作对 \((\mathrm{III.Lem}\ 6.1.4)\) 的最好解释：局部化不会产生新的 associated primes，只会保留那些与 \(S\) 不相交的 associated primes。也就是说，
+\[
+  \operatorname{Ass}_A(S^{-1}M)
+  =
+  f^*\operatorname{Ass}_{S^{-1}A}(S^{-1}M)
+  =
+  \operatorname{Ass}_A(M)\cap\{\mathfrak p\in \operatorname{Spec}A\mid \mathfrak p\cap S=\varnothing\},
+\]
+其中 \(f:A\to S^{-1}A\) 是局部化映射。
+
+第一段等式只是收缩记号的展开：
+\[
+  f^*\bigl(\operatorname{Ass}_{S^{-1}A}(S^{-1}M)\bigr)
+  =
+  \left\{
+    \operatorname{ann}_A\!\left(\frac{x}{1}\right)
+    \,\middle|\,
+    \frac{x}{1}\neq 0 \text{ in } S^{-1}M,\ 
+    \operatorname{ann}_{S^{-1}A}\!\left(\frac{x}{1}\right)\in
+    \operatorname{Spec}(S^{-1}A)
+  \right\},
+\]
+并且若 \(P=\operatorname{ann}_{S^{-1}A}(x/1)\)，则
+\[
+  \operatorname{ann}_A\!\left(\frac{x}{1}\right)=f^{-1}(P)=P\cap A.
+\]
+等价地，
+\[
+  \operatorname{ann}_A\!\left(\frac{x}{1}\right)
+  =
+  \{a\in A\mid \exists s\in S,\ sax=0\}.
+\]
+
+第二段等式证明如下。
+
+\textbf{(1) 从右到左。} 若 \(\mathfrak p=\operatorname{ann}_A(x)\in \operatorname{Ass}_A(M)\) 且 \(\mathfrak p\cap S=\varnothing\)，则 \(x/1\neq 0\)，否则某个 \(s\in S\) 满足 \(sx=0\)，从而 \(s\in \mathfrak p\)，矛盾。再者，
+\[
+  \operatorname{ann}_{S^{-1}A}(x/1)=S^{-1}\mathfrak p.
+\]
+因为若 \((a/s)(x/1)=0\)，则存在 \(t\in S\) 使 \(tax=0\)，即 \(ta\in \mathfrak p\)。由 \(\mathfrak p\cap S=\varnothing\) 且 \(\mathfrak p\) 为素理想，得 \(a\in \mathfrak p\)。反向包含显然，故 \(S^{-1}\mathfrak p\in \operatorname{Ass}_{S^{-1}A}(S^{-1}M)\)。
+
+\textbf{(2) 从左到右。} 若
+\[
+  P=\operatorname{ann}_{S^{-1}A}(y)\in \operatorname{Ass}_{S^{-1}A}(S^{-1}M),
+  \qquad y=x/u,
+\]
+令
+\[
+  \mathfrak p=f^{-1}(P)=P\cap A.
+\]
+书上若写成 \(p=P\cap S^{-1}A\)，那只是笔误；正确应为 \(p=P\cap A=f^{-1}(P)\)。又因 \(P\in \operatorname{Spec}(S^{-1}A)\)，故 \(\mathfrak p\cap S=\varnothing\)。
+
+由于 \(A\) Noetherian，\(\mathfrak p\) 有有限生成元 \(\mathfrak p=(a_1,\dots,a_n)\)。对每个 \(i\)，由 \((a_i/1)y=0\) 可取 \(t_i\in S\) 使 \(t_i a_i x=0\)。令 \(t=t_1\cdots t_n\in S\)，则 \(\mathfrak p\subseteq \operatorname{ann}_A(tx)\)。反过来，若 \(a(tx)=0\)，则在局部化后
+\[
+  (a/1)(t/1)y=0.
+\]
+而 \(t/1\) 是单位，故 \((a/1)y=0\)，即 \(a/1\in P\)，于是 \(a\in P\cap A=\mathfrak p\)。所以
+\[
+  \operatorname{ann}_A(tx)=\mathfrak p,
+\]
+从而 \(\mathfrak p\in \operatorname{Ass}_A(M)\)。
+
+因此
+\[
+  f^*\operatorname{Ass}_{S^{-1}A}(S^{-1}M)
+  =
+  \operatorname{Ass}_A(M)\cap\{\mathfrak p\mid \mathfrak p\cap S=\varnothing\}.
+\]
+这也正是 \((\mathrm{III.Cor}\ 6.1.5)\) 的含义：局部化只保留那些“不碰到 \(S\)”的 associated primes。
+\end{remark}
+
+\phantomsection\label{rem:ass-quotient-radical}
+\begin{remark}
+\((\mathrm{III.Cor}\ 6.2.4)\) 下方的结论
+\[
+  \operatorname{Ass}(A/\mathfrak q)=\{\mathfrak r(\mathfrak q)\}
+\]
+可直接用来计算商模 \(A/\mathfrak q\) 的 associated primes。特别地，若 \((x)\) 本身就是素理想，则
+\[
+  \operatorname{Ass}_A(A/(x))=\{(x)\},
+\]
+因为此时 \(\mathfrak r((x))=(x)\)。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:prime-filtration-nonunique}
+\((\mathrm{III.Prop}\ 6.1.8)\) 给出的 prime filtration 一般不唯一；即使不计顺序，分解中出现的 \(\mathfrak p_i\) 也未必唯一。
+
+例如取
+\[
+  A=k[x,y],\qquad M=A/(x^2,xy).
+\]
+一方面有子模链
+\[
+  0\subset Ax\subset M,
+\]
+其中 \(x\) 表示其在 \(M\) 中的像，且
+\[
+  \operatorname{ann}_A(x)=(x,y),
+  \qquad
+  Ax\cong A/(x,y).
+\]
+这里 \(Ax\) 在 \(M=A/(x^2,xy)\) 中正对应于
+\[
+  \frac{(x)+(x^2,xy)}{(x^2,xy)}
+  =
+  \frac{(x)}{(x^2,xy)},
+\]
+因此也可写成
+\[
+  Ax\cong \frac{(x)}{(x^2,xy)}\cong A/(x,y).
+\]
+于是
+\[
+  M/Ax
+  \cong
+  \frac{A/(x^2,xy)}{(x)/(x^2,xy)}
+  \cong
+  A/(x).
+\]
+因此得到一条 prime filtration，其对应 primes 为
+\[
+  (x,y),\ (x).
+\]
+
+另一方面，可取
+\[
+  0\subset Ay\subset (x,y)/(x^2,xy)\subset M.
+\]
+此时
+\[
+  Ay\cong A/(x),
+\]
+并且后两层商都同构于 \(A/(x,y)\)。于是得到另一条 prime filtration，其对应 primes 为
+\[
+  (x),\ (x,y),\ (x,y).
+\]
+这两个 prime multisets 不同，因此 \((\mathrm{III.Prop}\ 6.1.8)\) 里的 \(\mathfrak p_i\) 不是唯一确定的。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:ass-short-exact-strict}
+\((\mathrm{III.Lem}\ 6.1.9)\) 中
+\[
+  \operatorname{Ass}(M)\subseteq \operatorname{Ass}(M')\cup \operatorname{Ass}(M'')
+\]
+一般只能写成包含，不能改成等号。
+
+反例：取整环
+\[
+  A=k[x],
+\]
+并看短正合列
+\[
+  0\to (x)\to A\to A/(x)\to 0.
+\]
+因为 \(A\) 是整环，
+\[
+  \operatorname{Ass}(A)=\{(0)\}.
+\]
+又由于 \((x)\cong A\) 作为 \(A\)-模，
+\[
+  \operatorname{Ass}((x))=\{(0)\},
+\]
+而
+\[
+  \operatorname{Ass}(A/(x))=\{(x)\}.
+\]
+所以
+\[
+  \operatorname{Ass}(A)=\{(0)\}
+  \subsetneq
+  \{(0),(x)\}
+  =
+  \operatorname{Ass}((x))\cup \operatorname{Ass}(A/(x)).
+\]
+这说明 \((\mathrm{III.Lem}\ 6.1.9)\) 的结论通常是严格包含。
+\end{remark}
+
+\phantomsection\label{rem:ass-intersection-sum}
+\begin{remark}
+\((\mathrm{III.Thm}\ 6.2.10)\) 里出现的
+\[
+  \operatorname{Ass}\!\left(\bigcap_i N_i\right)
+\]
+是有意义的，因为任意多个子模的交仍是子模；因此这里既可以是有限交，也可以是无限交。通常有包含
+\[
+  \operatorname{Ass}\!\left(\bigcap_i N_i\right)\subseteq \bigcap_i \operatorname{Ass}(N_i).
+\]
+
+相反，\(\bigcup_i N_i\) 一般不是子模，所以通常不写
+\[
+  \operatorname{Ass}\!\left(\bigcup_i N_i\right).
+\]
+这里的关键区别是“是否仍为子模”，而不是“指标集是否有限”。另外，即使把“并”改成“和”，这里通常也只考虑有限和
+\[
+  N_1+\cdots+N_r,
+\]
+因为无限和虽然仍可定义为由并集 \(\bigcup_i N_i\) 生成的子模，但在本处并不提供额外有用的信息，因此一般不单独讨论。
+
+若要替代“并”，真正稳定的对象是\textbf{和}
+\[
+  N_1+\cdots+N_r,
+\]
+它始终是子模；但 associated primes 一般也只有上界
+\[
+  \operatorname{Ass}(N_1+\cdots+N_r)
+  \subseteq
+  \operatorname{Ass}(N_1)\cup\cdots\cup \operatorname{Ass}(N_r),
+\]
+通常不能改写成等号。
+\end{remark}
+
+\subsection{Primary ideal 的计算与等价条件}\label{subsec:primary-ideal-colon}
+
+\phantomsection\label{rem:primary-colon}
+\begin{remark}
+这对应原书 \((\mathrm{III.P50})\) 中关于 \((\mathfrak q:x)\) 的计算。
+
+设 \(\mathfrak q\subset A\) 是 \(p\)-primary ideal，其中
+\[
+  p=\sqrt{\mathfrak q}.
+\]
+对任意 \(x\in A\)，记
+\[
+  (\mathfrak q:x)=\{y\in A\mid yx\in \mathfrak q\}.
+\]
+则有三种基本情形：
+\[
+  (\mathfrak q:x)=
+  \begin{cases}
+    A, & x\in \mathfrak q,\\
+    \mathfrak q, & x\notin p,\\
+    \text{一个 } p\text{-primary ideal}, & x\in p\setminus \mathfrak q.
+  \end{cases}
+\]
+
+前两种情形较直接：若 \(x\in \mathfrak q\)，则任意 \(y\) 都满足 \(yx\in \mathfrak q\)，故
+\[
+  (\mathfrak q:x)=A.
+\]
+若 \(x\notin p=\sqrt{\mathfrak q}\)，且 \(yx\in \mathfrak q\)，则在 \(A/\mathfrak q\) 中有
+\[
+  \bar y\,\bar x=0.
+\]
+而 \(\mathfrak q\) 准素等价于 \(A/\mathfrak q\) 的零因子全是幂零元；由于 \(x\notin \sqrt{\mathfrak q}\)，\(\bar x\) 不是幂零元，故它不可能是零因子，只能有 \(\bar y=0\)，即 \(y\in \mathfrak q\)。因此
+\[
+  (\mathfrak q:x)=\mathfrak q.
+\]
+
+再设 \(x\in p\setminus \mathfrak q\)，令
+\[
+  I=(\mathfrak q:x).
+\]
+由 \(x\notin \mathfrak q\) 且 \(ax\in \mathfrak q\Rightarrow a\in p\) 可知
+\[
+  \mathfrak q\subset I\subset p,
+\]
+从而
+\[
+  \sqrt{I}=p.
+\]
+若 \(\bar a\in A/I\) 是零因子，则存在 \(b\notin I\) 使
+\[
+  ab\in I,
+\]
+也就是
+\[
+  abx\in \mathfrak q.
+\]
+而 \(b\notin I\) 意味着 \(bx\notin \mathfrak q\)。于是
+\[
+  a(bx)\in \mathfrak q,\qquad bx\notin \mathfrak q.
+\]
+由 \(\mathfrak q\) 准素，再次利用“\(A/\mathfrak q\) 的零因子全是幂零元”的等价刻画，得到 \(a\in p=\sqrt{I}\)。故 \(A/I\) 的零因子全是幂零元，所以 \(I=(\mathfrak q:x)\) 仍是 \(p\)-primary ideal。
+\end{remark}
+
+\phantomsection\label{rem:m-primary}
+\begin{remark}
+这对应原书 \((\mathrm{III.P50})\) 中关于 \(\mathfrak m\)-primary ideal 的等价刻画。
+
+设 \(A\) 是 Noether 环，\(\mathfrak m\subset A\) 是极大理想，\(\mathfrak q\subset A\) 是真理想。则以下三条等价：
+\[
+  \mathfrak q\text{ 是 }\mathfrak m\text{-primary}
+  \iff
+  \sqrt{\mathfrak q}=\mathfrak m
+  \iff
+  \mathfrak m^k\subset \mathfrak q\subset \mathfrak m
+  \text{ for some }k\ge 1.
+\]
+
+\textbf{(1) \(\Rightarrow\) (2).} 这是 primary ideal 的定义结论：若 \(\mathfrak q\) 是 \(\mathfrak m\)-primary，则其根理想就是 \(\mathfrak m\)。
+
+\textbf{(2) \(\Rightarrow\) (1).} 若 \(\sqrt{\mathfrak q}=\mathfrak m\)，则 \(\mathfrak m\) 是唯一包含 \(\mathfrak q\) 的素理想，因此
+\[
+  \operatorname{Spec}(A/\mathfrak q)=\{\mathfrak m/\mathfrak q\}.
+\]
+等价地，
+\[
+  V(\mathfrak q)=\{\mathfrak m\},
+\]
+又因 \(A/\mathfrak q\) 是有限生成 \(A\)-模，
+\[
+  \operatorname{Supp}(A/\mathfrak q)=V(\operatorname{Ann}(A/\mathfrak q))=V(\mathfrak q)=\{\mathfrak m\}
+  \qquad (\mathrm{III.Thm}\ 6.1.6).
+\]
+另一方面，\(A/\mathfrak q\neq 0\)，故其 associated primes 非空，并且由 \((\mathrm{III.Thm}\ 6.1.6)\) 有
+\[
+  \operatorname{Ass}(A/\mathfrak q)\subseteq \operatorname{Supp}(A/\mathfrak q)=\{\mathfrak m\}.
+\]
+于是
+\[
+  \operatorname{Ass}(A/\mathfrak q)=\{\mathfrak m\},
+\]
+这就说明 \(\mathfrak q\) 是 \(\mathfrak m\)-准素的。也可以直接用“\(A/\mathfrak q\) 中零因子全是幂零元”来证，只是书上这里是从 associated primes 的角度处理。
+
+\textbf{(3) \(\Rightarrow\) (2).} 由
+\[
+  \mathfrak m^k\subset \mathfrak q\subset \mathfrak m
+\]
+取根理想即可得到
+\[
+  \mathfrak m=\sqrt{\mathfrak m^k}\subseteq \sqrt{\mathfrak q}\subseteq \sqrt{\mathfrak m}=\mathfrak m.
+\]
+
+\textbf{(2) \(\Rightarrow\) (3).} 这里有限生成性正用在 \(\mathfrak m\) 上。因为 \(A\) Noether，所以
+\[
+  \mathfrak m=(x_1,\dots,x_r)
+\]
+是有限生成的。由 \(x_i\in \sqrt{\mathfrak q}\) 可取 \(n_i\ge 1\) 使
+\[
+  x_i^{n_i}\in \mathfrak q.
+\]
+令
+\[
+  N=n_1+\cdots+n_r-r+1.
+\]
+则任一属于 \(\mathfrak m^N\) 的次数 \(N\) 单项式
+\[
+  x_1^{a_1}\cdots x_r^{a_r},\qquad a_1+\cdots+a_r=N,
+\]
+必有某个 \(a_i\ge n_i\)，否则
+\[
+  a_1+\cdots+a_r\le (n_1-1)+\cdots +(n_r-1)=N-1,
+\]
+矛盾。于是每个这样的单项式都含有因子 \(x_i^{n_i}\in \mathfrak q\)，从而属于 \(\mathfrak q\)。因此
+\[
+  \mathfrak m^N\subseteq \mathfrak q\subseteq \mathfrak m.
+\]
+\end{remark}
+
+\phantomsection\label{rem:primary-counterexample}
+\begin{remark}
+需要警惕两点：
+\begin{enumerate}
+  \item 素理想的幂不一定还是准素的；
+  \item 仅有 \(\sqrt{\mathfrak q}=p\) 也不能单独推出 \(\mathfrak q\) 就是 \(p\)-准素的，仍需验证 \(A/\mathfrak q\) 的零因子全是幂零元。
+\end{enumerate}
+
+一个标准反例是
+\[
+  A=k[x,y,z]/(xy-z^2),\qquad p=(x,z).
+\]
+这里 \(p\) 是素理想，但
+\[
+  p^2=(x^2,xz,z^2)
+\]
+不是 \(p\)-primary。事实上在 \(A\) 中有
+\[
+  xy=z^2\in p^2,
+\]
+而
+\[
+  x\notin p^2,\qquad y\notin p=\sqrt{p^2}.
+\]
+若 \(p^2\) 是 primary ideal，则由 \(xy\in p^2\) 与 \(x\notin p^2\) 应推出某个 \(y^n\in p^2\)，这显然不成立。故 \(p^2\) 不是 primary；这同时也说明 \(\sqrt{\mathfrak q}=p\) 本身并不足以保证 \(\mathfrak q\) 带有 \(p\)-primary 结构。
+\end{remark}
+
+\subsection{Supp(M) 的两条基本性质}\label{subsec:support-basic}
+
+\begin{remark}
+\phantomsection\label{rem:support-basic}
+\((\mathrm{III.Thm}\ 6.1.6)\) 前回顾了
+\[
+  \operatorname{Supp}(M)=\{\mathfrak p\in \operatorname{Spec}A\mid M_{\mathfrak p}\neq 0\}.
+\]
+这里
+\[
+  V(I)=\{\mathfrak p\in \operatorname{Spec}A\mid I\subseteq \mathfrak p\}
+\]
+表示由理想 \(I\) 定义的 Zariski 闭集；它在第一章引入 Zariski 拓扑时第一次出现，具体是在 \((\mathrm{III.\S 1.1})\) 中、\((\mathrm{III.Def}\ 1.1.14)\) 之前。
+
+其中第一条性质
+\[
+  M\neq 0 \iff \operatorname{Supp}(M)\neq \varnothing
+\]
+正是 \((\mathrm{III.Prop}\ 2.2.8)\) 的直接改写：\(M=0\) 当且仅当对一切素理想 \(\mathfrak p\)，都有 \(M_{\mathfrak p}=0\)。
+
+第二条性质是：若 \(M\) 有限生成，则
+\[
+  \operatorname{Supp}(M)=V(\operatorname{Ann}(M)).
+\]
+书中在这里直接作为标准事实使用，前文似乎没有单独列成命题。其证明很短：总有
+\[
+  \operatorname{Supp}(M)\subseteq V(\operatorname{Ann}(M)),
+\]
+而有限生成性保证反向包含也成立。
+等价地，对任意 \(\mathfrak p\in \operatorname{Spec}A\)，有
+\[
+  M_{\mathfrak p}\neq 0
+  \iff
+  \operatorname{Ann}(M)\subseteq \mathfrak p,
+  \qquad
+  M_{\mathfrak p}=0
+  \iff
+  \operatorname{Ann}(M)\not\subseteq \mathfrak p.
+\]
+\end{remark}
+
+\subsection{范畴论视角}\label{subsec:categorical-view}
+
+\begin{remark}
+Noetherian 与 Artinian 在范畴论里是链条件意义下的形式对偶，但交换环上的 Artin/Noether 并不是简单的范畴对偶。
+
+更自然的理解是：Noether 条件控制升链，Artin 条件控制降链；在 Abel 范畴中，同时满足二者的对象就是有限长度对象。对局部交换代数而言，更深的联系通常通过 Matlis 对偶体现，而不是通过“环的直接对偶”体现。
+\end{remark}
+
+\begin{remark}
+Matlis 对偶是在完备 Noether 局部环上把 Noetherian 模与 Artinian 模联系起来的标准反等价。
+
+若 \((A,\mathfrak m,k)\) 是完备 Noether 局部环，记 \(E=E_A(k)\) 为剩余域 \(k\) 的内射包，并定义
+\[
+  D(M)=\operatorname{Hom}_A(M,E).
+\]
+则
+\[
+  \{\text{Noetherian } A\text{-modules}\}^{\operatorname{op}}
+  \simeq
+  \{\text{Artinian } A\text{-modules}\}.
+\]
+这说明 Artinian/Noetherian 的“对偶性”在模块范畴中是严格可表达的。
+\end{remark}
+
+\subsection{极限、余极限与始对象/终对象的辨析}\label{subsec:limits-colimits}
+
+\begin{remark}
+\phantomsection\label{rem:limits-colimits-padic}
+关于极限与余极限，最容易混淆的不是对象本身，而是\textbf{过渡态射的方向}。
+
+\begin{itemize}
+  \item \textbf{逆极限 / 投射极限 / 极限} \(\varprojlim\) 处理的是一串向左投影的资料
+  \[
+    \cdots \to X_3\to X_2\to X_1,
+  \]
+  其元素应理解为“各层彼此相容的坐标族”
+  \[
+    (x_n)_n,\qquad f_n(x_{n+1})=x_n.
+  \]
+  \item \textbf{直极限 / 归纳极限 / 余极限} \(\varinjlim\) 处理的是一串向右推进的资料
+  \[
+    X_1\to X_2\to X_3\to \cdots,
+  \]
+  其元素应理解为“某一层元素在后续各层中的最终等价类”。
+\end{itemize}
+
+因此记忆时不要先看对象名，而要先看：\textbf{箭头是把信息往前并起来，还是往后投影回来。}
+
+\medskip
+
+最典型的混淆例子就是
+\[
+  \mathbb Z/p^n\mathbb Z.
+\]
+它既能出现在逆系统里，也能出现在直系统里，但得到的对象完全不同：
+\begin{itemize}
+  \item 若取自然投影
+  \[
+    \cdots \to \mathbb Z/p^n\mathbb Z \to \mathbb Z/p^{n-1}\mathbb Z \to \cdots \to \mathbb Z/p\mathbb Z,
+  \]
+  则
+  \[
+    \varprojlim_n \mathbb Z/p^n\mathbb Z=\mathbb Z_p.
+  \]
+  这里 \(\mathbb Z_p\) 是“模 \(p^n\) 余数的相容系统”，正是 \(\mathrm{Algebra\ I}\) 第 1.15 节与 \(\mathrm{Algebra\ III}\) 第 8.4 节反复出现的 \(p\)-进整数。
+  \item 若取向右的嵌入系统，例如阿贝尔群中的标准单射
+  \[
+    \mathbb Z/p^n\mathbb Z \xrightarrow{\cdot p} \mathbb Z/p^{n+1}\mathbb Z,
+    \qquad
+    \bar x\mapsto \overline{px},
+  \]
+  则
+  \[
+    \varinjlim_n \mathbb Z/p^n\mathbb Z=\mathbb Z(p^\infty),
+  \]
+  即 Prüfer \(p\)-群，也可记作 \(C_{p^\infty}\)。
+\end{itemize}
+
+所以应牢牢记住
+\[
+  \varprojlim_n \mathbb Z/p^n\mathbb Z=\mathbb Z_p,
+  \qquad
+  \varinjlim_n \mathbb Z/p^n\mathbb Z=\mathbb Z(p^\infty).
+\]
+前者是完备化、pro-对象、Krull 拓扑与 \(I\)-adic completion 的语言；后者则是“不断往后并起来”的 colimit 语言。
+
+\medskip
+
+\phantomsection\label{rem:initial-terminal-limits}
+\textbf{始对象与终对象的直观理解也应一起记住。}
+
+在一个范畴里：
+\begin{itemize}
+  \item \textbf{始对象} \(I\) 的意思是：对任意对象 \(X\)，都有唯一态射
+  \[
+    I\to X.
+  \]
+  它像“从这里出发，去任何地方都只有一种最自然的办法”。
+  \item \textbf{终对象} \(T\) 的意思是：对任意对象 \(X\)，都有唯一态射
+  \[
+    X\to T.
+  \]
+  它像“所有对象都唯一地汇入这里”。
+\end{itemize}
+
+更适合理解的方式，是直接看\textbf{交换图}。
+
+\begin{itemize}
+  \item \textbf{余极限} \(\varinjlim X_i\) 的意思是：若你已经有一族相容态射
+  \[
+    X_i\to Y,
+  \]
+  那么它们都会唯一地经过 \(\varinjlim X_i\) 因子分解。也就是存在唯一态射
+  \[
+    \varinjlim X_i \to Y
+  \]
+  使得对每个 \(i\) 都有交换图
+  \[
+  \begin{tikzcd}
+    X_i \arrow[rr] \arrow[dr] & & \varinjlim X_i \arrow[dl, dashed] \\
+    & Y &
+  \end{tikzcd}
+  \]
+  所以余极限就是“把各层往外送之后，最自然的总汇出口”。
+
+  \item \textbf{极限} \(\varprojlim X_i\) 的意思是：若你已经有一族相容态射
+  \[
+    Y\to X_i,
+  \]
+  那么它们都会唯一地经过 \(\varprojlim X_i\) 因子分解。也就是存在唯一态射
+  \[
+    Y \to \varprojlim X_i
+  \]
+  使得对每个 \(i\) 都有交换图
+  \[
+  \begin{tikzcd}
+    & Y \arrow[dl, dashed] \arrow[dr] & \\
+    \varprojlim X_i \arrow[rr] & & X_i
+  \end{tikzcd}
+  \]
+  所以极限就是“把各层往回看时，最自然的相容总源”。
+\end{itemize}
+
+若勉强和“始对象/终对象”联系，那么也只需记成：
+\begin{itemize}
+  \item 余极限之所以像“始对象”，是因为它总是\textbf{唯一地流出}到任何别的 cocone；
+  \item 极限之所以像“终对象”，是因为任何别的 cone 都会\textbf{唯一地流入}它。
+\end{itemize}
+
+因此一句话概括就是：
+\[
+  \text{colimit 是“把各层并起来后的最自由出口”，}
+\]
+\[
+  \text{limit 是“把各层对齐后的最严格相容入口”。}
+\]
+
+所以实操时最稳妥的判断法是：
+\begin{enumerate}
+  \item 先看箭头方向；
+  \item 再问自己：我要的是“把各层并起来”，还是“找一组相容坐标”；
+  \item 最后用始对象/终对象的泛性质检查自己写的定义是否方向正确。
+\end{enumerate}
+\end{remark}
+
+\subsection{\texorpdfstring{Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)}{Artin-Rees 预备引理中的 Qn 与 Mn*}}\label{subsec:artin-rees-qn}
+
+\begin{remark}
+设
+\[
+  A^*=\bigoplus_{r\ge 0}I^r,\qquad
+  M^*=\bigoplus_{r\ge 0}M_r,
+\]
+并令
+\[
+  Q_n:=\bigoplus_{r=0}^n M_r.
+\]
+由于 \(A\) Noether、\(M\) 有限生成，所以每个 \(M_r\subset M\) 都是有限生成 \(A\)-模，从而有限直和 \(Q_n\) 也是有限生成 \(A\)-模。
+
+此处要证明的是：由 \(Q_n\) 生成的 \(A^*\)-子模
+\[
+  M_n^*:=A^*\cdot Q_n
+\]
+是一个有限生成的 \(A^*\)-模；并且按定义，
+\[
+  M_n^*
+  =
+  M_0\oplus\cdots\oplus M_n\oplus IM_n\oplus I^2M_n\oplus\cdots\oplus I^rM_n\oplus\cdots .
+\]
+这正是书中显示公式的含义：前 \(n\) 层直接保留，而从第 \(n\) 层开始，后续各层由 \(I\) 的幂反复作用得到。
+
+若取 \(Q_n\) 的一组有限 \(A\)-生成元
+\[
+  v_1,\dots,v_s\in Q_n,
+\]
+则同一组元素也生成 \(A^*\)-子模
+\[
+  M_n^*:=A^*\cdot Q_n\subset M^*.
+\]
+这里还要区分两类“生成元”的所在对象：
+\begin{itemize}
+  \item \(Q_n\) 的生成元 \(v_i\) 首先是 \(Q_n\) 中的元素，因此本质上是有限直和 \(\bigoplus_{r=0}^n M_r\) 里的元素，各分量都落在 \(A\)-模 \(M_r\) 中；
+  \item 当说它们生成 \(M_n^*\) 时，必须把同样的 \(v_i\) 视为嵌入
+  \[
+    Q_n\hookrightarrow M^*=\bigoplus_{r\ge 0}M_r
+  \]
+  后的元素；也就是说，此时它们是分次直和 \(M^*\) 中的元素，而不再只是 \(A\) 或单个 \(M_r\) 中的元素。
+\end{itemize}
+
+确实，任意 \(x\in M_n^*\) 都可写成有限和
+\[
+  x=\sum_\alpha a_\alpha^* q_\alpha,
+  \qquad
+  a_\alpha^*\in A^*,\ q_\alpha\in Q_n.
+\]
+而每个 \(q_\alpha\) 又可写成
+\[
+  q_\alpha=\sum_{i=1}^s b_{\alpha i}v_i,
+  \qquad
+  b_{\alpha i}\in A=A_0^*\subset A^*.
+\]
+于是
+\[
+  x=\sum_{\alpha,i}(a_\alpha^*b_{\alpha i})v_i,
+\]
+所以 \(M_n^*\) 由 \(v_1,\dots,v_s\) 作为 \(A^*\)-模有限生成。
+
+真正起作用的是分次乘法
+\[
+  I^r\cdot M_j\subset M_{r+j},
+\]
+它把 \(Q_n\) 中前 \(n\) 层的信息向高次数层传递。于是书中引入的升链
+\[
+  M_0^*\subset M_1^*\subset \cdots \subset M_n^*\subset \cdots
+\]
+每一项都是有限生成 \(A^*\)-模；再由 \(A^*\) Noether，升链稳定，便得到某个 \(n_0\) 使
+\[
+  M^*=M_{n_0}^*,
+\]
+这正等价于
+\[
+  M_{n_0+r}=I^rM_{n_0}\qquad (\forall r\ge 0),
+\]
+也就是 filtration 稳定。
+\end{remark}
+
+\subsection{\texorpdfstring{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}{I-adic 滤过、I-adic 拓扑与子模诱导结构}}\label{subsec:iadic-subspace-topology}
+
+\begin{remark}
+\phantomsection\label{rem:artin-rees-subspace-topology}
+\((\mathrm{III.\S 8.5})\) 前的最后一段，实质上是在说明：\textbf{Noether 有限生成情形下，子模从母模继承的子空间拓扑，恰好就是它自己的 \(I\)-adic 拓扑。}
+
+这里应先区分三件事：
+\begin{itemize}
+  \item \((\mathrm{III.Def}\ 8.0.1)\) 里的 \(I\)-adic 是\textbf{滤过}
+  \[
+    M\supset IM\supset I^2M\supset \cdots,
+  \]
+  或更一般的 stable \(I\)-filtration；
+  \item \((\mathrm{III.\S 8.4})\) 里的 \(I\)-adic topology 是由 \(I^nM\) 作为 \(0\) 的基本邻域所定义的\textbf{拓扑}；
+  \item 对子模 \(N\subset M\)，从母模继承来的首先是诱导过滤
+  \[
+    I^nM\cap N.
+  \]
+\end{itemize}
+
+因此不能直接把“\(N\) 继承了 \(I\)-adic 结构”理解成逐项等式
+\[
+  I^nM\cap N = I^nN.
+\]
+真正成立的是：在 \(A\) Noether、\(M\) 有限生成时，Artin-Rees 先说明 \((I^nM\cap N)\) 是 \(N\) 上的 stable \(I\)-filtration；再由 \((\mathrm{III.Lem}\ 8.0.2)\) 知，它与 \(N\) 的标准 \(I\)-adic filtration 在\textbf{拓扑意义}下等价。
+
+所以这里比较的不是两串过滤是否逐项相同，而是它们是否定义同一个拓扑。逻辑链可压成
+\[
+\text{filtration}
+\Longrightarrow
+\text{topology},
+\]
+\[
+  I^nM\cap N
+  \overset{\text{Artin-Rees}}{\Longrightarrow}
+  \text{stable \(I\)-filtration on }N
+  \overset{\text{Lem }8.0.2}{\Longrightarrow}
+  \text{same topology as }I^nN.
+\]
+
+这正是 8.5 节后面讨论 completion 保持短正合列正合性的关键技术准备。
+
+\medskip
+
+因此可把结论压缩成三层：
+\begin{enumerate}
+  \item 在 \(M\) 上，任意 stable \(I\)-filtration 都与标准 \(I\)-adic filtration 定义同一个拓扑；
+  \item 对子模 \(N\subset M\)，若 \(A\) Noether 且 \(M\) 有限生成，则 \(N\) 从 \(M\) 继承的子空间拓扑就是 \(N\) 自己的 \(I\)-adic 拓扑；
+  \item 因而在上述条件下，\(N\) 上得到的拓扑与 \(M\) 上 stable \(I\)-filtration 的选取无关。
+\end{enumerate}
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:giM-vs-gM}
+\((\mathrm{III.\S 8.2},\ \mathrm{III.\S 8.5})\) 中的 \(G_I(M)\) 与 \(G(M)\) 要区分：
+\[
+  G_I(M):=\bigoplus_{n\ge 0} I^nM/I^{n+1}M
+\]
+是对\textbf{标准 \(I\)-adic filtration}
+\[
+  M\supset IM\supset I^2M\supset \cdots
+\]
+所作的 associated graded；而若 \((M_n)\) 是任意 \(I\)-filtration，则书中后面定义
+\[
+  G(M):=\bigoplus_{n\ge 0} M_n/M_{n+1},
+\]
+它是更一般的 associated graded \(G_I(A)\)-模。
+
+因此 \(G_I(M)\) 只是 \(G(M)\) 的特例：当
+\[
+  M_n=I^nM
+\]
+时，就有
+\[
+  G(M)=G_I(M).
+\]
+
+但若 \((M_n)\) 只是 stable \(I\)-filtration，而并非逐项等于 \(I^nM\)，则一般不能推出
+\[
+  G(M)\cong G_I(M).
+\]
+真正相同的是它们在原模 \(M\) 上诱导的\textbf{拓扑}：由 \((\mathrm{III.Lem}\ 8.0.2)\)，stable \(I\)-filtration \((M_n)\) 与标准 \(I\)-adic filtration \((I^nM)\) 在 \(M\) 上定义同一个 \(I\)-adic topology。换言之，“相同”发生在 filtration 对应的 topology 层面，而不是 associated graded 模本身必然同构。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:prop8510-graded-recovery}
+\((\mathrm{III.Prop}\ 8.5.10)\) 的核心是：在完备且 separated 的 \(I\)-filtration 下，原模 \(M\) 的有限生成性与 Noether 性，可以从切片
+\[
+  M_n/M_{n+1}
+\]
+组成的分次模
+\[
+  G(M)=\bigoplus_{n\ge 0} M_n/M_{n+1}
+\]
+中恢复出来。
+
+这里每一层 \(M_n/M_{n+1}\) 都天然是 \(A/I\)-模，因为 \(IM_n\subset M_{n+1}\)。把这些层合在一起后，\(G(M)\) 不只是若干商模的直和，而是一个 \(G_I(A)\)-模；其意义在于：它既记录每一层的首项信息，也记录这些层如何被 \(I\) 的作用彼此连接。
+
+证明思路是先取 \(G(M)\) 的有限个齐次生成元
+\[
+  \xi_i\in M_{k_i}/M_{k_i+1},
+\]
+并将其提升为 \(x_i\in M_{k_i}\)，从而得到一个自由模到 \(M\) 的滤过态射
+\[
+  \varphi:F=A^n\to M.
+\]
+由于这些 \(\xi_i\) 生成 \(G(M)\)，对应的分次态射 \(G(\varphi)\) 满射；再由 \((\mathrm{III.Lem}\ 8.5.9)\)，完备化后的态射
+\[
+  \widehat\varphi:\widehat F\to \widehat M
+\]
+也满射。此时 \(A\) 已 \(I\)-adic 完备，故 \(F=A^n\) 也完备，从而 \(F\cong \widehat F\)。
+
+条件
+\[
+  \bigcap_{n\ge 0} M_n=0
+\]
+在这里恰好保证自然映射
+\[
+  M\to \widehat M
+\]
+单射。若没有这一步，最多只能说明 \(\widehat M\) 被这些提升元生成，却不能反推出 \(M\) 本身已被生成；换言之，这个条件排除了“躲在无限深层、在所有切片中都看不见”的元素。
+
+因此，这个命题可以理解为一种“associated graded 检验原模”：若 \(G(M)\) 有限生成，则 \(M\) 有限生成；若 \(G(M)\) 还是 Noetherian 的 \(G_I(A)\)-模，则对任意子模 \(N\subset M\)，诱导滤过 \(N_n=N\cap M_n\) 满足
+\[
+  G(N)\hookrightarrow G(M),
+\]
+于是 \(G(N)\) 也有限生成，再次应用前半部分便知 \(N\) 有限生成，从而 \(M\) 是 Noether 模。
+\end{remark}
+
+\subsection{短正合列的分裂与投射模/内射模}\label{subsec:split-projective-injective}
+
+\begin{remark}
+\phantomsection\label{rem:split-projective-injective}
+短正合列
+\[
+  0\to M'\xrightarrow{i} M\xrightarrow{q} M''\to 0
+\]
+何时分裂，是模论里最基本也最常用的判据之一。
+
+按 \(\textit{代数学方法 第一卷}\) 的 \((\S 6.8,\ \text{命题 }6.8.5)\)，以下条件彼此等价：
+\begin{enumerate}
+  \item 存在截面 \(s:M''\to M\)，使
+  \[
+    q\circ s=\mathrm{id}_{M''};
+  \]
+  \item 存在收缩 \(r:M\to M'\)，使
+  \[
+    r\circ i=\mathrm{id}_{M'};
+  \]
+  \item 中项分解为直和
+  \[
+    M\cong M'\oplus M''.
+  \]
+\end{enumerate}
+所以“短正合列分裂”本质上就是说：中项里可以同时把左端作为一个直和子模、把右端作为一个补模取出来。
+
+\medskip
+
+\(\textit{代数学方法 第一卷}\) 的 \((\S 6.9,\ \text{定义 }6.9.3)\) 把投射模与内射模定义成两个对偶的正合性条件：
+\begin{itemize}
+  \item \(P\) 是\textbf{投射模}，若函子
+  \[
+    \operatorname{Hom}(P,-)
+  \]
+  正合；
+  \item \(I\) 是\textbf{内射模}，若函子
+  \[
+    \operatorname{Hom}(-,I)
+  \]
+  正合。
+\end{itemize}
+
+把这两个定义翻成“解 lifting / extension 问题”的语言会更直观：
+\begin{itemize}
+  \item 投射模的本质是\textbf{对满射可提升}：若 \(M\twoheadrightarrow M''\) 且 \(P\to M''\) 已给出，则可提升成 \(P\to M\)；
+  \item 内射模的本质是\textbf{对单射可延拓}：若 \(M'\hookrightarrow M\) 且 \(M'\to I\) 已给出，则可延拓成 \(M\to I\)。
+\end{itemize}
+
+\medskip
+
+因此 \(\textit{代数学方法 第一卷}\) 的 \((\S 6.9,\ \text{命题 }6.9.8)\) 立刻给出一个极常用的分裂判据：
+\[
+  0\to I\to M\to P\to 0
+\]
+若左端 \(I\) 内射，或右端 \(P\) 投射，则该短正合列分裂。
+
+原因很直接：
+\begin{itemize}
+  \item 若 \(P\) 投射，则恒等映射 \(P\to P\) 可沿满射 \(M\twoheadrightarrow P\) 提升，得到截面 \(s:P\to M\)，故分裂；
+  \item 若 \(I\) 内射，则恒等映射 \(I\to I\) 可沿单射 \(I\hookrightarrow M\) 延拓，得到收缩 \(r:M\to I\)，故分裂。
+\end{itemize}
+
+最后再记一个结构性结论：同书 \((\S 6.9,\ \text{命题 }6.9.8)\) 还说明
+\[
+  P \text{ 投射}
+  \iff
+  P \text{ 是某个自由模的直和项}.
+\]
+这解释了为什么投射模总带有“可分裂”的味道：它本来就是从自由模中切下来的直和块；而内射模则是对偶地保证“映到它里面的态射不会被嵌入卡住”。
+\end{remark}
+
+\newpage
+\section{专题整理}
+
+\subsection{\texorpdfstring{投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线}{投射分解、内射分解与 Tor/Ext 的主线}}\label{subsec:topic-derived-functors}
+
+这一块最好和 \(\textit{代数学方法 第一卷}\) 的 \((\S 6.8,\S 6.9)\) 一起看：前者讲短正合列与分裂，后者讲投射模、内射模、平坦模。书中虽然尚未系统展开同调代数，但逻辑上已经自然通向投射分解、内射分解以及 \(\operatorname{Tor}\)、\(\operatorname{Ext}\)。
+
+\medskip
+
+\textbf{第一步：用“好模”逼近一般模。}
+
+任意 \(A\)-模 \(M\) 总可由自由模满射覆盖：
+\[
+  P_0\twoheadrightarrow M.
+\]
+再对其核继续取自由模满射，便得到一条向左延伸的正合列
+\[
+  \cdots \to P_2\to P_1\to P_0\to M\to 0,
+\]
+其中各 \(P_i\) 取投射模时，称为 \(M\) 的\textbf{投射分解}；取自由模时则是其特例。对偶地，把 \(M\) 嵌入一个内射模 \(I^0\)，再对余核重复，得到
+\[
+  0\to M\to I^0\to I^1\to I^2\to \cdots,
+\]
+这称为 \(M\) 的\textbf{内射分解}。
+
+它们的意义在于：许多函子本身并不正合，但在投射模或内射模上表现良好，于是可以先分解、再施函子、最后取同调。
+
+\medskip
+
+\textbf{第二步：\(\operatorname{Tor}\) 衡量张量积的“左正合失效”。}
+
+张量积函子
+\[
+  -\otimes_A N
+\]
+总是右正合，但一般不左正合。若 \(P_\bullet\to M\to 0\) 是投射分解，则对其张量 \(N\) 得到复形
+\[
+  \cdots \to P_2\otimes_A N\to P_1\otimes_A N\to P_0\otimes_A N\to 0.
+\]
+其同调定义为
+\[
+  \operatorname{Tor}_i^A(M,N):=H_i(P_\bullet\otimes_A N)\qquad (i\ge 0).
+\]
+其中
+\[
+  \operatorname{Tor}_0^A(M,N)\cong M\otimes_A N.
+\]
+因此
+\[
+  \operatorname{Tor}_1^A(M,N)
+\]
+首先刻画的就是：把短正合列张量以后，左端到底损失了多少正合性。特别地，
+\[
+  N \text{ flat}
+  \iff
+  \operatorname{Tor}_1^A(M,N)=0\ \text{对一切 }M
+  \iff
+  \operatorname{Tor}_i^A(M,N)=0\ \text{对一切 }i\ge 1,\ M.
+\]
+
+\medskip
+
+\textbf{第三步：\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 的“右正合失效”与扩张类。}
+
+函子
+\[
+  \operatorname{Hom}_A(M,-)
+\]
+总是左正合，但一般不右正合。若
+\[
+  0\to N\to I^\bullet
+\]
+是 \(N\) 的内射分解，则对其施以 \(\operatorname{Hom}_A(M,-)\) 得到上链复形
+\[
+  0\to \operatorname{Hom}_A(M,I^0)\to \operatorname{Hom}_A(M,I^1)\to \cdots,
+\]
+并定义
+\[
+  \operatorname{Ext}_A^i(M,N):=H^i\!\bigl(\operatorname{Hom}_A(M,I^\bullet)\bigr).
+\]
+等价地，也可对第一变量取投射分解来计算 \(\operatorname{Ext}\)。
+
+其中
+\[
+  \operatorname{Ext}_A^0(M,N)\cong \operatorname{Hom}_A(M,N).
+\]
+而最重要的第一层是
+\[
+  \operatorname{Ext}_A^1(M'',M'),
+\]
+它分类短正合列
+\[
+  0\to M'\to E\to M''\to 0
+\]
+的扩张类；零元恰对应分裂扩张。于是“所有这类短正合列都分裂”等价于
+\[
+  \operatorname{Ext}_A^1(M'',M')=0.
+\]
+
+\medskip
+
+\textbf{第四步：与投射模、内射模、全局维数的关系。}
+
+\begin{itemize}
+  \item \(P\) 投射当且仅当
+  \[
+    \operatorname{Ext}_A^1(P,N)=0
+  \]
+  对任意 \(N\)；
+  \item \(I\) 内射当且仅当
+  \[
+    \operatorname{Ext}_A^1(M,I)=0
+  \]
+  对任意 \(M\)；
+  \item \(N\) 平坦当且仅当
+  \[
+    \operatorname{Tor}_1^A(M,N)=0
+  \]
+  对任意 \(M\)。
+\end{itemize}
+
+更高阶的 \(\operatorname{Ext}^i,\operatorname{Tor}_i\) 则记录“需要多少步投射/内射分解才能把问题化简掉”。这正是 \((\mathrm{III.\S 10.5})\) 讨论 homological dimension 与 regular rings 的背景：当投射维数、全局维数有限时，regular 性、depth、Koszul 复形与 \(\operatorname{Ext}/\operatorname{Tor}\) 的消失现象会被统一起来。
+
+\medskip
+
+\textbf{一句话压缩：}
+\[
+  \begin{aligned}
+    \text{projective/injective resolutions}
+    &\Longrightarrow
+    \text{derived functors} \\
+    &\Longrightarrow
+    \operatorname{Tor},\operatorname{Ext} \\
+    &\Longrightarrow
+    \text{flatness / splitting / homological dimension}.
+  \end{aligned}
+\]
+
+\subsection{CSA 相关概念总联系}\label{subsec:topic-csa}
+
+这里集中整理 \( \mathrm{Algebra\ I} \) 中中心单代数（central simple algebra, CSA）
+的主线关系，便于把 Brauer 群、分裂域与中心化子放进同一框架里理解。
+
+\begin{itemize}
+  \item CSA 的定义是“单环 + 中心等于底域 \(F\)”；有限维情形下，由 Wedderburn-Artin 理论，
+  \[
+    A\simeq M_n(D),
+  \]
+  其中 \(D\) 是中心除 \(F\)-代数。因此研究有限维 CSA，本质上就是研究中心除代数。
+  \item 张量积是组织 CSA 的基本运算：若 \(A,B\) 是 CSA，则 \(A\otimes_F B\) 仍是 CSA；而
+  \[
+    A\otimes_F A^{\mathrm{op}}
+  \]
+  与 \(\operatorname{End}_F(A)\) 紧密相关，这也是 Brauer 群中逆元由对立代数给出的原因。
+  \item 分裂域刻画“一个 CSA 离矩阵代数有多远”：若某扩域 \(K/F\) 使
+  \[
+    A_K:=A\otimes_F K \simeq M_r(K),
+  \]
+  则称 \(K\) 分裂 \(A\)。若 \(A\simeq M_n(D)\)，则分裂 \(A\) 与分裂 \(D\) 等价，所以问题进一步归约到中心除代数。
+  \item 中心除代数内部最关键的对象是极大子域。书中证明：每个极大子域 \(K\subset D\) 都分裂 \(D\)，并满足
+  \[
+    C_D(K)=K,
+    \qquad
+    (\dim_F K)^2=\dim_F D.
+  \]
+  因而“极大子域”同时联系了分裂域、中心化子与维数公式。
+  \item Skolem-Noether 定理说明 CSA 内部嵌入的刚性：任意两个从单代数 \(A\) 到 CSA \(B\) 的
+  \(F\)-代数同态都相差一个内共轭。于是自同构是内自同构，同构子域彼此共轭。
+  \item 双中心化子定理给出内部结构分解：对合适子代数 \(A\subseteq B\)，有
+  \[
+    C_B(C_B(A))=A,
+  \]
+  且当 \(A\) 为单代数时，
+  \[
+    \dim_F B = (\dim_F A)\cdot (\dim_F C_B(A)).
+  \]
+  这说明子代数与其中心化子互相决定。
+  \item Brauer 群把所有 CSA 的“相似类”组织成交换群。分裂的 CSA 对应平凡元；中心除代数则是每个 Brauer 类的最简代表。
+\end{itemize}
+
+\subsection{\texorpdfstring{滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}{滤过、I-adic 与 p-adic 的范畴视角}}\label{subsec:topic-filtration-adic}
+
+\phantomsection\label{rem:filtration-pro}
+\((\mathrm{III.Def}\ 8.0.1)\) 中的 filtration 是环论语言：给定环 \(A\)、理想 \(I\subset A\) 与 \(A\)-模 \(M\)，一列降链
+\[
+  M=M^0\supset M^1\supset \cdots \supset M^n\supset \cdots
+\]
+称为 filtration；若
+\[
+  IM^n\subset M^{n+1}\qquad (\forall n),
+\]
+则称为 \(I\)-filtration；若最终满足 \(IM^n=M^{n+1}\)，则是稳定 \(I\)-filtration；若
+\[
+  M^n=I^nM\qquad (\forall n),
+\]
+则是 \(I\)-adic filtration。
+
+\medskip
+
+把它放到范畴论里看，重点不是“有一串子模”，而是“有一个逆系统”。对每个 \(n\) 都有商模
+\[
+  M/M^n,
+\]
+以及自然投影
+\[
+  M/M^{n+1}\longrightarrow M/M^n.
+\]
+因此 filtration 给出一个 \(\operatorname{Mod}_A\) 中的 pro-对象，或者更朴素地说，给出一个逆向系统
+\[
+  \cdots \longrightarrow M/M^{n+1}\longrightarrow M/M^n\longrightarrow \cdots \longrightarrow M/M^1.
+\]
+这正是《代数学方法》第二卷附录 B 所说的 pro-对象思路：对象不是一次性看完，而是由一串有限层次近似的逆极限来逼近。于是 completion 的自然写法就是
+\[
+  \widehat M=\varprojlim_n M/M^n.
+\]
+第二卷关于滤过复形也采用同样观点：完备性就是典范映射
+\[
+  X\longrightarrow \varprojlim_p X/F^pX
+\]
+为同构；而第一卷 \S 5.5 的环完备化也是
+\[
+  A\longrightarrow \varprojlim_n A/\mathfrak a^n
+\]
+的语言。这说明 \((\mathrm{III.Def}\ 8.0.1)\) 的 \(I\)-adic 过滤并不是孤立定义，而是“由逆系统诱导拓扑，再对该拓扑完备化”的交换代数特例。
+
+\medskip
+
+\phantomsection\label{rem:iadic-padic}
+\textbf{\(I\)-adic 与数论里的 \(p\)-adic 完全相容。} 取
+\[
+  A=\mathbb Z,\qquad I=(p),
+\]
+则 \(I\)-adic filtration 就是
+\[
+  \mathbb Z\supset p\mathbb Z\supset p^2\mathbb Z\supset \cdots,
+\]
+其完备化为
+\[
+  \widehat{\mathbb Z}^{(p)}
+  =
+  \varprojlim_n \mathbb Z/p^n\mathbb Z
+  =\mathbb Z_p.
+\]
+所以环论里的 \(I\)-adic 在 \(I=(p)\) 时就是数论里的 \(p\)-adic；进一步局部化得到
+\[
+  \mathbb Q_p=\operatorname{Frac}(\mathbb Z_p).
+\]
+《代数学方法》第一卷 \S 5.5 与 \S 10.2 正是沿这条线说明：
+\[
+  \mathbb Z_p
+  \text{ 是 } \mathbb Z \text{ 对 } p\mathbb Z\text{-进拓扑的完备化},
+\]
+而
+\[
+  \mathbb Q_p
+  \text{ 也可看成 } \mathbb Q \text{ 对 } v_p \text{ 或 } |\cdot|_p \text{ 的完备化}.
+\]
+因此两种语言只是出发点不同：
+\begin{itemize}
+  \item 从交换环论出发，看的是理想幂 \(I^n\) 给出的邻域基与商环 \(A/I^n\)；
+  \item 从赋值论出发，看的是 \(v_p\) 或 \(|\cdot|_p\) 给出的拓扑与 Cauchy 完备化。
+\end{itemize}
+对 \(\mathbb Z,\mathbb Q\) 而言，两者得到的是同一个对象。
+
+\medskip
+
+\textbf{范畴论里并没有一个与 \(p\)-adic 对应的全新“神秘定义”，但有清楚的外壳。}
+\begin{itemize}
+  \item 第一层外壳是 \textbf{逆极限 / pro-对象}：\(\mathbb Z_p\) 本身就是
+  \[
+    \varprojlim_n \mathbb Z/p^n\mathbb Z
+  \]
+  这种逆系统的极限。
+  \item 第二层外壳是 \textbf{拓扑群或拓扑环}：第一卷把完备化放在拓扑群、拓扑环的框架中处理；第二卷附录 B 则强调 pro-有限群是有限群的滤过逆极限。
+  \item 第三层外壳是 \textbf{pro-有限/Stone 视角}。第二卷说明
+  \[
+    \text{Stone spaces}\simeq \operatorname{Pro}(\mathrm{FinSet}).
+  \]
+  而 \(\mathbb Z_p\) 作为紧 Hausdorff 且完全不连通的空间，正可以放进这种 pro-有限背景里理解；其加法群也是典型的 pro-\(p\) 对象，因此当然也是 pro-有限对象。
+\end{itemize}
+
+所以最简洁的统一说法是：
+\[
+  \text{filtration}
+  \rightsquigarrow
+  \text{inverse system}
+  \rightsquigarrow
+  \text{completion as }\varprojlim,
+\]
+而
+\[
+  p\text{-adic}
+  =
+  (p)\text{-adic}
+  \text{ 在 } \mathbb Z,\mathbb Q \text{ 上的具体实现}.
+\]
+
+\medskip
+
+\phantomsection\label{rem:filter-vs-filtration}
+\textbf{还要区分《代数学方法》第一卷中的“滤子”与这里的“滤过”。}
+
+第一卷第 \S 10.1 讲的是 \textbf{滤子}（filter），它属于拓扑语言：用来描述邻域系统、Cauchy 条件、极限与完备化。书中随后用它来统一处理赋值诱导的拓扑、\(p\)-进完备化以及局部域。这里的关键词是
+\[
+  \text{filter} \quad\text{而不是}\quad \text{filtration}.
+\]
+
+而 \((\mathrm{III.Def}\ 8.0.1)\) 以及第二卷谱序列部分讲的则是 \textbf{滤过}（filtration），即对象上的降链
+\[
+  M=M^0\supset M^1\supset M^2\supset \cdots .
+\]
+它本身是代数数据，不是滤子；但是一旦把 \(M^n\) 视为 \(0\) 的一组基本邻域，便得到一个线性拓扑，于是可以谈 Cauchy 滤子与完备化。因此两者的关系是
+\[
+  \text{filtration}
+  \Longrightarrow
+  \text{topology}
+  \Longrightarrow
+  \text{filters / Cauchy filters}.
+\]
+从范畴论看，同一个 filtration 还会导出逆系统
+\[
+  \cdots \to M/M^{n+1}\to M/M^n,
+\]
+所以又给出一个 pro-对象。换言之：
+\[
+  \text{第一卷的滤子是拓扑层语言，}
+\]
+\[
+  \text{这里的滤过是产生该拓扑与该 pro-对象的代数输入。}
+\]
+
+\medskip
+
+\phantomsection\label{rem:graded-filtered-completion}
+\textbf{还要把分次环、滤过环与 completion/pro-对象严格区分开。}
+
+\((\mathrm{III.Def}\ 8.1.1)\) 定义的是 \textbf{分次环}（graded ring），不是滤过环：它要求
+\[
+  A=\bigoplus_{n\ge 0}A_n,
+  \qquad
+  A_mA_n\subseteq A_{m+n}.
+\]
+这比“底层阿贝尔群由若干 \(A_n\) 拼起来”更强，因为它同时记住了：
+\begin{itemize}
+  \item 这是一个直和分解，所以元素的齐次分量分解是唯一的；
+  \item 乘法与次数相容，即 degree 会相加。
+\end{itemize}
+因此分次环的本质是“内部直和分解加上次数结构”，而不是单纯某族对象的余极限。
+
+\medskip
+
+与此不同，\textbf{completion/pro-对象天然来自滤过，而不是直接来自分次。} 若
+\[
+  A=F^0A\supseteq F^1A\supseteq F^2A\supseteq \cdots
+\]
+是一个降滤过，则商环之间有自然满射
+\[
+  A/F^{n+1}A\longrightarrow A/F^nA,
+\]
+于是得到逆向系统
+\[
+  \cdots\longrightarrow A/F^{n+1}A\longrightarrow A/F^nA\longrightarrow \cdots \longrightarrow A/F^1A,
+\]
+也就是一个 pro-对象；其逆极限
+\[
+  \widehat A=\varprojlim_n A/F^nA
+\]
+就是 completion。对 \(I\)-adic 情形，只是取 \(F^nA=I^n\)。
+
+\medskip
+
+分次与滤过之间的桥梁是 \textbf{伴随分次环}。若给定滤过 \(F^\bullet A\)，则可构造
+\[
+  \operatorname{gr}_F(A)
+  =
+  \bigoplus_{n\ge 0}F^nA/F^{n+1}A.
+\]
+这是一般滤过的写法；当取 \(F^nA=I^n\) 为 \(I\)-adic 滤过时，就得到书上第 8.3 节使用的记号
+\[
+  G_I(A)
+  =
+  \bigoplus_{n\ge 0}I^n/I^{n+1}
+  =
+  \operatorname{gr}_I(A).
+\]
+它记录的是“每一层新出现的部分”；而 completion 看的是所有截断
+\[
+  A/F^nA
+\]
+如何兼容拼接起来。简言之：
+\[
+  \text{graded}
+  =
+  \text{按层切片},
+  \qquad
+  \text{filtered}
+  =
+  \text{给出层层截断},
+\]
+\[
+  \text{pro-object}
+  =
+  \{A/F^nA\}_{n\ge 0},
+  \qquad
+  \text{completion}
+  =
+  \varprojlim_n A/F^nA.
+\]
+所以 \((\mathrm{III.Def}\ 8.1.1)\) 的分次结构并不是 completion 本身；真正通向 completion/pro-对象的是后续由滤过产生的逆系统。
+
+\subsection{\texorpdfstring{第 8 章主线总览：滤过、分次、完备化与 Noether 性}{第 8 章主线总览}}\label{subsec:topic-ch8-roadmap}
+
+\phantomsection\label{rem:ch8-roadmap}
+第 8 章信息量大，但主线其实很集中：\textbf{先把 \(I\)-filtration 变成分次对象与拓扑对象，再用 Artin-Rees 控制子模，再把 completion 与 associated graded 结合起来，最后回到 flatness 与 Noether 性。} 若只抓最核心的结构关系，可以压成下面几条链。
+
+\medskip
+
+\textbf{第一条主线：同一个 filtration 同时导出两个对象。}
+
+给定 \(A\)-模上的 \(I\)-filtration
+\[
+  M=M_0\supset M_1\supset M_2\supset \cdots,
+  \qquad
+  IM_n\subset M_{n+1},
+\]
+它一方面给出 associated graded
+\[
+  G(M)=\bigoplus_{n\ge 0} M_n/M_{n+1},
+\]
+另一方面给出截断逆系统
+\[
+  \cdots \to M/M_{n+1}\to M/M_n\to \cdots \to M/M_1,
+\]
+从而导出 completion
+\[
+  \widehat M=\varprojlim_n M/M_n.
+\]
+因此这一章真正的核心不是把 graded、filtered、topological 拆开看，而是看同一个 filtration 如何分裂出两个互补视角：
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+& (M_n) \arrow[dl, mapsto] \arrow[dr, mapsto] & \\
+G(M)=\bigoplus_n M_n/M_{n+1} & & \widehat M=\varprojlim_n M/M_n .
+\end{tikzcd}
+\]
+\textbf{这里还要严格区分 filtered 与 graded：} 原模 \(M\) 连同降链 \((M_n)\) 本身一般只是一个 filtered module，因为数据只是
+\[
+  M=M_0\supset M_1\supset M_2\supset \cdots,
+\]
+并没有给出
+\[
+  M\cong \bigoplus_{n\ge 0} M^{(n)}
+\]
+这样的直和分解；因此不能把 \(M\) 连同 \((M_n)\) 直接看成 graded module。真正天然带分次结构的是
+\[
+  G(M)=\bigoplus_{n\ge 0} M_n/M_{n+1},
+\]
+因为这里已经显式取了各层商模的直和。只有在额外给出某个分次分解，且该滤过正是由该分次诱导出来时，\(M\) 才会同时兼具 graded 与 filtered 两种结构。
+\((\mathrm{III.Lem}\ 8.0.2)\) 说明 stable \(I\)-filtration 与标准 \(I\)-adic filtration 定义同一个拓扑；因此\textbf{拓扑层面只关心 filtration 的“尾部行为”}，而 graded 层面则保留每一层的首项数据。
+
+\medskip
+
+\textbf{第二条主线：Artin-Rees 把“子模与过滤不相容”的问题强行稳定化。}
+
+\((\mathrm{III.Lem}\ 8.2.1)\) 给出 stable filtration 与有限生成 graded module 的等价：
+\[
+  (M_n)\text{ stable}
+  \iff
+  M^* \text{ finitely generated over } A^*.
+\]
+在此基础上，\((\mathrm{III.Thm}\ 8.2.2)\) 的 Artin-Rees 引理说明：若 \(N\subset M\)，则诱导过滤
+\[
+  N\cap M_n
+\]
+仍然稳定。它解决的是“先取子模再取 \(I\)-adic 过滤”与“先过滤再限制到子模”之间的兼容性问题：
+\[
+\begin{tikzcd}[column sep=huge, row sep=large]
+N \arrow[r, hook] & M \\
+N\cap M_n \arrow[r, hook] \arrow[u, hook] & M_n \arrow[u, hook]
+\end{tikzcd}
+\]
+并且在 \(I\)-adic 情形下，最终有
+\[
+  I^nM\cap N = I^{\,n-k}(I^kM\cap N)\qquad (n\gg 0).
+\]
+这一步是后面一切正合性与完备化结论的技术基础，因为它保证\textbf{子空间拓扑就是子模自己的 \(I\)-adic 拓扑}。
+
+\medskip
+
+\textbf{第三条主线：completion 不是孤立构造，而是与短正合列相容。}
+
+\((\mathrm{III.\S 8.4})\) 先在拓扑阿贝尔群层面证明
+\[
+  \widehat G \simeq \varprojlim_n G/G_n,
+\]
+然后借 \((\mathrm{III.Prop}\ 8.4.6)\) 与 \((\mathrm{III.Cor}\ 8.4.7)\) 得到完备化对短正合列的正合性控制。真正服务于交换代数的是下面这张图：
+\[
+\begin{tikzcd}[column sep=large]
+0 \arrow[r] & M' \arrow[r] \arrow[d] & M \arrow[r] \arrow[d] & M'' \arrow[r] \arrow[d] & 0 \\
+0 \arrow[r] & \widehat{M'} \arrow[r] & \widehat M \arrow[r] & \widehat{M''} \arrow[r] & 0
+\end{tikzcd}
+\]
+其中纵向是 completion map。对 finitely generated Noether 情形，\((\mathrm{III.Prop}\ 8.5.1)\) 正是利用 Artin-Rees 把这一图落实到 \(I\)-adic completion 上。
+
+\medskip
+
+\textbf{第四条主线：flatness 检验与 associated graded 检验本质上都在比较“原对象”和“各阶切片”。}
+
+\((\mathrm{III.Thm}\ 8.3.1)\) 的局部平坦判据把 flatness 化为分次对象上的等价条件。最紧凑的理解方式是：若
+\[
+  M_n=M/I^{n+1}M,\qquad A_n=A/I^{n+1},
+\]
+则 “\(M\) flat over \(A\)” 可以沿着
+\[
+\begin{tikzcd}[column sep=large]
+G_I(A)\otimes_{A/I} M/IM \arrow[r] & G_I(M)
+\end{tikzcd}
+\]
+来检查；这里看的是每一阶 infinitesimal layer 是否与底层 \(M/IM\) 相容。也就是说，\textbf{flatness 在第 8 章里不是直接检验所有张量，而是转化为检验各阶商模与 associated graded 是否按预期拼起来。}
+
+\medskip
+
+\textbf{第五条主线：Noether 性在 completion 与 associated graded 之间双向传递。}
+
+\((\mathrm{III.Prop}\ 8.5.8)\) 说明：若 \(A\) Noether，则
+\[
+  G_I(A)\simeq G_{I\widehat A}(\widehat A),
+\]
+且 finitely generated 模的 stable filtration 会给出 finitely generated 的 associated graded。反过来，\((\mathrm{III.Prop}\ 8.5.10)\) 说明：若 \(A\) 已完备、\(\bigcap M_n=0\)，且 \(G(M)\) 足够好，则可从 graded 数据恢复 \(M\) 的有限生成与 Noether 性。它们合起来形成这一章最重要的闭环：
+\[
+\begin{tikzcd}[column sep=huge, row sep=large]
+M \text{ finitely generated / Noether} \arrow[r, "\text{(III.Prop 8.5.8)}"] & G(M)\text{ finitely generated / Noether} \\
+\widehat M \text{ finitely generated / Noether} \arrow[u, dashed, "\text{completion}"] & G(\widehat M)\arrow[l, "\text{(III.Prop 8.5.10)}"']
+\end{tikzcd}
+\]
+其中右上到左下这一步要借助完备性与
+\[
+  \bigcap_{n\ge 0} M_n=0
+\]
+排除“躲在无限深层的元素”。因此第 8 章后半的真正结论不是单独的“完备化保持 Noether”，而是：
+\[
+  \text{Noether 性}
+  \Longleftrightarrow
+  \text{可由 associated graded 控制}
+  \Longleftrightarrow
+  \text{completion 仍可控}.
+\]
+
+\medskip
+
+\textbf{若想把第 8 章中 \(I\)-filtration / stable / 有限生成 / Noether 之间的依赖关系一次看清，可记下面这张条件网络图：}
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\text{\(I\)-filtration} \arrow[r, maps to] \arrow[d, maps to] &
+\text{associated graded } G(M) \arrow[d, maps to] \\
+\text{quotient tower } \{M/M_n\} \arrow[r, maps to] &
+\widehat M=\varprojlim M/M_n
+\end{tikzcd}
+\]
+上图只说明：\textbf{任意} \(I\)-filtration 立刻给出两类对象
+\[
+  G(M)=\bigoplus_{n\ge 0} M_n/M_{n+1},
+  \qquad
+  \widehat M=\varprojlim_n M/M_n,
+\]
+但这时一般\textbf{还不能}推出稳定性、拓扑等价、Artin-Rees、或有限生成性质。
+
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\text{\(I\)-adic} \arrow[r] \arrow[dr] &
+\text{stable \(I\)-filtration} \arrow[r, "\text{Lem 8.0.2}"] \arrow[d, leftrightarrow, "\substack{\text{if }A\text{ Noether}\\ M\text{ f.g.}}"'] &
+\begin{array}{c}
+\text{same as standard}\\
+\text{\(I\)-adic topology}
+\end{array} \\
+&
+\text{\(M^*\) finitely generated over \(A^*\)} &
+\end{tikzcd}
+\]
+这张图说明：
+\begin{itemize}
+  \item \(I\)-adic filtration 一定 stable；
+  \item stable 的直接用途是：由 \((\mathrm{III.Lem}\ 8.0.2)\)，它与标准 \(I\)-adic filtration 定义同一个拓扑；
+  \item 但“stable \(\Longleftrightarrow M^*\) 有限生成 over \(A^*\)”这一等价，不是对一般情形成立，而是要加上
+  \[
+    A\text{ Noether},\qquad M\text{ finitely generated over }A
+  \]
+  才能使用 \((\mathrm{III.Lem}\ 8.2.1)\)。
+\end{itemize}
+
+\[
+\begin{tikzcd}[column sep=3.5cm, row sep=1.5cm]
+\substack{A\text{ Noether}\\ M\text{ finitely generated}\\ (M_n)\text{ stable}}
+\arrow[r, "\text{Artin-Rees}"]
+\arrow[d, "\text{Prop 8.5.8}"'] &
+\substack{N\cap M_n \text{ stable for }N\subset M\\
+\text{subspace topology on }N\\
+= \text{\(I\)-adic topology on }N}
+\arrow[d, "\text{Prop 8.5.1 / 8.5.3}"] \\
+\substack{G(M)\text{ finitely generated}\\ \text{over }G_I(A)}
+\arrow[r, "\text{completion exact / flat}"] &
+\substack{\widehat{(\cdot)}\text{ exact on short}\\ \text{exact sequences}\\ A\to\widehat A\text{ flat}}
+\end{tikzcd}
+\]
+这说明在第 8 章前半，\textbf{有限生成性更多是前提而不是结论}：它与 Noether 性一起保证 Artin-Rees 可用，也保证稳定滤过能被 associated graded 的有限生成性刻画，并最终推出 completion 的正合性与平坦性。
+
+\[
+\begin{tikzcd}[column sep=huge, row sep=large]
+\substack{A\text{ \(I\)-adically complete}\\ \bigcap M_n=0\\
+G(M)\text{ finitely generated over }G_I(A)}
+\arrow[r, "\text{Prop 8.5.10}"] &
+M\text{ finitely generated over }A \\
+\substack{A\text{ \(I\)-adically complete}\\ \bigcap M_n=0\\
+G(M)\text{ Noetherian over }G_I(A)}
+\arrow[r, "\text{Prop 8.5.10}"] &
+M\text{ Noetherian over }A
+\end{tikzcd}
+\]
+而到了第 8 章后半，有限生成性才开始作为\textbf{结论}出现：只要环已完备、滤过 separated，且 associated graded 足够好，就能把 graded 层面的有限生成或 Noether 性拉回原模。
+
+\medskip
+
+因此若只记一句话，可以记成：
+\[
+\text{\(I\)-filtration 给对象，stable 给拓扑，Artin-Rees 给子模兼容；}
+\]
+\[
+\text{有限生成/Noether 让这些技术可用，而完备 + separated + graded 有限生成}
+\]
+\[
+\text{又能把有限生成性与 Noether 性从 graded 层面拉回原模。}
+\]
+
+\medskip
+
+\textbf{若只记第 8 章最重要的概念关系，可以记下面这一张总图：}
+\[
+\begin{tikzcd}[column sep=large, row sep=large]
+\text{\(I\)-filtration} \arrow[r, Rightarrow, "\text{slice}"] \arrow[d, Rightarrow, "\text{quotient tower}"'] &
+\text{associated graded }G(M) \arrow[d, Rightarrow, "\text{flatness / Noether tests}"] \\
+\text{\(I\)-adic topology} \arrow[r, Rightarrow, "\text{completion}"] &
+\text{\(I\)-adic completion }\widehat M
+\end{tikzcd}
+\]
+而 Artin-Rees 的位置正好在左边，负责保证“子模也沿同一张图运转”；8.3 节与 8.5 节则分别站在右上和右下，把 flatness 与 Noether 性接回来。
+
+\subsection{\texorpdfstring{第 9 章局部维数三指标：\(d(A)\)、\(\delta(A)\) 与 \(\chi_q\)}{第 9 章局部维数三指标}}\label{subsec:topic-local-dimension-invariants}
+
+\phantomsection\label{rem:local-dimension-invariants}
+在 \((\mathrm{III.\S 9.2})\) 里，Noether 局部环 \((A,\mathfrak m)\) 的维数不是直接从素理想链出发，而是先引入两个更“可计算”的量：
+\[
+  d(A):=d\!\bigl(G_{\mathfrak m}(A)\bigr),
+  \qquad
+  \delta(A):=\min\{\mu(\mathfrak q)\mid \mathfrak q\subset A\text{ 是 }\mathfrak m\text{-primary ideal}\},
+\]
+其中 \(\mu(\mathfrak q)\) 表示理想 \(\mathfrak q\) 的最少生成元个数。书中 \((\mathrm{III.Not}\ 9.2.1)\) 也把
+\[
+  \delta(A)
+  =
+  \min\bigl\{
+    n \,\big|\,
+    x_1,\dots,x_n\in \mathfrak m,\ 
+    \ell\bigl(A/(x_1,\dots,x_n)\bigr)<\infty
+  \bigr\}
+\]
+作为等价定义：也就是说，\(\delta(A)\) 测的是“最少用多少个元素，才能切出一个 \(\mathfrak m\)-primary ideal”，而不是极大理想 \(\mathfrak m\) 自身的最少生成元个数。
+
+\medskip
+
+\textbf{\(d(A)\) 有三种等价的读法。}
+\begin{itemize}
+  \item 按 \((\mathrm{III.Def}\ 9.1.2)\)，
+  \[
+    d(A)=d\!\bigl(G_{\mathfrak m}(A)\bigr)
+  \]
+  是 Hilbert series
+  \[
+    P\bigl(G_{\mathfrak m}(A),t\bigr)
+  \]
+  在 \(t=1\) 处极点的重数。
+  \item 由 \((\mathrm{III.Cor}\ 9.1.3)\)，当分次生成元次数全为 \(1\) 时，存在 Hilbert 多项式
+  \[
+    \phi_{G_{\mathfrak m}(A)}(n)=\ell(\mathfrak m^n/\mathfrak m^{n+1})
+    \qquad (n\gg 0),
+  \]
+  且
+  \[
+    \deg \phi_{G_{\mathfrak m}(A)}=d(A)-1.
+  \]
+  \item 再由 \((\mathrm{III.Prop}\ 9.1.6)\)，存在 \(\chi_{\mathfrak m}(t)\in \mathbb Q[t]\) 使
+  \[
+    \chi_{\mathfrak m}(n)=\ell(A/\mathfrak m^n)
+    \qquad (n\gg 0),
+  \]
+  并且
+  \[
+    \deg \chi_{\mathfrak m}=d(A).
+  \]
+\end{itemize}
+因此
+\[
+  d(A)
+  =
+  \operatorname{ord}_{t=1} P\bigl(G_{\mathfrak m}(A),t\bigr)
+  =
+  \deg \phi_{G_{\mathfrak m}(A)}+1
+  =
+  \deg \chi_{\mathfrak m}.
+\]
+
+\medskip
+
+\textbf{\(\delta(A)\) 与 \(\dim_k(\mathfrak m/\mathfrak m^2)\) 不是同一个量。}
+\begin{itemize}
+  \item \(\delta(A)\) 关注的是\textbf{某个 \(\mathfrak m\)-primary ideal} 的最少生成元个数；
+  \item \(\dim_k(\mathfrak m/\mathfrak m^2)\) 则由 Nakayama 引理等于\textbf{极大理想 \(\mathfrak m\) 本身}的最少生成元个数。
+\end{itemize}
+两者的关系是
+\[
+  \dim A=\delta(A)\le \dim_k(\mathfrak m/\mathfrak m^2)
+  \qquad
+  (\mathrm{III.Thm}\ 9.2.7,\ \mathrm{III.Cor}\ 9.2.9).
+\]
+等号不一定成立；等号成立正是第 10 章 regular local ring 的定义：
+\[
+  A\text{ regular}
+  \iff
+  \dim A=\dim_k(\mathfrak m/\mathfrak m^2).
+\]
+因此可以把它们理解成：
+\[
+  \delta(A)\text{ 衡量“参数个数”，}\qquad
+  \dim_k(\mathfrak m/\mathfrak m^2)\text{ 衡量“切空间维数”。}
+\]
+
+\medskip
+
+\textbf{\(\chi_q\) 的作用不只是记号，它是第 9 章把“长度增长”转成“维数”的桥。}
+
+对任意 \(\mathfrak m\)-primary ideal \(\mathfrak q\)，\((\mathrm{III.Prop}\ 9.1.6)\) 给出
+\[
+  \chi_q(n)=\ell(A/\mathfrak q^n)\qquad (n\gg 0),
+\]
+并且 \(\chi_q\) 的次数与最高次项只依赖于 \((A,\mathfrak q)\) 的渐近结构。它在本章中的几项直接用途是：
+\begin{itemize}
+  \item 由 \((\mathrm{III.Prop}\ 9.1.7)\)，
+  \[
+    \deg \chi_q=\deg \chi_{\mathfrak m}=d(A),
+  \]
+  所以不论选哪一个 \(\mathfrak m\)-primary ideal 来做长度函数，得到的“增长次数”都是同一个维数不变量。
+  \item 在 \((\mathrm{III.Prop}\ 9.2.2)\) 中，若 \(x\) 是非零因子，则
+  \[
+    \deg \chi_q^{M/xM}\le \deg \chi_q^M-1,
+  \]
+  这正是后面推出
+  \[
+    d(A/(x))\le d(A)-1
+  \]
+  以及最终证明
+  \[
+    \dim A\le d(A)
+  \]
+  的核心递降机制。
+  \item 由 \((\mathrm{III.Cor}\ 9.2.13)\)，完备化不改变 \(\chi\) 的次数，因此也不改变 \(d(A)\) 与 \(\dim A\)。这说明 \(\chi_q\) 对 \(m\)-adic completion 是稳定的。
+  \item 更往后看，\(\chi_q\) 的最高次项系数（差一个 \(d!\) 的归一化）就是 Hilbert--Samuel multiplicity 的来源；因此 \(\chi_q\) 不仅编码维数，也编码“局部厚度/重数”。书里本节主要使用的是\textbf{次数}，而几何与更深入的交换代数里常进一步使用\textbf{首项系数}。
+\end{itemize}
+
+\medskip
+
+把 \((\mathrm{III.\S 9.2})\) 的主线压成一句话，就是：
+\[
+  \chi_q \text{ 记录长度增长，}
+  \quad
+  d(A) \text{ 读出增长次数，}
+  \quad
+  \delta(A) \text{ 读出参数个数，}
+\]
+\[
+  \text{而 Krull 定理 }(\mathrm{III.Thm}\ 9.2.7)\text{ 说明这三种维数观最终一致： }
+  \dim A=d(A)=\delta(A).
+\]
+
+\medskip
+
+\textbf{system of parameters 是 \(\delta(A)=\dim A\) 的具体实现。}
+
+当 \(A\) 是维数 \(d\) 的 Noether 局部环时，\((\mathrm{III.Def}\ 9.2.14)\) 把
+\[
+  x_1,\dots,x_d\in A
+\]
+称为一个 \textbf{system of parameters}，如果
+\[
+  (x_1,\dots,x_d)
+\]
+是 \(\mathfrak m\)-primary ideal。于是 system of parameters 不是“随便取 \(d\) 个元素”，而是“恰好用 \(d\) 个元素切出一个零维商环”的意思。它和前面的不变量关系正是
+\[
+  \#\{\text{parameters}\}=d=\dim A=\delta(A).
+\]
+因此 \(\delta(A)\) 的抽象定义，最终是由 parameter ideals 具体实现出来的。
+
+\medskip
+
+\textbf{\((\mathrm{III.Prop}\ 9.2.15)\) 说的是：parameter ideal 在 associated graded 里没有新的低次齐次关系。}
+
+设 \(x_1,\dots,x_d\) 是一个 system of parameters，\(\mathfrak q=(x_1,\dots,x_d)\)。若
+\[
+  f(t_1,\dots,t_d)\in A[t_1,\dots,t_d]
+\]
+是次数为 \(s\) 的齐次多项式，并满足
+\[
+  f(x_1,\dots,x_d)\in \mathfrak q^{\,s+1},
+\]
+那么 \((\mathrm{III.Prop}\ 9.2.15)\) 说明：\(f\) 的所有系数都落在 \(\mathfrak m\) 中。把它翻成 associated graded 的语言，就是说：
+\[
+  \alpha:(A/\mathfrak m)[t_1,\dots,t_d]\longrightarrow G_{\mathfrak q}(A),
+  \qquad
+  t_i\mapsto x_i \bmod \mathfrak q^2
+\]
+在最低次数层面上没有“系数不在 \(\mathfrak m\) 中”的非平凡齐次关系。换言之，若某个齐次关系在 \(A\) 里成立到“高一阶”的程度，那它在首项层面上只能是平凡的。
+
+\medskip
+
+\textbf{\((\mathrm{III.Cor}\ 9.2.16)\) 进一步说明：参数系在剩余域上代数无关。}
+
+若 \(k\subset A\) 映到剩余域 \(A/\mathfrak m\) 同构，且 \(x_1,\dots,x_d\) 是 system of parameters，则
+\[
+  x_1,\dots,x_d
+\]
+对 \(k\) 代数无关。证明的核心正是把任意代数关系
+\[
+  f(x_1,\dots,x_d)=0
+\]
+拿出其最低次齐次部分 \(f_s\)，再用 \((\mathrm{III.Prop}\ 9.2.15)\) 说明：若 \(f_s\neq 0\)，则其系数都应落在 \(\mathfrak m\)；但系数本来在 \(k\) 中，而 \(k\to A/\mathfrak m\) 是同构，只能推出 \(f_s=0\)，矛盾。
+
+因此这一组命题的用途可以压成一条链：
+\[
+  \begin{aligned}
+    \text{system of parameters}
+    &\Longrightarrow
+    \text{parameter ideal} \\
+    &\Longrightarrow
+    \text{associated graded 中首项无低次关系} \\
+    &\Longrightarrow
+    \text{在系数域上代数无关}.
+  \end{aligned}
+\]
+这也正是 9.3 节把局部维数和 transcendence degree 联系起来时要用到的桥梁。
+
+\medskip
+
+\textbf{9.3 节正是沿着这条桥，把局部维数和超越次数接起来。}
+
+设 \(A\) 是有限生成 \(k\)-代数整环，\(K=\operatorname{Frac}(A)\)，\(\mathfrak m\in \operatorname{MaxSpec}A\)。书中先对局部环 \(A_{\mathfrak m}\) 应用上面的参数系结论，得到
+\[
+  \dim A_{\mathfrak m}\le \operatorname{tr.deg}(K\mid k).
+\]
+这一步的核心就是：若 \(x_1,\dots,x_d\) 是 \(A_{\mathfrak m}\) 的一组参数，则它们在系数域上代数无关，因此参数个数 \(d=\dim A_{\mathfrak m}\) 不会超过超越次数。
+
+\medskip
+
+反向不等式则来自 Noether normalization。由 \((\mathrm{III.Thm}\ 4.3.1)\)，可取
+\[
+  t_1,\dots,t_d\in A
+\]
+在 \(k\) 上代数无关，且 \(A\) 整于
+\[
+  B:=k[t_1,\dots,t_d].
+\]
+于是
+\[
+  \operatorname{tr.deg}(K\mid k)=d.
+\]
+再令 \(\mathfrak n=\mathfrak m\cap B\)，由 \((\mathrm{III.Lem}\ 9.3.1)\) 的整扩张局部维数比较，
+\[
+  \dim A_{\mathfrak m}=\dim B_{\mathfrak n}.
+\]
+而 \(B_{\mathfrak n}\) 是多项式环的局部化，所以
+\[
+  \dim B_{\mathfrak n}=d.
+\]
+从而得到
+\[
+  \dim A_{\mathfrak m}=\operatorname{tr.deg}(K\mid k).
+\]
+
+\medskip
+
+因此 9.2 与 9.3 合起来，给出一条很完整的维数主线：
+\[
+  \begin{aligned}
+    \dim A_{\mathfrak m}
+    &= \delta(A_{\mathfrak m})
+    = d(A_{\mathfrak m}) \\
+    &\le \operatorname{tr.deg}(K\mid k)
+    \quad\text{(由参数系代数无关)} \\
+    &\le \dim A_{\mathfrak m}
+    \quad\text{(由 Noether normalization + 整扩张保维数)}.
+  \end{aligned}
+\]
+最终便得到 \((\mathrm{III.Thm}\ 9.3.2)\)：
+\[
+  \dim A=\dim A_{\mathfrak m}=\operatorname{tr.deg}(K\mid k).
+\]
+这说明第 9 章前半并不是几段孤立技术，而是在把
+\[
+  \text{局部长度增长}
+  \longrightarrow
+  \text{局部维数}
+  \longrightarrow
+  \text{参数系}
+  \longrightarrow
+  \text{超越次数}
+\]
+这一整条链逐步打通。
+
+\medskip
+
+\phantomsection\label{rem:regular-graded-intuition}
+\textbf{顺着这条主线看 \((\mathrm{III.Thm}\ 10.1.2)\)，\(G_{\mathfrak m}(A)\cong k[t_1,\dots,t_d]\) 的直观意思是：在 \(\mathfrak m\)-adic 的“首项世界”里，\(A\) 看起来就像一个没有额外关系的多项式环。}
+
+这里
+\[
+  G_{\mathfrak m}(A)
+  =
+  \bigoplus_{n\ge 0}\mathfrak m^n/\mathfrak m^{n+1}
+\]
+虽然是一个无限直和，但
+\[
+  k[t_1,\dots,t_d]
+\]
+作为分次环同样也是按次数分层的无限直和：
+\[
+  k[t_1,\dots,t_d]
+  =
+  \bigoplus_{n\ge 0} k[t_1,\dots,t_d]_n.
+\]
+因此定理说的不是“高次层消失了”，而是说每一层
+\[
+  \mathfrak m^n/\mathfrak m^{n+1}
+\]
+都恰好像多项式环的次数 \(n\) 齐次部分
+\[
+  k[t_1,\dots,t_d]_n,
+\]
+并且层与层之间的乘法规则也完全一致。
+
+\medskip
+
+若 \(A\) 是 regular local ring，取
+\[
+  \mathfrak m=(x_1,\dots,x_d),
+  \qquad
+  d=\dim_k(\mathfrak m/\mathfrak m^2),
+\]
+则 \(x_i\) 在 associated graded 里的首项
+\[
+  \overline{x_i}\in \mathfrak m/\mathfrak m^2
+\]
+就对应于多项式变量 \(t_i\)。于是第 \(n\) 层中的典型元素
+\[
+  \overline{x_1}^{\,a_1}\cdots \overline{x_d}^{\,a_d},
+  \qquad
+  a_1+\cdots+a_d=n,
+\]
+正对应于多项式环中的次数 \(n\) 单项式
+\[
+  t_1^{a_1}\cdots t_d^{a_d}.
+\]
+所以 regular 的本质是：\textbf{极大理想的一阶信息 \(\mathfrak m/\mathfrak m^2\) 自由地产生了全部高阶首项信息，没有再冒出新的关系。}
+
+\medskip
+
+具体地看：
+\begin{itemize}
+  \item 第 \(0\) 层是
+  \[
+    A/\mathfrak m=k;
+  \]
+  \item 第 \(1\) 层是
+  \[
+    \mathfrak m/\mathfrak m^2,
+  \]
+  它像 \(kt_1\oplus\cdots\oplus kt_d\)；
+  \item 第 \(2\) 层
+  \[
+    \mathfrak m^2/\mathfrak m^3
+  \]
+  对应于所有二次单项式；
+  \item 一般第 \(n\) 层
+  \[
+    \mathfrak m^n/\mathfrak m^{n+1}
+    \cong k[t_1,\dots,t_d]_n.
+  \]
+\end{itemize}
+因此其维数满足
+\[
+  \dim_k(\mathfrak m^n/\mathfrak m^{n+1})
+  =
+  \dim_k k[t_1,\dots,t_d]_n
+  =
+  \binom{n+d-1}{d-1}.
+\]
+
+从这个角度看，\((\mathrm{III.Thm}\ 10.1.2)\) 其实是在说：
+\[
+  G_{\mathfrak m}(A)
+  \cong
+  \operatorname{Sym}_k(\mathfrak m/\mathfrak m^2)
+  \cong
+  k[t_1,\dots,t_d].
+\]
+也就是说，regular local ring 在 tangent cone / associated graded 的层面上，表现得像一个“光滑点附近”的局部模型。
+
+\subsection{Algebra I 与 Algebra III 中拓扑群主线的对照整理}\label{subsec:topic-topological-groups}
+
+两本书都把“拓扑群”的核心思想写得很清楚：\textbf{群结构与拓扑结构兼容以后，很多全局拓扑性质都可压缩到单位元附近来检查。} 但它们各自服务的方向不同。
+
+\medskip
+
+\textbf{在 \(\mathrm{Algebra\ I}\) 中，拓扑群集中出现在 Infinite Galois theory 一节，页码范围约为 PDF 第 \(38\)--\(42\) 页。}
+
+对应内容主线是：
+\begin{itemize}
+  \item \((\mathrm{I.Def}\ 1.15.1)\) 定义拓扑群，并立刻强调平移
+  \[
+    L_a:G\to G
+  \]
+  是同胚，因此拓扑由单位元邻域基决定。
+  \item \((\mathrm{I.Lem}\ 1.15.3)\) 说明：子群带子空间拓扑后仍是拓扑群；子群闭包仍是子群；正规子群的闭包仍正规；并且
+  \[
+    G\text{ Hausdorff}\iff \{e\}\text{ closed}.
+  \]
+  \item \((\mathrm{I.Lem}\ 1.15.4)\) 进一步把“开/闭/有限指数”联系起来：开子群必闭；有限指数闭子群必开；在紧情形下开子群也必有限指数。
+  \item 随后立刻转入\textbf{逆极限与 pro-有限群}：逆系统的极限在拓扑群范畴中仍存在，有限离散群的逆极限称为 profinite group，并满足
+  \[
+    \text{compact}+\text{Hausdorff}+\text{totally disconnected}.
+  \]
+  \item 最后把这些一般性质专门用于\textbf{Krull topology}：无限 Galois 群
+  \[
+    G=\operatorname{Gal}(K/F)
+  \]
+  的邻域基由开正规子群
+  \[
+    \operatorname{Gal}(K/E)
+  \]
+  给出，并证明
+  \[
+    G\simeq \varprojlim_E \operatorname{Gal}(E/F),
+  \]
+  从而 \(G\) 自动是 compact Hausdorff totally disconnected。
+\end{itemize}
+
+因此，\(\mathrm{Algebra\ I}\) 中拓扑群的主要衍生方向是：
+\[
+  \begin{aligned}
+    \text{topological groups}
+    &\longrightarrow
+    \text{profinite groups} \\
+    &\longrightarrow
+    \text{Krull topology} \\
+    &\longrightarrow
+    \text{infinite Galois theory}.
+  \end{aligned}
+\]
+
+\medskip
+
+\textbf{在 \(\mathrm{Algebra\ III}\) 中，拓扑群主要出现在 Chapter 8 的 Topology and completion，页码范围约为 PDF 第 \(65\)--\(68\) 页。}
+
+这里书上实际上收缩到了\textbf{拓扑阿贝尔群}，因为后面要服务于交换环与模的完备化。其主线是：
+\begin{itemize}
+  \item 一开始就强调：对拓扑阿贝尔群 \(G\)，平移
+  \[
+    T_a:G\to G
+  \]
+  是同胚，所以拓扑同样由 \(0\) 的邻域基唯一决定；并且
+  \[
+    0\text{ closed}\iff G\text{ Hausdorff}.
+  \]
+  \item \((\mathrm{III.Lem}\ 8.4.2)\) 抽出
+  \[
+    H=\bigcap_{U\ni 0}U
+  \]
+  这一“不可分辨部分”，说明 \(H\) 是子群，\(G/H\) Hausdorff，且
+  \[
+    G\text{ Hausdorff}\iff H=0.
+  \]
+  \item \((\mathrm{III.Def}\ 8.4.3)\) 用 Cauchy 列构造 completion
+  \[
+    \widehat G,
+  \]
+  再由 \((\mathrm{III.Lem}\ 8.4.4)\) 得
+  \[
+    \ker(G\to \widehat G)=\bigcap_{U\ni 0}U,
+  \]
+  因而 Hausdorff 正好对应典范映射的单射性。
+  \item 当拓扑由一列开闭子群
+  \[
+    G=G_0\supset G_1\supset \cdots
+  \]
+  给出时，\((\mathrm{III.Prop}\ 8.4.5)\) 直接把 completion 写成
+  \[
+    \widehat G\simeq \varprojlim_n G/G_n.
+  \]
+  \item \((\mathrm{III.Prop}\ 8.4.6)\) 与 \((\mathrm{III.Cor}\ 8.4.7)\) 说明逆极限与完备化的正合性，这一步随后立刻用于环与模。
+  \item 再把一般拓扑群语言专门施加到
+  \[
+    A\supset I\supset I^2\supset \cdots,\qquad
+    M\supset IM\supset I^2M\supset \cdots
+  \]
+  上，得到 \textbf{\(I\)-adic topology、topological ring、topological module、\(I\)-adic completion}。
+\end{itemize}
+
+因此，\(\mathrm{Algebra\ III}\) 中拓扑群的主要衍生方向是：
+\[
+  \begin{aligned}
+    \text{topological abelian groups}
+    &\longrightarrow
+    \text{completion} \\
+    &\longrightarrow
+    \text{topological rings/modules} \\
+    &\longrightarrow
+    I\text{-adic topology and completion}.
+  \end{aligned}
+\]
+
+\medskip
+
+\phantomsection\label{rem:topological-groups-comparison}
+\textbf{两本书放在一起看，可以得到一条非常清楚的对照：}
+\begin{itemize}
+  \item \(\mathrm{Algebra\ I}\) 更强调\textbf{外部构造}：从有限离散群的逆极限出发，把无限 Galois 群理解成 profinite group。
+  \item \(\mathrm{Algebra\ III}\) 更强调\textbf{内部完备化}：从单位元邻域基、Cauchy 条件与商群 \(G/G_n\) 出发，把环与模的完备化写成逆极限。
+  \item 前者最终结合的是\textbf{Galois 对应、Krull 拓扑、profinite 几何}；后者最终结合的是\textbf{Artin-Rees、\(I\)-adic completion、flatness、formal neighborhood}。
+  \item 共同的技术骨架则是同一个：
+\[
+    \begin{aligned}
+      \text{translation invariance}
+      &\Longrightarrow
+      \text{neighborhood basis at the identity} \\
+      &\Longrightarrow
+      \text{inverse limit / completion}.
+    \end{aligned}
+  \]
+\end{itemize}
+
+\subsection{\texorpdfstring{Artin-Rees 与 8.3 节的代数几何意义}{Artin-Rees 与 8.3 节的代数几何意义}}\label{subsec:topic-artin-rees-geometry}
+
+\phantomsection\label{rem:artin-rees-geometry}
+\((\mathrm{III.Thm}\ 8.2.2)\) 的 Artin-Rees 引理在几何上控制的是：沿闭子概形
+\[
+  V(I)\subset \operatorname{Spec}A
+\]
+的无穷邻域里，子模 \(N\subset M\) 与 \(I\)-adic 过滤如何相容。公式
+\[
+  I^nM\cap N = I^{\,n-k}(I^kM\cap N)\qquad (n\gg 0)
+\]
+说明这种相容性在高阶处会稳定下来，因此 \(N\) 上诱导的 \(I\)-adic 拓扑与它作为 \(M\) 的子对象所继承的子空间拓扑一致。几何上，这意味着 coherent sheaf 在形式邻域中的限制、子层与商层的完备化、以及短正合列经过 completion 后的正合性都可被统一控制；因此 Artin-Rees 是 formal neighborhood、formal completion 与 infinitesimal thickening 的基础技术。
+
+\medskip
+
+\phantomsection\label{rem:local-flatness-geometry}
+\((\mathrm{III.Thm}\ 8.3.1)\) 的 local criterion of flatness 则把“平坦”拆成了闭纤维上的条件与各阶无穷小层次上的相容性。书中使用的 associated graded 记号是
+\[
+  G_I(A)=\bigoplus_{n\ge 0} I^n/I^{n+1},
+  \qquad
+  G_I(M)=\bigoplus_{n\ge 0} I^nM/I^{n+1}M,
+\]
+而判据中的条件
+\[
+  G_I(A)\otimes_{A/I} M/IM \xrightarrow{\sim} G_I(M)
+\]
+表示 \(M\) 沿 \(V(I)\) 的各阶厚化没有出现额外扭曲；换言之，\(M\) 在特殊纤维 \(A/I\) 上的行为，确实能按 \(I\)-adic 方向一致地延伸到所有 infinitesimal neighborhoods。于是 8.3 节在代数几何中的作用，就是把 flatness 的检验转化为：
+\begin{itemize}
+  \item 先看闭子概形 \(V(I)\) 上的模 \(M/IM\) 是否平坦；
+  \item 再看 associated graded 是否与 \(I\)-adic 过滤严格匹配。
+\end{itemize}
+
+因此，Artin-Rees 与 8.3 节合起来提供了一条标准几何主线：
+\[
+\begin{aligned}
+  \text{closed subscheme }V(I)
+  &\longrightarrow
+  \text{infinitesimal thickenings} \\
+  &\longrightarrow
+  \text{completion / formal neighborhood} \\
+  &\longrightarrow
+  \text{flatness test}.
+\end{aligned}
+\]
+它们也是 blow-up、normal cone、tangent cone 与 formal geometry 中反复出现的背景工具，因为这些对象本身就由 \(I^n/I^{n+1}\)、\(A/I^n\) 与由此得到的 filtered/graded 数据组织出来。
+
+\subsection{准素分解的适用范围与凝聚层视角}\label{subsec:topic-primary-coherent}
+
+这一段最好把 \((\mathrm{III.Thm}\ 6.2.10)\) 与 \((\mathrm{III.Cor}\ 6.2.11)\) 分开理解，否则很容易把“任意模”与“有限生成模”混在一起。
+
+\begin{itemize}
+  \item \phantomsection\label{rem:primary-thm6210}\textbf{Thm 6.2.10 先处理的是零子模。} 设 \(A\) 是 Noether 环，\(M\neq 0\) 是任意 \(A\)-模。对每个
+  \[
+    \mathfrak p\in \operatorname{Ass}(M),
+  \]
+  书中构造一个 \(\mathfrak p\)-primary submodule \(Q(\mathfrak p)\subset M\)，使得
+  \[
+    0=\bigcap_{\mathfrak p\in \operatorname{Ass}(M)}Q(\mathfrak p).
+  \]
+  这一步并没有自动给出“有限个”准素子模；只有当 \(\operatorname{Ass}(M)\) 有限时，才得到通常意义下的有限准素分解。书上紧接着写出的
+  “In particular, if \(\operatorname{Ass}(M)\) is finite (e.g. \(M\) is finitely generated)” 正是这个意思。
+
+  \item \phantomsection\label{rem:primary-cor6211}\textbf{Cor 6.2.11 才推出有限生成模的任意子模可分解。} 若 \(M\) 是 Noether 环上的有限生成模，\(N\subset M\)，则
+  \(M/N\) 仍有限生成，于是
+  \[
+    \operatorname{Ass}(M/N)
+  \]
+  是有限集；对商模 \(M/N\) 应用 Thm 6.2.10，就得到
+  \[
+    N=Q_1\cap \cdots \cap Q_r
+  \]
+  的有限准素分解。因此在 Noether 环上，“任意子模都可做准素分解”真正成立的对象是\textbf{有限生成模的子模}，而不是任意模的任意子模。
+
+  \item \phantomsection\label{rem:primary-finiteness-failure}\textbf{所以 Noether 环上的一般模，失败点主要在有限性。} 对一般 \(A\)-模 \(M\)，即使 \(A\) Noether，也可能出现
+  \[
+    \operatorname{Ass}(M)
+  \]
+  或
+  \[
+    \operatorname{Ass}(M/N)
+  \]
+  无穷，从而只能写成无穷交
+  \[
+    0=\bigcap_{\mathfrak p\in \operatorname{Ass}(M)}Q(\mathfrak p),
+  \]
+  但这通常不再称为有限 primary decomposition。也就是说，书中理论并不是对“任意模”完全失效，而是失去了几何上最有用的\textbf{有限控制}。
+
+  \item \phantomsection\label{rem:primary-nonnoether}\textbf{环若不是 Noether，情况会更差。} 这时 associated primes 可能不存在良好的有限性，极小素理想也未必有限，子模链缺少 ACC，很多准素分解定理都会失效。通常需要额外加入
+  Laskerian、weakly Laskerian、coherent、finite type 等条件，或者改研究较弱的分解，例如只追踪根理想、支撑或 radical decomposition。因而“非 Noether 情形有一套统一的 primary decomposition 理论”并不准确；更常见的是按附加假设分别处理。
+
+  \item \phantomsection\label{rem:artin-primary-unique}\textbf{Artin 环上的理想分解是一个特别整齐的特例。} 若 \(A\) 是 Artin 环，则所有素理想都是极大理想，因此彼此不可比。对任意理想 \(I\subset A\)，商环 \(A/I\) 仍是 Artin 环，所以 \(\operatorname{Ass}(A/I)\) 中出现的素理想全都是极小元；于是最小准素分解里出现的根理想集合没有“嵌入素理想”的歧义，本身就是唯一的。更进一步，若
+  \[
+    \operatorname{Ass}(A/I)=\{\mathfrak m_1,\dots,\mathfrak m_r\},
+  \]
+  则 \(I\) 可唯一写成各个 \(\mathfrak m_i\)-primary ideal 的交；等价地，这正对应于 Artin 环按局部因子
+  \[
+    A\simeq \prod_{i=1}^r A_{\mathfrak m_i}
+  \]
+  的分解。
+\end{itemize}
+
+\medskip
+
+从几何上看，真正的转向不是“放弃模而改用层”，而是把\textbf{有限生成模的局部化}组织成 sheaf，这样既保留有限性，又能在不同开集上拼接。
+
+\begin{itemize}
+  \item 对任意环 \(A\) 与任意 \(A\)-模 \(M\)，在
+  \[
+    X=\operatorname{Spec}A
+  \]
+  上都可构造拟凝聚层 \(\widetilde M\)。在基本开集 \(D(f)\) 上，
+  \[
+    \widetilde M(D(f))=M_f,
+  \]
+  所以 sheaf 的本质就是把“对每个素理想做局部化”系统地组织起来。
+
+  \item 当 \(A\) 是 Noether 环且 \(M\) 有限生成时，\(\widetilde M\) 是凝聚层（coherent sheaf）。在局部 Noether 概形上，凝聚层正是几何里对应“有限生成模”的对象：它对局部化稳定，并且在核、余核、扩张下封闭，因此适合做闭子概形、理想层、有限型模等几何构造。
+
+  \item 在仿射情形 \(X=\operatorname{Spec}A\) 上，有限生成 \(A\)-模与 \(X\) 上的凝聚层一一对应；有限生成子模则对应凝聚子层。因此代数里的准素分解结果可以在每个仿射开集上局部使用，再转译成对支撑、associated points、不可约分支以及理想层的描述。
+
+  \item 这也解释了为什么几何里强调的是 locally Noetherian schemes 上的 coherent sheaves：目标不是给任意模做一个全局有限分解，而是保证\textbf{每个足够小的仿射开集上}都回到 Noether 环上的有限生成模，从而可以使用局部代数工具，再把结果沿层的限制映射粘起来。
+\end{itemize}
+
+因此，更准确的主线是：
+\[
+  \text{Noether 环 + 有限生成模}
+  \longrightarrow
+  \text{有限准素分解},
+\]
+\[
+  \text{locally Noetherian scheme + coherent sheaf}
+  \longrightarrow
+  \text{局部有限控制与可粘合的几何对象}.
+\]
+而在非 Noether 情形下，往往只能保留部分信息，例如根理想、支撑、associated points 的替代版本，或在额外有限性假设下恢复某种分解。
+
+\newpage
+\section{题目整理}
+
+这里记录经典题目、常用方法，以及做错后值得保留的修正思路。
+
+\subsection{商模的 associated primes 与 support 计算例题}\label{subsec:problem-ass-support-kxy}
+
+\begin{example}
+令
+\[
+  A=k[x,y],\qquad M=A/(x^2,xy).
+\]
+求 \(\operatorname{Spec}A\) 的典型结构，并计算 \(\operatorname{Ass}_A(M)\) 与 \(\operatorname{Supp}(M)\)。
+
+\textbf{解答要点：}
+
+首先，\(\operatorname{Spec}k[x,y]\) 不必理解成一个“可完全枚举的列表”，它就是 \(k[x,y]\) 的全体素理想所成的集合。由于 \(k[x,y]\) 是二维 UFD，其素理想按高度可分成三类：
+\[
+  (0),\qquad (f)\ \text{其中 }f\text{ 不可约},\qquad \mathfrak m\in \operatorname{MaxSpec}A.
+\]
+若 \(k\) 代数闭，则极大理想都形如
+\[
+  (x-a,y-b)\qquad (a,b\in k).
+\]
+
+对模 \(M=A/(x^2,xy)\)，先算 associated primes。记 \(x,y\) 在 \(M\) 中的像仍为 \(x,y\)。则
+\[
+  \operatorname{ann}_A(y)=(x),
+\]
+因为 \(fy\in (x^2,xy)\) 当且仅当 \(f\in (x)\)；故
+\[
+  (x)\in \operatorname{Ass}_A(M).
+\]
+另一方面，
+\[
+  \operatorname{ann}_A(x)=(x,y),
+\]
+故
+\[
+  (x,y)\in \operatorname{Ass}_A(M).
+\]
+而在辨析 1.9 已构造出 prime filtration
+\[
+  0\subset Ax\subset M,
+\]
+其商分别同构于
+\[
+  Ax\cong A/(x,y),\qquad M/Ax\cong A/(x).
+\]
+因此由 \((\mathrm{III.Lem}\ 6.1.9)\) 可知
+\[
+  \operatorname{Ass}_A(M)\subseteq \{(x),(x,y)\}.
+\]
+综合两边包含，得到
+\[
+  \operatorname{Ass}_A(M)=\{(x),(x,y)\}.
+\]
+
+再算 support。因为 \(M\) 有限生成，由 \((\mathrm{III.Thm}\ 6.1.6)\) 前使用的标准事实，
+\[
+  \operatorname{Supp}(M)=V(\operatorname{Ann}(M)).
+\]
+这里
+\[
+  \operatorname{Ann}(M)=\operatorname{ann}(1\bmod (x^2,xy))=(x^2,xy)=x(x,y),
+\]
+所以
+\[
+  \operatorname{Supp}(M)=V(x^2,xy).
+\]
+又因为
+\[
+  \sqrt{(x^2,xy)}=(x),
+\]
+故
+\[
+  V(x^2,xy)=V(x).
+\]
+因此
+\[
+  \operatorname{Supp}(M)=V(x)=\{\mathfrak p\in \operatorname{Spec}A\mid x\in \mathfrak p\}.
+\]
+这也确实包含
+\[
+  \operatorname{Ass}_A(M)=\{(x),(x,y)\},
+\]
+与 \((\mathrm{III.Thm}\ 6.1.6)\) 一致。
+\end{example}
+
+\subsection{\texorpdfstring{有限生成模的 support 在基变换下的原像公式}{有限生成模的 support 在基变换下的原像公式}}\label{subsec:problem-support-base-change}
+
+\begin{example}
+设 \(f:A\to B\) 是环同态，\(M\) 是有限生成 \(A\)-模。证明
+\[
+  \operatorname{Supp}_B(B\otimes_A M)
+  =
+  (f^*)^{-1}(\operatorname{Supp}_A(M)),
+\]
+其中
+\[
+  f^*:\operatorname{Spec}B\to \operatorname{Spec}A,
+  \qquad
+  \mathfrak q\mapsto \mathfrak q\cap A.
+\]
+
+\textbf{解答要点：}
+
+取任意 \(\mathfrak q\in \operatorname{Spec}B\)，记
+\[
+  \mathfrak p=f^*(\mathfrak q)=\mathfrak q\cap A.
+\]
+要证的就是
+\[
+  (B\otimes_A M)_{\mathfrak q}\neq 0
+  \iff
+  M_{\mathfrak p}\neq 0.
+\]
+
+首先有标准同构
+\[
+  (B\otimes_A M)_{\mathfrak q}
+  \cong
+  B_{\mathfrak q}\otimes_A M
+  \cong
+  B_{\mathfrak q}\otimes_{A_{\mathfrak p}} M_{\mathfrak p}.
+\]
+最后一个同构的原因是：\(A\setminus \mathfrak p\) 中元素在 \(B_{\mathfrak q}\) 里的像都变成单位，因此 \(A\to B_{\mathfrak q}\) 由局部化泛性质唯一分解为
+\[
+  A_{\mathfrak p}\to B_{\mathfrak q},
+\]
+而
+\[
+  M_{\mathfrak p}=A_{\mathfrak p}\otimes_A M.
+\]
+于是由张量积结合律得到所需改写。
+
+若 \(M_{\mathfrak p}=0\)，则显然
+\[
+  B_{\mathfrak q}\otimes_{A_{\mathfrak p}} M_{\mathfrak p}=0.
+\]
+
+反过来，若 \(M_{\mathfrak p}\neq 0\)，则因 \(M\) 有限生成，\(M_{\mathfrak p}\) 是局部环 \(A_{\mathfrak p}\) 上有限生成模。由 Nakayama 引理，
+\[
+  M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\neq 0.
+\]
+设
+\[
+  k(\mathfrak p)=\operatorname{Frac}(A_{\mathfrak p}/\mathfrak pA_{\mathfrak p}),
+  \qquad
+  k(\mathfrak q)=B_{\mathfrak q}/\mathfrak qB_{\mathfrak q}.
+\]
+则 \(k(\mathfrak q)\) 是 \(k(\mathfrak p)\) 的域扩张，并且
+\[
+  (B\otimes_A M)_{\mathfrak q}\otimes_{B_{\mathfrak q}} k(\mathfrak q)
+  \cong
+  M_{\mathfrak p}\otimes_{A_{\mathfrak p}} k(\mathfrak q)
+  \cong
+  \bigl(M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\bigr)\otimes_{k(\mathfrak p)} k(\mathfrak q).
+\]
+右端是非零向量空间对域扩张做张量，因此仍非零。故
+\[
+  (B\otimes_A M)_{\mathfrak q}\neq 0.
+\]
+
+综上，
+\[
+  \mathfrak q\in \operatorname{Supp}_B(B\otimes_A M)
+  \iff
+  f^*(\mathfrak q)\in \operatorname{Supp}_A(M),
+\]
+也就是
+\[
+  \operatorname{Supp}_B(B\otimes_A M)
+  =
+  (f^*)^{-1}(\operatorname{Supp}_A(M)).
+\]
+
+这里有限生成性只用在一处：为了对 \(M_{\mathfrak p}\) 应用 Nakayama，引出
+\[
+  M_{\mathfrak p}\neq 0
+  \Rightarrow
+  M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\neq 0.
+\]
+\end{example}
+
+\newpage
+\section*{索引}
+\addcontentsline{toc}{section}{索引}
+
+\noindent\textbf{概念辨析}
+
+\begin{itemize}
+  \item \hyperref[subsec:radicals-spectrum]{[根理想与谱] Jacobson 根看极大理想，幂零根看素理想与极小素理想。}
+  \item \hyperref[subsec:artin-noether]{[Artin 环与 Noether 环] Artin 环的核心是零维、有限极大理想，以及还有 \(J(A)=\sqrt{0}\)。}
+  \item \hyperref[rem:local-chain-counterexample]{[\hyperref[subsec:local-chain]{局部环与链条件}] 局部且极大理想幂零不够推出 Artin；无限维平凡扩张给出反例。}
+  \item \hyperref[rem:local-chain-noether]{[\hyperref[subsec:local-chain]{局部环与链条件}] 局部环理想一般不全是 \(\mathfrak m^n\)；若恰好全是，则自动 Noether。}
+  \item \hyperref[rem:prop5312-nakayama]{[\hyperref[subsec:prop5312]{Prop 5.3.12 相关辨析}] Prop 5.3.12 的关键技术点是有限生成、Nakayama 与 Noether 推广。}
+  \item \hyperref[rem:prop5312-noether]{[\hyperref[subsec:prop5312]{Prop 5.3.12 相关辨析}] Prop 5.3.12 的三条条件对 Noether 局部环同样等价，关键替代是 Krull 交定理 \(\bigcap_{n\ge 0}\mathfrak m^n=0\)。}
+  \item \hyperref[rem:ass-localization-formula]{[\hyperref[subsec:ass-localization]{Associated primes 与局部化}] 局部化只保留与 \(S\) 不相交的 associated primes，书中 \(P\cap S^{-1}A\) 应改为 \(P\cap A\)。}
+  \item \hyperref[rem:ass-quotient-radical]{[\hyperref[subsec:ass-localization]{Associated primes 与局部化}] 对商模 \(A/\mathfrak q\)，\(\operatorname{Ass}(A/\mathfrak q)\) 由根理想 \(\mathfrak r(\mathfrak q)\) 直接给出；素理想时就是 \(\operatorname{Ass}_A(A/(x))=\{(x)\}\)。}
+  \item \hyperref[rem:primary-colon]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 若 \(\mathfrak q\) 是 \(p\)-primary，则 \((\mathfrak q:x)\) 的计算由 \(A/\mathfrak q\) 中“零因子皆幂零”这一刻画统一控制。}
+  \item \hyperref[rem:m-primary]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] Noether 环里 \(\mathfrak m\)-primary、\(\sqrt{\mathfrak q}=\mathfrak m\)、以及 \(\mathfrak m^k\subset \mathfrak q\subset \mathfrak m\) 三条彼此等价，有限生成性正用在 \((2)\Rightarrow(3)\)。}
+  \item \hyperref[rem:primary-counterexample]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 素理想幂与固定根理想都不自动给出 primary 结构，\(k[x,y,z]/(xy-z^2)\) 提供了标准反例。}
+  \item \hyperref[rem:prime-filtration-nonunique]{[Prime filtration 与 Ass] Prop 6.1.8 的 prime filtration 不唯一，出现的 prime multiset 也可不同。}
+  \item \hyperref[rem:ass-short-exact-strict]{[Prime filtration 与 Ass] Lem 6.1.9 里的 associated primes 只能得到包含号，不能一般改成等号。}
+  \item \hyperref[rem:ass-intersection-sum]{[Ass 的交与和] 在 Thm 6.2.10 附近，交可以无限进行，因为交仍是子模；并通常没有 \(\operatorname{Ass}\) 可谈，实际应改看子模的和。}
+  \item \hyperref[rem:support-basic]{[\hyperref[subsec:support-basic]{Supp(M) 的两条基本性质}] \(V(I)\) 是包含 \(I\) 的素理想所成闭集；\(\operatorname{Supp}(M)\) 的非空性等价于 \(M\neq 0\)，有限生成时由 \(\operatorname{Ann}(M)\) 判定。}
+  \item \hyperref[subsec:categorical-view]{[范畴论视角] Artin/Noether 的形式对偶更适合用 Matlis 对偶理解。}
+  \item \hyperref[rem:limits-colimits-padic]{[\hyperref[subsec:limits-colimits]{极限、余极限与始对象/终对象的辨析}] 分清极限/余极限先看过渡态射方向：\(\mathbb Z_p\) 来自 \(\varprojlim \mathbb Z/p^n\mathbb Z\)，而 Prüfer \(p\)-群来自 \(\varinjlim \mathbb Z/p^n\mathbb Z\)。}
+  \item \hyperref[rem:initial-terminal-limits]{[\hyperref[subsec:limits-colimits]{极限、余极限与始对象/终对象的辨析}] 始对象是“唯一流出”，终对象是“唯一流入”；colimit 对应始对象的泛性质，limit 对应终对象的泛性质。}
+  \item \hyperref[rem:split-projective-injective]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列分裂等价于有截面、收缩或直和分解；投射模控制对满射的提升，内射模控制对单射的延拓。}
+  \item \hyperref[subsec:artin-rees-qn]{[Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)] Artin-Rees 预备引理里，核心是证明 \(M_n^*=A^*\!\cdot Q_n\) 为有限生成 \(A^*\)-模，而 \(Q_n\) 与 \(M_n^*\) 的生成元处在不同直和环境中。}
+  \item \hyperref[rem:artin-rees-subspace-topology]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] 8.5 节前最后一段要区分 \(I\)-adic 滤过、\(I\)-adic 拓扑与诱导过滤 \(I^nM\cap N\)；Artin-Rees 说明它们在子模上给出同一拓扑。}
+  \item \hyperref[rem:giM-vs-gM]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] \(G_I(M)\) 是标准 \(I\)-adic filtration 的 associated graded，\(G(M)\) 是一般 \(I\)-filtration 的 associated graded；相同的是诱导拓扑，不是分次模本身。}
+  \item \hyperref[rem:prop8510-graded-recovery]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] Prop 8.5.10 说明：在完备且 \(\bigcap_{n\ge 0}M_n=0\) 的情形下，\(G(M)\) 的有限生成性与 Noether 性可分别恢复 \(M\) 的对应性质。}
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{专题整理}
+
+\begin{itemize}
+  \item \hyperref[subsec:topic-derived-functors]{[投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线] 投射/内射分解是把一般模替换成“好模”的装置；\(\operatorname{Tor}\) 衡量张量积失去的左正合性，\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 失去的右正合性并分类短正合列扩张。}
+  \item \hyperref[subsec:topic-csa]{[CSA 相关概念总联系] 这里集中梳理 CSA、中心除代数、分裂域、中心化子与 Brauer 群之间的关系。}
+  \item \hyperref[rem:iadic-padic]{[\hyperref[subsec:topic-filtration-adic]{滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}] \(I\)-filtration 可视为 pro-对象，completion 是逆极限；\(\mathbb Z_p\) 则是 \((p)\)-adic 完备化的标准模型。}
+  \item \hyperref[rem:filter-vs-filtration]{[\hyperref[subsec:topic-filtration-adic]{滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}] 第一卷的“滤子”讲 Cauchy 与完备化，第二卷的 pro-对象讲逆系统；两者都可由同一个 filtration 诱导出来。}
+  \item \hyperref[rem:graded-filtered-completion]{[\hyperref[subsec:topic-filtration-adic]{滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}] 分次环记住的是按次数的直和分解；真正导向 pro-对象与 completion 的，是滤过给出的截断系统 \(A/F^nA\)。}
+  \item \hyperref[rem:ch8-roadmap]{[\hyperref[subsec:topic-ch8-roadmap]{第 8 章主线总览：滤过、分次、完备化与 Noether 性}] 第 8 章可压成一张总图：filtration 同时导出 graded 与 completion，Artin-Rees 控制子模，8.3/8.5 再把 flatness 与 Noether 性接回原对象。}
+  \item \hyperref[subsec:topic-ch8-roadmap]{[第 8 章主线总览：滤过、分次、完备化与 Noether 性] \(M\) 连同 \((M_n)\) 一般只是 filtered module；真正天然 graded 的是 associated graded \(G(M)\)。}
+  \item \hyperref[subsec:topic-ch8-roadmap]{[第 8 章主线总览：滤过、分次、完备化与 Noether 性] \(I\)-filtration 先给 \(G(M)\) 与 completion；stable 负责拓扑，Artin-Rees 负责子模兼容，而有限生成/Noether 条件决定何时这些技术能启动。}
+  \item \hyperref[rem:local-dimension-invariants]{[\hyperref[subsec:topic-local-dimension-invariants]{第 9 章局部维数三指标：\(d(A)\)、\(\delta(A)\) 与 \(\chi_q\)}] \(d(A)\) 同时等于 Hilbert 级数极点重数、associated graded 的 Hilbert 多项式次数加一，以及 \(\chi_{\mathfrak m}\) 的次数。}
+  \item \hyperref[subsec:topic-local-dimension-invariants]{[第 9 章局部维数三指标：\(d(A)\)、\(\delta(A)\) 与 \(\chi_q\)] \(\delta(A)\) 衡量参数个数，区别于 \(\mathfrak m/\mathfrak m^2\) 给出的切空间维数；\(\chi_q\) 则把长度增长转成维数与重数。}
+  \item \hyperref[subsec:topic-local-dimension-invariants]{[第 9 章局部维数三指标：\(d(A)\)、\(\delta(A)\) 与 \(\chi_q\)] system of parameters 是 \(\delta(A)=\dim A\) 的具体实现，而 9.2.15/9.2.16 说明参数系在 associated graded 的首项层面无低次关系，并在系数域上代数无关。}
+  \item \hyperref[subsec:topic-local-dimension-invariants]{[第 9 章局部维数三指标：\(d(A)\)、\(\delta(A)\) 与 \(\chi_q\)] 9.3 节正是把“参数系代数无关”与 Noether normalization 拼起来，得到 \(\dim A_{\mathfrak m}=\operatorname{tr.deg}(K\mid k)\)。}
+  \item \hyperref[rem:regular-graded-intuition]{[\hyperref[subsec:topic-local-dimension-invariants]{第 9 章局部维数三指标：\(d(A)\)、\(\delta(A)\) 与 \(\chi_q\)}] \(G_{\mathfrak m}(A)\cong k[t_1,\dots,t_d]\) 的直观含义是：\(\mathfrak m/\mathfrak m^2\) 的一阶首项自由地产生全部高阶首项，associated graded 没有额外关系。}
+  \item \hyperref[rem:topological-groups-comparison]{[\hyperref[subsec:topic-topological-groups]{Algebra I 与 Algebra III 中拓扑群主线的对照整理}] Algebra I 把拓扑群用于 profinite groups 与 Krull topology；Algebra III 则把拓扑阿贝尔群用于 completion、\(I\)-adic topology 与 formal geometry。}
+  \item \hyperref[rem:artin-rees-geometry]{[\hyperref[subsec:topic-artin-rees-geometry]{Artin-Rees 与 8.3 节的几何含义}] Artin-Rees 的几何是控制闭子概形的无穷邻域、子层诱导拓扑与 completion。}
+  \item \hyperref[rem:local-flatness-geometry]{[\hyperref[subsec:topic-artin-rees-geometry]{Artin-Rees 与 8.3 节的几何含义}] 8.3 节把 flatness 化成闭纤维与 associated graded 的兼容性检验。}
+  \item \hyperref[rem:primary-thm6210]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] Thm 6.2.10 若 \(\operatorname{Ass}(M)\) 无穷，只能得到无穷交形式的分解。}
+  \item \hyperref[rem:artin-primary-unique]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] Artin 环是准素分解的特殊整齐情形：所有素理想都极大，因此理想的最小准素分解没有嵌入素理想歧义，并可按局部分量唯一分解。}
+  \item \hyperref[rem:primary-cor6211]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] 有限准素分解真正稳定适用的是 Noether 环上的有限生成模及其子模。}
+  \item \hyperref[rem:primary-finiteness-failure]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] 一般模与非 Noether 环的困难核心在于 associated primes 与分解的有限性失控。}
+\end{itemize}
+
+\vspace{0.8em}
+\noindent\textbf{题目整理}
+
+\begin{itemize}
+  \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
+  \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 对有限生成 \(A\)-模 \(M\)，\(\operatorname{Supp}_B(B\otimes_A M)\) 正好是 \(\operatorname{Supp}_A(M)\) 在 \(f^*:\operatorname{Spec}B\to\operatorname{Spec}A\) 下的原像。}
+\end{itemize}
+
+\end{document}

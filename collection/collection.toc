@@ -1,0 +1,26 @@
+\contentsline {section}{\numberline {1}概念辨析}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}根理想与谱}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}Artin 环与 Noether 环}{2}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}局部环与链条件}{2}{subsection.1.3}%
+\contentsline {subsection}{\numberline {1.4}Prop 5.3.12 相关辨析}{3}{subsection.1.4}%
+\contentsline {subsection}{\numberline {1.5}Associated primes 与局部化}{4}{subsection.1.5}%
+\contentsline {subsection}{\numberline {1.6}Primary ideal 的计算与等价条件}{7}{subsection.1.6}%
+\contentsline {subsection}{\numberline {1.7}Supp(M) 的两条基本性质}{10}{subsection.1.7}%
+\contentsline {subsection}{\numberline {1.8}范畴论视角}{11}{subsection.1.8}%
+\contentsline {subsection}{\numberline {1.9}极限、余极限与始对象/终对象的辨析}{11}{subsection.1.9}%
+\contentsline {subsection}{\numberline {1.10}Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)}{14}{subsection.1.10}%
+\contentsline {subsection}{\numberline {1.11}\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}{16}{subsection.1.11}%
+\contentsline {subsection}{\numberline {1.12}短正合列的分裂与投射模/内射模}{18}{subsection.1.12}%
+\contentsline {section}{\numberline {2}专题整理}{20}{section.2}%
+\contentsline {subsection}{\numberline {2.1}投射分解、内射分解与 \(\operatorname {Tor}/\operatorname {Ext}\) 的主线}{20}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}CSA 相关概念总联系}{22}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}{23}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}第 8 章主线总览：滤过、分次、完备化与 Noether 性}{27}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}第 9 章局部维数三指标：\(d(A)\)、\(\delta (A)\) 与 \(\chi _q\)}{31}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Algebra I 与 Algebra III 中拓扑群主线的对照整理}{37}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Artin-Rees 与 8.3 节的代数几何意义}{40}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}准素分解的适用范围与凝聚层视角}{41}{subsection.2.8}%
+\contentsline {section}{\numberline {3}题目整理}{44}{section.3}%
+\contentsline {subsection}{\numberline {3.1}商模的 associated primes 与 support 计算例题}{44}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}有限生成模的 support 在基变换下的原像公式}{45}{subsection.3.2}%
+\contentsline {section}{索引}{47}{section*.37}%

@@ -1,0 +1,1364 @@
+\documentclass[a4paper]{ctexart}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage[top=2.4cm,bottom=2.6cm,left=2.5cm,right=2.5cm]{geometry}
+\usepackage[colorlinks=true,linkcolor=blue,pdfpagelabels=false]{hyperref}
+\usepackage{bookmark}
+\usepackage{enumitem}
+\usepackage{mathtools}
+
+\linespread{1.2}
+
+\title{Algebra III 对应 Atiyah 习题详解}
+\author{}
+\date{2026-06-29}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section*{第0章：说明}
+\phantomsection
+\addcontentsline{toc}{section}{第0章：说明}
+
+本文把 \textit{Algebra III} 中明确标注为
+\[
+\texttt{Exercise x.x.x. [2] Chapter \(\cdots\), exercises \(\cdots\)}
+\]
+的题目，按 Atiyah--Macdonald 的原章节统一摘出，并给出比速记版更详细的证明。
+
+文中若直接调用 \textit{Algebra III} 的定理或命题，会尽量标明原书位置，例如
+\[
+\text{(III.Prop 1.2.13)},\quad \text{(III.Cor 2.2.6)},\quad \text{(III.Thm 8.2.2)}.
+\]
+这里只标出真正参与论证的结果；完全初等的张量、局部化或有限生成模计算不再强行附会引用。
+
+对应关系如下：
+\begin{itemize}
+  \item Algebra III 1.2.18 对应 Atiyah 第2章习题 5, 8, 10, 12, 13。
+  \item Algebra III 2.2.12 对应 Atiyah 第3章习题 2, 3, 15, 19, 21, 22。
+  \item Algebra III 6.2.13 对应 Atiyah 第4章习题 2, 4, 5。
+  \item Algebra III 4.3.7 对应 Atiyah 第5章习题 1, 4, 5, 7, 12, 13, 14, 15。
+  \item Algebra III 5.3.17 对应 Atiyah 第6章习题 1, 2；第7章习题 1, 2, 12；第8章习题 2, 3, 4。
+  \item Algebra III 7.2.12 对应 Atiyah 第9章习题 2, 4, 7, 9。
+  \item Algebra III 8.5.15 对应 Atiyah 第10章习题 3, 4, 6, 7, 9。
+\end{itemize}
+
+\section{第2章：Modules}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{2.\arabic*.}]
+\item 证明 \(A[x]\) 作为 \(A\)-代数是 flat。
+
+\textbf{证明。}
+把 \(A[x]\) 只看成 \(A\)-模，则
+\[
+A[x]=\bigoplus_{n\ge 0}Ax^n.
+\]
+右端是以 \(\{x^n\}_{n\ge 0}\) 为基的自由 \(A\)-模，因此 \(A[x]\) 是自由模。自由模一定是 flat 模，所以 \(A[x]\) flat。
+
+\setcounter{enumi}{7}
+\item 证明：
+\begin{enumerate}[label=(\roman*)]
+\item 若 \(M,N\) 都是 flat 的 \(A\)-模，则 \(M\otimes_A N\) 也是 flat。
+\item 若 \(B\) 是 flat 的 \(A\)-代数，且 \(N\) 是 flat 的 \(B\)-模，则 \(N\) 也是 flat 的 \(A\)-模。
+\end{enumerate}
+
+\textbf{证明。}
+\begin{enumerate}[label=(\roman*)]
+\item 按定义，只需证函子 \(-\otimes_A(M\otimes_A N)\) 正合。由张量积结合律，
+\[
+X\otimes_A(M\otimes_A N)\cong (X\otimes_A M)\otimes_A N
+\]
+对每个 \(A\)-模 \(X\) 自然成立。因此
+\[
+-\otimes_A(M\otimes_A N)\cong \bigl((-\otimes_A M)\otimes_A N\bigr).
+\]
+由于 \(M\) flat，函子 \(-\otimes_A M\) 正合；由于 \(N\) flat，函子 \(-\otimes_A N\) 也正合。两个正合函子的复合仍正合，故 \(M\otimes_A N\) flat。
+
+\item 对任意 \(A\)-模 \(X\)，有自然同构
+\[
+X\otimes_A N \cong (X\otimes_A B)\otimes_B N.
+\]
+这里先把 \(X\) 经标量扩张变成 \(B\)-模，再与 \(N\) 张量。
+
+现在若
+\[
+0\to X'\to X\to X''\to 0
+\]
+是 \(A\)-模短正合列，则由于 \(B\) 对 \(A\) flat，得到
+\[
+0\to X'\otimes_A B\to X\otimes_A B\to X''\otimes_A B\to 0
+\]
+仍正合。再由于 \(N\) 对 \(B\) flat，对上式再张量 \(N\) 得
+\[
+0\to (X'\otimes_A B)\otimes_B N
+\to (X\otimes_A B)\otimes_B N
+\to (X''\otimes_A B)\otimes_B N
+\to 0.
+\]
+借助前述自然同构，这正是
+\[
+0\to X'\otimes_A N\to X\otimes_A N\to X''\otimes_A N\to 0.
+\]
+故 \(-\otimes_A N\) 正合，即 \(N\) 对 \(A\) flat。
+\end{enumerate}
+
+\setcounter{enumi}{9}
+\item 设 \(\mathfrak a\subseteq J(A)\)，\(u:M\to N\) 是 \(A\)-模同态，且 \(N\) 有限生成。若诱导映射
+\[
+M/\mathfrak aM\to N/\mathfrak aN
+\]
+满射，证明 \(u\) 满射。
+
+\textbf{证明。}
+设 \(C=\operatorname{coker}(u)\)。因为 \(N\) 有限生成，所以其商模 \(C\) 也是有限生成。
+
+由右正合性，
+\[
+(N/u(M))/\mathfrak a(N/u(M)) \cong C/\mathfrak a C
+\]
+而题设说 \(M/\mathfrak aM\to N/\mathfrak aN\) 满射，这恰好等价于
+\[
+C/\mathfrak a C=0.
+\]
+于是 \(\mathfrak a C=C\)。又 \(\mathfrak a\subseteq J(A)\)，由 Nakayama 引理，可直接应用 \textit{Algebra III} 的 (III.Prop 1.2.13)，推出 \(C=0\)。因此 \(\operatorname{coker}(u)=0\)，即 \(u\) 满射。
+
+\setcounter{enumi}{11}
+\item 设 \(M\) 有限生成，\(\varphi:M\to A^n\) 满射。证明 \(\ker\varphi\) 有限生成。
+
+\textbf{证明。}
+令 \(e_1,\dots,e_n\) 为 \(A^n\) 的标准基。由 \(\varphi\) 满射，对每个 \(i\) 可取 \(u_i\in M\) 使得
+\[
+\varphi(u_i)=e_i.
+\]
+记
+\[
+F=\sum_{i=1}^n Au_i\subseteq M.
+\]
+则 \(\varphi|_F:F\to A^n\) 满射；而 \(F\) 由 \(n\) 个元生成，并且 \(u_i\) 在 \(A^n\) 中的像正好是标准基，故 \(\varphi|_F\) 实际上是同构。于是 \(M=F+\ker\varphi\)，并且
+\[
+F\cap \ker\varphi=0,
+\]
+因为若 \(x\in F\cap\ker\varphi\)，则 \(\varphi(x)=0\)，而 \(\varphi|_F\) 单射，所以 \(x=0\)。从而
+\[
+M\cong F\oplus\ker\varphi.
+\]
+
+设 \(m_1,\dots,m_r\) 生成 \(M\)。把每个 \(m_j\) 唯一写成
+\[
+m_j=k_j+f_j,\qquad k_j\in\ker\varphi,\ f_j\in F.
+\]
+现取任意 \(k\in\ker\varphi\)。因 \(m_j\) 生成 \(M\)，可写
+\[
+k=\sum_{j=1}^r a_jm_j=\sum_{j=1}^r a_jk_j+\sum_{j=1}^r a_jf_j.
+\]
+左端与第一项都在 \(\ker\varphi\) 中，故第二项也在 \(\ker\varphi\) 中；但它又在 \(F\) 中，所以它属于 \(F\cap\ker\varphi=0\)。因此
+\[
+k=\sum_{j=1}^r a_jk_j.
+\]
+这说明 \(\ker\varphi\) 由 \(k_1,\dots,k_r\) 生成，从而有限生成。
+
+\setcounter{enumi}{12}
+\item 设 \(f:A\to B\) 为环同态，\(N\) 是 \(B\)-模。把 \(N\) 看成 \(A\)-模后，证明自然映射
+\[
+g:N\to B\otimes_A N,\qquad y\mapsto 1\otimes y
+\]
+单射，且其像是一个直和项。
+
+\textbf{证明。}
+定义
+\[
+p:B\otimes_A N\to N,\qquad b\otimes y\mapsto by.
+\]
+先说明它是良定义的。张量积关系为
+\[
+(ba)\otimes y=b\otimes ay \qquad (a\in A),
+\]
+而把 \(N\) 看成 \(A\)-模时，\(ay=f(a)y\)，所以
+\[
+p((ba)\otimes y)=(ba)y=b(ay)=p(b\otimes ay),
+\]
+故 \(p\) 良定义。它显然是 \(B\)-线性的。
+
+再看复合 \(p\circ g\)。对任意 \(y\in N\)，
+\[
+(p\circ g)(y)=p(1\otimes y)=1\cdot y=y.
+\]
+故
+\[
+p\circ g=\mathrm{id}_N.
+\]
+于是 \(g\) 有左逆，因此 \(g\) 必单射。
+
+更进一步，因为 \(g\) 有左逆，短正合列
+\[
+0\to N\xrightarrow{g} B\otimes_A N\xrightarrow{} \operatorname{coker}(g)\to 0
+\]
+分裂，所以
+\[
+B\otimes_A N\cong g(N)\oplus \ker p.
+\]
+换言之，\(g(N)\) 是 \(B\otimes_A N\) 的一个直和项。
+\end{enumerate}
+
+\section{第3章：Rings and Modules of Fractions}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{3.\arabic*.}]
+\setcounter{enumi}{1}
+\item 设 \(\mathfrak a\) 是环 \(A\) 的一个理想，令 \(S=1+\mathfrak a\)。证明
+\[
+S^{-1}\mathfrak a \subseteq J(S^{-1}A).
+\]
+并据此配合 Nakayama 引理，给出命题 \((2.5)\) 的一个不依赖行列式的证明。
+
+\textbf{证明。}
+任取 \(x=s^{-1}a\in S^{-1}\mathfrak a\)，其中 \(a\in\mathfrak a,\ s\in S\)。则
+\[
+1-x=\frac{s-a}{s}.
+\]
+由于 \(s\in 1+\mathfrak a\)，可写成 \(s=1+a'\)（\(a'\in\mathfrak a\)），于是
+\[
+s-a=1+(a'-a)\in 1+\mathfrak a=S.
+\]
+故 \(1-x\) 在 \(S^{-1}A\) 中可逆。于是每个 \(x\in S^{-1}\mathfrak a\) 都属于 Jacobson 根，即
+\[
+S^{-1}\mathfrak a \subseteq J(S^{-1}A).
+\]
+
+现在设 \(M=\mathfrak aM\)。局部化后得
+\[
+S^{-1}M=(S^{-1}\mathfrak a)(S^{-1}M).
+\]
+由刚证结论与 Nakayama 引理，得到
+\[
+S^{-1}M=0.
+\]
+再由 Exercise 1，存在某个 \(s\in S\) 使
+\[
+sM=0.
+\]
+而 \(S=1+\mathfrak a\)，故存在 \(a\in\mathfrak a\) 使 \(s=1+a\)。于是
+\[
+(1+a)M=0.
+\]
+这正是 \((2.5)\) 的无行列式形式。
+
+\item 设 \(A\) 是环，\(S,T\subseteq A\) 都是乘法闭集，记 \(U\) 为 \(T\) 在 \(S^{-1}A\) 中的像。证明
+\[
+(ST)^{-1}A \cong U^{-1}(S^{-1}A).
+\]
+
+\textbf{证明。}
+两边都满足同一泛性质：它们都是把 \(A\) 中 \(S\cup T\) 的元素都变成可逆元所得到的局部化。
+
+具体地，定义
+\[
+\phi:(ST)^{-1}A\to U^{-1}(S^{-1}A),\qquad \frac{a}{st}\mapsto \frac{a/s}{t/1},
+\]
+以及
+\[
+\psi:U^{-1}(S^{-1}A)\to (ST)^{-1}A,\qquad \frac{a/s}{t/1}\mapsto \frac{a}{st}.
+\]
+可以逐步核对这两个映射都良定义，且互为逆映射，因此得到所求同构。
+
+\setcounter{enumi}{14}
+\item 设 \(f:A\to B\) 是环同态。证明：
+\begin{enumerate}[label=(\roman*)]
+\item 若 \(S\subseteq A\) 乘法闭，则 \(\operatorname{Spec}(S^{-1}A)\) 自然同胚于其在 \(\operatorname{Spec}(A)\) 中的像；
+\item 局部化后的谱映射是原谱映射在相应子空间上的限制；
+\item 模掉理想后的谱映射也是原谱映射的限制；
+\item 对 \(\mathfrak p\in\operatorname{Spec}(A)\)，纤维 \(f^{*-1}(\mathfrak p)\) 自然同胚于
+\[
+\operatorname{Spec}(B_{\mathfrak p}/\mathfrak p B_{\mathfrak p})
+\cong
+\operatorname{Spec}(k(\mathfrak p)\otimes_A B).
+\]
+\end{enumerate}
+
+\textbf{证明。}
+\begin{enumerate}[label=(\roman*)]
+\item 由局部化的素理想对应，
+\[
+\operatorname{Spec}(S^{-1}A)\cong \{\mathfrak q\in \operatorname{Spec}(A):\mathfrak q\cap S=\varnothing\},
+\]
+这正是它在 \(\operatorname{Spec}(A)\) 中的像。
+
+\item 在上述识别下，局部化后的谱映射显然就是原谱映射的限制。
+
+\item 若 \(\mathfrak a\subseteq A\)，记 \(\mathfrak b=\mathfrak a^e\subseteq B\)，则
+\[
+\operatorname{Spec}(A/\mathfrak a)\cong V(\mathfrak a),\qquad
+\operatorname{Spec}(B/\mathfrak b)\cong V(\mathfrak b),
+\]
+而诱导映射正是 \(f^*\) 在 \(V(\mathfrak b)\) 上的限制。
+
+\item 取 \(S=A\setminus\mathfrak p\)。先在 \(\mathfrak p\) 处局部化，再对 \(S^{-1}\mathfrak p\) 取商，就得到纤维环
+\[
+B_{\mathfrak p}/\mathfrak p B_{\mathfrak p}.
+\]
+而
+\[
+B_{\mathfrak p}/\mathfrak p B_{\mathfrak p}\cong k(\mathfrak p)\otimes_A B,
+\]
+故得第二个同构。
+\end{enumerate}
+
+\setcounter{enumi}{18}
+\item 设 \(M\) 是 \(A\)-模，定义
+\[
+\operatorname{Supp}(M)=\{\mathfrak p\in\operatorname{Spec}(A):M_{\mathfrak p}\neq 0\}.
+\]
+证明：
+\begin{enumerate}[label=(\roman*)]
+\item \(M\neq 0 \iff \operatorname{Supp}(M)\neq \varnothing\)；
+\item \(\operatorname{Supp}(A/\mathfrak a)=V(\mathfrak a)\)；
+\item 若 \(0\to M'\to M\to M''\to 0\) 正合，则
+\[
+\operatorname{Supp}(M)=\operatorname{Supp}(M')\cup \operatorname{Supp}(M'');
+\]
+\item \(\operatorname{Supp}(\bigoplus_i M_i)=\bigcup_i \operatorname{Supp}(M_i)\)；
+\item 若 \(M\) 有限生成，则
+\[
+\operatorname{Supp}(M)=V(\operatorname{Ann}(M));
+\]
+\item 若 \(M,N\) 有限生成，则
+\[
+\operatorname{Supp}(M\otimes_A N)=\operatorname{Supp}(M)\cap \operatorname{Supp}(N);
+\]
+\item 若 \(M\) 有限生成，则
+\[
+\operatorname{Supp}(M/\mathfrak aM)=V(\mathfrak a+\operatorname{Ann}(M)).
+\]
+\end{enumerate}
+
+\textbf{证明。}
+\begin{enumerate}[label=(\roman*)]
+\item 若 \(M\neq 0\)，取 \(0\neq x\in M\)，再取包含 \(\operatorname{Ann}(x)\) 的极大理想 \(\mathfrak m\)，则 \(x/1\neq 0\in M_{\mathfrak m}\)。反向显然。
+
+\item
+\[
+(A/\mathfrak a)_{\mathfrak p}=0 \iff \mathfrak a\not\subseteq \mathfrak p,
+\]
+故支撑恰为 \(V(\mathfrak a)\)。
+
+\item 局部化保持正合，因此逐点判断即可。
+
+\item 因为局部化与直和可交换。
+
+\item 由 Proposition 3.14，
+\[
+\operatorname{Ann}(M_{\mathfrak p})=A_{\mathfrak p}\operatorname{Ann}(M),
+\]
+故
+\[
+M_{\mathfrak p}=0 \iff \operatorname{Ann}(M)\not\subseteq \mathfrak p.
+\]
+
+\item 对每个 \(\mathfrak p\),
+\[
+(M\otimes_A N)_{\mathfrak p}\cong M_{\mathfrak p}\otimes_{A_{\mathfrak p}}N_{\mathfrak p}.
+\]
+若两者都非零且有限生成，则在局部环 \(A_{\mathfrak p}\) 上张量积仍非零。
+
+\item 由
+\[
+M/\mathfrak aM \cong (A/\mathfrak a)\otimes_A M
+\]
+和上一条得到
+\[
+\operatorname{Supp}(M/\mathfrak aM)=V(\mathfrak a)\cap V(\operatorname{Ann}(M))
+=V(\mathfrak a+\operatorname{Ann}(M)).
+\]
+\end{enumerate}
+
+\setcounter{enumi}{20}
+\item 设 \(S\subseteq A\) 乘法闭。证明 \(\operatorname{Spec}(S^{-1}A)\) 自然同胚于
+\[
+\{\mathfrak p\in \operatorname{Spec}(A):\mathfrak p\cap S=\varnothing\}.
+\]
+
+\textbf{证明。}
+局部化的素理想恰好与不交于 \(S\) 的素理想对应：
+\[
+\mathfrak q\longmapsto \mathfrak q^c,\qquad
+\mathfrak p\longmapsto S^{-1}\mathfrak p.
+\]
+这两个对应互为逆，并与拓扑兼容，因此给出同胚。
+
+\setcounter{enumi}{21}
+\item 设 \(\mathfrak p\in\operatorname{Spec}(A)\)。证明 \(\operatorname{Spec}(A_{\mathfrak p})\) 在 \(\operatorname{Spec}(A)\) 中的像等于所有包含 \(\mathfrak p\) 的开邻域之交。
+
+\textbf{证明。}
+\(\operatorname{Spec}(A_{\mathfrak p})\) 的像是
+\[
+\{\mathfrak q\in\operatorname{Spec}(A):\mathfrak q\subseteq \mathfrak p\}.
+\]
+若 \(\mathfrak q\subseteq \mathfrak p\)，则任一包含 \(\mathfrak p\) 的基本开邻域 \(D(f)\) 都满足 \(f\notin\mathfrak q\)，故 \(\mathfrak q\in D(f)\)。反之若 \(\mathfrak q\not\subseteq \mathfrak p\)，取 \(f\in\mathfrak q\setminus\mathfrak p\)，则 \(D(f)\) 含 \(\mathfrak p\) 但不含 \(\mathfrak q\)。故结论成立。
+\end{enumerate}
+
+\section{第4章：Primary Decomposition}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{4.\arabic*.}]
+\setcounter{enumi}{1}
+\item 若理想 \(\mathfrak a\) 满足 \(\mathfrak a=\sqrt{\mathfrak a}\)，证明它没有 embedded prime ideals。
+
+\textbf{证明。}
+设 \(A\) Noetherian，\(\mathfrak a\) 有一个不可冗余 primary decomposition
+\[
+\mathfrak a=\bigcap_{i=1}^r q_i,\qquad \sqrt{q_i}=\mathfrak p_i.
+\]
+由 \textit{Algebra III} 的 (III.Cor 6.2.12)，这些 \(\mathfrak p_i\) 恰是 \(A/\mathfrak a\) 的 associated primes。embedded prime 指其中不是极小素理想的那些。
+
+现在因为 \(\mathfrak a\) 本身是根理想，故
+\[
+\mathfrak a=\sqrt{\mathfrak a}=\bigcap_{\mathfrak p\in \operatorname{Min}(A/\mathfrak a)}\mathfrak p
+\]
+即只用极小素理想就已经能恢复 \(\mathfrak a\)。因此在不可冗余 primary decomposition 中，不需要额外的非极小根理想成分。换言之，associated primes 全都已经是极小素理想，所以没有 embedded primes。
+
+\setcounter{enumi}{3}
+\item 在 \(\mathbb Z[t]\) 中，\(\mathfrak m=(2,t)\) 是极大理想，而 \(\mathfrak q=(4,t)\) 是 \(\mathfrak m\)-primary，但不是 \(\mathfrak m\) 的幂。证明之。
+
+\textbf{证明。}
+先证 \(\mathfrak m\) 极大。因为
+\[
+\mathbb Z[t]/(2,t)\cong (\mathbb Z/2\mathbb Z)[t]/(t)\cong \mathbb F_2
+\]
+是域，所以 \((2,t)\) 极大。
+
+再证 \(\mathfrak q=(4,t)\) 是 \(\mathfrak m\)-primary。其根理想为
+\[
+\sqrt{(4,t)}=(2,t)=\mathfrak m.
+\]
+又商环
+\[
+\mathbb Z[t]/(4,t)\cong \mathbb Z/4\mathbb Z
+\]
+的唯一素理想是 \((2)/(4)\)，故其 nilradical 就是唯一极大理想。于是 \((4,t)\) 的根理想为极大理想，故 \((4,t)\) 是 \(\mathfrak m\)-primary。
+
+最后说明它不是 \(\mathfrak m\) 的幂。注意
+\[
+\mathfrak m^2=(4,2t,t^2).
+\]
+对任意 \(n\ge 2\)，都有 \(\mathfrak m^n\subseteq \mathfrak m^2\)。但 \(t\in (4,t)\)，而 \(t\notin \mathfrak m^2\)，因为 \(\mathfrak m^2\) 中每项要么含系数 \(4\)，要么至少含两个 \((2,t)\) 因子，不可能得到单独的 \(t\)。因此
+\[
+(4,t)\neq \mathfrak m^n\qquad (n\ge 2).
+\]
+另一方面 \((4,t)\neq \mathfrak m\)，因为 \(2\in \mathfrak m\) 但 \(2\notin (4,t)\)。所以 \((4,t)\) 不是 \(\mathfrak m\) 的任何幂。
+
+\setcounter{enumi}{4}
+\item 在 \(K[x,y,z]\) 中令
+\[
+\mathfrak p_1=(x,y),\quad \mathfrak p_2=(x,z),\quad \mathfrak m=(x,y,z),\quad \mathfrak a=\mathfrak p_1\mathfrak p_2.
+\]
+证明
+\[
+\mathfrak a=\mathfrak p_1\cap \mathfrak p_2\cap \mathfrak m^2
+\]
+是一个 reduced primary decomposition，并判断 isolated 与 embedded 成分。
+
+\textbf{证明。}
+先直接计算
+\[
+\mathfrak a=(x,y)(x,z)=(x^2,xy,xz,yz).
+\]
+
+另一方面，
+\[
+\mathfrak p_1\cap\mathfrak p_2=(x,y)\cap(x,z)=(x,yz).
+\]
+再与
+\[
+\mathfrak m^2=(x^2,xy,xz,y^2,yz,z^2)
+\]
+相交。由于 \((x,yz)\) 中的元素写成 \(xu+yz\,v\)，要落入 \(\mathfrak m^2\) 就等价于常数项与一次项全部消失，于是正好得到
+\[
+(x,yz)\cap \mathfrak m^2=(x^2,xy,xz,yz)=\mathfrak a.
+\]
+故等式成立。
+
+接着看 primary 性。\(\mathfrak p_1,\mathfrak p_2\) 是素理想，所以当然分别是 \(\mathfrak p_1\)-primary 与 \(\mathfrak p_2\)-primary。\(\mathfrak m\) 是极大理想，而 \(\mathfrak m^2\) 的根理想是 \(\mathfrak m\)，故 \(\mathfrak m^2\) 是 \(\mathfrak m\)-primary。
+
+三个根理想
+\[
+\mathfrak p_1,\ \mathfrak p_2,\ \mathfrak m
+\]
+两两不同，因此这是 reduced decomposition。
+
+最后判断 isolated / embedded。极小素理想是 \(\mathfrak p_1,\mathfrak p_2\)；因为
+\[
+\mathfrak a=\mathfrak p_1\mathfrak p_2\subseteq \mathfrak p_i
+\]
+且二者互不包含，所以它们是 \(V(\mathfrak a)\) 的两个极小点。故对应的 \(\mathfrak p_1,\mathfrak p_2\)-primary 成分是 isolated components。\(\mathfrak m\) 包含 \(\mathfrak p_1,\mathfrak p_2\)，不是极小素理想，因此 \(\mathfrak m^2\) 对应 embedded component。
+\end{enumerate}
+
+\section{第5章：Integral Dependence and Valuations}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{5.\arabic*.}]
+\item 设 \(A\subset B\) 且 \(B\) 整于 \(A\)。若 \(f:A\to \Omega\) 映入代数闭域，证明 \(f\) 可延拓到 \(B\to \Omega\)。
+
+\textbf{证明。}
+设 \(\mathfrak p=\ker f\)。则 \(f\) 诱导单射
+\[
+\bar f:A/\mathfrak p \hookrightarrow \Omega.
+\]
+由整扩张上的 lying-over，即 (III.Thm 4.1.14)，存在 \(\mathfrak q\in \operatorname{Spec}B\) 使
+\[
+\mathfrak q\cap A=\mathfrak p.
+\]
+于是有整扩张
+\[
+A/\mathfrak p \subset B/\mathfrak q.
+\]
+而 \(B/\mathfrak q\) 是整域，因为 \(\mathfrak q\) 为素理想。令 \(L=\operatorname{Frac}(B/\mathfrak q)\)。由于 \(B/\mathfrak q\) 整于 \(A/\mathfrak p\)，所以 \(L\) 是 \(\operatorname{Frac}(A/\mathfrak p)\) 的代数扩张。
+
+因 \(\Omega\) 代数闭，\(\bar f\) 可从 \(A/\mathfrak p\) 的分式域延拓到 \(L\)，特别可限制到 \(B/\mathfrak q\)。最后与商映射 \(B\to B/\mathfrak q\) 复合，就得到
+\[
+B\to \Omega
+\]
+且它在 \(A\) 上与 \(f\) 一致。
+
+\setcounter{enumi}{3}
+\item 若 \(B\) 整于 \(A\)，\(n\subset B\) 极大，\(m=n\cap A\)。问 \(B_n\) 是否总整于 \(A_m\)？
+
+\textbf{证明。}
+一般不成立。下面给出反例。
+
+取
+\[
+A=k[x^2-1]\subset B=k[x],\qquad n=(x-1)\subset B.
+\]
+因为 \(x\) 满足首一方程
+\[
+T^2-(x^2-1)-1=0
+\]
+故 \(x\) 整于 \(A\)，所以 \(B=A[x]\) 整于 \(A\)。
+
+设
+\[
+m=n\cap A=(x^2-1).
+\]
+则
+\[
+B_n=k[x]_{(x-1)},\qquad A_m=k[x^2-1]_{(x^2-1)}.
+\]
+现假设 \(\operatorname{char}k\neq 2\)，并设
+\[
+u=(x+1)^{-1}\in B_n.
+\]
+由
+\[
+(x^2-1)u=(x-1)
+\]
+两边再乘以 \(u\)，得到
+\[
+(x^2-1)u^2+2u-1=0.
+\]
+因此 \(u\) 在
+\[
+K=\operatorname{Frac}(A_m)=k(x^2-1)
+\]
+上至多是二次代数元。若 \(u\) 整于 \(A_m\)，则其范数
+\[
+N_{K(u)/K}(u)=-\frac{1}{x^2-1}
+\]
+也整于 \(A_m\)。但它已经属于分式域 \(K\)，而 \(A_m\) 在 \(K\) 中整闭，所以它应属于 \(A_m\)。这不可能，因为 \((x^2-1)^{-1}\notin A_m\)。
+
+故 \(u\) 不整于 \(A_m\)，从而 \(B_n\) 不一定整于 \(A_m\)。
+
+\setcounter{enumi}{4}
+\item 设 \(B\) 整于 \(A\)。证明：
+\begin{enumerate}[label=(\roman*)]
+\item 若 \(x\in A\) 在 \(B\) 中是单位，则它在 \(A\) 中已是单位。
+\item \(J(A)=J(B)\cap A\)。
+\end{enumerate}
+
+\textbf{证明。}
+\begin{enumerate}[label=(\roman*)]
+\item 设 \(x^{-1}\in B\)。因为 \(B\) 整于 \(A\)，故 \(x^{-1}\) 整于 \(A\)。于是存在首一方程
+\[
+(x^{-1})^n+a_1(x^{-1})^{n-1}+\cdots+a_n=0,\qquad a_i\in A.
+\]
+两边乘以 \(x^{n-1}\)，得
+\[
+x^{-1}+a_1+a_2x+\cdots+a_nx^{n-1}=0,
+\]
+即
+\[
+x^{-1}=-(a_1+a_2x+\cdots+a_nx^{n-1})\in A.
+\]
+所以 \(x\) 在 \(A\) 中可逆。
+
+\item 先证 \(J(B)\cap A\subseteq J(A)\)。取 \(a\in J(B)\cap A\)。要证 \(a\) 落在 \(A\) 的每个极大理想中。任取极大理想 \(m\subset A\)。由 lying-over，即 (III.Thm 4.1.14)，存在极大理想 \(n\subset B\) 使 \(n\cap A=m\)；极大性可用 (III.Cor 4.1.12)。由于 \(a\in J(B)\subseteq n\)，故 \(a\in n\cap A=m\)。所以 \(a\in J(A)\)。
+
+再证 \(J(A)\subseteq J(B)\cap A\)。取 \(a\in J(A)\)。任取 \(B\) 的极大理想 \(n\)，则 \(m=n\cap A\) 由 (III.Cor 4.1.12) 为极大理想。因 \(a\in J(A)\subseteq m\subseteq n\)，故 \(a\) 落在所有极大理想 \(n\) 中，即 \(a\in J(B)\)。
+
+综上，
+\[
+J(A)=J(B)\cap A.
+\]
+\end{enumerate}
+
+\setcounter{enumi}{6}
+\item 若 \(A\subset B\) 且 \(B\setminus A\) 对乘法封闭，证明 \(A\) 在 \(B\) 中整闭。
+
+\textbf{证明。}
+设 \(x\in B\) 整于 \(A\)。需证 \(x\in A\)。
+
+若 \(x\notin A\)，在一切满足首一整关系的多项式中取次数最小者，于是
+\[
+x^n+a_1x^{n-1}+\cdots+a_n=0,\qquad a_i\in A.
+\]
+由最小性，
+\[
+y:=x^{n-1}+a_1x^{n-2}+\cdots+a_{n-1}\notin A,
+\]
+否则 \(x\) 会满足次数更低的首一方程。又显然 \(x\notin A\)。由于 \(B\setminus A\) 对乘法封闭，故
+\[
+xy\notin A.
+\]
+但由整关系
+\[
+xy=-a_n\in A,
+\]
+矛盾。
+
+故任何整于 \(A\) 的元素都已在 \(A\) 中，即 \(A\) 在 \(B\) 中整闭。
+
+\setcounter{enumi}{11}
+\item 设 \(G\) 是 \(A\) 的有限自同构群，\(A^G\) 为不动子环。证明 \(A\) 整于 \(A^G\)。
+
+\textbf{证明。}
+任取 \(x\in A\)，考虑多项式
+\[
+P_x(T)=\prod_{\sigma\in G}(T-\sigma(x)).
+\]
+它是首一多项式。其各系数是 \(\{\sigma(x)\}_{\sigma\in G}\) 的对称多项式，因此对任何 \(\tau\in G\) 都不变；也就是说这些系数都属于 \(A^G\)。又因为恒等元属于 \(G\)，代入 \(T=x\) 得
+\[
+P_x(x)=0.
+\]
+故 \(x\) 满足一个系数在 \(A^G\) 中的首一方程，所以 \(x\) 整于 \(A^G\)。
+
+\setcounter{enumi}{12}
+\item 在上题情形下，设 \(\mathfrak p\in \operatorname{Spec}(A^G)\)，\(P\) 为 \(A\) 中所有收缩为 \(\mathfrak p\) 的素理想集合。证明 \(G\) 在 \(P\) 上传递。
+
+\textbf{证明。}
+先说明 \(G\) 的作用保持 \(P\)。若 \(\mathfrak q\cap A^G=\mathfrak p\)，则对任意 \(\sigma\in G\)，因为 \(\sigma\) 固定 \(A^G\) 上的每个元素，故
+\[
+\sigma(\mathfrak q)\cap A^G=\mathfrak p.
+\]
+所以 \(\sigma(\mathfrak q)\in P\)。
+
+现取 \(\mathfrak q_1,\mathfrak q_2\in P\)。我们证明存在 \(\sigma\in G\) 使
+\[
+\sigma(\mathfrak q_2)=\mathfrak q_1.
+\]
+反设不存在。则所有 \(\sigma(\mathfrak q_2)\) 都不包含 \(\mathfrak q_1\)。由 prime avoidance，可取
+\[
+x\in \mathfrak q_1\setminus \bigcup_{\sigma\in G}\sigma(\mathfrak q_2).
+\]
+于是对每个 \(\sigma\)，有 \(\sigma(x)\notin \mathfrak q_2\)。
+
+但由上题构造的
+\[
+N(x)=\prod_{\sigma\in G}\sigma(x)
+\]
+属于 \(A^G\)。又因为 \(x\in\mathfrak q_1\)，所以 \(N(x)\in \mathfrak q_1\cap A^G=\mathfrak p\subseteq \mathfrak q_2\)。由于 \(\mathfrak q_2\) 是素理想，只要乘积在 \(\mathfrak q_2\) 中，就必有某个因子 \(\sigma(x)\in \mathfrak q_2\)，矛盾。
+
+故作用必传递。
+
+\setcounter{enumi}{13}
+\item 设 \(A\) 整闭，分式域为 \(K\)，\(L/K\) 为有限正规可分扩张，\(B\) 是 \(A\) 在 \(L\) 中的整闭包，\(G=\operatorname{Gal}(L/K)\)。证明 \(\sigma(B)=B\) 且 \(A=B^G\)。
+
+\textbf{证明。}
+先证 \(\sigma(B)=B\)。任取 \(b\in B\)，则 \(b\) 整于 \(A\)，故有
+\[
+b^n+a_1b^{n-1}+\cdots+a_n=0,\qquad a_i\in A.
+\]
+对等式施以 \(\sigma\in G\)，注意 \(\sigma\) 在 \(K\) 上恒等，而 \(A\subset K\)，故 \(\sigma(a_i)=a_i\)。于是
+\[
+\sigma(b)^n+a_1\sigma(b)^{n-1}+\cdots+a_n=0.
+\]
+这表明 \(\sigma(b)\) 也整于 \(A\)，因此 \(\sigma(b)\in B\)。所以 \(\sigma(B)\subseteq B\)。对 \(\sigma^{-1}\) 同理，得 \(B\subseteq \sigma(B)\)，故 \(\sigma(B)=B\)。
+
+再证 \(A=B^G\)。显然 \(A\subseteq B^G\)，因为 \(A\subset K=L^G\)，且 \(A\subset B\)。
+
+反过来，若 \(x\in B^G\)，则 \(x\in L^G=K\)。另一方面 \(x\in B\)，故 \(x\) 整于 \(A\)。因为 \(A\) 在其分式域 \(K\) 中整闭，所以 \(x\in A\)。故 \(B^G\subseteq A\)。
+
+综上，
+\[
+B^G=A.
+\]
+
+\setcounter{enumi}{14}
+\item 设 \(A\) 如上，\(L/K\) 有限扩张，\(B\) 为 \(A\) 在 \(L\) 中的整闭包。证明 \(\operatorname{Spec}(B)\to \operatorname{Spec}(A)\) 的纤维有限。
+
+\textbf{证明。}
+先处理 \(L/K\) 为有限 Galois 扩张的情形。设 \(G=\operatorname{Gal}(L/K)\)。对给定 \(\mathfrak p\in\operatorname{Spec}A\)，所有收缩到 \(\mathfrak p\) 的素理想集合在上题中被证明是一个 \(G\)-轨道，因此其基数至多为 \(|G|\)，从而有限。
+
+一般有限可分扩张情形，可嵌入某个有限 Galois 扩张 \(L'/K\)。设 \(B'\) 为 \(A\) 在 \(L'\) 中的整闭包，则 \(B'\) 整于 \(B\)。于是 \(\operatorname{Spec}(B')\to \operatorname{Spec}(B)\) 满射，由 (III.Thm 4.1.14)。若 \(B'\) 上某条纤维有限，则 \(B\) 上对应纤维作为其像，也有限。
+
+对纯不可分扩张，可用唯一性。若 \(x\in L\)，则存在 \(p^n\) 使 \(x^{p^n}\in K\)。对于收缩到 \(\mathfrak p\) 的素理想，元素是否落入该素理想由某个 \(p^n\) 次幂是否落入 \(\mathfrak p\) 决定，从而纤维至多一个点。于是也有限。
+
+把一般有限扩张分解为先纯不可分、后可分（或反之）的复合，即得总纤维有限。
+\end{enumerate}
+
+\section{第6章：Chain Conditions}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{6.\arabic*.}]
+\item 若 \(M\) Noetherian 且 \(u:M\to M\) 满射，证明 \(u\) 为同构；若 \(M\) Artinian 且 \(u\) 单射，也证明 \(u\) 为同构。
+
+\textbf{证明。}
+先证 Noetherian 情形。考虑核的升链
+\[
+\ker u\subseteq \ker u^2\subseteq \ker u^3\subseteq \cdots.
+\]
+因 \(M\) Noetherian，此链稳定：存在 \(n\) 使
+\[
+\ker u^n=\ker u^{n+1}.
+\]
+记这一稳定的核为 \(K\)。由满射性，
+\[
+u(K)=K:
+\]
+若 \(z\in K\)，取 \(y\) 使 \(u(y)=z\)，则
+\[
+u^{n+1}(y)=u^n(z)=0,
+\]
+所以 \(y\in \ker u^{n+1}=K\)，从而 \(z=u(y)\in u(K)\)。
+
+现在若 \(x\in K\)，则因 \(K=u(K)\)，可反复写成
+\[
+x=u(x_1)=u^2(x_2)=\cdots=u^n(x_n)
+\]
+其中每个 \(x_i\in K\)。于是
+\[
+u^n(x_n)=x,\qquad x_n\in K=\ker u^n,
+\]
+故 \(x=0\)。所以 \(K=0\)，特别 \(\ker u=0\)。因此 \(u\) 既满又单，是同构。
+
+再证 Artinian 情形。考虑像的降链
+\[
+M\supseteq u(M)\supseteq u^2(M)\supseteq \cdots.
+\]
+因 \(M\) Artinian，此链稳定：存在 \(n\) 使
+\[
+I:=u^n(M)=u^{n+1}(M).
+\]
+于是 \(u\) 在商模 \(M/I\) 上诱导单射
+\[
+\bar u:M/I\to M/I.
+\]
+并且 \(\bar u\) 是幂零的，因为
+\[
+\bar u^n(M/I)=u^n(M)/I=I/I=0.
+\]
+一个单射不可能是非零模上的幂零自同态，所以 \(M/I=0\)。因此 \(I=M\)，即 \(u^n(M)=M\)，从而 \(u(M)=M\)。故 \(u\) 也满射，于是是同构。
+
+\item 若 \(M\) 的任意非空有限生成子模集合都有极大元，证明 \(M\) Noetherian。
+
+\textbf{证明。}
+要证 \(M\) Noetherian，只需证每个子模都有限生成，这正是 \textit{Algebra III} 中 (III.Prop 5.1.3) 的判别。
+
+取任意子模 \(N\subseteq M\)。若 \(N=0\) 则显然有限生成。若 \(N\neq 0\)，考虑所有 \(N\) 的有限生成子模所成集合
+\[
+\mathcal F=\{L\subseteq N: L \text{ 有限生成}\}.
+\]
+它非空，因为任取 \(0\neq x\in N\)，则 \(Ax\in\mathcal F\)。依假设，\(\mathcal F\) 有极大元，记为 \(N_0\)。
+
+若 \(N_0\neq N\)，取 \(x\in N\setminus N_0\)。则
+\[
+N_0+Ax
+\]
+仍是有限生成子模，且严格包含 \(N_0\)，这与 \(N_0\) 的极大性矛盾。故 \(N=N_0\)，从而 \(N\) 有限生成。
+
+任意子模都有限生成，所以 \(M\) Noetherian。
+\end{enumerate}
+
+\section{第7章：Noetherian Rings}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{7.\arabic*.}]
+\item 设 \(A\) 是 Dedekind 域，\(S\subset A\) 乘法闭。证明 \(S^{-1}A\) 不是 Dedekind 域就是 \(A\) 的分式域；并证明类群映射满射。
+
+\textbf{证明。}
+Dedekind 域按 \textit{Algebra III} 的刻画可用 (III.Thm 7.2.9)：每个非零分式理想都可逆；等价地，每个局部化于非零素理想处都是 DVR。
+
+对 \(S^{-1}A\) 而言，若 \(S\) 与 \(A\) 的每个非零素理想都相交，则所有非零素理想在局部化后都消失，故 \(S^{-1}A\) 没有非零素理想，只能是分式域 \(\operatorname{Frac}(A)\)。
+
+否则，存在非零素理想 \(\mathfrak p\) 与 \(S\) 不相交。由局部化与谱的对应，\(S^{-1}A\) 的非零素理想正来自这些与 \(S\) 不相交的非零素理想。对这样的 \(\mathfrak p\)，有
+\[
+(S^{-1}A)_{S^{-1}\mathfrak p}\cong A_{\mathfrak p}.
+\]
+而 \(A\) 是 Dedekind 域，所以 \(A_{\mathfrak p}\) 是 DVR，即 (III.Cor 7.1.5) 与 (III.Prop 7.1.4)。故 \(S^{-1}A\) 在每个非零素理想处局部化仍是 DVR，因而仍是 Dedekind 域。
+
+类群满射也可从局部化看出。\(S^{-1}A\) 的任一非零分式理想都可写成 \(S^{-1}I\) 的形式，其中 \(I\) 是 \(A\) 的分式理想。于是
+\[
+\operatorname{Cl}(A)\to \operatorname{Cl}(S^{-1}A),\qquad [I]\mapsto [S^{-1}I]
+\]
+是满射。
+
+\item 设 \(A\) 是 Dedekind 域，证明 Gauss 引理
+\[
+c(fg)=c(f)c(g).
+\]
+
+\textbf{证明。}
+记 \(c(f)\) 为多项式 \(f\) 的 content 理想。显然总有
+\[
+c(fg)\subseteq c(f)c(g),
+\]
+因为 \(fg\) 的每个系数都是 \(f\) 的系数与 \(g\) 的系数的有限和。
+
+反向包含可在每个极大理想处局部化验证。任取极大理想 \(\mathfrak m\)。Dedekind 域局部化到 \(\mathfrak m\) 处是 DVR，这在 \textit{Algebra III} 中是 (III.Cor 7.1.5) 或 (III.Prop 7.1.4) 的内容。设其统一参数元为 \(\pi\)。于是
+\[
+c(f)A_{\mathfrak m}=(\pi^r),\qquad c(g)A_{\mathfrak m}=(\pi^s).
+\]
+可写
+\[
+f=\pi^r f_0,\qquad g=\pi^s g_0
+\]
+且 \(f_0,g_0\) 至少各有一个系数为单位，所以
+\[
+c(f_0)=c(g_0)=A_{\mathfrak m}.
+\]
+于是
+\[
+fg=\pi^{r+s}f_0g_0.
+\]
+因为 \(f_0g_0\) 仍有某个系数为单位，故
+\[
+c(fg)A_{\mathfrak m}=(\pi^{r+s})=c(f)A_{\mathfrak m}\,c(g)A_{\mathfrak m}.
+\]
+对所有极大理想 \(\mathfrak m\) 成立，于是全局上有
+\[
+c(fg)=c(f)c(g).
+\]
+
+\setcounter{enumi}{11}
+\item 若 \(B\) 是 faithfully flat 的 \(A\)-代数，且 \(B\) Noetherian，证明 \(A\) Noetherian。
+
+\textbf{证明。}
+设
+\[
+\mathfrak a_1\subseteq \mathfrak a_2\subseteq \cdots
+\]
+是 \(A\) 中任意理想升链。对每项扩张到 \(B\) 中，得
+\[
+\mathfrak a_1B\subseteq \mathfrak a_2B\subseteq \cdots.
+\]
+因为 \(B\) Noetherian，升链稳定：存在 \(N\) 使得对所有 \(n\ge N\),
+\[
+\mathfrak a_nB=\mathfrak a_{n+1}B.
+\]
+
+现在利用 faithfully flat。若 \(I\subseteq J\) 是 \(A\) 的两个理想且 \(IB=JB\)，则
+\[
+(J/I)\otimes_A B\cong JB/IB=0.
+\]
+faithful flat 意味着有限生成模乃至任意模在张量后为零只可能原来就为零，因此 \(J/I=0\)，即 \(I=J\)。
+
+应用于上面的升链，得
+\[
+\mathfrak a_n=\mathfrak a_{n+1}\qquad (n\ge N).
+\]
+所以 \(A\) 满足理想升链条件，即 \(A\) Noetherian。这里也可对照 \textit{Algebra III} 中 Noether 性判据 (III.Prop 5.1.3)。
+\end{enumerate}
+
+\section{第8章：Artin Rings}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{8.\arabic*.}]
+\setcounter{enumi}{1}
+\item 设 \(A\) 是 Noetherian 环，\(f=\sum_{n\ge 0}a_nx^n\in A[[x]]\)。证明
+\[
+f \text{ 幂零}
+\Longleftrightarrow
+\forall n\ge 0,\ a_n \text{ 幂零}.
+\]
+
+\textbf{证明。}
+若 \(f\) 幂零，则对任意素理想 \(\mathfrak p\)，其像在 \((A/\mathfrak p)[[x]]\) 中也幂零。由于 \(A/\mathfrak p\) 是整环，\((A/\mathfrak p)[[x]]\) 也是整环，因此幂零元只能是零元，故每个 \(a_n\in \mathfrak p\)。这对所有 \(\mathfrak p\) 成立，所以每个 \(a_n\in \operatorname{Nil}(A)\)，于是每个 \(a_n\) 都幂零。
+
+反过来，设所有 \(a_n\) 都幂零。它们生成的理想
+\[
+I=(a_0,a_1,\dots)
+\]
+在 Noetherian 性下有限生成，而有限个幂零元生成的理想是幂零理想，故 \(I^N=0\) 对某个 \(N\) 成立。因为 \(f\in I[[x]]\)，所以
+\[
+f^N\in I^N[[x]]=0.
+\]
+故 \(f\) 幂零。
+
+\item 设 \(\mathfrak a\) 是环 \(A\) 中的不可约理想。证明下列条件等价：
+\begin{enumerate}[label=(\roman*)]
+\item \(\mathfrak a\) 是 primary ideal；
+\item 对每个乘法闭集 \(S\subseteq A\)，都有
+\[
+(S^{-1}\mathfrak a)^c=(\mathfrak a:x)
+\quad\text{对某个 }x\in S;
+\]
+\item 对每个 \(x\in A\)，链
+\[
+(\mathfrak a:x)\subseteq (\mathfrak a:x^2)\subseteq \cdots
+\]
+稳定。
+\end{enumerate}
+
+\textbf{证明。}
+\((i)\Rightarrow(ii)\)\; 对任意乘法闭集 \(S\)，总有
+\[
+(S^{-1}\mathfrak a)^c=\bigcup_{s\in S}(\mathfrak a:s).
+\]
+若 \(\mathfrak a\) 是 \(\mathfrak p\)-primary，则分两种情形：
+
+若 \(S\cap \mathfrak p\neq\varnothing\)，取 \(s\in S\cap \mathfrak p\)。因为 \(\mathfrak a\) primary，某个幂 \(s^m\in\mathfrak a\)，且 \(s^m\in S\)。于是
+\[
+(\mathfrak a:s^m)=A,
+\]
+从而 \((S^{-1}\mathfrak a)^c=A=(\mathfrak a:s^m)\)。
+
+若 \(S\cap \mathfrak p=\varnothing\)，则对任意 \(s\in S\)，由 \(sy\in\mathfrak a\) 可推出 \(y\in\mathfrak a\)。因此
+\[
+(S^{-1}\mathfrak a)^c=\mathfrak a=(\mathfrak a:1).
+\]
+故 (ii) 成立。
+
+\((ii)\Rightarrow(iii)\)\; 取 \(S=\{1,x,x^2,\dots\}\)。则
+\[
+(S^{-1}\mathfrak a)^c=\bigcup_{n\ge 1}(\mathfrak a:x^n).
+\]
+由 (ii) 知该并等于某个 \((\mathfrak a:x^m)\)，故链自 \(m\) 起稳定。
+
+\((iii)\Rightarrow(i)\)\; 固定 \(x\in A\)，设链从 \(n\) 起稳定。则有恒等式
+\[
+\mathfrak a=(\mathfrak a+(x^n))\cap (\mathfrak a:x^n).
+\]
+的确，右包含左显然；反过来若
+\[
+y=a+bx^n\in (\mathfrak a:x^n),
+\]
+则 \(yx^n\in\mathfrak a\)，故 \(bx^{2n}\in\mathfrak a\)，即
+\[
+b\in (\mathfrak a:x^{2n})=(\mathfrak a:x^n),
+\]
+于是 \(bx^n\in\mathfrak a\)，所以 \(y\in\mathfrak a\)。
+
+由于 \(\mathfrak a\) 不可约，只能有
+\[
+\mathfrak a=\mathfrak a+(x^n)\quad\text{或}\quad \mathfrak a=(\mathfrak a:x^n).
+\]
+现在若 \(yz\in\mathfrak a\) 且 \(y\notin\mathfrak a\)，则 \(y\in(\mathfrak a:z)\)。对 \(x=z\) 应用上面的结论：若 \((\mathfrak a:z^n)=\mathfrak a\)，则
+\[
+y\in (\mathfrak a:z)\subseteq (\mathfrak a:z^n)=\mathfrak a,
+\]
+矛盾。故只能有
+\[
+\mathfrak a=\mathfrak a+(z^n),
+\]
+即 \(z^n\in\mathfrak a\)。因此模 \(\mathfrak a\) 的每个零因子都是幂零元，故 \(\mathfrak a\) 是 primary。
+
+\setcounter{enumi}{3}
+\item 判断下列环哪些是 Noetherian：
+\begin{enumerate}[label=(\roman*)]
+\item 在圆周 \(|z|=1\) 上无极点的有理函数环；
+\item 正收敛半径的幂级数环；
+\item 无限收敛半径的幂级数环；
+\item 在原点前 \(k\) 阶导数全为零的多项式环；
+\item 对 \(w\) 的所有偏导在 \(z=0\) 都为零的 \(\mathbb C[z,w]\) 的子环。
+\end{enumerate}
+
+\textbf{证明。}
+\begin{enumerate}[label=(\roman*)]
+\item 是。它是 \(\mathbb C[z]\) 的局部化，局部化保持 Noetherian。
+\item 是。它就是一元收敛幂级数环 \(\mathbb C\{z\}\)。任一非零元都可唯一写成
+\[
+z^m u(z),
+\]
+其中 \(u(0)\neq 0\)，故 \(u(z)\) 是单位。因此每个理想都形如 \((z^m)\)，所以它是 DVR，特别是 Noetherian。
+\item 不是。它就是整函数环，而整函数环不是 Noetherian。
+\item 是。该环同构于有限生成 \(\mathbb C\)-代数
+\[
+\mathbb C[z^{k+1},z^{k+2},\dots,z^{2k+1}],
+\]
+因此 Noetherian。
+\item 是。条件等价于多项式可被 \(z\) 整除，因此该子环就是
+\[
+\mathbb C[z]+z\mathbb C[z,w]=\mathbb C[z,zw],
+\]
+是有限生成 \(\mathbb C\)-代数，所以 Noetherian。
+\end{enumerate}
+\end{enumerate}
+
+\section{第9章：Discrete Valuation Rings and Dedekind Domains}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{9.\arabic*.}]
+\setcounter{enumi}{1}
+\item 设 \(A\) 是 Dedekind 域，证明若 \(f\) 的 content 记为 \(c(f)\)，则
+\[
+c(fg)=c(f)c(g).
+\]
+
+\textbf{证明。}
+这与第7章习题 2 完全相同。
+
+关键输入仍然是：对每个极大理想 \(\mathfrak m\)，局部化 \(A_{\mathfrak m}\) 是 DVR，
+这正是 (III.Cor 7.1.5) 或 (III.Prop 7.1.4) 的内容。
+随后在 DVR 中用统一参数元计算 content 的赋值，
+便得到
+\[
+c(fg)A_{\mathfrak m}=c(f)A_{\mathfrak m}\,c(g)A_{\mathfrak m}
+\]
+对所有 \(\mathfrak m\) 成立，因此全局上
+\[
+c(fg)=c(f)c(g).
+\]
+
+\setcounter{enumi}{3}
+\item 设 \(A\) 是局部整环，不是域，极大理想 \(\mathfrak m\) 主生成，并满足
+\[
+\bigcap_{n\ge 1}\mathfrak m^n=0.
+\]
+证明 \(A\) 是 DVR。
+
+\textbf{证明。}
+设 \(\mathfrak m=(\pi)\)。因为 \(A\) 不是域，\(\pi\) 不是单位。
+
+对任意非零 \(x\in A\)，考虑所有满足 \(x\in \mathfrak m^n\) 的 \(n\)。由于 \(\bigcap_{n\ge 1}\mathfrak m^n=0\)，这个集合不是全体非负整数，因此存在最大整数 \(v(x)\ge 0\) 使
+\[
+x\in \mathfrak m^{v(x)}\setminus \mathfrak m^{v(x)+1}.
+\]
+因为 \(\mathfrak m=(\pi)\)，可写
+\[
+x=\pi^{v(x)}u.
+\]
+若 \(u\in \mathfrak m\)，则 \(x\in \mathfrak m^{v(x)+1}\)，与 \(v(x)\) 的定义矛盾，所以 \(u\notin \mathfrak m\)，即 \(u\) 是单位。于是每个非零元都唯一写成
+\[
+x=u\pi^n,\qquad u\in A^\times,\ n\ge 0.
+\]
+
+把 \(v\) 延拓到分式域 \(K=\operatorname{Frac}(A)\) 上：若 \(x=a/b\) 且 \(a,b\neq 0\)，定义
+\[
+v(x)=v(a)-v(b).
+\]
+这给出一个离散赋值，而
+\[
+A=\{x\in K:v(x)\ge 0\}.
+\]
+因此 \(A\) 是一个离散赋值环。与 \textit{Algebra III} 中 DVR 判别 (III.Prop 7.1.4) 相符。
+
+\setcounter{enumi}{6}
+\item 设 \(A\) 是 Dedekind 域，\(\mathfrak a\neq 0\)。证明 \(A/\mathfrak a\) 中每个理想都是主理想，并推出 \(A\) 中每个理想都至多由两个元素生成。
+
+\textbf{证明。}
+Dedekind 域中每个非零理想唯一分解为素理想幂乘积，这是 (III.Cor 7.1.7)。设
+\[
+\mathfrak a=\prod_i \mathfrak p_i^{r_i}.
+\]
+由中国剩余定理，即 \textit{Algebra III} 的 (III.Cor 5.3.15)，有
+\[
+A/\mathfrak a \cong \prod_i A/\mathfrak p_i^{r_i}.
+\]
+因此只需证明每个 \(A/\mathfrak p^r\) 中理想都主生成。
+
+而 \(A_{\mathfrak p}\) 是 DVR，由 (III.Prop 7.1.4)。在 DVR 中，每个理想都是某个 \((\pi^m)\)。模去 \(\mathfrak p^r\) 后，\(A/\mathfrak p^r\) 的理想就对应于
+\[
+\mathfrak p^m/\mathfrak p^r\qquad (0\le m\le r),
+\]
+因此都由 \(\pi^m\) 的像生成。故 \(A/\mathfrak a\) 中每个理想都是主理想。
+
+现取 \(A\) 中任意非零理想 \(\mathfrak b\)。取 \(0\neq a\in \mathfrak b\)。则 \(\mathfrak b/(a)\) 是 \(A/(a)\) 的理想，故主生成。设它由 \(\bar y\) 生成。于是 \(\mathfrak b\) 中每个元素模 \((a)\) 都是 \(\bar y\) 的倍数，即
+\[
+\mathfrak b=(a,y).
+\]
+故每个非零理想至多由两个元素生成。零理想显然由一个元素生成。
+
+\setcounter{enumi}{8}
+\item 证明 Dedekind 域上的中国剩余定理的兼容形式：同余组
+\[
+x\equiv x_i \pmod{\mathfrak a_i}
+\]
+可解，当且仅当对所有 \(i\ne j\),
+\[
+x_i\equiv x_j \pmod{\mathfrak a_i+\mathfrak a_j}.
+\]
+
+\textbf{证明。}
+必要性显然：若存在 \(x\) 同时满足全部同余，则
+\[
+x_i-x_j=(x_i-x)+(x-x_j)\in \mathfrak a_i+\mathfrak a_j.
+\]
+
+下面证充分性。由 Dedekind 域中的理想分解与局部化，只需对每个非零素理想 \(\mathfrak p\) 分别验证。局部化到 \(A_{\mathfrak p}\) 后，它是 DVR，由 (III.Prop 7.1.4)，故所有理想都是
+\[
+(\pi^{n_i})
+\]
+的形式，并按包含关系全序排列。
+
+因此，在某个固定 \(\mathfrak p\)-局部化中，一组同余条件
+\[
+x\equiv x_i \pmod{\pi^{n_i}}
+\]
+只需检查对最大指数的那一条是否与其余兼容；而题设的
+\[
+x_i\equiv x_j \pmod{\mathfrak a_i+\mathfrak a_j}
+\]
+局部化后正好保证这种兼容性。于是每个局部系统都可解。
+
+再把各个素理想方向上的局部解用标准中国剩余拼回，即得全局解。
+\end{enumerate}
+
+\section{第10章：Completions}
+
+\begin{enumerate}[leftmargin=*, label=\textbf{10.\arabic*.}]
+\setcounter{enumi}{2}
+\item 设 \(A\) Noetherian，\(\mathfrak a\subset A\) 为理想，\(M\) 有限生成。证明
+\[
+\bigcap_{n\ge 0}\mathfrak a^n M
+=
+\bigcap_{\mathfrak m\supseteq \mathfrak a}
+\ker\!\bigl(M\to \widehat{M_{\mathfrak m}}\bigr),
+\]
+并推出 \(\widehat M=0\) 当且仅当 \(\operatorname{Supp}(M)\cap V(\mathfrak a)=\varnothing\)。
+
+\textbf{证明。}
+设
+\[
+N=\bigcap_{n\ge 0}\mathfrak a^nM.
+\]
+由 Krull 交定理在 \textit{Algebra III} 中的形式，即 (III.Cor 8.2.4)，知 \(N\) 满足
+\[
+\mathfrak aN=N.
+\]
+
+另一方面，由完成映射的核描述，即 (III.Cor 8.5.6)，有限生成模 \(M_{\mathfrak m}\) 到其 \(\mathfrak aA_{\mathfrak m}\)-进完成的核正是
+\[
+\bigcap_{n\ge 0}\mathfrak a^n M_{\mathfrak m}.
+\]
+而局部化与有限交相容，所以
+\[
+\bigcap_{n\ge 0}\mathfrak a^n M_{\mathfrak m}
+=
+\left(\bigcap_{n\ge 0}\mathfrak a^n M\right)_{\mathfrak m}
+=N_{\mathfrak m}.
+\]
+因此
+\[
+x\in \ker(M\to \widehat{M_{\mathfrak m}})\iff x/1\in N_{\mathfrak m}.
+\]
+
+先证 \(N\) 包含于右端交。若 \(x\in N\)，则其在每个局部化 \(M_{\mathfrak m}\) 中都落入 \(N_{\mathfrak m}\)，故映到每个 \(\widehat{M_{\mathfrak m}}\) 中都为零。
+
+反过来，若 \(x\in M\) 映到每个 \(\widehat{M_{\mathfrak m}}\) 中都为零，则 \(x/1\in N_{\mathfrak m}\) 对每个 \(\mathfrak m\supseteq \mathfrak a\) 成立，即 \((Ax+N)_{\mathfrak m}=0\) 对每个这样的 \(\mathfrak m\) 成立。于是
+\[
+\operatorname{Supp}(Ax+N)\cap V(\mathfrak a)=\varnothing.
+\]
+由支持的标准判别，这等价于存在 \(t\in \mathfrak a\) 使
+\[
+t(Ax+N)=Ax+N.
+\]
+再对有限生成模 \(Ax+N\) 用 Nakayama（或 Krull 交的 Jacobson 形式）可得 \(Ax+N=0\)，即 \(x\in N\)。故等式成立。
+
+再证第二部分。由 (III.Cor 8.5.6)，
+\[
+\widehat M=0 \iff \bigcap_{n\ge 0}\mathfrak a^nM=M.
+\]
+由 Krull 交定理 (III.Cor 8.2.4)，这等价于
+\[
+\mathfrak a M=M.
+\]
+对有限生成模，\(\mathfrak aM=M\) 当且仅当对每个包含 \(\mathfrak a\) 的极大理想 \(\mathfrak m\)，有 \(M_{\mathfrak m}=0\)；这又等价于
+\[
+\operatorname{Supp}(M)\cap V(\mathfrak a)=\varnothing.
+\]
+故结论成立。
+
+\setcounter{enumi}{3}
+\item 设 \(A\) Noetherian，\(\widehat A\) 为 \(\mathfrak a\)-进完成。证明若 \(x\in A\) 在 \(A\) 中不是零因子，则它在 \(\widehat A\) 中也不是零因子。并说明“\(A\) 为整环 \(\Rightarrow \widehat A\) 为整环”一般不成立。
+
+\textbf{证明。}
+因为 \(x\) 在 \(A\) 中不是零因子，乘法映射
+\[
+0\to A\xrightarrow{\cdot x} A
+\]
+单射。把它补成短正合列
+\[
+0\to A\xrightarrow{\cdot x}A\to A/xA\to 0.
+\]
+对该短正合列取 \(\mathfrak a\)-进完成。由于 \(A\) Noetherian，有限生成模的完成保持正合，这正是 \textit{Algebra III} 的 (III.Prop 8.5.1)。故得到
+\[
+0\to \widehat A\xrightarrow{\cdot x}\widehat A\to \widehat{A/xA}\to 0.
+\]
+第一箭头仍单射，因此 \(x\) 在 \(\widehat A\) 中也不是零因子。
+
+但这并不推出 \(\widehat A\) 一定是整环，因为完成后可能出现新的零因子，它们未必来自原环中的元素。经典例子是
+\[
+A=k[x,y]_{(x,y)}/(y^2-x^2-x^3).
+\]
+原环对应局部尖点曲线，仍是整环；但其完成为
+\[
+k[[x,y]]/(y^2-x^2-x^3).
+\]
+在 \(k[[x]]\) 中若 \(1+x\) 有平方根，则
+\[
+y^2-x^2(1+x)=(y-x\sqrt{1+x})(y+x\sqrt{1+x}),
+\]
+从而完成环分裂，不再是整环。故“整环完成仍整”一般不成立。
+
+\setcounter{enumi}{5}
+\item 设 \(A\) Noetherian，\(\mathfrak a\subset A\)。证明
+\[
+\mathfrak a\subseteq J(A)
+\Longleftrightarrow
+\text{每个极大理想在 }\mathfrak a\text{-进拓扑下都是闭的}.
+\]
+
+\textbf{证明。}
+先设 \(\mathfrak a\subseteq J(A)\)。任取极大理想 \(\mathfrak m\)。则 \(\mathfrak a\subseteq \mathfrak m\)，故对任意 \(n\),
+\[
+\mathfrak m+\mathfrak a^n=\mathfrak m.
+\]
+于是 \(\mathfrak m\) 的 \(\mathfrak a\)-进闭包为
+\[
+\bigcap_{n\ge 0}(\mathfrak m+\mathfrak a^n)=\mathfrak m,
+\]
+故 \(\mathfrak m\) 闭。
+
+反过来，若存在极大理想 \(\mathfrak m\) 不含 \(\mathfrak a\)，取
+\[
+t\in \mathfrak a\setminus \mathfrak m.
+\]
+则 \(t\) 在域 \(A/\mathfrak m\) 中是单位，所以对每个 \(n\),
+\[
+\mathfrak m+\mathfrak a^n=A.
+\]
+于是 \(\mathfrak m\) 的闭包为
+\[
+\bigcap_{n\ge 0}(\mathfrak m+\mathfrak a^n)=A,
+\]
+不是闭集。故若每个极大理想都闭，就必有 \(\mathfrak a\subseteq J(A)\)。
+
+这与 \textit{Algebra III} 对 Zariski ring 的讨论一致，见 (III.Prop 8.5.4) 附近。
+
+\setcounter{enumi}{6}
+\item 设 \(\widehat A\) 是 \(A\) 的 \(\mathfrak a\)-进完成。证明
+\[
+\widehat A \text{ faithfully flat over } A
+\Longleftrightarrow
+A \text{ 是 Zariski ring}.
+\]
+
+\textbf{证明。}
+在 Noetherian 情形，完成总是 flat，这是 \textit{Algebra III} 的 (III.Prop 8.5.4)。
+因此只需判别何时 faithfully flat。
+
+一方面，若 \(\widehat A\) faithfully flat over \(A\)，则对任意有限生成 \(A\)-模 \(M\neq 0\)，有
+\[
+M\otimes_A \widehat A=\widehat M\neq 0.
+\]
+于是 \(\widehat M=0\) 不会发生在非零 \(M\) 上。由上一题与前一题可知，这等价于不存在满足 \(\operatorname{Supp}(M)\cap V(\mathfrak a)=\varnothing\) 的所有局部行为失效情形；最终等价于
+\[
+\mathfrak a\subseteq J(A).
+\]
+
+另一方面，若 \(\mathfrak a\subseteq J(A)\)，则对任意有限生成 \(M\neq 0\)，由上一题知
+\[
+\operatorname{Supp}(M)\cap V(\mathfrak a)\neq \varnothing,
+\]
+所以 \(\widehat M\neq 0\)。这正是 faithful flatness 的模判据。
+
+而 \(\mathfrak a\subseteq J(A)\) 正是 Zariski ring 的定义之一，所以结论成立。
+
+\setcounter{enumi}{8}
+\item 证明 Hensel 引理：若 \((A,\mathfrak m)\) 是 \(\mathfrak m\)-进完备局部环，\(f(x)\in A[x]\) 首一，且其模 \(\mathfrak m\) 的像分解为互素首一多项式
+\[
+\bar f=\bar g\,\bar h,
+\]
+则可提升为
+\[
+f=gh
+\]
+其中 \(g,h\in A[x]\) 仍首一，且模 \(\mathfrak m\) 分别化为 \(\bar g,\bar h\)。
+
+\textbf{证明。}
+这是一个逐次提升问题。证明思路与 \textit{Algebra III} 完成章节中的完备性工具一致，可视为 (III.Prop 8.5.1) 与完成 exactness 的标准应用。
+
+先任取首一提升 \(g_1,h_1\in A[x]\)，使
+\[
+g_1\bmod \mathfrak m=\bar g,\qquad h_1\bmod \mathfrak m=\bar h.
+\]
+于是
+\[
+f-g_1h_1\in \mathfrak m A[x].
+\]
+
+现在归纳构造首一多项式 \(g_n,h_n\) 满足
+\[
+g_n\equiv g_{n-1}\pmod{\mathfrak m^{n-1}},\qquad
+h_n\equiv h_{n-1}\pmod{\mathfrak m^{n-1}},
+\]
+并且
+\[
+f-g_nh_n\in \mathfrak m^nA[x].
+\]
+
+设 \(e_n=f-g_nh_n\in \mathfrak m^nA[x]\)。欲修正
+\[
+g_{n+1}=g_n+u,\qquad h_{n+1}=h_n+v,
+\]
+其中 \(u,v\in \mathfrak m^nA[x]\)，且次数限制使得首一性与次数不变。展开得
+\[
+f-g_{n+1}h_{n+1}
+=e_n-g_nv-h_nu-uv.
+\]
+因为 \(uv\in \mathfrak m^{2n}A[x]\subseteq \mathfrak m^{n+1}A[x]\)（当 \(n\ge 1\)），所以模 \(\mathfrak m^{n+1}\) 只需解
+\[
+g_nv+h_nu\equiv e_n \pmod{\mathfrak m^{n+1}}.
+\]
+把它除以 \(\mathfrak m^n\) 并模 \(\mathfrak m\) 以后，变成在 \((A/\mathfrak m)[x]\) 中解
+\[
+\bar g\,\bar v+\bar h\,\bar u=\bar e_n.
+\]
+
+由于 \(\bar g,\bar h\) 互素，存在 Bézout 关系
+\[
+\alpha \bar g+\beta \bar h=1
+\]
+于 \((A/\mathfrak m)[x]\) 中。故对任意 \(\bar e_n\) 都可取
+\[
+\bar u=\beta \bar e_n,\qquad \bar v=\alpha \bar e_n
+\]
+解上式。把 \(\bar u,\bar v\) 提升到 \(u,v\in \mathfrak m^nA[x]\)，即可使误差提升到 \(\mathfrak m^{n+1}\)。
+
+于是归纳可行，得到两个 Cauchy 列 \((g_n)\)、\((h_n)\)。由于 \(A\) 是 \(\mathfrak m\)-进完备的，系数逐项收敛，故存在极限
+\[
+g=\lim g_n,\qquad h=\lim h_n
+\]
+于 \(A[x]\) 中，并保持首一且
+\[
+g\bmod \mathfrak m=\bar g,\qquad h\bmod \mathfrak m=\bar h.
+\]
+又因
+\[
+f-g_nh_n\in \mathfrak m^nA[x]\qquad \forall n,
+\]
+令 \(n\to\infty\) 得
+\[
+f=gh.
+\]
+故 Hensel 引理成立。
+\end{enumerate}
+
+\section*{最后说明}
+\phantomsection
+\addcontentsline{toc}{section}{最后说明}
+
+这一版相较于速记版，主要补了三类信息：
+\begin{itemize}
+  \item 省略步骤较多的题，改成可连续读下去的证明；
+  \item 凡是明显调用了 \textit{Algebra III} 现成结论的地方，补了章节编号；
+  \item 完成与局部化相关题目，把“为什么能局部化”“为什么核这样描述”尽量写明。
+\end{itemize}
+
+如果还要继续往下做，最自然的下一步是把其中几道偏难题再升级成“逐行证明版”，尤其是 5.15、10.3、10.9 这几题。
+
+\end{document}
