@@ -623,6 +623,58 @@ Artin 局部环中每个元素不是单位就是幂零元，但“局部且极�
 \]
 \end{remark}
 
+\subsection{整扩张中的上行与下行定理}\label{subsec:going-up-down}
+
+\begin{remark}
+\phantomsection\label{rem:going-up-down}
+\((\mathrm{III.Ch}\ 4.1,\ \text{pp.\ 29--33})\) 中关于整扩张 \(A\subset B\) 的谱映射
+\[
+  \phi^*:\operatorname{Spec} B\to \operatorname{Spec} A
+\]
+可以压缩成四句话来看：
+\begin{enumerate}
+  \item \textbf{Lying-over}（\((\mathrm{III.Thm}\ 4.1.14)\)）: 若 \(B\) 整于 \(A\)，则 \(\phi^*\) 满射；也就是说，\(A\) 中每个素理想上方至少有一个 \(B\) 的素理想。
+  \item \textbf{Incomparability}（\((\mathrm{III.Cor}\ 4.1.13)\)）: 若 \(B\) 整于 \(A\)，且 \(\mathfrak q\subseteq \mathfrak q'\) 在 \(B\) 中有相同收缩，则 \(\mathfrak q=\mathfrak q'\)。因此同一条纤维里不能出现严格包含链。
+  \item \textbf{Going-up}（\((\mathrm{III.Thm}\ 4.1.15)\)）: 对 \(A\) 中的链
+  \[
+    \mathfrak p\subseteq \mathfrak p'
+  \]
+  和其下端上方的一点 \(\mathfrak q\in \operatorname{Spec} B\)（满足 \(\mathfrak q\cap A=\mathfrak p\)），总能向上抬升到
+  \[
+    \mathfrak q\subseteq \mathfrak q',\qquad \mathfrak q'\cap A=\mathfrak p'.
+  \]
+  直观地说：\(\operatorname{Spec} B\to\operatorname{Spec} A\) 对素理想链“可以往上跟着走”。
+  \item \textbf{Going-down}（\((\mathrm{III.Thm}\ 4.1.24)\)）: 若进一步假设 \(A,B\) 是整环且 \(A\) 整闭，则对
+  \[
+    \mathfrak p\subseteq \mathfrak p',\qquad \mathfrak q'\cap A=\mathfrak p'
+  \]
+  可以找到
+  \[
+    \mathfrak q\subseteq \mathfrak q',\qquad \mathfrak q\cap A=\mathfrak p.
+  \]
+  也就是说，这时素理想链还可以“向下抬升”。
+\end{enumerate}
+
+因此可把三者关系记成：
+\[
+  \text{整扩张}
+  \Longrightarrow
+  \text{lying-over + incomparability + going-up},
+\]
+而
+\[
+  \text{整扩张}+\text{\(A\) 整闭整环}
+  \Longrightarrow
+  \text{going-down}.
+\]
+
+要点不是“\(\phi^*\) 单射或满射”本身，而是：整扩张控制了
+\[
+  \operatorname{Spec} B\to\operatorname{Spec} A
+\]
+的\emph{纤维}与\emph{链提升}行为。满射来自 lying-over；同一纤维内无严格包含来自 incomparability；链能否向上或向下延拓，则分别由 going-up 与 going-down 描述。
+\end{remark}
+
 \subsection{范畴论视角}\label{subsec:categorical-view}
 
 \begin{remark}
@@ -2554,6 +2606,7 @@ M\text{ Noetherian over }A
   \item \hyperref[rem:primary-colon]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 若 \(\mathfrak q\) 是 \(p\)-primary，则 \((\mathfrak q:x)\) 的计算由 \(A/\mathfrak q\) 中“零因子皆幂零”这一刻画统一控制。}
   \item \hyperref[rem:m-primary]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] Noether 环里 \(\mathfrak m\)-primary、\(\sqrt{\mathfrak q}=\mathfrak m\)、以及 \(\mathfrak m^k\subset \mathfrak q\subset \mathfrak m\) 三条彼此等价，有限生成性正用在 \((2)\Rightarrow(3)\)。}
   \item \hyperref[rem:primary-counterexample]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 素理想幂与固定根理想都不自动给出 primary 结构，\(k[x,y,z]/(xy-z^2)\) 提供了标准反例。}
+  \item \hyperref[rem:going-up-down]{[\hyperref[subsec:going-up-down]{整扩张中的上行与下行定理}] 整扩张给出 lying-over、incomparability 与 going-up；再加上 \(A\) 整闭整环，则还能得到 going-down。}
   \item \hyperref[rem:prime-filtration-nonunique]{[Prime filtration 与 Ass] Prop 6.1.8 的 prime filtration 不唯一，出现的 prime multiset 也可不同。}
   \item \hyperref[rem:ass-short-exact-strict]{[Prime filtration 与 Ass] Lem 6.1.9 里的 associated primes 只能得到包含号，不能一般改成等号。}
   \item \hyperref[rem:ass-intersection-sum]{[Ass 的交与和] 在 Thm 6.2.10 附近，交可以无限进行，因为交仍是子模；并通常没有 \(\operatorname{Ass}\) 可谈，实际应改看子模的和。}
@@ -2599,7 +2652,7 @@ M\text{ Noetherian over }A
 
 \begin{itemize}
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
-  \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 对有限生成 \(A\)-模 \(M\)，\(\operatorname{Supp}_B(B\otimes_A M)\) 正好是 \(\operatorname{Supp}_A(M)\) 在 \(f^*:\operatorname{Spec}B\to\operatorname{Spec}A\) 下的原像。}
+  \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
 \end{itemize}
 
 \end{document}

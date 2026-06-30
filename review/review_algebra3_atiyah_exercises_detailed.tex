@@ -779,61 +779,140 @@ N_0+Ax
 \section{第7章：Noetherian Rings}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{7.\arabic*.}]
-\item 设 \(A\) 是 Dedekind 域，\(S\subset A\) 乘法闭。证明 \(S^{-1}A\) 不是 Dedekind 域就是 \(A\) 的分式域；并证明类群映射满射。
+\item 设 \(A\) 是非 Noetherian 环，令 \(\mathcal E\) 为 \(A\) 中所有非有限生成理想的集合。证明 \(\mathcal E\) 有极大元，且 \(\mathcal E\) 的极大元都是素理想。
 
 \textbf{证明。}
-Dedekind 域按 \textit{Algebra III} 的刻画可用 (III.Thm 7.2.9)：每个非零分式理想都可逆；等价地，每个局部化于非零素理想处都是 DVR。
-
-对 \(S^{-1}A\) 而言，若 \(S\) 与 \(A\) 的每个非零素理想都相交，则所有非零素理想在局部化后都消失，故 \(S^{-1}A\) 没有非零素理想，只能是分式域 \(\operatorname{Frac}(A)\)。
-
-否则，存在非零素理想 \(\mathfrak p\) 与 \(S\) 不相交。由局部化与谱的对应，\(S^{-1}A\) 的非零素理想正来自这些与 \(S\) 不相交的非零素理想。对这样的 \(\mathfrak p\)，有
+先证 \(\mathcal E\) 非空且有极大元。\(\mathcal E\) 非空是因为 \(A\) 非 Noetherian。对 \(\mathcal E\) 中任意链
 \[
-(S^{-1}A)_{S^{-1}\mathfrak p}\cong A_{\mathfrak p}.
+\{\mathfrak a_\lambda\}_{\lambda\in\Lambda},
 \]
-而 \(A\) 是 Dedekind 域，所以 \(A_{\mathfrak p}\) 是 DVR，即 (III.Cor 7.1.5) 与 (III.Prop 7.1.4)。故 \(S^{-1}A\) 在每个非零素理想处局部化仍是 DVR，因而仍是 Dedekind 域。
-
-类群满射也可从局部化看出。\(S^{-1}A\) 的任一非零分式理想都可写成 \(S^{-1}I\) 的形式，其中 \(I\) 是 \(A\) 的分式理想。于是
+考虑其并
 \[
-\operatorname{Cl}(A)\to \operatorname{Cl}(S^{-1}A),\qquad [I]\mapsto [S^{-1}I]
+\mathfrak a=\bigcup_{\lambda\in\Lambda}\mathfrak a_\lambda.
 \]
-是满射。
-
-\item 设 \(A\) 是 Dedekind 域，证明 Gauss 引理
+由于这是链，并仍是理想。若 \(\mathfrak a\) 有限生成，设
 \[
-c(fg)=c(f)c(g).
+\mathfrak a=(u_1,\dots,u_r).
 \]
-
-\textbf{证明。}
-记 \(c(f)\) 为多项式 \(f\) 的 content 理想。显然总有
+每个 \(u_i\) 落在某个 \(\mathfrak a_{\lambda_i}\) 中，而链是全序的，故存在 \(\lambda_0\) 使
 \[
-c(fg)\subseteq c(f)c(g),
+\mathfrak a_{\lambda_i}\subseteq \mathfrak a_{\lambda_0}\qquad (1\le i\le r).
 \]
-因为 \(fg\) 的每个系数都是 \(f\) 的系数与 \(g\) 的系数的有限和。
-
-反向包含可在每个极大理想处局部化验证。任取极大理想 \(\mathfrak m\)。Dedekind 域局部化到 \(\mathfrak m\) 处是 DVR，这在 \textit{Algebra III} 中是 (III.Cor 7.1.5) 或 (III.Prop 7.1.4) 的内容。设其统一参数元为 \(\pi\)。于是
+于是 \(u_1,\dots,u_r\in \mathfrak a_{\lambda_0}\)，从而
 \[
-c(f)A_{\mathfrak m}=(\pi^r),\qquad c(g)A_{\mathfrak m}=(\pi^s).
+\mathfrak a=(u_1,\dots,u_r)\subseteq \mathfrak a_{\lambda_0}\subseteq \mathfrak a,
+\]
+故 \(\mathfrak a=\mathfrak a_{\lambda_0}\)，这与 \(\mathfrak a_{\lambda_0}\in\mathcal E\) 矛盾。因此 \(\mathfrak a\) 仍不有限生成，即 \(\mathfrak a\in\mathcal E\)。由 Zorn 引理，\(\mathcal E\) 有极大元。
+
+现设 \(\mathfrak a\in \mathcal E\) 为极大元。我们证明 \(\mathfrak a\) 是素理想。反设不是，则存在
+\[
+x\notin \mathfrak a,\qquad y\notin \mathfrak a,\qquad xy\in \mathfrak a.
+\]
+因为 \(\mathfrak a\subsetneq \mathfrak a+(x)\)，而 \(\mathfrak a\) 在 \(\mathcal E\) 中极大，所以 \(\mathfrak a+(x)\notin \mathcal E\)，即 \(\mathfrak a+(x)\) 有限生成。
+
+由 \(\mathfrak a+(x)\) 有限生成，可取有限生成理想 \(\mathfrak a_0\subseteq \mathfrak a\)，使得
+\[
+\mathfrak a_0+(x)=\mathfrak a+(x).
+\]
+这是因为只要取 \(\mathfrak a+(x)\) 的一组有限生成元，其中落在 \(\mathfrak a\) 中的那些生成一个有限生成理想 \(\mathfrak a_0\)，就有上式。
+
+下面证明关键分解
+\[
+\mathfrak a=\mathfrak a_0+x(\mathfrak a:x),
+\qquad
+(\mathfrak a:x):=\{t\in A:xt\in \mathfrak a\}.
+\]
+先证左边包含于右边。任取 \(u\in \mathfrak a\)。因为
+\[
+u\in \mathfrak a\subseteq \mathfrak a+(x)=\mathfrak a_0+(x),
 \]
 可写
 \[
-f=\pi^r f_0,\qquad g=\pi^s g_0
+u=v+xt,\qquad v\in \mathfrak a_0,\ t\in A.
 \]
-且 \(f_0,g_0\) 至少各有一个系数为单位，所以
+又 \(u,v\in\mathfrak a\)，所以
 \[
-c(f_0)=c(g_0)=A_{\mathfrak m}.
+xt=u-v\in \mathfrak a,
+\]
+从而 \(t\in (\mathfrak a:x)\)。故
+\[
+u\in \mathfrak a_0+x(\mathfrak a:x).
+\]
+反向包含显然成立，因为 \(\mathfrak a_0\subseteq \mathfrak a\)，且若 \(t\in(\mathfrak a:x)\)，则 \(xt\in \mathfrak a\)。于是得到所需等式。
+
+接着，由 \(xy\in \mathfrak a\) 且 \(y\notin\mathfrak a\)，知
+\[
+y\in (\mathfrak a:x)\setminus \mathfrak a,
+\]
+所以
+\[
+\mathfrak a\subsetneq (\mathfrak a:x).
+\]
+由于 \(\mathfrak a\) 在 \(\mathcal E\) 中极大，\((\mathfrak a:x)\) 不能再属于 \(\mathcal E\)，故 \((\mathfrak a:x)\) 有限生成。
+
+现在 \(\mathfrak a_0\) 有限生成，\((\mathfrak a:x)\) 有限生成，因此
+\[
+x(\mathfrak a:x)
+\]
+也有限生成。由
+\[
+\mathfrak a=\mathfrak a_0+x(\mathfrak a:x)
+\]
+可知 \(\mathfrak a\) 也是有限生成理想，这与 \(\mathfrak a\in\mathcal E\) 矛盾。
+
+故 \(\mathfrak a\) 必为素理想。
+
+于是得到 Cohen 定理：若一个环中每个素理想都有限生成，而环本身却不是 Noetherian，则 \(\mathcal E\) 有极大元，且该极大元是素理想；但它按定义又不是有限生成，矛盾。故这样的环一定是 Noetherian。
+
+\item 设 \(A\) 是 Noetherian 环，\(f=\sum_{n\ge 0}a_nx^n\in A[[x]]\)。证明
+\[
+f \text{ 幂零}
+\Longleftrightarrow
+\forall n\ge 0,\ a_n \text{ 幂零}.
+\]
+
+\textbf{证明。}
+先证必要性。若 \(f\) 幂零，则对任意素理想 \(\mathfrak p\subset A\)，其像 \(\bar f\) 在
+\[
+(A/\mathfrak p)[[x]]
+\]
+中也幂零。由于 \(A/\mathfrak p\) 是整环，而整环上的形式幂级数环仍是整环，所以幂零元只能是零元。于是 \(\bar f=0\)，即每个系数都落在 \(\mathfrak p\) 中：
+\[
+a_n\in \mathfrak p\qquad (\forall n\ge 0).
+\]
+因为这对所有素理想 \(\mathfrak p\) 都成立，所以
+\[
+a_n\in \bigcap_{\mathfrak p\in\operatorname{Spec}A}\mathfrak p=\operatorname{Nil}(A).
+\]
+因此每个 \(a_n\) 都是幂零元。
+
+再证充分性。设每个 \(a_n\) 都幂零。令
+\[
+I=(a_0,a_1,a_2,\dots)\subseteq A.
+\]
+因为 \(A\) Noetherian，\(I\) 有限生成。设
+\[
+I=(b_1,\dots,b_r),
+\]
+其中每个 \(b_i\) 仍是幂零元。取整数 \(N_i\ge 1\) 使
+\[
+b_i^{N_i}=0.
+\]
+令
+\[
+N=N_1+\cdots+N_r.
+\]
+我们断言 \(I^N=0\)。事实上，\(I^N\) 中任一生成单项式是 \(N\) 个 \(b_i\) 的乘积。由抽屉原理，某个 \(b_i\) 至少出现 \(N_i\) 次，于是该单项式含因子 \(b_i^{N_i}=0\)，所以整项为零。故 \(I^N=0\)。
+
+而 \(f\) 的每个系数都在 \(I\) 中，所以
+\[
+f\in I[[x]].
 \]
 于是
 \[
-fg=\pi^{r+s}f_0g_0.
+f^N\in I^N[[x]]=0.
 \]
-因为 \(f_0g_0\) 仍有某个系数为单位，故
-\[
-c(fg)A_{\mathfrak m}=(\pi^{r+s})=c(f)A_{\mathfrak m}\,c(g)A_{\mathfrak m}.
-\]
-对所有极大理想 \(\mathfrak m\) 成立，于是全局上有
-\[
-c(fg)=c(f)c(g).
-\]
+故 \(f\) 是幂零元。
 
 \setcounter{enumi}{11}
 \item 若 \(B\) 是 faithfully flat 的 \(A\)-代数，且 \(B\) Noetherian，证明 \(A\) Noetherian。
@@ -868,26 +947,7 @@ faithful flat 意味着有限生成模乃至任意模在张量后为零只可能
 \section{第8章：Artin Rings}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{8.\arabic*.}]
-\setcounter{enumi}{1}
-\item 设 \(A\) 是 Noetherian 环，\(f=\sum_{n\ge 0}a_nx^n\in A[[x]]\)。证明
-\[
-f \text{ 幂零}
-\Longleftrightarrow
-\forall n\ge 0,\ a_n \text{ 幂零}.
-\]
-
-\textbf{证明。}
-若 \(f\) 幂零，则对任意素理想 \(\mathfrak p\)，其像在 \((A/\mathfrak p)[[x]]\) 中也幂零。由于 \(A/\mathfrak p\) 是整环，\((A/\mathfrak p)[[x]]\) 也是整环，因此幂零元只能是零元，故每个 \(a_n\in \mathfrak p\)。这对所有 \(\mathfrak p\) 成立，所以每个 \(a_n\in \operatorname{Nil}(A)\)，于是每个 \(a_n\) 都幂零。
-
-反过来，设所有 \(a_n\) 都幂零。它们生成的理想
-\[
-I=(a_0,a_1,\dots)
-\]
-在 Noetherian 性下有限生成，而有限个幂零元生成的理想是幂零理想，故 \(I^N=0\) 对某个 \(N\) 成立。因为 \(f\in I[[x]]\)，所以
-\[
-f^N\in I^N[[x]]=0.
-\]
-故 \(f\) 幂零。
+\setcounter{enumi}{2}
 
 \item 设 \(\mathfrak a\) 是环 \(A\) 中的不可约理想。证明下列条件等价：
 \begin{enumerate}[label=(\roman*)]

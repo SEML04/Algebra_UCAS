@@ -551,36 +551,86 @@ I:=\operatorname{Im}u^n=\operatorname{Im}u^{n+1}.
 \section{第7章：Noetherian Rings}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{7.\arabic*.}]
-\item 设 \(A\) 是 Dedekind 域，\(S\subset A\) 乘法闭。证明 \(S^{-1}A\) 不是 Dedekind 域就是 \(A\) 的分式域；并证明类群诱导满射。
+\item 设 \(A\) 是非 Noetherian 环，令 \(\mathcal E\) 为 \(A\) 中所有非有限生成理想的集合。证明 \(\mathcal E\) 有极大元，且 \(\mathcal E\) 的极大元都是素理想。
 
 \textbf{解答.}
-若 \(S\) 含有非零素理想中的元素，则这些素理想在局部化后消失。若所有非零素理想都与 \(S\) 相交，则局部化得到分式域。否则剩下的非零素理想仍都是极大理想，局部环仍是 DVR，故 \(S^{-1}A\) 仍是 Dedekind 域。
-
-任意 \(S^{-1}A\) 的非零分式理想都来自 \(A\) 的分式理想局部化，因此类群映射
+先证 \(\mathcal E\) 有极大元。对任意链 \(\{\mathfrak a_\lambda\}_{\lambda\in\Lambda}\subseteq \mathcal E\)，其并
 \[
-\operatorname{Cl}(A)\to \operatorname{Cl}(S^{-1}A)
+\mathfrak a=\bigcup_{\lambda\in\Lambda}\mathfrak a_\lambda
 \]
-满射。
-
-\item 设 \(A\) 是 Dedekind 域，证明 Gauss 引理
+仍是理想。若 \(\mathfrak a\) 有限生成，设
 \[
-c(fg)=c(f)c(g).
+\mathfrak a=(x_1,\dots,x_n).
+\]
+因为这是链，总存在某个 \(\lambda_0\) 使 \(x_1,\dots,x_n\in \mathfrak a_{\lambda_0}\)。于是
+\[
+\mathfrak a=(x_1,\dots,x_n)\subseteq \mathfrak a_{\lambda_0}\subseteq \mathfrak a,
+\]
+从而 \(\mathfrak a=\mathfrak a_{\lambda_0}\)，这与 \(\mathfrak a_{\lambda_0}\in \mathcal E\) 矛盾。故 \(\mathfrak a\in \mathcal E\)。由 Zorn 引理，\(\mathcal E\) 存在极大元。
+
+设 \(\mathfrak a\in \mathcal E\) 为极大元。证明 \(\mathfrak a\) 是素理想。反设不然，则存在
+\[
+x\notin \mathfrak a,\qquad y\notin \mathfrak a,\qquad xy\in \mathfrak a.
+\]
+由于 \(\mathfrak a+(x)\) 严格包含 \(\mathfrak a\)，由极大性知 \(\mathfrak a+(x)\) 必有限生成。于是可取一个有限生成理想 \(\mathfrak a_0\subseteq \mathfrak a\)，满足
+\[
+\mathfrak a_0+(x)=\mathfrak a+(x).
+\]
+现在证明
+\[
+\mathfrak a=\mathfrak a_0+x(\mathfrak a:x),
+\qquad
+(\mathfrak a:x)=\{r\in A:rx\in \mathfrak a\}.
+\]
+任取 \(u\in \mathfrak a\)。因 \(u\in \mathfrak a+(x)=\mathfrak a_0+(x)\)，可写
+\[
+u=v+xt,\qquad v\in \mathfrak a_0,\ t\in A.
+\]
+又 \(u,v\in \mathfrak a\)，所以 \(xt=u-v\in \mathfrak a\)，即 \(t\in(\mathfrak a:x)\)。于是 \(u\in \mathfrak a_0+x(\mathfrak a:x)\)。反向包含显然，故等式成立。
+
+又因为 \(xy\in\mathfrak a\) 且 \(y\notin\mathfrak a\)，有
+\[
+y\in(\mathfrak a:x)\setminus \mathfrak a,
+\]
+从而 \((\mathfrak a:x)\supsetneq \mathfrak a\)。由 \(\mathfrak a\) 的极大性，\((\mathfrak a:x)\) 不属于 \(\mathcal E\)，所以它有限生成。于是 \(\mathfrak a\) 是两个有限生成理想 \(\mathfrak a_0\) 与 \(x(\mathfrak a:x)\) 的和，因此 \(\mathfrak a\) 也有限生成，矛盾。
+
+故 \(\mathfrak a\) 必为素理想。
+
+由此立刻得到 Cohen 定理：若 \(A\) 的每个素理想都有限生成，而 \(A\) 非 Noetherian，则 \(\mathcal E\) 有极大元，且该极大元是素理想，但它又按定义不是有限生成，矛盾。故 \(A\) 必为 Noetherian。
+
+\item 设 \(A\) 是 Noetherian 环，\(f=\sum_{n\ge 0}a_nx^n\in A[[x]]\)。证明
+\[
+f \text{ 幂零}
+\Longleftrightarrow
+\forall n\ge 0,\ a_n \text{ 幂零}.
 \]
 
 \textbf{解答.}
-对每个极大理想 \(\mathfrak m\) 局部化。\(A_{\mathfrak m}\) 是 DVR，因此每个有限生成理想都是主理想。设
+若 \(f\) 幂零，则对任意素理想 \(\mathfrak p\)，其像在 \((A/\mathfrak p)[[x]]\) 中也幂零。由于 \(A/\mathfrak p\) 是整环，\((A/\mathfrak p)[[x]]\) 也是整环，因此幂零元只能是零元，故每个 \(a_n\in \mathfrak p\)。这对所有 \(\mathfrak p\) 都成立，所以
 \[
-c(f)A_{\mathfrak m}=(\pi^r),\qquad c(g)A_{\mathfrak m}=(\pi^s).
+a_n\in \bigcap_{\mathfrak p\in\operatorname{Spec}A}\mathfrak p=\operatorname{Nil}(A),
 \]
-则可写
+从而每个 \(a_n\) 都幂零。
+
+反过来，设所有 \(a_n\) 都幂零。令
 \[
-f=\pi^r f_0,\qquad g=\pi^s g_0,
+I=(a_0,a_1,\dots).
 \]
-其中 \(f_0,g_0\) 至少有一个系数是单位，因此 \(c(f_0)=c(g_0)=A_{\mathfrak m}\)。故
+由于 \(A\) Noetherian，\(I\) 有限生成。设
 \[
-c(fg)A_{\mathfrak m}=(\pi^{r+s})=c(f)A_{\mathfrak m}\, c(g)A_{\mathfrak m}.
+I=(b_1,\dots,b_r),
 \]
-对所有 \(\mathfrak m\) 成立，故全局成立。
+其中每个 \(b_i\) 都幂零，取 \(N_i\ge 1\) 使 \(b_i^{N_i}=0\)。令
+\[
+N=N_1+\cdots+N_r.
+\]
+则 \(I^N=0\)：因为 \(I^N\) 中任一乘积单项式由 \(N\) 个 \(b_i\) 相乘组成，按抽屉原理必有某个 \(b_i\) 至少出现 \(N_i\) 次，于是该单项式为零。因此 \(I\) 是幂零理想。
+
+而 \(f\in I[[x]]\)，所以
+\[
+f^N\in I^N[[x]]=0.
+\]
+故 \(f\) 幂零。
 
 \setcounter{enumi}{11}
 \item 若 \(B\) 是 faithfully flat 的 \(A\)-代数且 \(B\) Noetherian，证明 \(A\) Noetherian。
@@ -600,26 +650,7 @@ c(fg)A_{\mathfrak m}=(\pi^{r+s})=c(f)A_{\mathfrak m}\, c(g)A_{\mathfrak m}.
 \section{第8章：Artin Rings}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{8.\arabic*.}]
-\setcounter{enumi}{1}
-\item 设 \(A\) 是 Noetherian 环，\(f=\sum_{n\ge 0}a_nx^n\in A[[x]]\)。证明
-\[
-f \text{ 幂零}
-\Longleftrightarrow
-\forall n\ge 0,\ a_n \text{ 幂零}.
-\]
-
-\textbf{解答.}
-若 \(f\) 幂零，则对任意素理想 \(\mathfrak p\)，其像在 \((A/\mathfrak p)[[x]]\) 中也幂零。由于 \(A/\mathfrak p\) 是整环，\((A/\mathfrak p)[[x]]\) 也是整环，因此幂零元只能是零元，故每个 \(a_n\in \mathfrak p\)。这对所有 \(\mathfrak p\) 成立，所以每个 \(a_n\in \operatorname{Nil}(A)\)，于是每个 \(a_n\) 都幂零。
-
-反过来，设所有 \(a_n\) 都幂零。它们生成的理想
-\[
-I=(a_0,a_1,\dots)
-\]
-在 Noetherian 性下有限生成，而有限个幂零元生成的理想是幂零理想，故 \(I^N=0\) 对某个 \(N\) 成立。因为 \(f\in I[[x]]\)，所以
-\[
-f^N\in I^N[[x]]=0.
-\]
-故 \(f\) 幂零。
+\setcounter{enumi}{2}
 
 \item 设 \(\mathfrak a\) 是环 \(A\) 中的不可约理想。证明下列条件等价：
 \begin{enumerate}[label=(\roman*)]
