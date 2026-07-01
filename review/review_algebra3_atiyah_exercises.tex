@@ -650,75 +650,54 @@ f^N\in I^N[[x]]=0.
 \section{第8章：Artin Rings}
 
 \begin{enumerate}[leftmargin=*, label=\textbf{8.\arabic*.}]
-\setcounter{enumi}{2}
+\setcounter{enumi}{1}
 
-\item 设 \(\mathfrak a\) 是环 \(A\) 中的不可约理想。证明下列条件等价：
+\item 设 \(A\) 是 Noetherian 环。证明下列条件等价：
 \begin{enumerate}[label=(\roman*)]
-\item \(\mathfrak a\) 是 primary ideal；
-\item 对每个乘法闭集 \(S\subseteq A\)，都有
-\[
-(S^{-1}\mathfrak a)^c=(\mathfrak a:x)
-\quad\text{对某个 }x\in S;
-\]
-\item 对每个 \(x\in A\)，链
-\[
-(\mathfrak a:x)\subseteq (\mathfrak a:x^2)\subseteq \cdots
-\]
-稳定。
+\item \(A\) 是 Artinian；
+\item \(\operatorname{Spec}(A)\) 离散且有限；
+\item \(\operatorname{Spec}(A)\) 离散。
 \end{enumerate}
 
 \textbf{解答.}
-\((i)\Rightarrow(ii)\)\; 对任意乘法闭集 \(S\)，总有
-\[
-(S^{-1}\mathfrak a)^c=\bigcup_{s\in S}(\mathfrak a:s).
-\]
-若 \(\mathfrak a\) 是 \(\mathfrak p\)-primary，则分两种情形：
+\((i)\Rightarrow(ii)\)\; 由 Algebra III 中的结论，Artinian 环等价于 Noetherian 且维数为 \(0\)。因此所有素理想都是极大理想，且 Artinian 环只有有限多个极大理想，所以 \(\operatorname{Spec}(A)\) 有限。又每个点都是闭点，而有限个闭点组成的谱空间必离散，故 (ii) 成立。
 
-若 \(S\cap \mathfrak p\neq\varnothing\)，取 \(s\in S\cap \mathfrak p\)。因为 \(\mathfrak a\) primary，某个幂 \(s^m\in\mathfrak a\)，且 \(s^m\in S\)。于是
-\[
-(\mathfrak a:s^m)=A,
-\]
-从而 \((S^{-1}\mathfrak a)^c=A=(\mathfrak a:s^m)\)。
+\((ii)\Rightarrow(iii)\)\; 显然。
 
-若 \(S\cap \mathfrak p=\varnothing\)，则对任意 \(s\in S\)，由 \(sy\in\mathfrak a\) 可推出 \(y\in\mathfrak a\)。因此
-\[
-(S^{-1}\mathfrak a)^c=\mathfrak a=(\mathfrak a:1).
-\]
-故 (ii) 成立。
+\((iii)\Rightarrow(ii)\)\; 因为 \(A\) Noetherian，\(\operatorname{Spec}(A)\) 是 Noetherian 拓扑空间，从而准紧。离散且准紧的空间只能是有限集，因此 \(\operatorname{Spec}(A)\) 不但离散，而且有限。
 
-\((ii)\Rightarrow(iii)\)\; 取 \(S=\{1,x,x^2,\dots\}\)。则
+最后证明 \((ii)\Rightarrow(i)\)。若 \(\operatorname{Spec}(A)\) 离散且有限，则每个素理想都是闭点，所以都是极大理想，故 \(\dim A=0\)。再结合 \(A\) 本身 Noetherian，利用 Algebra III 中
 \[
-(S^{-1}\mathfrak a)^c=\bigcup_{n\ge 1}(\mathfrak a:x^n).
+A \text{ Artinian}\Longleftrightarrow A \text{ Noetherian 且 }\dim A=0
 \]
-由 (ii) 知该并等于某个 \((\mathfrak a:x^m)\)，故链自 \(m\) 起稳定。
+即可推出 \(A\) Artinian。
 
-\((iii)\Rightarrow(i)\)\; 固定 \(x\in A\)，设链从 \(n\) 起稳定。则有恒等式
-\[
-\mathfrak a=(\mathfrak a+(x^n))\cap (\mathfrak a:x^n).
-\]
-的确，右包含左显然；反过来若
-\[
-y=a+bx^n\in (\mathfrak a:x^n),
-\]
-则 \(yx^n\in\mathfrak a\)，故 \(bx^{2n}\in\mathfrak a\)，即
-\[
-b\in (\mathfrak a:x^{2n})=(\mathfrak a:x^n),
-\]
-于是 \(bx^n\in\mathfrak a\)，所以 \(y\in\mathfrak a\)。
+\item 设 \(k\) 是域，\(A\) 是有限生成 \(k\)-代数。证明下列条件等价：
+\begin{enumerate}[label=(\roman*)]
+\item \(A\) 是 Artinian；
+\item \(A\) 是有限 \(k\)-代数。
+\end{enumerate}
 
-由于 \(\mathfrak a\) 不可约，只能有
+\textbf{解答.}
+\((ii)\Rightarrow(i)\)\; 若 \(A\) 作为 \(k\)-向量空间有限维，则 \(A\) 的每个理想都是有限维 \(k\)-子空间。有限维向量空间不可能有无限严格下降链，因此理想降链必稳定，故 \(A\) 是 Artinian。
+
+\((i)\Rightarrow(ii)\)\; 设 \(A\) Artinian。由 Artinian 环结构定理，\(A\) 分解为有限个 Artin 局部环的直积，所以只需讨论局部情形。设 \((A,\mathfrak m)\) 是 Artin 局部环。由 Nullstellensatz，剩余域
 \[
-\mathfrak a=\mathfrak a+(x^n)\quad\text{或}\quad \mathfrak a=(\mathfrak a:x^n).
+A/\mathfrak m
 \]
-现在若 \(yz\in\mathfrak a\) 且 \(y\notin\mathfrak a\)，则 \(y\in(\mathfrak a:z)\)。对 \(x=z\) 应用上面的结论：若 \((\mathfrak a:z^n)=\mathfrak a\)，则
+是 \(k\) 的有限扩张，因此它作为 \(k\)-向量空间有限维。
+
+另一方面，Artinian 局部环的极大理想幂最终为零，即存在 \(N\) 使 \(\mathfrak m^N=0\)。于是有有限滤过
 \[
-y\in (\mathfrak a:z)\subseteq (\mathfrak a:z^n)=\mathfrak a,
+A\supset \mathfrak m\supset \mathfrak m^2\supset \cdots \supset \mathfrak m^N=0.
 \]
-矛盾。故只能有
+每个商
 \[
-\mathfrak a=\mathfrak a+(z^n),
+\mathfrak m^i/\mathfrak m^{i+1}
 \]
-即 \(z^n\in\mathfrak a\)。因此模 \(\mathfrak a\) 的每个零因子都是幂零元，故 \(\mathfrak a\) 是 primary。
+都被 \(A/\mathfrak m\) 消去，因此是 \(A/\mathfrak m\)-向量空间；又由于 \(A\) Noetherian，这些商都有限生成，所以都有限维。故 \(A\) 作为 \(A/\mathfrak m\)-向量空间有限长度，从而作为 \(k\)-向量空间有限维。
+
+因此在局部情形下 \(A\) 是有限 \(k\)-代数；直积回去仍有限，故一般情形也成立。
 
 \setcounter{enumi}{3}
 \item 判断下列环哪些是 Noetherian：
