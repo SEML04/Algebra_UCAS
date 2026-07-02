@@ -921,7 +921,82 @@ Matlis 对偶是在完备 Noether 局部环上把 Noetherian 模与 Artinian 模
 也就是 filtration 稳定。
 \end{remark}
 
+\subsection{Krull 交定理}\label{subsec:krull-intersection}
+
+\begin{remark}
+\phantomsection\label{rem:krull-intersection}
+Krull 交定理最常用的形式是：若 \(A\) 是 Noether 环，\(I\subset A\) 是理想，\(M\) 是有限生成 \(A\)-模，则
+\[
+  \bigcap_{n\ge 0} I^nM
+  =
+  \{x\in M\mid (1-a)x=0 \text{ for some } a\in I\}.
+\]
+
+特别地，若 \(I\subset \operatorname{Jac}(A)\)，则右端只能是 \(0\)。因此得到最常使用的推论
+\[
+  \bigcap_{n\ge 0} I^nM=0.
+\]
+在 Noether 局部环 \((A,\mathfrak m)\) 中取 \(I=\mathfrak m\)，便有
+\[
+  \bigcap_{n\ge 0}\mathfrak m^nM=0,
+  \qquad
+  \bigcap_{n\ge 0}\mathfrak m^n=0.
+\]
+
+这一定理和 \(I\)-adic 拓扑、完备化的联系最直接：自然映射
+\[
+  M\longrightarrow \widehat M:=\varprojlim_n M/I^nM
+\]
+的核正是
+\[
+  \bigcap_{n\ge 0} I^nM.
+\]
+因此在 \(I\subset \operatorname{Jac}(A)\) 的 Noether 情形下，Krull 交定理说明
+\[
+  M\hookrightarrow \widehat M
+\]
+是单射。也就是说，完备化不会把有限生成模中的非零元素“压没”。
+
+直观地说，Krull 交定理排除了有限生成模里那种“落在所有 \(I^nM\) 中、因此在每一阶 \(I\)-adic 截断里都看不见”的伪无限小元素；若 \(I\) 已落在 Jacobson 根里，这种元素只能是 \(0\)。
+\end{remark}
+
 \subsection{\texorpdfstring{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}{I-adic 滤过、I-adic 拓扑与子模诱导结构}}\label{subsec:iadic-subspace-topology}
+
+\begin{remark}
+\phantomsection\label{rem:completion-spec-not-surjective}
+\(I\)-adic completion 的典范映射
+\[
+  f:A\longrightarrow \widehat A
+\]
+即使在 Noether 情形下也不必诱导满射
+\[
+  f^*:\operatorname{Spec}\widehat A\to \operatorname{Spec}A.
+\]
+
+关键点是：completion 常常 flat，但未必 faithfully flat；而谱映射满射对应的正是 faithful flatness 这一更强条件。
+
+标准反例是
+\[
+  A=\mathbb Z,\qquad I=(2),\qquad \widehat A=\mathbb Z_2.
+\]
+此时
+\[
+  \operatorname{Spec}(\mathbb Z_2)=\{(0),(2)\},
+\]
+所以
+\[
+  \operatorname{Im}\bigl(\operatorname{Spec}\mathbb Z_2\to \operatorname{Spec}\mathbb Z\bigr)
+  =
+  \{(0),(2)\},
+\]
+并不包含 \((3),(5),\dots\)，故不是满射。
+
+因此对 completion 最稳妥的说法是：
+\begin{itemize}
+  \item 在 Noether 情形下，\(A\to \widehat A\) 常有 flatness；
+  \item 只有再加 faithful flatness 时，\(\operatorname{Spec}\widehat A\to \operatorname{Spec}A\) 才满射。
+\end{itemize}
+\end{remark}
 
 \begin{remark}
 \phantomsection\label{rem:artin-rees-subspace-topology}
@@ -2588,6 +2663,70 @@ M\text{ Noetherian over }A
 \]
 \end{example}
 
+\subsection{\texorpdfstring{自由模之间单射与满射的秩比较}{自由模之间单射与满射的秩比较}}\label{subsec:problem-free-rank-comparison}
+
+\begin{example}
+设 \(A\) 是交换环，且
+\[
+  f:A^m\to A^n
+\]
+是 \(A\)-模同态。证明：
+\begin{itemize}
+  \item 若 \(f\) 满射，则 \(m\ge n\)；
+  \item 若 \(f\) 单射，则 \(m\le n\)。
+\end{itemize}
+
+\textbf{解答：}
+
+若 \(f\) 满射，则对任意极大理想 \(\mathfrak m\subset A\) 局部化后仍满射：
+\[
+  f_{\mathfrak m}:A_{\mathfrak m}^m\to A_{\mathfrak m}^n.
+\]
+再模去 \(\mathfrak mA_{\mathfrak m}\)，得到剩余域 \(k(\mathfrak m)\) 上的满射
+\[
+  k(\mathfrak m)^m\to k(\mathfrak m)^n.
+\]
+有限维向量空间之间满射必满足维数不减，因此
+\[
+  m\ge n.
+\]
+
+若 \(f\) 单射，令 \(C=\operatorname{coker}(f)\)，则有短正合列
+\[
+  0\to A^m\to A^n\to C\to 0.
+\]
+局部化得
+\[
+  0\to A_{\mathfrak m}^m\to A_{\mathfrak m}^n\to C_{\mathfrak m}\to 0.
+\]
+再对其张量剩余域 \(k(\mathfrak m)\)，得到右正合列
+\[
+  k(\mathfrak m)^m\to k(\mathfrak m)^n\to C_{\mathfrak m}/\mathfrak m C_{\mathfrak m}\to 0.
+\]
+于是
+\[
+  n
+  =
+  \dim_{k(\mathfrak m)} k(\mathfrak m)^n
+  \ge
+  \dim_{k(\mathfrak m)} \operatorname{Im}(k(\mathfrak m)^m\to k(\mathfrak m)^n)
+  \ge m,
+\]
+故
+\[
+  m\le n.
+\]
+
+因此在交换环语境下，自由模之间的满射与单射分别给出
+\[
+  A^m\twoheadrightarrow A^n \Rightarrow m\ge n,
+  \qquad
+  A^m\hookrightarrow A^n \Rightarrow m\le n.
+\]
+
+补充一句：若 \(A\) 是一般环，上述结论需要 \(A\) 至少满足 IBN（invariant basis number）一类条件；否则可能出现 \(A^m\simeq A^n\) 但 \(m\ne n\)。
+\end{example}
+
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -2601,6 +2740,8 @@ M\text{ Noetherian over }A
   \item \hyperref[rem:local-chain-noether]{[\hyperref[subsec:local-chain]{局部环与链条件}] 局部环理想一般不全是 \(\mathfrak m^n\)；若恰好全是，则自动 Noether。}
   \item \hyperref[rem:prop5312-nakayama]{[\hyperref[subsec:prop5312]{Prop 5.3.12 相关辨析}] Prop 5.3.12 的关键技术点是有限生成、Nakayama 与 Noether 推广。}
   \item \hyperref[rem:prop5312-noether]{[\hyperref[subsec:prop5312]{Prop 5.3.12 相关辨析}] Prop 5.3.12 的三条条件对 Noether 局部环同样等价，关键替代是 Krull 交定理 \(\bigcap_{n\ge 0}\mathfrak m^n=0\)。}
+  \item \hyperref[rem:krull-intersection]{[\hyperref[subsec:krull-intersection]{Krull 交定理}] Noether 情形下 \(\bigcap_{n\ge 0} I^nM\) 描述的是完备化映射的核；若 \(I\subset \operatorname{Jac}(A)\)，它就必为 \(0\)。}
+  \item \hyperref[rem:completion-spec-not-surjective]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] completion 的谱映射不自动满射；flat 不等于 faithfully flat，\(\mathbb Z\to \mathbb Z_2\) 给出标准反例。}
   \item \hyperref[rem:ass-localization-formula]{[\hyperref[subsec:ass-localization]{Associated primes 与局部化}] 局部化只保留与 \(S\) 不相交的 associated primes，书中 \(P\cap S^{-1}A\) 应改为 \(P\cap A\)。}
   \item \hyperref[rem:ass-quotient-radical]{[\hyperref[subsec:ass-localization]{Associated primes 与局部化}] 对商模 \(A/\mathfrak q\)，\(\operatorname{Ass}(A/\mathfrak q)\) 由根理想 \(\mathfrak r(\mathfrak q)\) 直接给出；素理想时就是 \(\operatorname{Ass}_A(A/(x))=\{(x)\}\)。}
   \item \hyperref[rem:primary-colon]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 若 \(\mathfrak q\) 是 \(p\)-primary，则 \((\mathfrak q:x)\) 的计算由 \(A/\mathfrak q\) 中“零因子皆幂零”这一刻画统一控制。}
@@ -2653,6 +2794,7 @@ M\text{ Noetherian over }A
 \begin{itemize}
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
   \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
+  \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
 \end{itemize}
 
 \end{document}

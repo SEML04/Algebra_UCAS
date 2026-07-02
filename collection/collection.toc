@@ -10,18 +10,20 @@
 \contentsline {subsection}{\numberline {1.9}范畴论视角}{12}{subsection.1.9}%
 \contentsline {subsection}{\numberline {1.10}极限、余极限与始对象/终对象的辨析}{13}{subsection.1.10}%
 \contentsline {subsection}{\numberline {1.11}Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)}{15}{subsection.1.11}%
-\contentsline {subsection}{\numberline {1.12}\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}{17}{subsection.1.12}%
-\contentsline {subsection}{\numberline {1.13}短正合列的分裂与投射模/内射模}{19}{subsection.1.13}%
-\contentsline {section}{\numberline {2}专题整理}{21}{section.2}%
-\contentsline {subsection}{\numberline {2.1}投射分解、内射分解与 \(\operatorname {Tor}/\operatorname {Ext}\) 的主线}{21}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}CSA 相关概念总联系}{23}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}{24}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}第 8 章主线总览：滤过、分次、完备化与 Noether 性}{28}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}第 9 章局部维数三指标：\(d(A)\)、\(\delta (A)\) 与 \(\chi _q\)}{32}{subsection.2.5}%
-\contentsline {subsection}{\numberline {2.6}Algebra I 与 Algebra III 中拓扑群主线的对照整理}{38}{subsection.2.6}%
-\contentsline {subsection}{\numberline {2.7}Artin-Rees 与 8.3 节的代数几何意义}{41}{subsection.2.7}%
-\contentsline {subsection}{\numberline {2.8}准素分解的适用范围与凝聚层视角}{42}{subsection.2.8}%
-\contentsline {section}{\numberline {3}题目整理}{45}{section.3}%
-\contentsline {subsection}{\numberline {3.1}商模的 associated primes 与 support 计算例题}{45}{subsection.3.1}%
-\contentsline {subsection}{\numberline {3.2}有限生成模的 support 在基变换下的原像公式}{46}{subsection.3.2}%
-\contentsline {section}{索引}{48}{section*.38}%
+\contentsline {subsection}{\numberline {1.12}Krull 交定理}{17}{subsection.1.12}%
+\contentsline {subsection}{\numberline {1.13}\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}{17}{subsection.1.13}%
+\contentsline {subsection}{\numberline {1.14}短正合列的分裂与投射模/内射模}{21}{subsection.1.14}%
+\contentsline {section}{\numberline {2}专题整理}{23}{section.2}%
+\contentsline {subsection}{\numberline {2.1}投射分解、内射分解与 \(\operatorname {Tor}/\operatorname {Ext}\) 的主线}{23}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}CSA 相关概念总联系}{25}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}{26}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}第 8 章主线总览：滤过、分次、完备化与 Noether 性}{30}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}第 9 章局部维数三指标：\(d(A)\)、\(\delta (A)\) 与 \(\chi _q\)}{34}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Algebra I 与 Algebra III 中拓扑群主线的对照整理}{40}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Artin-Rees 与 8.3 节的代数几何意义}{43}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}准素分解的适用范围与凝聚层视角}{44}{subsection.2.8}%
+\contentsline {section}{\numberline {3}题目整理}{47}{section.3}%
+\contentsline {subsection}{\numberline {3.1}商模的 associated primes 与 support 计算例题}{47}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}有限生成模的 support 在基变换下的原像公式}{48}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}自由模之间单射与满射的秩比较}{50}{subsection.3.3}%
+\contentsline {section}{索引}{51}{section*.40}%

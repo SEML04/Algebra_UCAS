@@ -1,9 +1,9 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.19)  30 JUN 2026 17:36
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.9.19)  2 JUL 2026 17:30
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**collection.tex
-(./collection.tex
+**"D:/Codex Folder/Algebra/collection/collection.tex"
+(d:/Codex Folder/Algebra/collection/collection.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-01-18>
 (c:/texlive/2025/texmf-dist/tex/latex/ctex/ctexart.cls
@@ -1134,21 +1134,27 @@ File: ueuf.fd 2013/01/14 v3.01 Euler Fraktur
 
 [50]
 
-[51] (./collection.aux)
+[51]
+
+[52]
+
+[53]
+
+[54] (./collection.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2022/07/14>
  ***********
 Package rerunfilecheck Info: File `collection.out' has not changed.
-(rerunfilecheck)             Checksum: FB44D4B2419A7539D17844359E616934;4472.
+(rerunfilecheck)             Checksum: 016D10567208BAE34085BCCD806E7C91;4758.
  ) 
 Here is how much of TeX's memory you used:
- 28824 strings out of 475796
- 649958 string characters out of 5774033
- 1010604 words of memory out of 5000000
- 51253 multiletter control sequences out of 15000+600000
+ 28830 strings out of 475796
+ 650220 string characters out of 5774033
+ 1010864 words of memory out of 5000000
+ 51257 multiletter control sequences out of 15000+600000
  575670 words of font info for 132 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
- 102i,27n,111p,547b,1207s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 102i,27n,111p,584b,1207s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on collection.pdf (53 pages).
+Output written on collection.pdf (56 pages).
