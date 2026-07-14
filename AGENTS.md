@@ -4,8 +4,9 @@
 
 这个仓库是一个代数学习与整理工作区，核心文件如下：
 
-- `pdf/`：教材 PDF 与对应提取文本，如 `Algebra I.pdf`、`Algebra III.pdf`、`algebra1.txt`、`algebra3.txt`。
-- `references/`：补充参考资料及其提取文本。
+- `pdf/`：教材 PDF，如 `Algebra I.pdf`、`Algebra III.pdf`。
+- `references/`：补充参考资料 PDF。
+- `txt/`：统一存放所有由 PDF 提取出的可检索文本，文件名应尽量与原 PDF 同名。
 - `collection/collection.tex`：正式主文档，统一收纳概念辨析、专题整理、题目整理与索引。
 - `collection/collection.pdf`：由 `collection.tex` 编译生成的输出文件。
 - `draft.md`：临时工作板，用于记录当前任务、证明草稿、待办与阶段性说明。
@@ -31,21 +32,24 @@
 
 ## 常用命令
 
-- `pdftotext -layout "pdf/Algebra III.pdf" "pdf/algebra3.txt"`：重新生成提取文本。
-- `Select-String -Path ".\pdf\algebra3.txt" -Pattern "Proposition 5.3.12"`：定位原文。
+- `New-Item -ItemType Directory -Force .\txt; pdftotext -layout "pdf/Algebra III.pdf" "txt/Algebra III.txt"`：重新生成提取文本。
+- `Select-String -Path ".\txt\Algebra III.txt" -Pattern "Proposition 5.3.12"`：定位原文。
 - `Get-Content .\draft.md`：查看当前工作板。
 - `Set-Location .\collection; xelatex collection.tex`：在 `collection/` 目录内编译正式文档。
+- `Get-ChildItem .\collection,.\review -Recurse -File -Include *.aux,*.log,*.out,*.toc,*.synctex.gz,*.fls,*.fdb_latexmk,*.xdv | Remove-Item -Force`：清理 LaTeX 编译副产物，只保留 `tex/pdf` 与正文实际需要的资源文件。
 
 修改 `collection.tex` 后，通常至少编译两次，以刷新目录和交叉引用。
 
 ## 写作与维护规则
 
 - 新增内容前，先核对 PDF 或提取文本，不凭记忆补写结论。
+- 所有 PDF 提取得到的 `txt` 文件统一放在 `txt/` 目录，不再分散存放在 `pdf/` 或 `references/` 下。
 - 书中命题、定理、推论尽量保留编号，例如 `(III.Prop 5.3.12)`。
 - 已在“专题整理”中完整展开的内容，在“概念辨析”里只保留短结论，避免重复堆叠。
 - 每次向 `collection/collection.tex` 新增正式内容后，必须同步补入“索引”。
 - 索引条目应尽量压缩成一句话，并显式带出所属 `subsection` 信息；若能点击跳转，则优先保留可点击定位。
 - 同一 `tex` 文件若需多次编译（例如为刷新目录、交叉引用），必须串行执行，不能并行运行多个 `xelatex` 进程；否则可能竞争写入 `aux`、`toc`、`out` 与 `pdf` 文件并导致输出损坏。
 - 之后编译 `.tex` 文件时，无论处理的是哪个文件，都只能在 `.\collection` 文件夹内执行编译命令；不要在仓库根目录直接运行 `xelatex "collection/..."`，以免把 `pdf`、`aux`、`toc`、`log` 等产物写到错误位置。
+- 编译结束后，若不再需要中间文件，应清理 `aux`、`log`、`out`、`toc`、`synctex.gz` 等副产物；默认只保留 `tex`、`pdf` 以及正文实际引用的图片等资源文件。
 - 保留数学公式与交换图所需宏包，尤其是 `amsmath`、`amsthm`、`amssymb`、`tikz-cd`。
 - 修改现有文档前，先阅读原内容，避免覆盖已完成整理。

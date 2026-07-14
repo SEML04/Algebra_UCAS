@@ -1,0 +1,338 @@
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\geometry{margin=1in}
+\setlist[itemize]{itemsep=0.35em, topsep=0.35em}
+\setlist[enumerate]{itemsep=0.35em, topsep=0.35em}
+
+\title{依据《2024 代数硕转博资格考试大纲》的复习流程与习题安排}
+\author{}
+\date{\today}
+
+\begin{document}
+\maketitle
+
+\section{考纲范围与复习总原则}
+
+根据 \texttt{references/2024 代数 硕转博资格考试大纲（专业基本）.doc}，代数学笔试范围包括：
+\begin{enumerate}
+  \item Galois 理论与域论；
+  \item 模论；
+  \item 环与代数；
+  \item 有限群及其表示论；
+  \item 同调代数；
+  \item 交换代数标注为“资格考试不含这部分内容”。
+\end{enumerate}
+
+因此复习时应遵循以下原则：
+\begin{itemize}
+  \item 交换代数只作背景补充，不作为当前主刷模块。
+  \item 以“会陈述定理、会证明标准命题、会计算典型例子、会把不同章节串起来”为达标标准。
+  \item 习题训练按“三层”推进：基础题用于清点定义与命题；标准题用于训练证明套路；综合题用于训练跨章节联动。
+  \item 最适合系统刷题的是 \textbf{Jacobson I/II}。
+  \item 表示论部分最适合刷题的是 \textbf{Serre}。
+  \item 同调代数部分最适合刷题的是 \textbf{Cartan--Eilenberg}；
+  \textbf{Lang} 更适合梳理主线与查遗漏，
+  \textbf{Gelfand--Manin} 更适合拔高概念与后期查阅。
+\end{itemize}
+
+\section{资料分工}
+
+\subsection{主教材与主刷题库}
+
+\begin{itemize}
+  \item \textbf{Lang, \emph{Algebra}}：用于快速建立全局框架，尤其是域论、Galois 理论、模与环的主线。
+  \item \textbf{Jacobson, \emph{Basic Algebra I}}：用于群、域、Galois、PID 上有限生成模的系统训练。
+  \item \textbf{Jacobson, \emph{Basic Algebra II}}：用于半单环、Jacobson 根、Artin 环、中心单代数、Brauer 群、表示论、同调代数。
+  \item \textbf{Serre, \emph{Linear Representations of Finite Groups}}：用于有限群表示论的高质量刷题与计算训练。
+  \item \textbf{Cartan--Eilenberg, \emph{Homological Algebra}}：用于同调代数基本证明题与长正合列、Ext、Tor、群上同调。
+\end{itemize}
+
+\subsection{辅助资料}
+
+\begin{itemize}
+  \item \textbf{Gelfand--Manin, \emph{Methods of Homological Algebra}}：适合在已经掌握基本定义后，用来加强 derived functor、derived category、spectral sequence 的理解。
+  \item \textbf{Atiyah--Macdonald} 与 \textbf{代数学方法第一、二卷}：本轮考试中不作为主刷题源，但可在需要补范畴语言、交换代数背景时查阅。
+\end{itemize}
+
+\section{分阶段复习流程}
+
+\subsection{第一阶段：总清点与主线搭建（约 1 周）}
+
+目标不是做难题，而是把考纲中的对象、定理、常见例子全部对齐。
+
+\begin{itemize}
+  \item 先通读 Lang 中与考纲对应的章节目录，写出每一块的关键名词表。
+  \item 用 Jacobson I/II 对照补足缺失概念，尤其是“教材会考但自己尚未熟练陈述”的定理。
+  \item 对每一块至少整理以下内容：定义、三个标准例子、三个基本命题、一个典型计算。
+\end{itemize}
+
+这一阶段不要求大量刷题，但必须完成以下最小清单：
+\begin{enumerate}
+  \item Jacobson I 中关于 Sylow、PID 模结构、Galois 基本定理的基础题各做若干。
+  \item Serre 第 1--2 章中最基础的 character 计算题必须做。
+  \item Cartan--Eilenberg 第 I, II 章末关于 projective/injective/additive functor 的入门题至少做一遍。
+\end{enumerate}
+
+\subsection{第二阶段：Galois 理论与域论（约 2 周）}
+
+考纲对这一块的要求最明确：基本定理、简单方程 Galois 群、有限域、可分与不可分、超越扩张、Noether 正规化。
+
+\paragraph{主线}
+\begin{itemize}
+  \item Lang：Chapter V (\emph{Fields and Galois Theory}) 的 \S 1--8 为主，\S 9 只抓“可解性与 radicals”的主结论。
+  \item Lang：Chapter VI 的 transcendence bases 必看，用来对接考纲中的超越扩张与 Noether 正规化。
+  \item Jacobson I：Chapter 4 是本块的主刷题来源，尤其是 4.5, 4.7, 4.13, 4.14, 4.15。
+\end{itemize}
+
+\paragraph{着重练习}
+\begin{enumerate}
+  \item \textbf{Jacobson I, Chapter 4 全章习题中优先做：}
+  \begin{itemize}
+    \item Galois 对应与中间域/子群互相计算题；
+    \item 判定 splitting field、normal、separable 的题；
+    \item 有限域结构、primitive element、normal basis、trace/norm 计算题；
+    \item “方程是否可用 radicals 解”与“Galois 群作为根置换群”的题。
+  \end{itemize}
+  \item \textbf{Lang, Chapter V 的习题中优先做：}
+  \begin{itemize}
+    \item 低次多项式 Galois 群计算；
+    \item 有限域与 cyclotomic extension 的基本题；
+    \item separability 与 purely inseparable extension 的反例题。
+  \end{itemize}
+  \item \textbf{第二轮回刷时必须会独立完成的标准题型：}
+  \begin{itemize}
+    \item 直接求 \(x^3-a\), \(x^4-a\), \(x^p-x-b\) 一类方程的 Galois 群；
+    \item 判断扩张是否 Galois，并说明 normal/separable 在哪里用到；
+    \item 证明有限域的基本结构定理及其 Galois 群是循环群；
+    \item 说明 transcendence basis 的作用，并能口述 Noether 正规化的结论。
+  \end{itemize}
+\end{enumerate}
+
+\subsection{第三阶段：模论（约 1.5 周）}
+
+考纲重点是 Artinian/Noetherian 模、单模与半单模、Jordan--Holder、Krull--Schmidt、PID 上有限生成模。
+
+\paragraph{主线}
+\begin{itemize}
+  \item Jacobson I：Chapter 3 的 3.3--3.11 是主线，尤其是 3.6--3.10。
+  \item Lang 中关于 exact sequence、projective module、tensor product 的内容用于与同调代数衔接。
+  \item Jacobson II 中关于 semisimple module、Wedderburn--Artin 的部分与本块联动。
+\end{itemize}
+
+\paragraph{着重练习}
+\begin{enumerate}
+  \item \textbf{Jacobson I, 3.6--3.10 的习题要系统刷：}
+  \begin{itemize}
+    \item PID 上有限生成模分解；
+    \item invariant factor 与 elementary divisor 两套表述互化；
+    \item torsion part/free part 分拆；
+    \item 由模结构定理推 abelian group 分类、Jordan form/rational canonical form 的题。
+  \end{itemize}
+  \item \textbf{Jordan--Holder 与 Krull--Schmidt：}
+  \begin{itemize}
+    \item 优先做“构造 composition series”“比较 composition factors”“判断直和分解是否唯一”的题；
+    \item 对每道题都要问自己：这里用的是 ACC/DCC、半单性，还是 endomorphism ring 的性质。
+  \end{itemize}
+  \item \textbf{必会题型：}
+  \begin{itemize}
+    \item 具体有限生成 \(k[x]\)-模或 PID-模的结构分解；
+    \item 用结构定理求某线性变换的标准形；
+    \item 判断模是否单、半单、Noetherian、Artinian，并给出最短理由。
+  \end{itemize}
+\end{enumerate}
+
+\subsection{第四阶段：环与代数（约 2 周）}
+
+这一块容易散，但考纲很集中：单环、半单环、半单代数、Jacobson 根、幂零根、稠密性定理、有限维中心单代数、Brauer 群。
+
+\paragraph{主线}
+\begin{itemize}
+  \item Jacobson II：Chapter 3 的 3.13--3.15 与 Chapter 4 的 4.2--4.7 是主干。
+  \item Lang 中关于 division algebra、simple algebra、Artin--Wedderburn 的章节用于补大图景。
+  \item 对中心单代数与 Brauer 群，只要求掌握定义、基本性质、典型例子、与 splitting field 的关系，不必把局部域情形学得过深。
+\end{itemize}
+
+\paragraph{着重练习}
+\begin{enumerate}
+  \item \textbf{Jacobson II, Chapter 4 习题优先级最高：}
+  \begin{itemize}
+    \item Jacobson radical 的等价刻画；
+    \item Artinian ring 与 semisimple ring 的判别；
+    \item 稠密性定理的应用题；
+    \item 有限维中心单代数的 split/central/division 判定题；
+    \item Brauer group 中“相似”“tensor product”“opposite algebra”的基本计算题。
+  \end{itemize}
+  \item \textbf{必须做到能独立证明的命题：}
+  \begin{itemize}
+    \item Wedderburn--Artin 结构定理的陈述与证明骨架；
+    \item \(J(A)\) 的常见刻画；
+    \item simple module 与 primitive ring 的基本联系；
+    \item 中心单代数在代数闭包上 split 的含义。
+  \end{itemize}
+  \item \textbf{拔高练习：}
+  \begin{itemize}
+    \item 结合表示论理解 group algebra 在特征不整除群阶时的半单性；
+    \item 用 density theorem 理解不可约表示中的 endomorphism ring。
+  \end{itemize}
+\end{enumerate}
+
+\subsection{第五阶段：有限群及其表示论（约 2.5 周）}
+
+这是最应当刷题的一块，因为计算、证明、例子三类能力都会直接暴露。
+
+\paragraph{主线}
+\begin{itemize}
+  \item Sylow 定理：Jacobson I 1.13 先打牢。
+  \item 表示论第一主教材：Serre。
+  \item 表示论第二主教材：Jacobson II Chapter 5。
+\end{itemize}
+
+\paragraph{着重练习：Sylow 与群论预备}
+\begin{itemize}
+  \item Jacobson I 中关于 class equation、Sylow、正规 \(p\)-子群、群作用计数的习题要全部优先做。
+  \item 目标不是只会证明 Sylow 三定理，而是能熟练用它们判断群的正规子群、群阶限制、简单群不存在性。
+\end{itemize}
+
+\paragraph{着重练习：表示论主体}
+\begin{enumerate}
+  \item \textbf{Serre Part I, Chapters 1--3：}
+  \begin{itemize}
+    \item 角色（character）定义与基本性质；
+    \item Schur 引理；
+    \item 正交关系；
+    \item 直和、张量积、诱导表示的 character 公式。
+  \end{itemize}
+  这些章节的练习应当视为\textbf{必须全做或近乎全做}。
+
+  \item \textbf{Serre Part I, Chapter 5 与 Part II, Chapters 6--11：}
+  \begin{itemize}
+    \item 对称群的不可约表示至少掌握 Young 图/分拆的最基本结论与典型题；
+    \item induced representation 与 Frobenius reciprocity 的计算题必须多做；
+    \item Artin 定理与 Brauer 定理部分，重点做“如何把 character 写成诱导 character 线性组合”的标准题。
+  \end{itemize}
+
+  \item \textbf{Jacobson II, Chapter 5：}
+  \begin{itemize}
+    \item 5.1--5.5 对应完全可约、character、正交关系；
+    \item 5.8 附近对 induced representation、Frobenius reciprocity、Brauer 定理的表述要熟；
+    \item 5.4 的对称群不可约表示与 Serre 相互参照学习。
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{本块必会题型}
+\begin{itemize}
+  \item 求给定有限群的 character table 的一部分或全部；
+  \item 用正交关系判断不可约性、分解表示；
+  \item 计算诱导表示并验证 Frobenius reciprocity；
+  \item 说明群代数何时半单，并联系 Maschke 定理；
+  \item 对 \(S_3, D_{2n}, Q_8, A_4, S_4\) 等标准例子做到熟练。
+\end{itemize}
+
+\subsection{第六阶段：同调代数（约 2.5 周）}
+
+考纲对这一块要求很全，但考试通常不会要求把技术发展到文献级；重点是把语言、构造与基本计算打通。
+
+\paragraph{主线}
+\begin{itemize}
+  \item 范畴与函子、自然变换、可表函子、Yoneda 引理：Jacobson II Chapter 1。
+  \item Abelian 范畴、复形、同调、长正合列、同伦：Cartan--Eilenberg Chapters I--V。
+  \item tensor, flat, projective, injective, Ext, Tor：Cartan--Eilenberg Chapter VI。
+  \item 群上同调、extensions、spectral sequence：Cartan--Eilenberg Chapters XII, XIV, XV 作重点节选。
+  \item derived category 与更现代语言：Gelfand--Manin 作为补强，不作为第一轮主刷题源。
+\end{itemize}
+
+\paragraph{着重练习}
+\begin{enumerate}
+  \item \textbf{Jacobson II, Chapter 1：}
+  \begin{itemize}
+    \item 1.3--1.8 的基本题必须做，特别是 functor、natural transformation、representable functor、adjoint 的标准检验题；
+    \item Yoneda 引理至少要会陈述、会解释、会在具体 Hom-functor 上应用。
+  \end{itemize}
+
+  \item \textbf{Cartan--Eilenberg, Chapters I--VI 章末练习：}
+  \begin{itemize}
+    \item projective/injective 的判据；
+    \item resolution 的构造；
+    \item 长正合列的推出；
+    \item Tor/Ext 的基本计算；
+    \item tensor 与 Hom 的 exactness 判断。
+  \end{itemize}
+  这些练习是本块的\textbf{主刷题库}。
+
+  \item \textbf{Cartan--Eilenberg, Chapters XII, XIV, XV：}
+  \begin{itemize}
+    \item 群上同调的入门计算题；
+    \item extension 与 \( \operatorname{Ext}^1 \) 的对应题；
+    \item filtration/spectral sequence 的读图题与 formal statement 题。
+  \end{itemize}
+
+  \item \textbf{Gelfand--Manin：}
+  \begin{itemize}
+    \item 第一轮只读定义与主定理，不追求大规模刷题；
+    \item 第二轮可选做 derived functor、derived category、spectral sequence 的典型证明题，用于拔高。
+  \end{itemize}
+\end{enumerate}
+
+\paragraph{本块必会题型}
+\begin{itemize}
+  \item 给出短正合列，推出长正合列；
+  \item 判断模是否 projective / injective / flat；
+  \item 计算简单的 \( \operatorname{Ext} \) 与 \( \operatorname{Tor} \)；
+  \item 说明群扩张与 \(H^2\) 的关系；
+  \item 说明 Koszul 复形解决什么问题，知道 spectral sequence 至少在“滤过复形导出逐页逼近”这一层面的含义。
+\end{itemize}
+
+\section{习题训练的优先级排序}
+
+若时间有限，应按下列顺序刷题：
+\begin{enumerate}
+  \item Jacobson I：Sylow、Galois、PID 上有限生成模；
+  \item Serre：Characters、Orthogonality、Induced representations、Frobenius reciprocity；
+  \item Jacobson II：Jacobson radical、Artinian/semisimple、central simple algebra、Brauer group；
+  \item Cartan--Eilenberg：projective/injective、resolution、Ext/Tor、long exact sequence；
+  \item Lang：作为查漏补缺与综合复习；
+  \item Gelfand--Manin：只在前面都比较稳后再用于拔高。
+\end{enumerate}
+
+\section{最后冲刺的执行方案}
+
+\subsection{冲刺前两周}
+
+\begin{itemize}
+  \item 每天一块主线内容 + 一块习题回刷。
+  \item 每晚必须做一道“无提示完整证明题”和一道“具体计算题”。
+  \item 把所有曾经卡住的命题压缩成一页提纲：定理名称、结论、证明核心一句话、常见例子。
+\end{itemize}
+
+\subsection{冲刺前一周}
+
+\begin{itemize}
+  \item 停止无边界扩展资料，只回刷错题与核心章节。
+  \item Galois、表示论、同调代数各做一次 2--3 小时专题模拟。
+  \item 对每一块准备“口述版答案”：例如“为什么 Maschke 定理成立”“为什么有限域 Galois 群循环”“为什么 projective 模使 \( \operatorname{Ext}^1 \) 消失”。
+\end{itemize}
+
+\subsection{考试前 1--2 天}
+
+\begin{itemize}
+  \item 只看自己整理的提纲，不再开新题。
+  \item 强化标准例子：\(S_3\)、\(A_4\)、有限域、PID 模分解、短正合列导出长正合列、中心单代数的 split 例子。
+  \item 再通读一遍考纲，确认“交换代数不考”这一条，不要在最后阶段把主力时间投入该部分。
+\end{itemize}
+
+\section{结论}
+
+这份考纲的特点是：\textbf{范围广，但主轴非常清楚}。真正拉开差距的不是冷门结论，而是是否把以下四条主线打通：
+\begin{enumerate}
+  \item 群论 \( \to \) Galois 理论；
+  \item PID 模结构 \( \to \) 一般模论与半单理论；
+  \item 群表示 \( \to \) 半单代数与群代数；
+  \item exact sequence / resolution \( \to \) Ext / Tor / cohomology。
+\end{enumerate}
+
+若按本文流程执行，刷题顺序应始终围绕“\textbf{Jacobson I + Serre + Jacobson II + Cartan--Eilenberg}”这四个核心题库展开；Lang 用来总览与查漏，Gelfand--Manin 用来拔高，而交换代数资料本轮不应挤占主力时间。
+
+\end{document}
