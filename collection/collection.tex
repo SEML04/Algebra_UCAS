@@ -675,6 +675,122 @@ Artin 局部环中每个元素不是单位就是幂零元，但“局部且极�
 的\emph{纤维}与\emph{链提升}行为。满射来自 lying-over；同一纤维内无严格包含来自 incomparability；链能否向上或向下延拓，则分别由 going-up 与 going-down 描述。
 \end{remark}
 
+\subsection{Galois 扩张与 radical 扩张}\label{subsec:galois-radical}
+
+\begin{remark}
+\phantomsection\label{rem:galois-not-radical}
+“Galois 扩张未必是 radical 扩张”的一个标准反例，实际上可直接取
+\[
+  K=\mathbb Q(\zeta_7),
+\]
+其中 \(\zeta_7\) 是本原 \(7\) 次单位根。这一例子见
+\((\mathrm{I.Prop}\ 1.12.4(i),\ \text{PDF p.\ 31})\)。
+
+先看 \(K/\mathbb Q\)。因为 \(K\) 是第 \(7\) 个分圆域，
+\[
+  \operatorname{Gal}(K/\mathbb Q)\cong (\mathbb Z/7\mathbb Z)^\times\cong C_6.
+\]
+该群有唯一的 \(2\) 阶子群 \(H\)。令
+\[
+  E:=K^H,
+\]
+则由 Galois 对应
+\[
+  [E:\mathbb Q]=[\,\operatorname{Gal}(K/\mathbb Q):H\,]=3.
+\]
+又因为 \(\operatorname{Gal}(K/\mathbb Q)\) 是交换群，\(H\triangleleft \operatorname{Gal}(K/\mathbb Q)\)，故
+\[
+  E/\mathbb Q
+\]
+本身就是 Galois 扩张，且
+\[
+  \operatorname{Gal}(E/\mathbb Q)\cong C_3.
+\]
+
+下面说明 \(E/\mathbb Q\) 不是 radical 扩张。若不然，因 \([E:\mathbb Q]=3\) 是素数，任何非平凡中间域都只能是 \(\mathbb Q\) 或 \(E\)，故可写成
+\[
+  E=\mathbb Q(u),\qquad u^m\in \mathbb Q
+\]
+并取 \(m\ge 2\) 最小。
+
+令 \(\sigma\) 为 \(\operatorname{Gal}(E/\mathbb Q)\cong C_3\) 的一个生成元。因为
+\[
+  \sigma(u)^m=\sigma(u^m)=u^m,
+\]
+故 \(\sigma(u)/u\) 是某个 \(m\) 次单位根，记为 \(\xi\)。若 \(\xi\) 的阶是 \(d<m\)，则
+\[
+  \sigma(u^d)=u^d,
+\]
+于是 \(u^d\in \mathbb Q\)，这与 \(m\) 的极小性矛盾。因此 \(\xi\) 必是本原 \(m\) 次单位根，可记为 \(\zeta_m\)。于是
+\[
+  \sigma(u)=\zeta_m u,
+  \qquad
+  \zeta_m=\frac{\sigma(u)}{u}\in E.
+\]
+于是
+\[
+  \mathbb Q(\zeta_m)\subseteq E.
+\]
+但 \([E:\mathbb Q]=3\) 是素数，而 \(\zeta_m\notin \mathbb Q\)，所以只能有
+\[
+  E=\mathbb Q(\zeta_m).
+\]
+这就要求
+\[
+  [E:\mathbb Q]=\varphi(m)=3,
+\]
+然而 Euler 函数不可能取值 \(3\)。矛盾。
+
+因此
+\[
+  E/\mathbb Q\text{ 是 Galois 扩张，但不是 radical 扩张。}
+\]
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:x5-splitting-radical}
+上面常被误记成“\(x^5-2\) 的分裂域是 Galois 但不是 radical”，这其实不对；它恰好是一个
+\textbf{既 Galois 又 radical} 的例子。
+
+设
+\[
+  f(x)=x^5-2,\qquad \alpha=\sqrt[5]{2},\qquad \zeta_5=e^{2\pi i/5}.
+\]
+则 \(f\) 的五个根为
+\[
+  \alpha,\ \zeta_5\alpha,\ \zeta_5^2\alpha,\ \zeta_5^3\alpha,\ \zeta_5^4\alpha.
+\]
+所以其分裂域是
+\[
+  L=\mathbb Q(\alpha,\zeta_5).
+\]
+作为分裂域，
+\[
+  L/\mathbb Q
+\]
+当然是 Galois 扩张。
+
+同时它也是 radical 扩张，因为有显式塔
+\[
+  \mathbb Q
+  \subset
+  \mathbb Q(\zeta_5)
+  \subset
+  \mathbb Q(\zeta_5,\alpha)=L,
+\]
+且
+\[
+  \zeta_5^5=1\in \mathbb Q,\qquad \alpha^5=2\in \mathbb Q\subset \mathbb Q(\zeta_5).
+\]
+也就是说，第一步是添入一个 \(5\) 次根 \( \zeta_5\)，第二步再添入另一个 \(5\) 次根 \(\alpha\)；每一步都满足“某个幂落回前一步域中”的 radical 条件。
+
+因此
+\[
+  \mathbb Q(\sqrt[5]{2},\zeta_5)/\mathbb Q
+\]
+不能作为 “Galois 但非 radical” 的反例。若要找“分裂域不是 radical 扩张”的例子，必须改取 Galois 群不可解的情形，而不是 \(x^5-2\) 这种 Kummer 型例子。
+\end{remark}
+
 \subsection{范畴论视角}\label{subsec:categorical-view}
 
 \begin{remark}
@@ -1333,6 +1449,328 @@ Krull 交定理最常用的形式是：若 \(A\) 是 Noether 环，\(I\subset A\
     &\Longrightarrow
     \text{flatness / splitting / homological dimension}.
   \end{aligned}
+\]
+
+\subsection{\texorpdfstring{Galois 扩张与 radical 扩张的主线关系}{Galois 扩张与 radical 扩张的主线关系}}\label{subsec:topic-galois-radical}
+
+这里把 \(\mathrm{Algebra\ I}\) 第 \(1.12\) 节与第 \(1.13\) 节压缩成一条主线。核心不是简单地问
+\[
+  \text{Galois}\overset{?}{\Longrightarrow}\text{radical}
+\]
+或
+\[
+  \text{radical}\overset{?}{\Longrightarrow}\text{Galois},
+\]
+而是要区分“扩张本身是不是 radical”与“分裂域是否\emph{包含在}某个 radical 扩张里”这两层。
+
+\medskip
+
+\textbf{第一层：radical 扩张本身的基本性质。}
+
+按 \((\mathrm{I.Def}\ 1.12.4)\)，有限扩张 \(K/F\) 是 radical，指存在塔
+\[
+  F=K_0\subset K_1\subset\cdots\subset K_n=K,
+\]
+其中每一步都形如
+\[
+  K_i=K_{i-1}(u_i),\qquad u_i^{m_i}\in K_{i-1}.
+\]
+因此 radical 的本质就是“可由逐步开方、开 \(m\) 次根得到”。但这类扩张一般\textbf{不必 Galois}；例如单步扩张
+\[
+  \mathbb Q(\sqrt[3]{2})/\mathbb Q
+\]
+就是 radical，但不是正规扩张。
+
+\medskip
+
+\textbf{第二层：Galois 与 radical 之间没有直接蕴含。}
+
+\begin{itemize}
+  \item \textbf{radical \(\nRightarrow\) Galois}：上面的 \(\mathbb Q(\sqrt[3]{2})/\mathbb Q\) 已给出反例。
+  \item \textbf{Galois \(\nRightarrow\) radical}：由 \((\mathrm{I.Prop}\ 1.12.4(i))\)，
+  \[
+    \mathbb Q(\zeta_7)
+  \]
+  是 radical 扩张，但其一个三次中间域 \(E/\mathbb Q\) 虽然是 Galois，却不是 radical。
+\end{itemize}
+
+所以真正成立的结论不是二者彼此蕴含，而是下面这一条“经过 Galois 闭包后的可解性结论”。
+
+\medskip
+
+\textbf{第三层：radical 扩张的 Galois 闭包具有可解 Galois 群。}
+
+\((\mathrm{I.Prop}\ 1.12.5)\) 说明：若 \(E/F\) 是有限 radical 扩张，\(K/F\) 是其 Galois 闭包，则
+\[
+  K/F \text{ 仍包含在 radical 框架里，且 } \operatorname{Gal}(K/F)\text{ 可解。}
+\]
+直观上，这是因为：
+\begin{enumerate}
+  \item 单步扩张 \(x^n-a\) 的分裂域 Galois 群可解（\((\mathrm{I.Prop}\ 1.12.3)\)）；
+  \item 有限次复合 radical 扩张后，Galois 闭包仍由这些“开根步骤”的共轭拼起来；
+  \item 可解群对扩张与复合稳定。
+\end{enumerate}
+
+\medskip
+
+\textbf{第四层：反过来，有限可解 Galois 扩张总能嵌入某个 radical 扩张。}
+
+\((\mathrm{I.Thm}\ 1.12.7)\) 给出逆向主定理：
+\[
+  K/F \text{ 有限 Galois 且 } \operatorname{Gal}(K/F)\text{ 可解}
+  \Longrightarrow
+  K \subset L
+\]
+其中 \(L/F\) 是某个 radical 扩张。
+
+其证明思路是：
+\begin{enumerate}
+  \item 在可解群中取一个素数指标的正规子群；
+  \item 先添入相应的原始 \(p\) 次单位根；
+  \item 把素数次 Galois 扩张化成一个单步 radical 扩张（\((\mathrm{I.Lem}\ 1.12.6)\)）；
+  \item 再做归纳。
+\end{enumerate}
+
+注意这里结论只是
+\[
+  K\subset L,
+\]
+即 \(K\) \textbf{包含在}某个 radical 扩张中，而不一定 \(K\) 本身就是 radical 扩张。这正是书上 \(E/\mathbb Q\) 那个三次子域反例要提醒的地方。
+
+\medskip
+
+\textbf{第五层：与“方程可由根式解”之间的对应。}
+
+\((\mathrm{I.Def}\ 1.13.1)\) 把“多项式可由根式解”定义为：它的分裂域 \(K_f\) 包含在某个 radical 扩张中。于是
+\((\mathrm{I.Thm}\ 1.13.3)\) 得到经典等价：
+\[
+  f \text{ solvable by radicals}
+  \iff
+  \operatorname{Gal}(K_f/F)\text{ 可解}.
+\]
+
+这里最容易混淆的一点是：上式\textbf{不是}在说
+\[
+  \operatorname{Gal}(K_f/F)\text{ 可解}
+  \iff
+  K_f/F \text{ 本身是 radical}.
+\]
+正确表述应分成两层：
+\begin{enumerate}
+  \item
+  \[
+    \operatorname{Gal}(K_f/F)\text{ 可解}
+    \iff
+    f \text{ solvable by radicals};
+  \]
+  \item
+  \[
+    f \text{ solvable by radicals}
+    \iff
+    K_f \subset L \text{ for some radical } L/F.
+  \]
+\end{enumerate}
+但一般并\textbf{不能}推出
+\[
+  K_f/F \text{ 本身是 radical}.
+\]
+书上紧接着就在 \((\mathrm{I.Rem}\ 1.13.2)\) 明说了这一点；前面
+\[
+  E/\mathbb Q
+\]
+那个三次 Galois 子域正是一个标准反例：它的 Galois 群 \(C_3\) 可解，因此对应方程确实“可由根式解”，但 \(E/\mathbb Q\) 自身并不是 radical 扩张。
+
+\medskip
+
+\textbf{因此，对分裂域 \(K_f/F\) 而言，真正的等价式是}
+\[
+  \operatorname{Gal}(K_f/F)\text{ 可解}
+  \iff
+  K_f \text{ 可嵌入某个 radical 扩张}.
+\]
+
+\medskip
+
+\textbf{再抽象一层看，一般有限扩张里的 radical 与 solvable 关系是：}
+\begin{enumerate}
+  \item 若 \(E/F\) 是 radical 扩张，则其 Galois 闭包 \(K/F\) 满足
+  \[
+    \operatorname{Gal}(K/F)\text{ 可解};
+  \]
+  \item 若 \(K/F\) 是有限 Galois 扩张且 \(\operatorname{Gal}(K/F)\) 可解，则
+  \[
+    K \subset L
+  \]
+  对某个 radical 扩张 \(L/F\) 成立；
+  \item 但这两个方向都只说明“与 radical 有关”或“能嵌入 radical”，并不说明该扩张对象本身就是 radical。
+\end{enumerate}
+
+所以“radical”和“solvable”的正确对应关系应压缩成：
+\[
+  \begin{array}{c}
+    \text{radical}
+    \Longrightarrow
+    \text{solvable Galois closure},\\[2pt]
+    \text{solvable Galois}
+    \Longrightarrow
+    \text{contained in a radical extension}.
+  \end{array}
+\]
+
+因此整条主线应理解为
+\[
+  \text{radical extension}
+  \Longrightarrow
+  \text{solvable Galois closure}
+  \Longrightarrow
+  \text{solvable Galois group},
+\]
+以及反向的
+\[
+  \text{solvable finite Galois extension}
+  \Longrightarrow
+  \text{contained in a radical extension}.
+\]
+
+把两边合起来，得到“根式可解”与“Galois 群可解”的桥梁；这才是第 \(1.12\) 节与第 \(1.13\) 节真正要服务的结论。
+
+\medskip
+
+\textbf{一句话压缩：}
+\[
+  \boxed{
+  \begin{array}{c}
+    \text{radical 不是 Galois 的同义词；}\\
+    \text{真正对应的是“可解 Galois 群”与“可嵌入某个 radical 扩张”}
+  \end{array}
+  }.
+\]
+
+\subsection{\texorpdfstring{Kummer 扩张与 Artin--Schreier 扩张}{Kummer 扩张与 Artin--Schreier 扩张}}\label{subsec:topic-kummer-artin-schreier}
+
+这两类扩张是“\textbf{如何把某些 cyclic Galois 扩张写成显式方程}”的两套标准模型；前者适用于
+\(\operatorname{char}F\nmid n\)，后者适用于 \(\operatorname{char}F=p\)。
+
+\medskip
+
+\textbf{1. Kummer 扩张：乘法型的 cyclic 扩张。}
+
+设 \(\operatorname{char}F\nmid n\)，并且 \(F\) 中已经含有全部 \(n\) 次单位根 \(\mu_n\)。这时最典型的扩张是
+\[
+  E=F(\alpha),\qquad \alpha^n=a\in F.
+\]
+若 \(x^n-a\) 在 \(F\) 上不可约，则
+\[
+  [E:F]=n.
+\]
+因为 \(\mu_n\subset F\)，任一 \(F\)-自同构都必须把 \(\alpha\) 送到另一个 \(n\) 次根
+\[
+  \sigma(\alpha)=\zeta\alpha,\qquad \zeta\in \mu_n,
+\]
+故
+\[
+  \operatorname{Gal}(E/F)\hookrightarrow \mu_n.
+\]
+特别地，当 \([E:F]=n\) 时，\(\operatorname{Gal}(E/F)\) 是一个循环群；反过来，经典 Kummer 理论说明：\textbf{若}
+\[
+  E/F \text{ 是次数 }n\text{ 的 cyclic Galois 扩张，且 }\mu_n\subset F,
+\]
+\textbf{则}
+\[
+  E=F(\alpha),\qquad \alpha^n\in F.
+\]
+
+因此 Kummer 扩张刻画的是：\textbf{在底域已含足够单位根时，cyclic 扩张可以写成“开 \(n\) 次根”得到。}
+它和前面 radical 扩张的关系也很直接：Kummer 扩张本身就是最标准的单步 radical 扩张；但它额外带有
+\(\mu_n\subset F\) 与 cyclic/Galois 这两层结构。
+
+\medskip
+
+\textbf{2. Artin--Schreier 扩张：特征 \(p\) 下的加法型模型。}
+
+现在设 \(\operatorname{char}F=p>0\)。这时 \(x^p-a\) 的形式会退化，因为
+\[
+  (X+Y)^p=X^p+Y^p.
+\]
+真正替代 Kummer 理论的，是多项式
+\[
+  T^p-T-a\qquad (a\in F).
+\]
+若 \(\alpha\) 满足
+\[
+  \alpha^p-\alpha=a,
+\]
+则对任意 \(c\in \mathbb F_p\) 都有
+\[
+  (\alpha+c)^p-(\alpha+c)=a,
+\]
+所以所有根都是
+\[
+  \alpha,\alpha+1,\dots,\alpha+(p-1).
+\]
+由此可见：若 \(T^p-T-a\) 在 \(F\) 上不可约，则其分裂域就是
+\[
+  E=F(\alpha),
+\]
+并且
+\[
+  [E:F]=p,\qquad \operatorname{Gal}(E/F)\cong \mathbb Z/p\mathbb Z,
+\]
+其中生成元可写成
+\[
+  \sigma(\alpha)=\alpha+1.
+\]
+
+反过来，Artin--Schreier 理论说明：\textbf{特征 \(p\) 下每个次数 \(p\) 的 cyclic Galois 扩张，都可写成}
+\[
+  E=F(\alpha),\qquad \alpha^p-\alpha\in F.
+\]
+并且这种扩张由商群
+\[
+  F/(F^p-F)
+\]
+控制；也就是说，\(a\) 与 \(a+b^p-b\) 给出同一个扩张。
+
+\medskip
+
+\textbf{3. 两者的平行关系。}
+
+\[
+  \begin{array}{c|c|c}
+    \text{理论} & \text{方程} & \text{控制的 cyclic 扩张} \\
+    \hline
+    \text{Kummer} & T^n-a & \operatorname{char}F\nmid n,\ \mu_n\subset F \\
+    \text{Artin--Schreier} & T^p-T-a & \operatorname{char}F=p
+  \end{array}
+\]
+
+更概念化地说：
+\begin{itemize}
+  \item Kummer 理论是\textbf{乘法群} \(F^\times\) 的理论，参数落在
+  \[
+    F^\times/(F^\times)^n;
+  \]
+  \item Artin--Schreier 理论是\textbf{加法群} \(F\) 的理论，参数落在
+  \[
+    F/(F^p-F).
+  \]
+\end{itemize}
+
+所以它们并不是彼此无关的两个技巧，而是分别在
+\[
+  \operatorname{char}F\nmid n
+  \quad\text{与}\quad
+  \operatorname{char}F=p
+\]
+这两种环境下，对“\textbf{cyclic Galois 扩张的显式描述}”给出的标准答案。
+
+\medskip
+
+\textbf{一句话压缩：}
+\[
+  \boxed{
+    \text{Kummer = 乘法型开根模型，Artin--Schreier = 特征 }p\text{ 下的加法型 cyclic 模型。}
+  }
 \]
 
 \subsection{CSA 相关概念总联系}\label{subsec:topic-csa}
@@ -2748,6 +3186,8 @@ M\text{ Noetherian over }A
   \item \hyperref[rem:m-primary]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] Noether 环里 \(\mathfrak m\)-primary、\(\sqrt{\mathfrak q}=\mathfrak m\)、以及 \(\mathfrak m^k\subset \mathfrak q\subset \mathfrak m\) 三条彼此等价，有限生成性正用在 \((2)\Rightarrow(3)\)。}
   \item \hyperref[rem:primary-counterexample]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 素理想幂与固定根理想都不自动给出 primary 结构，\(k[x,y,z]/(xy-z^2)\) 提供了标准反例。}
   \item \hyperref[rem:going-up-down]{[\hyperref[subsec:going-up-down]{整扩张中的上行与下行定理}] 整扩张给出 lying-over、incomparability 与 going-up；再加上 \(A\) 整闭整环，则还能得到 going-down。}
+  \item \hyperref[rem:galois-not-radical]{[\hyperref[subsec:galois-radical]{Galois 扩张与 radical 扩张}] \(\mathbb Q(\zeta_7)\) 的三次固定子域给出标准反例：Galois 不推出 radical。}
+  \item \hyperref[rem:x5-splitting-radical]{[\hyperref[subsec:galois-radical]{Galois 扩张与 radical 扩张}] \(x^5-2\) 的分裂域 \(\mathbb Q(\sqrt[5]{2},\zeta_5)\) 实际上是显式 radical 扩张，不能拿来做反例。}
   \item \hyperref[rem:prime-filtration-nonunique]{[Prime filtration 与 Ass] Prop 6.1.8 的 prime filtration 不唯一，出现的 prime multiset 也可不同。}
   \item \hyperref[rem:ass-short-exact-strict]{[Prime filtration 与 Ass] Lem 6.1.9 里的 associated primes 只能得到包含号，不能一般改成等号。}
   \item \hyperref[rem:ass-intersection-sum]{[Ass 的交与和] 在 Thm 6.2.10 附近，交可以无限进行，因为交仍是子模；并通常没有 \(\operatorname{Ass}\) 可谈，实际应改看子模的和。}
@@ -2767,6 +3207,8 @@ M\text{ Noetherian over }A
 
 \begin{itemize}
   \item \hyperref[subsec:topic-derived-functors]{[投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线] 投射/内射分解是把一般模替换成“好模”的装置；\(\operatorname{Tor}\) 衡量张量积失去的左正合性，\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 失去的右正合性并分类短正合列扩张。}
+  \item \hyperref[subsec:topic-galois-radical]{[Galois 扩张与 radical 扩张的主线关系] 关键不是 “Galois \(\Leftrightarrow\) radical”，而是 \(G_f\) 可解等价于“分裂域嵌入某个 radical 扩张”，不等价于“分裂域本身就是 radical”。}
+  \item \hyperref[subsec:topic-kummer-artin-schreier]{[Kummer 扩张与 Artin--Schreier 扩张] Kummer 理论用 \(T^n-a\) 描述含足够单位根时的 cyclic 扩张，Artin--Schreier 理论用 \(T^p-T-a\) 描述特征 \(p\) 下的次数 \(p\) cyclic 扩张。}
   \item \hyperref[subsec:topic-csa]{[CSA 相关概念总联系] 这里集中梳理 CSA、中心除代数、分裂域、中心化子与 Brauer 群之间的关系。}
   \item \hyperref[rem:iadic-padic]{[\hyperref[subsec:topic-filtration-adic]{滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}] \(I\)-filtration 可视为 pro-对象，completion 是逆极限；\(\mathbb Z_p\) 则是 \((p)\)-adic 完备化的标准模型。}
   \item \hyperref[rem:filter-vs-filtration]{[\hyperref[subsec:topic-filtration-adic]{滤过、\(I\)-adic 与 \(p\)-adic 的范畴视角}] 第一卷的“滤子”讲 Cauchy 与完备化，第二卷的 pro-对象讲逆系统；两者都可由同一个 filtration 诱导出来。}
