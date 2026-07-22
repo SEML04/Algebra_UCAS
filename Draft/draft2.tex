@@ -1,0 +1,59 @@
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{hyperref}
+
+\title{Semi-hereditary 与 Hereditary：为何内射商性质出现差异}
+\author{}
+\date{\today}
+
+\begin{document}
+\pagestyle{plain}
+\maketitle
+
+\section{原书中的两个等价刻画}
+
+在 Cartan--Eilenberg, Chapter I 中，\emph{left hereditary} 指每个左理想均为投射模；\emph{left semi-hereditary} 则只要求每个\textbf{有限生成}左理想为投射模。
+
+Theorem 5.4 给出
+\[
+\begin{gathered}
+\Lambda\text{ 左 hereditary}\\
+\iff\\
+\text{每个投射左 }\Lambda\text{-模的子模均投射}\\
+\iff\\
+\text{每个内射左 }\Lambda\text{-模的商模均内射}.
+\end{gathered}
+\]
+而 Proposition 6.2 只给出
+\[
+\begin{gathered}
+\Lambda\text{ 左 semi-hereditary}\\
+\iff\\
+\text{每个投射左 }\Lambda\text{-模的}\\
+\text{有限生成子模均投射}.
+\end{gathered}
+\]
+
+\section{为何 6.2 没有相同的内射结论}
+
+Theorem 5.4 中从投射子模条件推出``内射模的商仍内射''时，设
+\[
+0\longrightarrow Q'\longrightarrow Q\longrightarrow Q''\longrightarrow0,
+\qquad Q\text{ 内射}.
+\]
+为验证 \(Q''\) 内射，必须对\textbf{任意}嵌入 \(P'\hookrightarrow P\) 和任意映射 \(P'\to Q''\) 构造延拓 \(P\to Q''\)。证明先利用 \(P'\) 的投射性将映射提升为 \(P'\to Q\)，再利用 \(Q\) 的内射性延拓为 \(P\to Q\)，最后复合 \(Q\twoheadrightarrow Q''\)。
+
+因此，该论证要求任意子模 \(P'\subseteq P\) 均投射。若只知道 \(P'\) 有限生成时投射，便只能处理有限生成的嵌入；但内射性的定义要求处理所有嵌入，不能在此截断。等价地，Baer 判别法要求对每个左理想 \(I\subseteq\Lambda\) 的映射 \(I\to E\) 都可延拓到 \(\Lambda\)，而非只对有限生成理想成立。
+
+所以 semi-hereditary 的有限性条件并不能推出
+\[
+\text{内射模的商仍内射}.
+\]
+若它能推出该结论，则由 Theorem 5.4 反推 \(\Lambda\) 已是 hereditary，矛盾于一般的严格差别。典型地，非 Noether 的 Pr\"ufer 整环可为 semi-hereditary 而非 hereditary，故必存在某个内射模有非内射商。
+
+\section{何时差异消失}
+
+若 \(\Lambda\) 左 Noether，则每个左理想有限生成；于是 left semi-hereditary 自动等于 left hereditary。因此此时 Theorem 5.4 的内射商结论重新成立。
+
+\end{document}

@@ -1,0 +1,213 @@
+via                                    PREFACE
+
+    Another functor of at least as great importance as the tensor product
+is given by the group Hom^(.4,C) of all A-homomorphisms of the left
+A-module A into the left A-module C. This functor is contravariant in
+the variable A, covariant in the variable C and is left exact in that when
+applied to an exact sequence (1), it yields an exact sequence
+
+(2')              0    Hom^ {A\C)       Hom^ {A,C)        Hom^ {A\C).
+
+A similar discussion to that above leads to an exact sequence
+
+(3')      . . .       Extl (A\C) -> Ext:^ (A,C)
+                                     ExtX (A\C)      Ext^+i iA\C)        ‘
+
+which is a continuation of (2'), provided that we set
+
+(4')                        Ext5^ (/l,C) - Hom^ (/I,C).
+
+       These properties together with the property
+
+(6')                  Ext” (AyC) = 0 if n > 0 and A is projective
+
+and the usual formal properties of functors suffice as an axiomatic descrip¬
+tion of the functors Ext^ (>4,C).
+    The description above favored ^4 as a variable while keeping C constant.
+Again symmetry prevails, and identical results are obtained by treating
+.4 as a constant and varying C. In this case however, instead of projective
+modules and projective resolutions, we employ the dual notions of
+injective modules and injective resolutions. A module C is injective if
+every homomorphism B'        C admits an extension -> C for each module
+B containing B' as a submodule. An injective resolution of C is an
+exact sequence
+
+                                           --                    •   •
+
+
+
+with C* injective for /= 0,1,2,....
+
+     With the functors Tor and Ext introduced we can now show how
+the cohomology theories of groups, Lie algebras and associative algebras
+fit into a uniform pattern.
+     Let n be a multiplicative group and C an (additive) abelian group
+with n as a group of left operators. The integral group ring Z([l)
+is defined and C may be regarded as a left Z(n)-module. The group
+Z of rational integers also may be regarded as a Z(n)-module with
+each element of FI acting as the identity on Z. The cohomology groups of
+n with coefficients in C are then
+
+                              i/«(n,C) = Ext|(n)(Z,C).
+                                PREFACE                                  ix
+
+These cohomology groups were first introduced by Eilenberg-MacLane
+{Proc. Nat, Acad, Sci, U,S,A, 29 (1943), 155-158) in connection with a
+topological application. Subsequently they found a number of topo¬
+logical and algebraic applications; some of these will be considered in
+Ch. XIV and xvi. Quite recently, the theory for finite groups has been
+greatly enriched by the efforts of Artin and Tate; Ch. xii deals with
+these new developments. This theory has had its most striking appli¬
+cation in the subject of Galois theory and class field theory. As this is
+a large and quite separate topic we shall not attempt an exposition here,
+although we do prove nearly all the results of the cohomology theory of
+groups needed for this application.
+    Let q be a Lie algebra over a commutative ring K and let C be a (left)
+representation space for g. The enveloping (associative) algebra g* is
+then defined and C is regarded as a left g*-module. The ground ring K
+with the trivial representation of g also is a left g^-module. The cohomo-
+logy groups of g w ith coefficients in C are then
+                                  - Ext^,, (^,C).
+This theory, implicit in the work of Elie Cartan, was first explicitly
+formulated by Chevalley-Eilenberg (Trans, Am, Math, Soc, 63 (1948),
+85.-124). We shall give an account of this theory in Ch. xiii; however
+we do not enter into its main applications to semi-simple Lie algebras
+and compact Lie groups.
+    Let A be an associative algebra (with a unit element) over a com¬
+mutative ring K, and let /f be a two-sided A-module. We define the
+enveloping algebra A^ == A (Sk A* where A* is the “opposite” algebra
+of A. A may now be regarded as a left A'-module. The algebra A
+itself also is a two-sided A-module and thus a left A'-module. The
+cohomology groups are
+                         H%A,A) =          (A,/f).
+This theory, closely patterned after the cohomology theory of groups, was
+initiated by Hochschild (Ann, of Math, 46 (1945), 58-67). A fairly
+complete account of existing results is given in Ch. ix.
+    In all three cases above, homology groups also are defined using the
+functors Tor.
+
+    So far we have mentioned only the functors A 0^ C and Hom^^ (A,C)
+and their derived functors Tor and Ext. It has been found useful to
+consider other functors besides these two; Ch. ii-v develop such a theory
+for arbitrary additive functors. Both procedures that led to the definition
+of Tor are considered. The slow but elementary iterative procedure
+leads to the notion of satellite functors (Ch. iii). The faster, homological
+X                               PREFACE
+
+method using resolutions leads to the derived functors (Ch. v). In most
+important cases (including the functors ® and Horn) both procedures
+yield identical results.
+    Beginning with Ch. vi we abandon general functors and confine our
+attention to the special functors Tor and Ext and their composites.
+The main developments concerning homology theory are grouped in
+Ch. viii-xiii.
+    The last three chapters (xv-xvii) are devoted to the method of spectral
+sequences, which has been a major tool in recent developments in algebraic
+topology. In Ch. xv we give the general theory of spectral sequences,
+ while the subsequent two chapters give applications to questions studied
+ earlier in the book.
+     There is an appendix by David A. Buchsbaum outlining a more
+ abstract method of treating the subject of satellites and derived functors.
+
+     Each chapter is preceded by a short introduction and is followed by a
+list of exercises of varied difficulty. There is no general bibliography;
+references are made in the text, whenever needed. Crossreferences
+are made as follows: Theorem 2.1 (or Proposition 2.1 or Lemma 2.1) of
+Chapter x is referred to as 2.1 if the reference is in Chapter x, and as
+x,2.1 if the reference is outside of that chapter. Similarly viii,3,(8)
+refers to formula (8) of § 3 of Chapter viii.
+
+    We owe expressions of gratitude to the John Simon Guggenheim
+Memorial Foundation who made this work possible by a fellowship
+grant to one of the authors. We received help from several colleagues:
+D. A. Buchsbaum and R. L. Taylor read the manuscript carefully and
+contributed many useful suggestions; G. P. Hochschild and J. Tate
+helped with Chapter xii; J. P. Serre and N. E. Steenrod offered valuable
+criticism and suggestions. Special thanks are due to Miss Alice Krikorian
+for her patience shown in typing the manuscript.
+                                                          H. CartAN
+University of Paris                                       S. Eilenberg
+Columbia University
+September, 1953
+                               Contents
+Preface                                      v
+
+Chapter I.     Rings and Modules             3
+    1. Preliminaries                          3
+    2. Projective modules                     6
+    3. Injective modules                      8
+    4. Semi-simple rings                     11
+    5. Hereditary rings                      12
+    6. Semi-hereditary rings                 14
+    7. Noetherian rings                      15
+       Exercises                             16
+
+Chapter II.    Additive Functors             18
+    1. Definitions                           18
+    2. Examples                              20
+    3. Operators                             22
+    4. Preservation of exactness             23
+    5. Composite functors                    27
+    6. Change of rings                       28
+       Exercises                             31
+
+Chapter III.    Satellites                   33
+    1. Definition of satellites              33
+    2. Connecting homomorphisms              37
+    3. Half exact functors                   39
+    4. Connected sequence of functors        43
+    5. Axiomatic description of satellites   45
+    6. Composite functors                    48
+    7. Several variables                     49
+       Exercises                             51
+
+Chapter IV.     Homology                     53
+    1. Modules with differentiation          53
+    2. The ring of dual numbers              56
+    3. Graded modules, complexes             58
+                                    xi
+xH                                CONTENTS
+
+     4. Double gradings and complexes                   60
+     5. Functors of complexes                           62
+     6. The homomorphism a                              64
+     7. The homomorphism a (continuation)               66
+     8. Kunneth relations                               71
+        Exercises                                       72
+
+Chapter V.     Derived Functors                         75
+      1. Complexes over modules; resolutions             75
+      2. Resolutions of sequences                        78
+      3. Definition of'derived functors                  82
+      4. Connecting homomorphisms                        84
+      5. The functors PPT and L^T                        89
+      6. Comparison with satellites                      90
+      7. Computational devices                           91
+      8. Partial derived functors                        94
+      9. Sums, products, limits                          97
+     10. The sequence of a map                          101
+         Exercises                                      104
+
+Chapter VI.     Derived Functors of (g) and Horn        106
+     1. The functors Tor and Ext                        106
+     2. Dimension of modules and rings                  109
+     3. Kunneth relations                               112
+     4. Change of rings                                 116
+     5. Duality homomorphisms                           119
+        Exercises                                       122
+
+Chapter VII.     Integral Domains                       127
+     1. Generalities                                    127
+     2. The field of quotients                          129
+     3. Inversible ideals                               132
+     4. Priifer rings                                   133
+     5. Dedekind rings                                  134
+     6. Abelian groups                                  135
+     7. A description of Tori                           137
+        Exercises                                       139
+
+Chapter VIII.    Augmented Rings                        143
+      1. Homology and cohomology of an augmented ring   143
+      2. Examples                                       146
+      3. Change of rings                                149
+

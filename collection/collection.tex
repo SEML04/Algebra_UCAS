@@ -16,7 +16,7 @@
 
 \theoremstyle{definition}
 \newtheorem{definition}{定义}[section]
-\newtheorem{example}{题目/例题}[section]
+\newtheorem{example}{题目}[section]
 \newtheoremstyle{analysis}
   {3pt}{3pt}
   {\normalfont}
@@ -1284,6 +1284,23 @@ Krull 交定理最常用的形式是：若 \(A\) 是 Noether 环，\(I\subset A\
   正合。
 \end{itemize}
 
+若再把 \(\textit{平坦模}\) 一并放进来，则三者最适合统一记成下面这组函子刻画：
+\begin{itemize}
+  \item \(P\) 是\textbf{projective}，
+  \[
+    \Longleftrightarrow\quad \operatorname{Hom}(P,-)\ \text{正合};
+  \]
+  \item \(I\) 是\textbf{injective}，
+  \[
+    \Longleftrightarrow\quad \operatorname{Hom}(-,I)\ \text{正合};
+  \]
+  \item \(F\) 是\textbf{flat}，
+  \[
+    \Longleftrightarrow\quad -\otimes_A F\ \text{正合}.
+  \]
+\end{itemize}
+其中前两者互为对偶，而 flat 则是通过张量积来控制短正合列在左端是否保持正合。
+
 把这两个定义翻成“解 lifting / extension 问题”的语言会更直观：
 \begin{itemize}
   \item 投射模的本质是\textbf{对满射可提升}：若 \(M\twoheadrightarrow M''\) 且 \(P\to M''\) 已给出，则可提升成 \(P\to M\)；
@@ -1304,13 +1321,68 @@ Krull 交定理最常用的形式是：若 \(A\) 是 Noether 环，\(I\subset A\
   \item 若 \(I\) 内射，则恒等映射 \(I\to I\) 可沿单射 \(I\hookrightarrow M\) 延拓，得到收缩 \(r:M\to I\)，故分裂。
 \end{itemize}
 
-最后再记一个结构性结论：同书 \((\S 6.9,\ \text{命题 }6.9.8)\) 还说明
+\end{remark}
+
+\subsection{Semi-simple rings 与 hereditary rings}\label{subsec:semisimple-hereditary}
+
+\begin{remark}
+\phantomsection\label{rem:semisimple-hereditary}
+在 \textit{Cartan--Eilenberg} 第 I 章 \S4--\S5 中，
 \[
-  P \text{ 投射}
-  \iff
-  P \text{ 是某个自由模的直和项}.
+  \text{semi-simple} \Longrightarrow \text{left hereditary},
 \]
-这解释了为什么投射模总带有“可分裂”的味道：它本来就是从自由模中切下来的直和块；而内射模则是对偶地保证“映到它里面的态射不会被嵌入卡住”。
+但反过来一般不成立。
+
+原因是：若 \(\Lambda\) 左半单，则每个左理想都是 \(\Lambda\) 的直和因子；而直和因子必为
+projective 模，所以每个左理想都 projective，于是 \(\Lambda\) 左遗传。
+
+真正的差别在于：
+\begin{itemize}
+  \item \textbf{left hereditary} 只要求每个左理想是 projective \(\Lambda\)-模；
+  \item \textbf{semi-simple} 更强，要求每个左理想已经是 \(\Lambda\) 本身的直和因子，甚至等价于所有左 \(\Lambda\)-模都 projective（也都 injective）。
+\end{itemize}
+
+所以这里必须区分
+\[
+  \text{“是 \(\Lambda\) 的直和因子”}
+  \qquad\text{和}\qquad
+  \text{“是 projective \(\Lambda\)-模”}.
+\]
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:projective-vs-summand}
+按照 \textit{Cartan--Eilenberg} Thm.~2.2，
+\[
+  P\ \text{projective}
+  \Longleftrightarrow
+  P\ \text{是某个自由模的直和因子}.
+\]
+因此 projective 模未必要是 \(\Lambda\) 的直和因子，只能保证它是某个自由模
+\(\Lambda^{(I)}\) 的直和因子；有限生成时常可写作 \(\Lambda^n\) 的直和因子。
+
+标准反例是 \(\Lambda=\mathbb Z\)。任意理想 \(n\mathbb Z\) 都同构于 \(\mathbb Z\)，
+因此是 projective \(\mathbb Z\)-模；但当 \(n\neq 0,\pm1\) 时，\(n\mathbb Z\) 并不是
+\(\mathbb Z\) 的直和因子。所以 \(\mathbb Z\) 是 hereditary，但不是 semi-simple。
+\end{remark}
+
+\begin{remark}
+\phantomsection\label{rem:semihereditary-injective-quotient}
+\textit{Cartan--Eilenberg} 第 I 章 Thm.~5.4（第 14 页）与 Prop.~6.2（第 15 页）的差异在于：
+\[
+\begin{aligned}
+  \text{hereditary}
+  &\Longleftrightarrow \text{投射模的任意子模均投射}
+  \Longleftrightarrow \text{内射模的任意商仍内射},\\
+  \text{semi-hereditary}
+  &\Longleftrightarrow \text{投射模的\emph{有限生成}子模均投射}.
+\end{aligned}
+\]
+后者没有相应的内射商结论：验证 \(Q/Q'\) 内射时，必须对任意嵌入 \(P'\hookrightarrow P\) 延拓映射
+\(P'\to Q/Q'\)；证明须先用 \(P'\) 的投射性提升到 \(Q\)，再用 \(Q\) 的内射性延拓。这里的
+\(P'\) 一般并非有限生成，故 Prop.~6.2 不足以使用。等价地，Baer 判别法要求检验所有左理想，而不只是有限生成左理想。
+
+因此“内射模的商仍内射”是 hereditary 的刻画，不能由一般的 semi-hereditary 推出；若 \(\Lambda\) 左 Noether，所有左理想有限生成，二者才重合。
 \end{remark}
 
 \newpage
@@ -3165,6 +3237,156 @@ M\text{ Noetherian over }A
 补充一句：若 \(A\) 是一般环，上述结论需要 \(A\) 至少满足 IBN（invariant basis number）一类条件；否则可能出现 \(A^m\simeq A^n\) 但 \(m\ne n\)。
 \end{example}
 
+\subsection{\texorpdfstring{Galois 理论题目：超越单扩张的真中间域}{Galois理论题目：超越单扩张的真中间域}}\label{subsec:problem-transcendental-simple}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~216, Exercise 8）
+
+设
+\[
+  E=F(u),\qquad u\ \text{超越于 }F,
+\]
+且 \(K\) 是扩张 \(E/F\) 的一个中间域。证明：\(u\) 关于 \(K\) 代数。
+
+\textbf{解答：}
+
+若 \(u\in K\)，则 \(u\) 关于 \(K\) 满足一次方程
+\[
+  X-u=0,
+\]
+结论显然成立。以下设 \(u\notin K\)。
+
+取任意 \(a\in K\setminus F\)。由于 \(E=F(u)\)，可写成
+\[
+  a=\frac{f(u)}{g(u)},
+\]
+其中 \(f,g\in F[X]\), \(g\neq 0\)，且该分式不是常数。于是 \(u\) 满足
+\[
+  f(X)-ag(X)=0.
+\]
+这是一个系数在 \(K\) 中的非常数多项式：若它在 \(K[X]\) 中为零多项式，则比较 \(X\) 的各项系数便得 \(a\in F\)，矛盾。因此 \(u\) 关于 \(K\) 代数。
+
+也就是说，纯超越扩张 \(F(u)/F\) 的任一真中间域 \(K\) 都使得上层元素 \(u\) 反而变成 \(K\) 上的代数元。
+\end{example}
+
+\subsection{\texorpdfstring{Galois 理论题目：中间域全序时的原始元}{Galois理论题目：中间域全序时的原始元}}\label{subsec:problem-primitive-element-chain}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~216, Exercise 9）
+
+设 \(E/F\) 是域扩张，满足：
+\begin{itemize}
+  \item \([E:F]<\infty\)；
+  \item 任意两个含 \(F\) 的子域 \(E_1,E_2\subseteq E\) 都可比较，即
+  \[
+    E_1\subseteq E_2
+    \quad\text{或}\quad
+    E_2\subseteq E_1.
+  \]
+\end{itemize}
+证明：\(E/F\) 有原始元。
+
+\textbf{解答：}
+
+若 \(E=F\) 则无事可证。以下设 \(E\neq F\)。在所有真中间域里取一个极大者 \(K\)；由于子域按包含全序排列，这个极大者也就是唯一的最大真中间域。
+
+任取 \(\alpha\in E\setminus K\)。则
+\[
+  F(\alpha)\not\subseteq K,
+\]
+而子域全序迫使
+\[
+  K\subseteq F(\alpha).
+\]
+于是
+\[
+  F\subsetneq K\subseteq F(\alpha)\subseteq E.
+\]
+但 \(K\) 是最大真中间域，所以只能有
+\[
+  F(\alpha)=E.
+\]
+故 \(\alpha\) 就是 \(E/F\) 的一个原始元。
+
+换句话说，这个条件说明中间域格是一条有限链；因此只要取一个不在最大真中间域中的元素，它立刻生成整个扩张。
+\end{example}
+
+\begin{remark}
+\textbf{相关知识点：} 该题中的条件 \([E:F]<\infty\) 不能省去。
+
+反例正是上一题的纯超越单扩张
+\[
+  E=F(u).
+\]
+它本身满足“任意两个含 \(F\) 的中间域都可比较”这一链条件，例如
+\[
+  F(u)\supset F(u^2)\supset F(u^4)\supset \cdots
+\]
+是一条可比较链；更重要的是，对任意真中间域 \(K\subsetneq F(u)\)，上一题已经说明 \(u\) 关于 \(K\) 代数，因此不可能有
+\[
+  K=F(v)\quad\text{且}\quad u\in K(v)=K
+\]
+来直接在一般情形下套用“原始元”式结论。
+
+更本质地说，没有有限性条件时，中间域链可以无限下降，而本题证明里“取最大真中间域 \(K\)”这一步就未必成立；因此第一个条件正是保证该论证可行的关键。
+\end{remark}
+
+\subsection{Noether 与 Artin 条件的反例及不可能情形}
+\label{subsec:problem-noether-artin-examples}
+
+\begin{example}
+分别给出或判定下列类型的环：
+\begin{enumerate}
+  \item left Noetherian 但不是 right Noetherian；
+  \item Noetherian 但不是 Artinian；
+  \item Artinian 但不是 Noetherian；
+  \item 既不是 Noetherian 也不是 Artinian。
+\end{enumerate}
+
+\textbf{解答：}
+
+\begin{enumerate}
+  \item （出处：\textit{Cartan--Eilenberg}, Chapter I, \S7, p.~16）令
+  \[
+    A=\mathbb Z\langle x,y\rangle/(yx,y^2),
+    \qquad F=\mathbb Z[x].
+  \]
+  每个元素唯一写成 \(f+gy\)（\(f,g\in F\)），故 \(A=F\oplus Fy\) 是有限生成左 \(F\)-模；由 \(F\) Noether 可知 \(A\) left Noetherian。
+  另一方面
+  \[
+    I=\bigoplus_{n\geq0}\mathbb Z x^ny
+  \]
+  是右理想，且 \(Ix=Iy=0\)。右乘无法产生更高次的 \(x^ny\)，所以 \(I\) 不是有限生成右 \(A\)-模；因此 \(A\) 不是 right Noetherian。
+
+  \item 取 \(A=k[t]\)。它是 PID，故 Noetherian；但
+  \[
+    (t)\supsetneq(t^2)\supsetneq(t^3)\supsetneq\cdots
+  \]
+  不稳定，故不是 Artinian。这也与 \((\mathrm{III.Thm}\ 5.3.8)\) 一致：\(\dim k[t]=1\neq0\)。
+
+  \item \textbf{不存在}（此处 Artinian 与 Noetherian 取同一侧的通常约定）。Hopkins--Levitzki 定理给出：任一左 Artinian 环必左 Noetherian。
+
+  在本书的交换环语境中，\((\mathrm{III.Thm}\ 5.3.8)\) 直接给出
+  \[
+    A\text{ Artinian}\Longrightarrow A\text{ Noetherian}.
+  \]
+
+  \item 取无限变量多项式环
+  \[
+    A=k[x_1,x_2,x_3,\ldots].
+  \]
+  升链
+  \[
+    (x_1)\subsetneq(x_1,x_2)\subsetneq(x_1,x_2,x_3)\subsetneq\cdots
+  \]
+  说明它不是 Noetherian；降链
+  \[
+    (x_1)\supsetneq(x_1^2)\supsetneq(x_1^3)\supsetneq\cdots
+  \]
+  说明它也不是 Artinian。
+\end{enumerate}
+\end{example}
+
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -3178,28 +3400,31 @@ M\text{ Noetherian over }A
   \item \hyperref[rem:local-chain-noether]{[\hyperref[subsec:local-chain]{局部环与链条件}] 局部环理想一般不全是 \(\mathfrak m^n\)；若恰好全是，则自动 Noether。}
   \item \hyperref[rem:prop5312-nakayama]{[\hyperref[subsec:prop5312]{Prop 5.3.12 相关辨析}] Prop 5.3.12 的关键技术点是有限生成、Nakayama 与 Noether 推广。}
   \item \hyperref[rem:prop5312-noether]{[\hyperref[subsec:prop5312]{Prop 5.3.12 相关辨析}] Prop 5.3.12 的三条条件对 Noether 局部环同样等价，关键替代是 Krull 交定理 \(\bigcap_{n\ge 0}\mathfrak m^n=0\)。}
-  \item \hyperref[rem:krull-intersection]{[\hyperref[subsec:krull-intersection]{Krull 交定理}] Noether 情形下 \(\bigcap_{n\ge 0} I^nM\) 描述的是完备化映射的核；若 \(I\subset \operatorname{Jac}(A)\)，它就必为 \(0\)。}
-  \item \hyperref[rem:completion-spec-not-surjective]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] completion 的谱映射不自动满射；flat 不等于 faithfully flat，\(\mathbb Z\to \mathbb Z_2\) 给出标准反例。}
   \item \hyperref[rem:ass-localization-formula]{[\hyperref[subsec:ass-localization]{Associated primes 与局部化}] 局部化只保留与 \(S\) 不相交的 associated primes，书中 \(P\cap S^{-1}A\) 应改为 \(P\cap A\)。}
   \item \hyperref[rem:ass-quotient-radical]{[\hyperref[subsec:ass-localization]{Associated primes 与局部化}] 对商模 \(A/\mathfrak q\)，\(\operatorname{Ass}(A/\mathfrak q)\) 由根理想 \(\mathfrak r(\mathfrak q)\) 直接给出；素理想时就是 \(\operatorname{Ass}_A(A/(x))=\{(x)\}\)。}
-  \item \hyperref[rem:primary-colon]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 若 \(\mathfrak q\) 是 \(p\)-primary，则 \((\mathfrak q:x)\) 的计算由 \(A/\mathfrak q\) 中“零因子皆幂零”这一刻画统一控制。}
-  \item \hyperref[rem:m-primary]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] Noether 环里 \(\mathfrak m\)-primary、\(\sqrt{\mathfrak q}=\mathfrak m\)、以及 \(\mathfrak m^k\subset \mathfrak q\subset \mathfrak m\) 三条彼此等价，有限生成性正用在 \((2)\Rightarrow(3)\)。}
-  \item \hyperref[rem:primary-counterexample]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 素理想幂与固定根理想都不自动给出 primary 结构，\(k[x,y,z]/(xy-z^2)\) 提供了标准反例。}
-  \item \hyperref[rem:going-up-down]{[\hyperref[subsec:going-up-down]{整扩张中的上行与下行定理}] 整扩张给出 lying-over、incomparability 与 going-up；再加上 \(A\) 整闭整环，则还能得到 going-down。}
-  \item \hyperref[rem:galois-not-radical]{[\hyperref[subsec:galois-radical]{Galois 扩张与 radical 扩张}] \(\mathbb Q(\zeta_7)\) 的三次固定子域给出标准反例：Galois 不推出 radical。}
-  \item \hyperref[rem:x5-splitting-radical]{[\hyperref[subsec:galois-radical]{Galois 扩张与 radical 扩张}] \(x^5-2\) 的分裂域 \(\mathbb Q(\sqrt[5]{2},\zeta_5)\) 实际上是显式 radical 扩张，不能拿来做反例。}
   \item \hyperref[rem:prime-filtration-nonunique]{[Prime filtration 与 Ass] Prop 6.1.8 的 prime filtration 不唯一，出现的 prime multiset 也可不同。}
   \item \hyperref[rem:ass-short-exact-strict]{[Prime filtration 与 Ass] Lem 6.1.9 里的 associated primes 只能得到包含号，不能一般改成等号。}
   \item \hyperref[rem:ass-intersection-sum]{[Ass 的交与和] 在 Thm 6.2.10 附近，交可以无限进行，因为交仍是子模；并通常没有 \(\operatorname{Ass}\) 可谈，实际应改看子模的和。}
+  \item \hyperref[rem:primary-colon]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 若 \(\mathfrak q\) 是 \(p\)-primary，则 \((\mathfrak q:x)\) 的计算由 \(A/\mathfrak q\) 中“零因子皆幂零”这一刻画统一控制。}
+  \item \hyperref[rem:m-primary]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] Noether 环里 \(\mathfrak m\)-primary、\(\sqrt{\mathfrak q}=\mathfrak m\)、以及 \(\mathfrak m^k\subset \mathfrak q\subset \mathfrak m\) 三条彼此等价，有限生成性正用在 \((2)\Rightarrow(3)\)。}
+  \item \hyperref[rem:primary-counterexample]{[\hyperref[subsec:primary-ideal-colon]{Primary ideal 的计算与等价条件}] 素理想幂与固定根理想都不自动给出 primary 结构，\(k[x,y,z]/(xy-z^2)\) 提供了标准反例。}
   \item \hyperref[rem:support-basic]{[\hyperref[subsec:support-basic]{Supp(M) 的两条基本性质}] \(V(I)\) 是包含 \(I\) 的素理想所成闭集；\(\operatorname{Supp}(M)\) 的非空性等价于 \(M\neq 0\)，有限生成时由 \(\operatorname{Ann}(M)\) 判定。}
+  \item \hyperref[rem:going-up-down]{[\hyperref[subsec:going-up-down]{整扩张中的上行与下行定理}] 整扩张给出 lying-over、incomparability 与 going-up；再加上 \(A\) 整闭整环，则还能得到 going-down。}
+  \item \hyperref[rem:galois-not-radical]{[\hyperref[subsec:galois-radical]{Galois 扩张与 radical 扩张}] \(\mathbb Q(\zeta_7)\) 的三次固定子域给出标准反例：Galois 不推出 radical。}
+  \item \hyperref[rem:x5-splitting-radical]{[\hyperref[subsec:galois-radical]{Galois 扩张与 radical 扩张}] \(x^5-2\) 的分裂域 \(\mathbb Q(\sqrt[5]{2},\zeta_5)\) 实际上是显式 radical 扩张，不能拿来做反例。}
   \item \hyperref[subsec:categorical-view]{[范畴论视角] Artin/Noether 的形式对偶更适合用 Matlis 对偶理解。}
   \item \hyperref[rem:limits-colimits-padic]{[\hyperref[subsec:limits-colimits]{极限、余极限与始对象/终对象的辨析}] 分清极限/余极限先看过渡态射方向：\(\mathbb Z_p\) 来自 \(\varprojlim \mathbb Z/p^n\mathbb Z\)，而 Prüfer \(p\)-群来自 \(\varinjlim \mathbb Z/p^n\mathbb Z\)。}
   \item \hyperref[rem:initial-terminal-limits]{[\hyperref[subsec:limits-colimits]{极限、余极限与始对象/终对象的辨析}] 始对象是“唯一流出”，终对象是“唯一流入”；colimit 对应始对象的泛性质，limit 对应终对象的泛性质。}
-  \item \hyperref[rem:split-projective-injective]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列分裂等价于有截面、收缩或直和分解；投射模控制对满射的提升，内射模控制对单射的延拓。}
   \item \hyperref[subsec:artin-rees-qn]{[Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)] Artin-Rees 预备引理里，核心是证明 \(M_n^*=A^*\!\cdot Q_n\) 为有限生成 \(A^*\)-模，而 \(Q_n\) 与 \(M_n^*\) 的生成元处在不同直和环境中。}
+  \item \hyperref[rem:krull-intersection]{[\hyperref[subsec:krull-intersection]{Krull 交定理}] Noether 情形下 \(\bigcap_{n\ge 0} I^nM\) 描述的是完备化映射的核；若 \(I\subset \operatorname{Jac}(A)\)，它就必为 \(0\)。}
+  \item \hyperref[rem:completion-spec-not-surjective]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] completion 的谱映射不自动满射；flat 不等于 faithfully flat，\(\mathbb Z\to \mathbb Z_2\) 给出标准反例。}
   \item \hyperref[rem:artin-rees-subspace-topology]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] 8.5 节前最后一段要区分 \(I\)-adic 滤过、\(I\)-adic 拓扑与诱导过滤 \(I^nM\cap N\)；Artin-Rees 说明它们在子模上给出同一拓扑。}
   \item \hyperref[rem:giM-vs-gM]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] \(G_I(M)\) 是标准 \(I\)-adic filtration 的 associated graded，\(G(M)\) 是一般 \(I\)-filtration 的 associated graded；相同的是诱导拓扑，不是分次模本身。}
   \item \hyperref[rem:prop8510-graded-recovery]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] Prop 8.5.10 说明：在完备且 \(\bigcap_{n\ge 0}M_n=0\) 的情形下，\(G(M)\) 的有限生成性与 Noether 性可分别恢复 \(M\) 的对应性质。}
+  \item \hyperref[rem:split-projective-injective]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列分裂等价于有截面、收缩或直和分解；projective / injective / flat 分别由 \(\operatorname{Hom}(P,-)\)、\(\operatorname{Hom}(-,I)\)、\(-\otimes_A F\) 的正合性刻画。}
+  \item \hyperref[rem:semisimple-hereditary]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] semi-simple 强于 hereditary，因为“每个左理想是 \(\Lambda\) 的直和因子”强于“每个左理想是 projective \(\Lambda\)-模”。}
+  \item \hyperref[rem:projective-vs-summand]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] projective 模只保证是某个自由模的直和因子，不一定是 \(\Lambda\) 本身的直和因子；\(\mathbb Z\) 给出 hereditary 非 semi-simple 的标准反例。}
+  \item \hyperref[rem:semihereditary-injective-quotient]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] semi-hereditary 只控制有限生成子模，无法检验内射性所需的任意嵌入；左 Noether 时才与 hereditary 重合。}
 \end{itemize}
 
 \vspace{0.8em}
@@ -3237,6 +3462,9 @@ M\text{ Noetherian over }A
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
   \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
+  \item \hyperref[subsec:problem-transcendental-simple]{[Galois 理论题目：超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
+  \item \hyperref[subsec:problem-primitive-element-chain]{[Galois 理论题目：中间域全序时的原始元] 若有限扩张的含 \(F\) 中间域按包含构成全序，则取最大真中间域外的元素即可生成整个扩张；其中 \([E:F]<\infty\) 不能省去。}
+  \item \hyperref[subsec:problem-noether-artin-examples]{[Noether 与 Artin 条件的反例及不可能情形] Dieudonn\'e 环是 left Noetherian 非 right Noetherian；\(k[t]\) 是 Noether 非 Artin；Artin 非 Noether 不存在；无限变量多项式环两者皆非。}
 \end{itemize}
 
 \end{document}

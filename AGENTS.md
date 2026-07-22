@@ -1,5 +1,9 @@
 # Repository Guidelines
 
+## OCR 校正规则
+
+- 查阅 `txt/Cartan-Eilenberg - Homological Algebra.txt` 时，注意其会将原书的希腊大写字母 `\Lambda` 误提取为 `A`。在模论语境中，`left A-module`、`left ideal I of A` 等表述应先按 `left \Lambda-module`、`left ideal I of \Lambda` 理解，并以对应 PDF 原页复核。
+
 ## 项目结构
 
 这个仓库是一个代数学习与整理工作区，核心文件如下：
@@ -48,6 +52,7 @@
 - 已在“专题整理”中完整展开的内容，在“概念辨析”里只保留短结论，避免重复堆叠。
 - 每次向 `collection/collection.tex` 新增正式内容后，必须同步补入“索引”。
 - 索引条目应尽量压缩成一句话，并显式带出所属 `subsection` 信息；若能点击跳转，则优先保留可点击定位。
+- 索引中各条目的排列顺序必须与正文中对应内容的实际出现顺序一致；新增、拆分或移动小节后，要同步检查并重排索引，避免定位顺序错乱。
 - 同一 `tex` 文件若需多次编译（例如为刷新目录、交叉引用），必须串行执行，不能并行运行多个 `xelatex` 进程；否则可能竞争写入 `aux`、`toc`、`out` 与 `pdf` 文件并导致输出损坏。
 - 之后编译 `.tex` 文件时，无论处理的是哪个文件，都只能在 `.\collection` 文件夹内执行编译命令；不要在仓库根目录直接运行 `xelatex "collection/..."`，以免把 `pdf`、`aux`、`toc`、`log` 等产物写到错误位置。
 - 编译结束后，若不再需要中间文件，应清理 `aux`、`log`、`out`、`toc`、`synctex.gz` 等副产物；默认只保留 `tex`、`pdf` 以及正文实际引用的图片等资源文件。
