@@ -3331,6 +3331,67 @@ M\text{ Noetherian over }A
 更本质地说，没有有限性条件时，中间域链可以无限下降，而本题证明里“取最大真中间域 \(K\)”这一步就未必成立；因此第一个条件正是保证该论证可行的关键。
 \end{remark}
 
+\subsection{\texorpdfstring{Galois 理论题目：有限扩张到任意扩张域的嵌入个数}{Galois理论题目：有限扩张到任意扩张域的嵌入个数}}\label{subsec:problem-finite-extension-monomorphism-count}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~228, Section 4.3, Exercise 5）
+
+设 \(E/F\) 是有限扩张，且
+\[
+  [E:F]=n<\infty.
+\]
+又设 \(K/F\) 是任意扩张域。证明：\(E/F\) 到 \(K/F\) 的 monomorphism 个数不超过 \(n\)。
+
+\textbf{解答：}
+
+这里的 monomorphism of \(E/F\) into \(K/F\) 指固定 \(F\) 的域嵌入
+\[
+  \sigma:E\hookrightarrow K.
+\]
+记这类嵌入的集合为 \(\operatorname{Hom}_F(E,K)\)。要证
+\[
+  \#\operatorname{Hom}_F(E,K)\le [E:F].
+\]
+
+对 \(n=[E:F]\) 归纳。若 \(n=1\)，则 \(E=F\)，固定 \(F\) 的嵌入只有一个，结论成立。
+
+设 \(n>1\)。取 \(u\in E\setminus F\)，令
+\[
+  L=F(u),\qquad d=[L:F].
+\]
+则 \(d>1\)，且
+\[
+  [E:L]=\frac{n}{d}<n.
+\]
+设 \(m_u(x)\in F[x]\) 是 \(u\) 在 \(F\) 上的最小多项式。任意
+\[
+  \sigma\in \operatorname{Hom}_F(E,K)
+\]
+限制到 \(L\) 后由 \(\sigma(u)\) 唯一决定，而 \(\sigma(u)\) 必须是 \(m_u(x)\) 在 \(K\) 中的一个根。因此
+\[
+  \#\operatorname{Hom}_F(L,K)\le d.
+\]
+
+现在固定一个 \(F\)-嵌入
+\[
+  \tau:L\hookrightarrow K.
+\]
+把 \(K\) 通过 \(\tau\) 看成 \(L\)-扩张域。由归纳假设应用于有限扩张 \(E/L\)，可知把 \(\tau\) 延拓到 \(E\) 的嵌入个数至多为
+\[
+  [E:L]=\frac{n}{d}.
+\]
+于是所有 \(F\)-嵌入 \(E\hookrightarrow K\) 先按其在 \(L\) 上的限制分类，得到
+\[
+  \#\operatorname{Hom}_F(E,K)
+  \le
+  d\cdot \frac{n}{d}
+  =
+  n.
+\]
+
+这正是 Theorem 4.4 证明中“先数 \(F(u)\) 的嵌入，再数每个嵌入的延拓”的方法，只是不要求 \(K\) 是分裂域，也不要求等号成立。
+\end{example}
+
 \subsection{Noether 与 Artin 条件的反例及不可能情形}
 \label{subsec:problem-noether-artin-examples}
 
@@ -3464,6 +3525,7 @@ M\text{ Noetherian over }A
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
   \item \hyperref[subsec:problem-transcendental-simple]{[Galois 理论题目：超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
   \item \hyperref[subsec:problem-primitive-element-chain]{[Galois 理论题目：中间域全序时的原始元] 若有限扩张的含 \(F\) 中间域按包含构成全序，则取最大真中间域外的元素即可生成整个扩张；其中 \([E:F]<\infty\) 不能省去。}
+  \item \hyperref[subsec:problem-finite-extension-monomorphism-count]{[Galois 理论题目：有限扩张到任意扩张域的嵌入个数] 若 \([E:F]=n<\infty\)，则 \(E/F\) 到任意扩张域 \(K/F\) 的 \(F\)-嵌入个数至多为 \(n\)。}
   \item \hyperref[subsec:problem-noether-artin-examples]{[Noether 与 Artin 条件的反例及不可能情形] Dieudonn\'e 环是 left Noetherian 非 right Noetherian；\(k[t]\) 是 Noether 非 Artin；Artin 非 Noether 不存在；无限变量多项式环两者皆非。}
 \end{itemize}
 
