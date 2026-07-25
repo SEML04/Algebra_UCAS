@@ -3237,7 +3237,7 @@ M\text{ Noetherian over }A
 补充一句：若 \(A\) 是一般环，上述结论需要 \(A\) 至少满足 IBN（invariant basis number）一类条件；否则可能出现 \(A^m\simeq A^n\) 但 \(m\ne n\)。
 \end{example}
 
-\subsection{\texorpdfstring{Galois 理论题目：超越单扩张的真中间域}{Galois理论题目：超越单扩张的真中间域}}\label{subsec:problem-transcendental-simple}
+\subsection{超越单扩张的真中间域}\label{subsec:problem-transcendental-simple}
 
 \begin{example}
 （出处：\textit{Jacobson - Basic Algebra I}, p.~216, Exercise 8）
@@ -3269,7 +3269,7 @@ M\text{ Noetherian over }A
 也就是说，纯超越扩张 \(F(u)/F\) 的任一真中间域 \(K\) 都使得上层元素 \(u\) 反而变成 \(K\) 上的代数元。
 \end{example}
 
-\subsection{\texorpdfstring{Galois 理论题目：中间域全序时的原始元}{Galois理论题目：中间域全序时的原始元}}\label{subsec:problem-primitive-element-chain}
+\subsection{中间域全序条件下有限扩张的原始元}\label{subsec:problem-primitive-element-chain}
 
 \begin{example}
 （出处：\textit{Jacobson - Basic Algebra I}, p.~216, Exercise 9）
@@ -3331,7 +3331,7 @@ M\text{ Noetherian over }A
 更本质地说，没有有限性条件时，中间域链可以无限下降，而本题证明里“取最大真中间域 \(K\)”这一步就未必成立；因此第一个条件正是保证该论证可行的关键。
 \end{remark}
 
-\subsection{\texorpdfstring{Galois 理论题目：有限扩张到任意扩张域的嵌入个数}{Galois理论题目：有限扩张到任意扩张域的嵌入个数}}\label{subsec:problem-finite-extension-monomorphism-count}
+\subsection{有限扩张到任意扩域的嵌入个数上界}\label{subsec:problem-finite-extension-monomorphism-count}
 
 \begin{example}
 （出处：\textit{Jacobson - Basic Algebra I}, p.~228, Section 4.3, Exercise 5）
@@ -3448,6 +3448,363 @@ M\text{ Noetherian over }A
 \end{enumerate}
 \end{example}
 
+\subsection{\texorpdfstring{$p$-polynomial 的等价刻画：根构成加法群的 monic 多项式}{p-polynomial 的等价刻画}}\label{subsec:problem-p-polynomial}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~234, Section 4.4, Exercise 3）
+
+设 \(F\) 是特征 \(p\) 的域。\(F[x]\) 中的多项式 \(f(x)\) 称为 \textbf{\(p\)-polynomial}，若它具有形式
+\[
+  f(x)=x^{p^m}+a_1x^{p^{m-1}}+\cdots+a_mx,
+\]
+即形如 \(x^{p^k}\) 的 \(F\)-线性组合。证明：一个正次数的首一多项式是 \(p\)-polynomial 当且仅当其所有根构成分裂域加法群的一个有限子群，且每个根的重数都相同，同为某个 \(p^e\)。
+
+\begin{proof}
+\textbf{(1) 必要性（\(\Rightarrow\)）：\(p\)-polynomial 的根构成加法子群。}
+
+设
+\[
+  f(x)=x^{p^m}+a_1x^{p^{m-1}}+\cdots+a_mx\in F[x]
+\]
+是 \(p\)-polynomial。注意 \(f(0)=0\) 且 \(f(x)\) 没有常数项。
+
+在特征 \(p\) 下，\((x+y)^{p^k}=x^{p^k}+y^{p^k}\)（Freshman's dream），且对任意 \(c\in F\) 有 \((c x)^{p^k}=c^{p^k}x^{p^k}\)。因此
+\[
+  f(x+y)=f(x)+f(y)\qquad (\forall x,y),
+\]
+即 \(f(x)\) 作为从分裂域到自身的映射是加法群同态。于是：
+\begin{itemize}
+  \item 若 \(r_1,r_2\) 是 \(f\) 的根，则 \(f(r_1+r_2)=f(r_1)+f(r_2)=0\)，和仍是根；
+  \item 若 \(r\) 是根，则对任意 \(n\in\mathbb Z\)，\(f(nr)=nf(r)=0\)，整数倍仍在根集中。
+\end{itemize}
+特别地，根集在 \(\mathbb F_p\)-标量乘法下封闭，故构成分裂域加法群的有限子群（且是 \(\mathbb F_p\)-向量空间）。
+
+再处理重数。若 \(a_m\neq 0\)，则 \(f'(x)=a_m\) 是非零常数，由 \((\S 4.4,\ \mathrm{Thm}\ 4.5)\) 知 \((f,f')=1\)，故 \(f\) 的所有根都是单根，重数为 \(p^0=1\)。
+
+若 \(a_m=a_{m-1}=\cdots=a_{m-k+1}=0\) 而 \(a_{m-k}\neq 0\)（\(k\ge 1\)），则
+\[
+  f(x)=x^{p^m}+a_1x^{p^{m-1}}+\cdots+a_{m-k}x^{p^k}
+      =g(x)^{p^k},
+\]
+其中
+\[
+  g(x)=x^{p^{m-k}}+a_1x^{p^{m-k-1}}+\cdots+a_{m-k}x
+\]
+仍是 \(p\)-polynomial 且 \(g'(x)=a_{m-k}\neq 0\)，故 \(g\) 可分的。在分裂域中，若 \(\{\beta_j\}\) 是 \(g\) 的单根集，则
+\[
+  f(x)=g(x)^{p^k}=\prod_j (x^{p^k}-\beta_j)=\prod_j (x-\gamma_j)^{p^k},
+\]
+其中 \(\gamma_j^{p^k}=\beta_j\)（在特征 \(p\) 下 \(x^{p^k}-\beta_j\) 在分裂域中有唯一根，因为 \(x\mapsto x^{p^k}\) 是单射且分裂域含有所需的根）。因此 \(f\) 的每个根的重数恰为 \(p^k\)，且全体相同。
+
+综上，任何 \(p\)-polynomial 的根集是有限加法子群，且每个根的重数相同（为某个 \(p^e\)）。
+
+\medskip
+\textbf{(2) 充分性（\(\Leftarrow\)）：根构成加法子群 \(\Rightarrow\) 是 \(p\)-polynomial。}
+
+设 \(f(x)\in F[x]\) 是正次数首一多项式，\(E\) 是其分裂域。记 \(V\subseteq E\) 为 \(f(x)\) 的互异根集。由假设：
+\begin{itemize}
+  \item \(V\) 是 \((E,+)\) 的有限子群；
+  \item 每个根的重数为 \(p^e\)（\(e\ge 0\)）。
+\end{itemize}
+
+由于 \(\operatorname{char}F=p\)，有限加法群 \(V\) 自动是 \(\mathbb F_p\)-向量空间。设
+\[
+  \dim_{\mathbb F_p}V=m,
+\]
+则 \(|V|=p^m\)。
+
+令
+\[
+  g(x)=\prod_{v\in V}(x-v)\in E[x].
+\]
+则 \(\deg g=p^m\)，且 \(V\) 恰为 \(g(x)\) 的单根集。因为任一 \(F\)-嵌入把 \(V\) 映到自身，故 \(g(x)\) 的系数在 Galois 群作用下不变（若 \(F\) 非完备，则考虑可分闭包中的对应作用），从而 \(g(x)\in F[x]\)。
+
+由重数条件，
+\[
+  f(x)=g(x)^{p^e}.
+\]
+若能证明 \(g(x)\) 是 \(p\)-polynomial 且一次项系数非零，则
+\[
+  f(x)=\bigl(x^{p^m}+a_1x^{p^{m-1}}+\cdots+a_mx\bigr)^{p^e}
+      =x^{p^{m+e}}+a_1^{p^e}x^{p^{m+e-1}}+\cdots+a_m^{p^e}x^{p^e},
+\]
+它仍是 \(p\)-polynomial（最后 \(e\) 个系数为零）。
+
+\textbf{用 Moore 行列式证明 \(g(x)\) 是 \(p\)-polynomial。}
+
+取 \(V\) 的一组 \(\mathbb F_p\)-基 \(\alpha_1,\ldots,\alpha_m\)。考虑 \((m+1)\times(m+1)\) 行列式：
+\[
+  \Delta(x)=\det\begin{pmatrix}
+  \alpha_1   & \alpha_2   & \cdots & \alpha_m   & x \\
+  \alpha_1^p & \alpha_2^p & \cdots & \alpha_m^p & x^p \\
+  \alpha_1^{p^2} & \alpha_2^{p^2} & \cdots & \alpha_m^{p^2} & x^{p^2} \\
+  \vdots     & \vdots     & \ddots & \vdots     & \vdots \\
+  \alpha_1^{p^m} & \alpha_2^{p^m} & \cdots & \alpha_m^{p^m} & x^{p^m}
+  \end{pmatrix}.
+\]
+沿最后一列展开：
+\[
+  \Delta(x)=c_0x+c_1x^p+c_2x^{p^2}+\cdots+c_mx^{p^m},
+\]
+其中
+\[
+  c_m=\det\!\bigl(\alpha_j^{p^i}\bigr)_{0\le i\le m-1}^{1\le j\le m}
+\]
+是 \(\{\alpha_j\}\) 的 \textbf{Moore 行列式}。Moore 行列式非零当且仅当 \(\{\alpha_j\}\) 在 \(\mathbb F_p\) 上线性无关 —— 这正是基的条件，故 \(c_m\neq 0\)。
+
+类似地，
+\[
+  c_0=\det\!\bigl(\alpha_j^{p^i}\bigr)_{1\le i\le m}^{1\le j\le m}
+\]
+也是 Moore 行列式（行取 \(p^1,\ldots,p^m\)），同样非零。
+
+关键观察：对任意 \(v=\sum_{j=1}^m \lambda_j\alpha_j\in V\)（\(\lambda_j\in\mathbb F_p\)），
+\[
+  v^{p^k}
+  =\Bigl(\sum_{j=1}^m \lambda_j\alpha_j\Bigr)^{p^k}
+  =\sum_{j=1}^m \lambda_j^{p^k}\alpha_j^{p^k}
+  =\sum_{j=1}^m \lambda_j\alpha_j^{p^k}
+  \qquad(\because\lambda_j\in\mathbb F_p\Rightarrow\lambda_j^{p^k}=\lambda_j).
+\]
+于是当 \(x=v\) 时，\(\Delta(x)\) 的最后一列是前 \(m\) 列的 \(\mathbb F_p\)-线性组合，行列式为零：
+\[
+  \Delta(v)=0\qquad (\forall v\in V).
+\]
+而 \(\deg\Delta(x)=p^m=|V|\)，且 \(\Delta'(x)=c_0\neq 0\)，故 \(\Delta(x)\) 恰以 \(V\) 为单根集。归一化得
+\[
+  g(x)=\frac{\Delta(x)}{c_m}=x^{p^m}+\frac{c_{m-1}}{c_m}x^{p^{m-1}}+\cdots+\frac{c_0}{c_m}x,
+\]
+它是 \(F[x]\) 中的首一 \(p\)-polynomial，且一次项系数 \(c_0/c_m\neq 0\)。
+
+因此 \(f(x)=g(x)^{p^e}\) 也是 \(p\)-polynomial。
+\end{proof}
+
+\textbf{注：}本题与 Section 4.4 的 Exercise 2 紧密衔接：Exercise 2 说明不可约多项式在特征 \(p\) 下每个根的重数相同；本题则进一步刻画了 ``根集是加法群'' 这一条件恰好对应 \(p\)-polynomial。Moore 行列式在这里扮演的角色，可类比为 Vandermonde 行列式在普通多项式插值中的角色 —— 它把 \(\mathbb F_p\)-向量空间结构转化成了 \(x^{p^k}\) 的线性组合。
+\end{example}
+
+\subsection{纯不可分二项式的不可约性}
+\label{subsec:problem-purely-inseparable-binomial}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, Section 4.4, Exercise 4）
+
+设 \(F\) 是特征 \(p>0\) 的不完美域，取 \(a\in F\setminus F^p\)。证明对每个 \(e=0,1,2,\ldots\)，
+\[
+  X^{p^e}-a
+\]
+在 \(F[X]\) 中不可约。
+
+\textbf{解答：}
+
+当 \(e=0\) 时，多项式为 \(X-a\)，显然不可约。以下设 \(e\geq1\)，在代数闭包中取 \(\alpha\) 满足 \(\alpha^{p^e}=a\)。特征 \(p\) 下
+\[
+  X^{p^e}-a=(X-\alpha)^{p^e},
+\]
+故 \(\alpha\) 的最小多项式 \(m_\alpha(X)\) 的全部根都等于 \(\alpha\)。又 \(\alpha\notin F\)，否则
+\(a=\alpha^{p^e}\in F^p\)。
+
+对特征 \(p\) 下的不可约多项式反复提出 \(p\) 次幂，可写成
+\[
+  m_\alpha(X)=g(X^{p^r}),
+  \qquad g'(X)\neq0,
+\]
+其中 \(g\) 仍不可约。由于 \(m_\alpha\) 只有根 \(\alpha\)，\(g\) 只有根 \(\alpha^{p^r}\)；但 \(g'\neq0\) 意味着 \(g\) 可分，故 \(g\) 只能一次。因此
+\[
+  m_\alpha(X)=X^{p^r}-b,
+  \qquad b=\alpha^{p^r}\in F.
+\]
+又 \(m_\alpha\mid X^{p^e}-a\)，所以 \(r\le e\)，并且
+\[
+  a=\alpha^{p^e}=b^{p^{e-r}}.
+\]
+若 \(r<e\)，便有 \(a\in F^p\)，与选择 \(a\notin F^p\) 矛盾；故 \(r=e\)，从而
+\[
+  m_\alpha(X)=X^{p^e}-a.
+\]
+这正说明该多项式不可约。
+
+\textbf{要点：} 不完美性只用于保证 \(F\setminus F^p\neq\varnothing\)；一旦给定 \(a\notin F^p\)，结论只依赖于这一条件。该扩张是次数 \(p^e\) 的纯不可分扩张，且在代数闭包中只有一个根 \(\alpha\)，重数为 \(p^e\)。
+\end{example}
+
+\subsection{\texorpdfstring{有理函数域的仿射 Galois 群及其固定域}{有理函数域的仿射 Galois 群及其固定域}}\label{subsec:problem-affine-galois}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~243, Section 4.5, Exercise 8）
+
+设 \(E=(\mathbb Z/(p))(t)=\mathbb F_p(t)\)，其中 \(t\) 在 \(\mathbb F_p\) 上超越。令 \(G\) 为 \(E\) 的自同构群，由所有形如
+\[
+  t\mapsto at+b,\qquad a,b\in\mathbb F_p,\ a\neq 0
+\]
+的自同构组成（此即 Exercise 7 中平移子群的推广）。试求固定域 \(F=\operatorname{Inv}G\) 及次数 \([E:F]\)。
+
+\begin{proof}
+\(G\) 正是 \(\mathbb F_p\) 上的仿射线性变换群 \(\operatorname{AGL}(1,p)\)。其阶为
+\[
+  |G|=p(p-1),
+\]
+因 \(a\) 有 \(p-1\) 种选择，\(b\) 有 \(p\) 种选择，且不同选择给出不同的自同构。
+
+由 Artin 引理（Lemma 2, p.~235），\([E:F]\le |G|=p(p-1)\)。
+
+分两步构造中间域。先考虑平移子群
+\[
+  T=\{t\mapsto t+b\mid b\in\mathbb F_p\},\qquad |T|=p.
+\]
+由 Exercise 7，
+\[
+  \operatorname{Inv}T=\mathbb F_p(t^p-t),\qquad [E:\operatorname{Inv}T]=p.
+\]
+
+在 \(\operatorname{Inv}T=\mathbb F_p(t^p-t)\) 上，记 \(u:=t^p-t\)。伸缩子群 \(D\cong\mathbb F_p^\times\) 的作用为
+\[
+  u\mapsto (at+b)^p-(at+b)=a(t^p-t)+(b^p-b)=au,
+\]
+其中 \(b^p=b\) 使用了 \(\mathbb F_p\) 中元素的性质。由于 \(\mathbb F_p^\times\) 是 \(p-1\) 阶循环群，且 \(a^{p-1}=1\)，元素
+\[
+  v:=u^{p-1}=(t^p-t)^{p-1}
+\]
+在 \(D\) 作用下不变：\(au\mapsto a^{p-1}u^{p-1}=v\)。
+
+又 \(G=T\rtimes D\)（半直积），故 \(D\) 的固定域在 \(G\) 下也固定。因此
+\[
+  F=\mathbb F_p\bigl((t^p-t)^{p-1}\bigr).
+\]
+
+其次数：
+\[
+  [E:F]=[E:\mathbb F_p(t^p-t)]\cdot [\mathbb F_p(t^p-t):F]=p\cdot(p-1)=p(p-1)=|G|,
+\]
+与 Artin 引理的上界一致。
+
+\textbf{注：}固定域也可以理解为：\(\operatorname{AGL}(1,p)\) 在有理函数域上的固定域由 \((t^p-t)^{p-1}\) 生成；该扩域是 Section 4.5 第二类标准例子（对称有理函数域）之外的另一类显式 Galois 扩张模型。
+\end{proof}
+\end{example}
+
+\subsection{\texorpdfstring{正规扩域的 Galois 群：四元数群 \texorpdfstring{\(Q_8\)}{Q8} 的显式实现}{正规扩域的 Galois 群：四元数群 Q8 的显式实现}}\label{subsec:problem-quartic-normal}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~244, Section 4.5, Exercise 9）
+
+设 \(E=\mathbb Q(\sqrt2,\sqrt3,u)\)，其中 \(u^2=(9-5\sqrt3)(2-\sqrt2)\)。证明 \(E/\mathbb Q\) 正规，并确定 \(\operatorname{Gal}(E/\mathbb Q)\)。
+
+\begin{proof}
+\textbf{Step 1. 域的塔与次数。}
+记 \(a=\sqrt2,\ b=\sqrt3\)，并记 \(s=9-5b,\ t=2-a\)。令 \(F=\mathbb Q(a,b)\)。则
+\[
+  [F:\mathbb Q]=4,\qquad \operatorname{Gal}(F/\mathbb Q)\cong V_4.
+\]
+若 \(st=u^2\) 是 \(F\) 中平方元，则其相对于二次扩张 \(F/\mathbb Q(a)\) 的范数
+\[
+  N_{F/\mathbb Q(a)}(st)=t^2(9-5b)(9+5b)=6t^2
+\]
+也应为 \(\mathbb Q(a)\) 中的平方元。这将迫使 \(6\) 是 \(\mathbb Q(\sqrt2)\) 中的平方元；但
+\((x+ya)^2=6\) 给出 \(2xy=0\)，进而要求 \(x^2=6\) 或 \(2y^2=6\)，均不可能。故 \(u\notin F\)，从而
+\[
+  [E:F]=2,\qquad [E:\mathbb Q]=8.
+\]
+
+\textbf{Step 2. 正规性。}
+\(F/\mathbb Q\) 的四个自同构由 \(a\mapsto\pm a,\ b\mapsto\pm b\) 给出。\(u\) 的相应共轭根均已在 \(E\) 中：
+\[
+  u,\qquad \frac{as}{u},\qquad \frac{abt}{u},\qquad \frac{2b}{u}.
+\]
+事实上，它们的平方依次为
+\[
+  st,\quad s(2+a),\quad (9+5b)t,\quad (9+5b)(2+a).
+\]
+故 \(E\) 包含 \(u\) 的所有 \(\mathbb Q\)-共轭，并且 \(E/\mathbb Q\) 正规（特征为零时自动可分）。
+
+\textbf{Step 3. Galois 群。}
+定义 \(r,\tau\in\operatorname{Gal}(E/\mathbb Q)\) 为
+\[
+\begin{array}{c|ccc}
+ &a&b&u\\ \hline
+ r&-a&b&as/u\\
+ \tau&a&-b&abt/u.
+\end{array}
+\]
+上一步的平方计算保证这些赋值保持关系 \(u^2=st\)，因而确实给出自同构。令
+\(z\) 为固定 \(a,b\) 而令 \(u\mapsto-u\) 的自同构，则
+\[
+  r^2(u)=\tau^2(u)=-u,\qquad r^2=\tau^2=z.
+\]
+另一方面，\(r\tau\) 与 \(\tau r\) 在 \(a,b\) 上都取负号，且直接代入得
+\[
+  r\tau(u)=-\tau r(u),\qquad\text{即}\qquad r\tau=z\,\tau r.
+\]
+于是 \(r^4=\tau^4=1\)、\(r^2=\tau^2=z\neq1\)，且 \(r\tau=-\tau r\)。这些正是四元数群的关系；又
+\([E:\mathbb Q]=8\)，故
+\[
+  \operatorname{Gal}(E/\mathbb Q)\cong Q_8
+  =\{\pm1,\pm i,\pm j,\pm k\},\qquad i^2=j^2=k^2=-1.
+\]
+其中可取 \(i=r,\ j=\tau,\ k=r\tau\)，群中符号 \(-1\) 对应自同构 \(z\)。
+\end{proof}
+\end{example}
+
+\subsection{\texorpdfstring{交替群对应的固定域：判别式的 Galois 对应}{交替群对应的固定域：判别式的 Galois 对应}}\label{subsec:problem-alternating-discriminant}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra I}, p.~244, Section 4.5, Exercise 13）
+
+设 \(F\) 是特征 \(\neq2\) 的域。令 \(G=\operatorname{Gal}(E/F(p_1,\ldots,p_n))\)，其中
+\(E=F(x_1,\ldots,x_n)\)，\(p_i\) 为初等对称多项式。由 Section 4.5 的第二个例子，
+\(G\cong S_n\)。令 \(H\) 为相应于交错群 \(A_n\) 的子群，即
+\[
+  H=\{\sigma\in G\mid \sigma\text{ 对应偶排列}\}.
+\]
+证明
+\[
+  \operatorname{Inv}H=F(p_1,\ldots,p_n,\Delta),
+\]
+其中
+\[
+  \Delta=\prod_{1\le i<j\le n}(x_i-x_j)
+\]
+为 Vandermonde 判别式。
+
+\begin{proof}
+由 Galois 基本定理，
+\[
+  [\operatorname{Inv}H:F(p_1,\ldots,p_n)]=[G:H]=\frac{|S_n|}{|A_n|}=2.
+\]
+因此只需证 \(\Delta\notin F(p_1,\ldots,p_n)\) 且 \(\Delta\in\operatorname{Inv}H\)，
+由此即得 \(\operatorname{Inv}H=F(p_1,\ldots,p_n)(\Delta)=F(p_1,\ldots,p_n,\Delta)\)。
+
+\textbf{1. \(\Delta\notin F(p_1,\ldots,p_n)\)。}
+取转置 \(\tau=(1\;2)\in S_n\)。则 \(\tau(\Delta)=-\Delta\)（因为 \(\Delta\) 中仅
+因子 \((x_1-x_2)\) 变号，其余因子在 \(\tau\) 下不变或成对互换）。
+若 \(\Delta\in F(p_1,\ldots,p_n)=\operatorname{Inv}G\)，则应有
+\(\tau(\Delta)=\Delta\)，这与 \(\tau(\Delta)=-\Delta\) 且 \(\operatorname{char}F\neq2\)
+（从而 \(-\Delta\neq\Delta\)，因为 \(\Delta\neq0\)）矛盾。
+
+\textbf{2. \(\Delta\in\operatorname{Inv}H\)。}
+对任意偶排列 \(\pi\in A_n\)，将 \(\pi\) 分解为偶数个转置之积。每个转置使
+\(\Delta\) 变号，故偶数个转置后 \(\pi(\Delta)=\Delta\)。因此
+\(\Delta\) 在 \(A_n\)（从而在 \(H\)）作用下固定。
+
+\textbf{3. 结论。}
+已知 \(F(p_1,\ldots,p_n)\subset F(p_1,\ldots,p_n,\Delta)\subseteq\operatorname{Inv}H\)。
+由 Galois 基本定理，
+\[
+  [\operatorname{Inv}H:F(p_1,\ldots,p_n)]=2,
+\]
+而 \(\Delta\notin F(p_1,\ldots,p_n)\) 说明上述包含是真包含。因此
+\[
+  [F(p_1,\ldots,p_n,\Delta):F(p_1,\ldots,p_n)]\ge2,
+\]
+结合 \([\operatorname{Inv}H:F(p_1,\ldots,p_n)]=2\) 便推出等式：
+\[
+  \operatorname{Inv}H=F(p_1,\ldots,p_n,\Delta).
+\]
+
+\textbf{注：} 二次扩域 \(F(p_1,\ldots,p_n,\Delta)/F(p_1,\ldots,p_n)\) 的生成元
+\(\Delta\) 满足 \(\Delta^2=\prod_{i<j}(x_i-x_j)^2\in F(p_1,\ldots,p_n)\)，
+这正是判别式 \(\operatorname{disc}\) 的来源。由此可看出经典的判别式理论是
+Galois 基本定理在 \(S_n/A_n\) 情形下的直接推论。
+\end{proof}
+\end{example}
+
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -3523,10 +3880,15 @@ M\text{ Noetherian over }A
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
   \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
-  \item \hyperref[subsec:problem-transcendental-simple]{[Galois 理论题目：超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
-  \item \hyperref[subsec:problem-primitive-element-chain]{[Galois 理论题目：中间域全序时的原始元] 若有限扩张的含 \(F\) 中间域按包含构成全序，则取最大真中间域外的元素即可生成整个扩张；其中 \([E:F]<\infty\) 不能省去。}
-  \item \hyperref[subsec:problem-finite-extension-monomorphism-count]{[Galois 理论题目：有限扩张到任意扩张域的嵌入个数] 若 \([E:F]=n<\infty\)，则 \(E/F\) 到任意扩张域 \(K/F\) 的 \(F\)-嵌入个数至多为 \(n\)。}
+  \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
+  \item \hyperref[subsec:problem-primitive-element-chain]{[中间域全序条件下有限扩张的原始元] 若有限扩张的含 \(F\) 中间域按包含构成全序，则取最大真中间域外的元素即可生成整个扩张；其中 \([E:F]<\infty\) 不能省去。}
+  \item \hyperref[subsec:problem-finite-extension-monomorphism-count]{[有限扩张到任意扩域的嵌入个数上界] 若 \([E:F]=n<\infty\)，则 \(E/F\) 到任意扩张域 \(K/F\) 的 \(F\)-嵌入个数至多为 \(n\)。}
   \item \hyperref[subsec:problem-noether-artin-examples]{[Noether 与 Artin 条件的反例及不可能情形] Dieudonn\'e 环是 left Noetherian 非 right Noetherian；\(k[t]\) 是 Noether 非 Artin；Artin 非 Noether 不存在；无限变量多项式环两者皆非。}
+  \item \hyperref[subsec:problem-p-polynomial]{[\(p\)-polynomial 的等价刻画] 特征 \(p\) 下，首一多项式的根集构成有限加法子群且重数全同 \(\iff\) 它是 \(p\)-polynomial；充分性通过 Moore 行列式把 \(\mathbb F_p\)-向量空间结构化为 \(x^{p^k}\) 的线性组合。}
+  \item \hyperref[subsec:problem-purely-inseparable-binomial]{[纯不可分二项式的不可约性] 若 \(a\notin F^p\)，则 \(X^{p^e}-a\) 不可约；否则最小多项式次数降低会迫使 \(a\in F^p\)。}
+  \item \hyperref[subsec:problem-affine-galois]{[有理函数域的仿射 Galois 群] \(\operatorname{AGL}(1,p)\) 作用于 \(\mathbb F_p(t)\) 的固定域由 \((t^p-t)^{p-1}\) 生成，扩域次数为 \(p(p-1)\)。}
+  \item \hyperref[subsec:problem-quartic-normal]{[\(Q_8\)-扩张的显式实现] \(\mathbb Q(\sqrt2,\sqrt3,u)\), \(u^2=(9-5\sqrt3)(2-\sqrt2)\)，的两个符号翻转提升满足 \(i^2=j^2=-1,\ ij=-ji\)，故 Galois 群为 \(Q_8\)。}
+  \item \hyperref[subsec:problem-alternating-discriminant]{[交错群与判别式] \(S_n\) 中 \(A_n\) 对应的固定域由 Vandermonde 判别式 \(\Delta=\prod_{i<j}(x_i-x_j)\) 生成；这是 Galois 基本定理在对称群上的直接应用。}
 \end{itemize}
 
 \end{document}
