@@ -1698,6 +1698,253 @@ KS 不要求有限长度，不能说明所有模都有 indecomposable 直和分�
   \end{aligned}
 \]
 
+\subsection{Morita 等价：用模范畴比较环}\label{subsec:topic-morita-equivalence}
+
+Morita 等价的核心观点是：研究一个环 \(A\) 时，真正有结构的信息不只是环本身，而是它的模范畴。
+两个含幺环 \(A,B\) 称为\textbf{Morita 等价}，若其左模范畴等价：
+\[
+  A\text{-}\operatorname{Mod}\simeq B\text{-}\operatorname{Mod}.
+\]
+也就是说，虽然 \(A\) 与 \(B\) 作为环可以不同构，但它们的表示论、模论和同调性质在范畴意义下是同一个对象。
+
+\medskip
+
+\textbf{1. 最标准的例子：矩阵环不改变模论。}
+
+对任意环 \(A\) 与 \(n\ge 1\)，有
+\[
+  A\text{-}\operatorname{Mod}\simeq M_n(A)\text{-}\operatorname{Mod}.
+\]
+直观地说，\(M_n(A)\)-模相当于把 \(A\)-模按 \(n\) 个分量打包；矩阵环改变了“坐标描述”，但没有改变模范畴。
+这和 \(\mathrm{Algebra\ I}\) 中
+\[
+  \operatorname{End}_F(F^n)\cong M_n(F)
+\]
+以及 Schur 引理后出现的
+\[
+  \operatorname{End}_R(M^{\oplus n})\cong M_n(\operatorname{End}_R(M))
+\]
+是同一条线：矩阵环天然作为某个有限直和对象的自同态环出现。
+
+\medskip
+
+\textbf{2. Morita 定理的常用形式：progenerator 控制等价。}
+
+若 \(P\) 是一个左 \(A\)-模，令
+\[
+  B:=\operatorname{End}_A(P)^{\operatorname{op}}.
+\]
+若 \(P\) 是\textbf{progenerator}，即
+\[
+  P\text{ 有限生成、投射，且是生成元},
+\]
+则函子
+\[
+  \operatorname{Hom}_A(P,-):A\text{-}\operatorname{Mod}\longrightarrow B\text{-}\operatorname{Mod}
+\]
+给出 Morita 等价，其准逆可写成
+\[
+  P\otimes_B -:B\text{-}\operatorname{Mod}\longrightarrow A\text{-}\operatorname{Mod}.
+\]
+这里“生成元”可以理解为：所有 \(A\)-模都能由 \(P\) 的若干拷贝通过商模构造出来。于是 Morita 理论把“两个环的模范畴等价”化成“一个足够好的投射生成模的自同态环”。
+
+\medskip
+
+\textbf{3. 它起到的作用：把环换成更方便但模论等价的环。}
+
+Morita 等价会保持许多只依赖模范畴的性质，例如：
+\[
+\begin{array}{c}
+  \text{simple modules,\ projective/injective modules,\ exact sequences,}\\
+  \text{semisimplicity,\ global dimension,\ Ext/Tor 型同调信息}.
+\end{array}
+\]
+因此它的作用不是判断两个环是否“元素级相同”，而是判断它们是否有同一套模论。典型应用是把一个环替换为矩阵环、块代数或某个生成模的自同态环，从而让计算更方便。
+
+\medskip
+
+\textbf{4. 与教材中已有内容的连接。}
+
+\begin{itemize}
+  \item \(\mathrm{Algebra\ I}\) 的 \((\S 2.7)\) 中，Schur 引理说明 simple module 的自同态环是除环；随后 \(\operatorname{End}_R(M^{\oplus n})\) 给出矩阵环，这是 Morita 理论的最早影子。
+  \item \(\mathrm{Algebra\ I}\) 的 \((\S 2.10,\S 2.11)\) 中，indecomposable 与 strongly indecomposable 都依赖 \(\operatorname{End}_R(M)\)；Krull--Schmidt 定理的唯一性也由 local endomorphism ring 控制。
+  \item \(\mathrm{Jacobson\text{-}Basic\ Algebra\ II}\) 的 \((\S 1.4)\) 先给出范畴等价的语言；\((\S 3.12,\S 3.14,\S 3.15)\) 分别讨论 Morita contexts、generators/progenerators 与 module categories 的等价。
+  \item \(\mathrm{Cartan\text{-}Eilenberg}\) 中 semi-simple、hereditary、projective 与 injective modules 的刻画都是模范畴性质；因此它们天然应在 Morita 等价下保持。
+\end{itemize}
+
+\medskip
+
+\textbf{一句话压缩：}
+\[
+  \boxed{
+    \text{Morita 等价不是说 }A\cong B,\text{ 而是说 }A\text{ 与 }B\text{ 的模范畴等价。}
+  }
+\]
+
+\subsection{Algebra I 中 local ring 的性质与判定}\label{subsec:topic-local-ring-algebra1}
+
+这里集中整理 \(\mathrm{Algebra\ I}\) 中关于 local ring 的几条主线，主要出处是
+\((\mathrm{I.\S 2.10})\) 第 \(75\)--\(78\) 页，以及
+\((\mathrm{I.\S 3.3})\) 第 \(91\)--\(93\) 页。
+
+\medskip
+
+\textbf{1. 定义：local 的核心是“非单位形成一个理想”。}
+
+按 \((\mathrm{I.Def}\ 2.10.2)\)，一个含幺环 \(A\) 称为 local，若 \(A\) 中所有非单位构成一个双边理想。记这个理想为
+\[
+  \mathfrak m.
+\]
+于是
+\[
+  A^\times=A\setminus \mathfrak m,
+  \qquad
+  \mathfrak m=\{x\in A\mid x\text{ non-unit}\}.
+\]
+这一定义对非交换环也适用；这里的单位指同时有左逆和右逆的元素。
+
+\medskip
+
+\textbf{2. 判定：唯一极大左/右理想与 Jacobson 根。}
+
+\((\mathrm{I.Lem}\ 2.10.3)\) 给出等价刻画：
+\[
+\begin{array}{c}
+  A\text{ 有唯一极大左理想}\\
+  \Longleftrightarrow
+  A\text{ 有唯一极大右理想}\\
+  \Longleftrightarrow
+  A/\operatorname{rad}(A)\text{ 是除环}\\
+  \Longleftrightarrow
+  A\text{ 是 local}.
+\end{array}
+\]
+在 local 情形下，
+\[
+  \operatorname{rad}(A)=\mathfrak m,
+\]
+也就是 Jacobson radical 正是唯一极大理想；这也在 \((\mathrm{I.Ex}\ 3.3.5(2))\) 中再次出现。
+
+更一般地，\((\mathrm{I.Lem}\ 3.3.2)\) 说明
+\[
+  y\in \operatorname{rad}(A)
+  \Longleftrightarrow
+  1-xy\text{ 对任意 }x\in A\text{ 有左逆}.
+\]
+因此在 local ring 中，\(\mathfrak m\) 的元素可以理解为“在所有简单模上都看不见”的坏元素；而
+\[
+  1-\mathfrak m\subset A^\times
+\]
+是最常用的快速判断。
+
+\medskip
+
+\textbf{3. 幂零判定：若元素不是单位就是幂零，则环 local。}
+
+\((\mathrm{I.Lem}\ 2.10.9)\) 给出一个很实用的充分条件：若环 \(A\) 中每个元素都满足
+\[
+  x\text{ nilpotent}
+  \quad\text{或}\quad
+  x\in A^\times,
+\]
+则 \(A\) 是 local，且其极大理想为
+\[
+  \mathfrak m=\{x\in A\mid x\text{ nilpotent}\}.
+\]
+注意这只是充分条件，不是 local ring 的一般定义；例如 \(\mathrm{Algebra\ I}\) 在 \((\mathrm{I.Rem}\ 3.4.3)\) 附近提到
+\[
+  F[[t]]
+\]
+是 local，\(\operatorname{rad}(F[[t]])=tF[[t]]\)，但其中非零元素 \(t\) 并非幂零。
+
+\medskip
+
+\textbf{4. 幂等元判定：local ring 没有非平凡幂等元。}
+
+\((\mathrm{I.Def}\ 2.10.4)\) 后指出：若 \(A\) 是 local，则
+\[
+  e^2=e
+  \Longrightarrow
+  e=0\text{ 或 }e=1.
+\]
+理由很短：若 \(e\ne0,1\)，则 \(e\) 与 \(1-e\) 都不是单位，故都落在 \(\mathfrak m\)，于是
+\[
+  1=e+(1-e)\in \mathfrak m,
+\]
+矛盾。
+
+这个结论常被用来判定模不可分解：若 \(M=M_1\oplus M_2\)，投影给出
+\(\operatorname{End}_R(M)\) 中非平凡幂等元。因此
+\[
+  \operatorname{End}_R(M)\text{ local}
+  \Longrightarrow
+  M\text{ indecomposable}.
+\]
+\(\mathrm{Algebra\ I}\) 把满足
+\[
+  M\ne0,\qquad \operatorname{End}_R(M)\text{ local}
+\]
+的模称为 strongly indecomposable。
+
+\medskip
+
+\textbf{5. 有限长度不可分解模的自同态环是 local。}
+
+\((\mathrm{I.Thm}\ 2.10.8)\) 由 Fitting lemma 推出：若 \(M\) indecomposable 且同时满足 Noetherian 与 Artinian 条件，则任意
+\[
+  f\in \operatorname{End}_R(M)
+\]
+要么是 nilpotent，要么是 automorphism。结合上一条幂零判定，得到
+\[
+  \operatorname{End}_R(M)\text{ local}.
+\]
+这正是 Krull--Schmidt 定理唯一性证明里真正用到的 local ring 输入：在 local endomorphism ring 中，若
+\[
+  1=\sum_j u_jv_j,
+\]
+则至少有一个 \(u_jv_j\) 是单位，否则右端会落入唯一极大理想。
+
+\medskip
+
+\textbf{6. Nakayama 引理：local ring 上“模掉 \(\mathfrak m\)”可控制有限生成模。}
+
+\((\mathrm{I.Rem}\ 3.3.7)\) 把 Nakayama 引理专门写成 local ring \((R,\mathfrak m)\) 的常用形式：
+\begin{itemize}
+  \item 若 \(M\ne0\) 是有限生成 \(R\)-模，则
+  \[
+    \mathfrak mM\ne M.
+  \]
+  \item 若 \(x_1,\dots,x_n\in M\) 的像生成
+  \[
+    M/\mathfrak mM
+  \]
+  作为 \(R/\mathfrak m\)-向量空间，则 \(x_1,\dots,x_n\) 生成 \(M\)。
+  \item 若 \(f:M\to N\) 且 \(N\) 有限生成，若诱导映射
+  \[
+    \bar f:M/\mathfrak mM\to N/\mathfrak mN
+  \]
+  满射，则 \(f\) 满射。
+\end{itemize}
+
+直观上，local ring 只有一个闭点；所以有限生成模的许多性质可以先看唯一纤维
+\[
+  M/\mathfrak mM.
+\]
+这也是后续交换代数中 regular local ring、切空间
+\(\mathfrak m/\mathfrak m^2\)、以及 local criterion of flatness 会反复使用 local ring 的原因。
+
+\medskip
+
+\textbf{一句话压缩：}
+\[
+  \boxed{
+    \begin{array}{c}
+      \text{local ring = 只有一个极大方向；}\\
+      \text{非单位、Jacobson 根、Nakayama 与自同态环判定都围绕这个唯一方向展开。}
+    \end{array}
+  }
+\]
+
 \subsection{\texorpdfstring{Galois 扩张与 radical 扩张的主线关系}{Galois 扩张与 radical 扩张的主线关系}}\label{subsec:topic-galois-radical}
 
 这里把 \(\mathrm{Algebra\ I}\) 第 \(1.12\) 节与第 \(1.13\) 节压缩成一条主线。核心不是简单地问
@@ -3412,6 +3659,102 @@ M\text{ Noetherian over }A
 补充一句：若 \(A\) 是一般环，上述结论需要 \(A\) 至少满足 IBN（invariant basis number）一类条件；否则可能出现 \(A^m\simeq A^n\) 但 \(m\ne n\)。
 \end{example}
 
+\subsection{局部环上矩阵环的阶数与底环由同构决定}
+\label{subsec:problem-matrix-ring-local-ks}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~116, Section 3.4, Exercise 6）
+
+Use Theorem 3.6 to prove that if \(R^{(1)}\) and \(R^{(2)}\) are local rings and
+\(n_1,n_2\) are positive integers such that
+\[
+  M_{n_1}(R^{(1)})\cong M_{n_2}(R^{(2)}),
+\]
+then
+\[
+  n_1=n_2,
+  \qquad
+  R^{(1)}\cong R^{(2)}.
+\]
+
+\textbf{解答：}
+
+记
+\[
+  S_i:=M_{n_i}(R^{(i)})\qquad (i=1,2).
+\]
+在 \(S_i\) 中取标准矩阵幂等元
+\[
+  e^{(i)}_1,\ldots,e^{(i)}_{n_i}.
+\]
+作为右 \(S_i\)-模，正则模有直和分解
+\[
+  (S_i)_{S_i}
+  =
+  e^{(i)}_1S_i\oplus\cdots\oplus e^{(i)}_{n_i}S_i.
+\]
+每个 \(e^{(i)}_aS_i\) 的自同态环为
+\[
+  \operatorname{End}_{S_i}(e^{(i)}_aS_i)
+  \cong
+  e^{(i)}_aS_i e^{(i)}_a
+  \cong
+  R^{(i)}.
+\]
+因为 \(R^{(i)}\) 是 local ring，所以
+\[
+  \operatorname{End}_{S_i}(e^{(i)}_aS_i)
+\]
+也是 local ring；因此每个 \(e^{(i)}_aS_i\) 都是 strongly indecomposable。
+
+设
+\[
+  \varphi:S_1\xrightarrow{\sim}S_2
+\]
+是题设给出的环同构。借助 \(\varphi\)，可以把 \((S_2)_{S_2}\) 看成右 \(S_1\)-模；同时正则模同构给出
+\[
+  (S_1)_{S_1}\cong (S_2)_{S_2}.
+\]
+于是同一个模有两种有限直和分解：
+\[
+  (S_1)_{S_1}
+  =
+  \bigoplus_{a=1}^{n_1} e^{(1)}_aS_1,
+  \qquad
+  (S_2)_{S_2}
+  =
+  \bigoplus_{b=1}^{n_2} e^{(2)}_bS_2,
+\]
+且各直和项都是 strongly indecomposable。由 Jacobson II 的 Theorem 3.6
+（Krull--Schmidt 唯一性形式）可得
+\[
+  n_1=n_2,
+\]
+并且经过适当重排后
+\[
+  e^{(1)}_aS_1\cong e^{(2)}_aS_2
+\]
+作为对应的右模同构。
+
+最后比较同构直和项的自同态环：
+\[
+  R^{(1)}
+  \cong
+  \operatorname{End}_{S_1}(e^{(1)}_aS_1)
+  \cong
+  \operatorname{End}_{S_2}(e^{(2)}_aS_2)
+  \cong
+  R^{(2)}.
+\]
+因此
+\[
+  n_1=n_2,\qquad R^{(1)}\cong R^{(2)}.
+\]
+
+\textbf{方法要点：}
+矩阵环本身先被分解成 \(n\) 个由标准幂等元切出的右理想；local 性保证这些右理想 strongly indecomposable；然后 Theorem 3.6 强迫分量个数和分量自同态环都保持不变。
+\end{example}
+
 \subsection{满射自由模自同态的可逆性}
 \label{subsec:problem-surjective-free-endomorphism}
 
@@ -4971,6 +5314,8 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 
 \begin{itemize}
   \item \hyperref[subsec:topic-derived-functors]{[投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线] 投射/内射分解是把一般模替换成“好模”的装置；\(\operatorname{Tor}\) 衡量张量积失去的左正合性，\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 失去的右正合性并分类短正合列扩张。}
+  \item \hyperref[subsec:topic-morita-equivalence]{[Morita 等价：用模范畴比较环] Morita 等价不是环同构，而是模范畴等价；矩阵环、progenerator 与自同态环给出其最常用的判定和构造。}
+  \item \hyperref[subsec:topic-local-ring-algebra1]{[Algebra I 中 local ring 的性质与判定] local ring 等价于唯一极大左/右理想，极大理想就是 Jacobson 根；Nakayama 与 strongly indecomposable 的判定都由这个唯一方向控制。}
   \item \hyperref[subsec:topic-galois-radical]{[Galois 扩张与 radical 扩张的主线关系] 关键不是 “Galois \(\Leftrightarrow\) radical”，而是 \(G_f\) 可解等价于“分裂域嵌入某个 radical 扩张”，不等价于“分裂域本身就是 radical”。}
   \item \hyperref[subsec:topic-kummer-artin-schreier]{[Kummer 扩张与 Artin--Schreier 扩张] Kummer 理论用 \(T^n-a\) 描述含足够单位根时的 cyclic 扩张，Artin--Schreier 理论用 \(T^p-T-a\) 描述特征 \(p\) 下的次数 \(p\) cyclic 扩张。}
   \item \hyperref[subsec:topic-csa]{[CSA 相关概念总联系] 这里集中梳理 CSA、中心除代数、分裂域、中心化子与 Brauer 群之间的关系。}
@@ -5001,6 +5346,7 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
   \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
+  \item \hyperref[subsec:problem-matrix-ring-local-ks]{[局部环上矩阵环的阶数与底环由同构决定] local rings 上矩阵环同构时，Krull--Schmidt 唯一性给出阶数相同且底环同构。}
   \item \hyperref[subsec:problem-surjective-free-endomorphism]{[满射自由模自同态的可逆性] 交换环上有限秩自由模的满射自同态必为双射，但单射自同态不必满射。}
   \item \hyperref[subsec:problem-gaussian-integer-module]{[高斯整数上的有限生成模结构] 在 \(\mathbb Z[i]\) 上用 Smith 标准形得 \(D^{(3)}/K\simeq D/(6)\oplus D/(-96+24i)\)，阶为 \(352512\)。}
   \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
