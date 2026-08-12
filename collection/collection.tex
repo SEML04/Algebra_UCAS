@@ -3695,7 +3695,7 @@ then
 \]
 每个 \(e^{(i)}_aS_i\) 的自同态环为
 \[
-  \operatorname{End}_{S_i}(e^{(i)}_aS_i)
+  \operatorname{End}_{(S_i)^{\operatorname{op}}}(e^{(i)}_aS_i)
   \cong
   e^{(i)}_aS_i e^{(i)}_a
   \cong
@@ -3703,7 +3703,7 @@ then
 \]
 因为 \(R^{(i)}\) 是 local ring，所以
 \[
-  \operatorname{End}_{S_i}(e^{(i)}_aS_i)
+  \operatorname{End}_{(S_i)^{\operatorname{op}}}(e^{(i)}_aS_i)
 \]
 也是 local ring；因此每个 \(e^{(i)}_aS_i\) 都是 strongly indecomposable。
 
@@ -3740,9 +3740,9 @@ then
 \[
   R^{(1)}
   \cong
-  \operatorname{End}_{S_1}(e^{(1)}_aS_1)
+  \operatorname{End}_{(S_1)^{\operatorname{op}}}(e^{(1)}_aS_1)
   \cong
-  \operatorname{End}_{S_2}(e^{(2)}_aS_2)
+  \operatorname{End}_{(S_2)^{\operatorname{op}}}(e^{(2)}_aS_2)
   \cong
   R^{(2)}.
 \]
@@ -3753,6 +3753,192 @@ then
 
 \textbf{方法要点：}
 矩阵环本身先被分解成 \(n\) 个由标准幂等元切出的右理想；local 性保证这些右理想 strongly indecomposable；然后 Theorem 3.6 强迫分量个数和分量自同态环都保持不变。
+
+\begin{remark}[左理想与右理想的自同态环差一个反环]
+这里必须注意左右模约定。对任意含幺环 \(A\) 与幂等元 \(e^2=e\)，有两条标准公式：
+\[
+  \operatorname{End}_A(Ae)\cong (eAe)^{\operatorname{op}},
+  \qquad
+  \operatorname{End}_{A^{\operatorname{op}}}(eA)\cong eAe.
+\]
+前者把 \(Ae\) 视为左 \(A\)-模，后者等价于把 \(eA\) 视为右 \(A\)-模。
+
+先看左模 \(Ae\)。任意左 \(A\)-模同态
+\[
+  f:Ae\to Ae
+\]
+由 \(f(e)\) 唯一决定，因为
+\[
+  f(ae)=af(e).
+\]
+又
+\[
+  f(e)=f(e^2)=ef(e),
+\]
+所以 \(f(e)\in eAe\)。反过来，任取 \(x\in eAe\)，公式
+\[
+  f_x(ae):=ax
+\]
+给出一个左 \(A\)-模自同态 \(Ae\to Ae\)。于是作为集合有
+\[
+  \operatorname{End}_A(Ae)\leftrightarrow eAe,\qquad f\mapsto f(e).
+\]
+但乘法方向会反过来：若 \(f_x(e)=x\)、\(f_y(e)=y\)，则
+\[
+  (f_x\circ f_y)(e)=f_x(y)=yx.
+\]
+所以
+\[
+  \operatorname{End}_A(Ae)\cong (eAe)^{\operatorname{op}}.
+\]
+
+而对右模 \(eA\)，右 \(A\)-线性自同态同样由 \(f(e)\in eAe\) 决定；若 \(f_x(e)=x\)、\(f_y(e)=y\)，则
+\[
+  (f_x\circ f_y)(e)=f_x(y)=xy,
+\]
+此时乘法方向不反，所以
+\[
+  \operatorname{End}_{A^{\operatorname{op}}}(eA)\cong eAe.
+\]
+
+本题证明中使用的是右 \(S_i\)-模
+\[
+  e^{(i)}_aS_i,
+\]
+因此得到的是
+\[
+  \operatorname{End}_{(S_i)^{\operatorname{op}}}(e^{(i)}_aS_i)
+  \cong e^{(i)}_aS_i e^{(i)}_a
+  \cong R^{(i)},
+\]
+没有反环。如果改用左 \(S_i\)-模 \(S_i e^{(i)}_a\)，则会得到
+\[
+  \operatorname{End}_{S_i}(S_i e^{(i)}_a)\cong (e^{(i)}_aS_i e^{(i)}_a)^{\operatorname{op}}\cong (R^{(i)})^{\operatorname{op}}.
+\]
+这不会影响结论，因为 \(R\) local 当且仅当 \(R^{\operatorname{op}}\) local，并且
+\[
+  (R^{(1)})^{\operatorname{op}}\cong (R^{(2)})^{\operatorname{op}}
+  \Longrightarrow
+  R^{(1)}\cong R^{(2)}.
+\]
+\end{remark}
+\end{example}
+
+\subsection{全自同态环作用下的不可约性与 Schur 引理逆命题}
+\label{subsec:problem-endomorphism-ring-irreducible-schur-converse}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercises 1--2）
+
+\textbf{题目 1.}
+Let \(M\) be a finite dimensional left vector space over a field \(F\). Show that
+\(M\), regarded as a right module for
+\[
+  R=\operatorname{End}_F(M)
+\]
+in the natural way, is irreducible. Does this hold if \(F\) is replaced by a
+division ring? Does it hold if the finiteness condition is dropped?
+
+\textbf{解答：}
+设 \(0\ne N\subset M\) 是右 \(R\)-子模。取 \(0\ne v\in N\)。对任意 \(w\in M\)，都可以构造一个
+\(F\)-线性自同态 \(T\in \operatorname{End}_F(M)\) 使得
+\[
+  T(v)=w.
+\]
+有限维时，只需把 \(v\) 扩成一组基，再规定 \(T\) 在这组基上的值；无限维时同样可用基扩张完成构造。因此
+\[
+  w=T(v)=vT\in N.
+\]
+由于 \(w\) 任意，\(N=M\)。所以 \(M_R\) 是不可约模。
+
+若 \(F\) 换成 division ring，同样成立；证明只需把“向量空间”理解为 division ring 上的左向量空间，线性映射仍可由基上的取值决定。有限维条件也可以去掉。
+
+\textbf{题目 2.}
+Let \(M\) be the vector space with basis \(e_1,e_2\) over a field \(F\). Let \(R'\) be
+the set of linear transformations \(a\) of \(M\) such that
+\[
+  a(e_1)=\alpha e_1,\qquad
+  a(e_2)=\beta e_1+\gamma e_2,
+  \qquad \alpha,\beta,\gamma\in F.
+\]
+Show that \(R'\) is a ring of endomorphisms and that if \(M\) is regarded in the
+natural way as a right \(R'\)-module, then \(M\) is not irreducible. Show that
+\(\operatorname{End}_{R'}(M)\) is the field consisting of the scalar
+multiplications \(x\mapsto \lambda x\). This example shows that the converse of
+Schur's lemma does not hold.
+
+\textbf{解答：}
+在基 \(e_1,e_2\) 下，\(R'\) 正是所有上三角矩阵
+\[
+  \begin{pmatrix}
+    \alpha & \beta\\
+    0 & \gamma
+  \end{pmatrix},
+  \qquad \alpha,\beta,\gamma\in F.
+\]
+上三角矩阵对加法、乘法封闭，并含有恒等变换，所以 \(R'\subset \operatorname{End}_F(M)\) 是子环。
+
+由于
+\[
+  a(e_1)=\alpha e_1
+\]
+对所有 \(a\in R'\) 都成立，一维子空间
+\[
+  Fe_1\subset M
+\]
+在右 \(R'\)-作用下稳定。因此 \(M_{R'}\) 有非零真子模 \(Fe_1\)，不是不可约模。
+
+现在计算 \(\operatorname{End}_{R'}(M)\)。一个右 \(R'\)-模自同态就是一个与所有 \(R'\) 中元素可交换的
+\(F\)-线性变换。设
+\[
+  T=
+  \begin{pmatrix}
+    a & b\\
+    c & d
+  \end{pmatrix}.
+\]
+因为 \(T\) 与
+\[
+  E_{11}=
+  \begin{pmatrix}
+    1&0\\
+    0&0
+  \end{pmatrix}
+  \in R'
+\]
+交换，直接比较 \(TE_{11}=E_{11}T\) 得
+\[
+  b=c=0.
+\]
+因此 \(T=\operatorname{diag}(a,d)\)。再令
+\[
+  E_{12}=
+  \begin{pmatrix}
+    0&1\\
+    0&0
+  \end{pmatrix}
+  \in R',
+\]
+由 \(TE_{12}=E_{12}T\) 得
+\[
+  a=d.
+\]
+所以
+\[
+  T=aI.
+\]
+反过来，任意标量乘法当然与 \(R'\) 中所有变换可交换。因此
+\[
+  \operatorname{End}_{R'}(M)\cong F.
+\]
+
+这说明：\(\operatorname{End}_{R'}(M)\) 是除环并不能推出 \(M\) 不可约；Schur 引理只给出
+\[
+  M\ \text{irreducible}
+  \Longrightarrow
+  \operatorname{End}_{R'}(M)\ \text{is a division ring},
+\]
+其逆命题一般不成立。
 \end{example}
 
 \subsection{满射自由模自同态的可逆性}
@@ -5346,7 +5532,8 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
   \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
-  \item \hyperref[subsec:problem-matrix-ring-local-ks]{[局部环上矩阵环的阶数与底环由同构决定] local rings 上矩阵环同构时，Krull--Schmidt 唯一性给出阶数相同且底环同构。}
+  \item \hyperref[subsec:problem-matrix-ring-local-ks]{[局部环上矩阵环的阶数与底环由同构决定] local rings 上矩阵环同构时，Krull--Schmidt 唯一性给出阶数和底环；右理想自同态环无反环，左理想版本有反环。}
+  \item \hyperref[subsec:problem-endomorphism-ring-irreducible-schur-converse]{[全自同态环作用下的不可约性与 Schur 引理逆命题] 向量空间在全自同态环作用下不可约，但自同态环为除环并不反推模不可约。}
   \item \hyperref[subsec:problem-surjective-free-endomorphism]{[满射自由模自同态的可逆性] 交换环上有限秩自由模的满射自同态必为双射，但单射自同态不必满射。}
   \item \hyperref[subsec:problem-gaussian-integer-module]{[高斯整数上的有限生成模结构] 在 \(\mathbb Z[i]\) 上用 Smith 标准形得 \(D^{(3)}/K\simeq D/(6)\oplus D/(-96+24i)\)，阶为 \(352512\)。}
   \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
