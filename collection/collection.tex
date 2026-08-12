@@ -3824,13 +3824,12 @@ then
 \end{remark}
 \end{example}
 
-\subsection{全自同态环作用下的不可约性与 Schur 引理逆命题}
-\label{subsec:problem-endomorphism-ring-irreducible-schur-converse}
+\subsection{全自同态环作用下的不可约性}
+\label{subsec:problem-endomorphism-ring-irreducible}
 
 \begin{example}
-（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercises 1--2）
+（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercise 1）
 
-\textbf{题目 1.}
 Let \(M\) be a finite dimensional left vector space over a field \(F\). Show that
 \(M\), regarded as a right module for
 \[
@@ -3852,8 +3851,14 @@ division ring? Does it hold if the finiteness condition is dropped?
 由于 \(w\) 任意，\(N=M\)。所以 \(M_R\) 是不可约模。
 
 若 \(F\) 换成 division ring，同样成立；证明只需把“向量空间”理解为 division ring 上的左向量空间，线性映射仍可由基上的取值决定。有限维条件也可以去掉。
+\end{example}
 
-\textbf{题目 2.}
+\subsection{Schur 引理逆命题失败的二维例子}
+\label{subsec:problem-schur-converse-counterexample}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercise 2）
+
 Let \(M\) be the vector space with basis \(e_1,e_2\) over a field \(F\). Let \(R'\) be
 the set of linear transformations \(a\) of \(M\) such that
 \[
@@ -5532,8 +5537,9 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
   \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
-  \item \hyperref[subsec:problem-matrix-ring-local-ks]{[局部环上矩阵环的阶数与底环由同构决定] local rings 上矩阵环同构时，Krull--Schmidt 唯一性给出阶数和底环；右理想自同态环无反环，左理想版本有反环。}
-  \item \hyperref[subsec:problem-endomorphism-ring-irreducible-schur-converse]{[全自同态环作用下的不可约性与 Schur 引理逆命题] 向量空间在全自同态环作用下不可约，但自同态环为除环并不反推模不可约。}
+  \item \hyperref[subsec:problem-matrix-ring-local-ks]{[局部环上矩阵环阶数与底环由同构决定] local rings上矩阵环同构时，Krull--Schmidt唯一性给出阶数和底环；右理想自同态环无反环。}
+  \item \hyperref[subsec:problem-endomorphism-ring-irreducible]{[全自同态环作用下的不可约性] 向量空间在全自同态环作用下是不可约模；division ring 与无限维情形同样成立。}
+  \item \hyperref[subsec:problem-schur-converse-counterexample]{[Schur 引理逆命题失败的二维例子] 上三角变换环作用下的二维模不可约性失败，但其模自同态环仍是域。}
   \item \hyperref[subsec:problem-surjective-free-endomorphism]{[满射自由模自同态的可逆性] 交换环上有限秩自由模的满射自同态必为双射，但单射自同态不必满射。}
   \item \hyperref[subsec:problem-gaussian-integer-module]{[高斯整数上的有限生成模结构] 在 \(\mathbb Z[i]\) 上用 Smith 标准形得 \(D^{(3)}/K\simeq D/(6)\oplus D/(-96+24i)\)，阶为 \(352512\)。}
   \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
