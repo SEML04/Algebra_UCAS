@@ -1698,6 +1698,141 @@ KS 不要求有限长度，不能说明所有模都有 indecomposable 直和分�
   \end{aligned}
 \]
 
+\subsection{\texorpdfstring{平坦模的性质总览：等价刻画、运算封闭性与忠实平坦}{平坦模的性质总览}}\label{subsec:topic-flat-modules}
+
+把分散的 flat 相关性质集中在这里：函子刻画与 \(\operatorname{Tor}\) 判定（另见 \hyperref[subsec:split-projective-injective]{短正合列的分裂与投射/内射模}、\hyperref[subsec:topic-derived-functors]{\(\operatorname{Tor}/\operatorname{Ext}\) 主线}）、运算封闭性、忠实平坦，以及有限生成/Noether/整环情形。主要依据 \textit{Atiyah--Macdonald}（下称 AM）第 2、3、7 章与 \textit{代数学方法 第一卷} \(\S 6.9\)。
+
+\medskip
+
+\textbf{1. 定义与等价刻画。}
+\(A\)-模 \(M\) 称为\textbf{平坦}（flat），若张量函子
+\[
+  -\otimes_A M
+\]
+正合，即把单射 \(N'\hookrightarrow N\) 送到单射
+\[
+  N'\otimes_A M\hookrightarrow N\otimes_A M
+\]
+（\textit{代数学方法} 定义 6.9.4；\(A\) 交换时左右模不加区分）。于是
+\[
+  \text{自由}\Rightarrow\text{投射}\Rightarrow\text{平坦}
+\]
+（\textit{代数学方法} 推论 6.9.9）。用 \(\operatorname{Tor}\) 可得到可操作的判定（AM Ch.2 Ex.24）：
+\[
+  M\text{ 平坦}
+  \iff
+  \operatorname{Tor}_1^A(M,N)=0\ \forall N
+  \iff
+  \operatorname{Tor}_n^A(M,N)=0\ \forall n\ge1,\ \forall N.
+\]
+因为张量积与归纳极限、直和相容，判定还能缩减到有限生成模、乃至循环模与理想：
+\[
+  M\text{ 平坦}
+  \iff
+  \operatorname{Tor}_1^A(A/\mathfrak a,M)=0\quad
+  \text{对一切有限生成理想 }\mathfrak a
+\]
+（AM Ch.2 Ex.26）。
+
+\medskip
+
+\textbf{2. 运算封闭性。}
+\begin{itemize}
+  \item \textbf{直和}：\(\bigoplus_i M_i\) 平坦 \(\iff\) 每个 \(M_i\) 平坦（\textit{代数学方法} 引理 6.9.5）；\textbf{直积}一般不保持平坦。
+  \item \textbf{滤过余极限}：平坦模的滤过余极限仍平坦（\textit{代数学方法} 命题 6.9.7；因为张量积与 \(\varinjlim\) 交换，AM Ch.2 Ex.20）。这让 flatness 的许多判定可以化到有限生成模。
+  \item \textbf{张量积}：\(M,N\) 平坦 \(\Rightarrow M\otimes_A N\) 平坦（AM Ch.2 Ex.8 i）。
+  \item \textbf{基变换}：对任意环同态 \(A\to B\)，\(M\) 平坦 over \(A\) \(\Rightarrow B\otimes_A M\) 平坦 over \(B\)。这由 \((B\otimes_A M)\otimes_B N\cong M\otimes_A N\) 与 \(M\) 的平坦性直接得到。
+  \item \textbf{局部化}：\(S^{-1}A\) 是平坦 \(A\)-模（AM Cor 3.6）；且平坦性是\textbf{局部性质}（AM Prop 3.10）：
+  \[
+    M\text{ 平坦}
+    \iff M_{\mathfrak p}\text{ 平坦 over }A_{\mathfrak p}\ (\forall\mathfrak p)
+    \iff M_{\mathfrak m}\text{ 平坦 over }A_{\mathfrak m}\ (\forall\mathfrak m).
+  \]
+  \item \textbf{短正合列}：若 \(0\to N'\to N\to N''\to 0\) 且 \(N''\) 平坦，则
+  \[
+    N'\text{ 平坦}\iff N\text{ 平坦}
+  \]
+  （AM Ch.2 Ex.25，用 \(\operatorname{Tor}\) 长正合列）。
+  \item \textbf{复合}：\(B\) 平坦 over \(A\)、\(N\) 平坦 over \(B\) \(\Rightarrow N\) 平坦 over \(A\)（AM Ch.2 Ex.8 ii）。
+\end{itemize}
+
+\medskip
+
+\textbf{3. 忠实平坦（faithfully flat）。}
+设 \(B\) 是平坦 \(A\)-代数。以下条件等价（AM Ch.3 Ex.16），满足者称 \(B\) 是 \(A\) 的\textbf{忠实平坦}扩张：
+\begin{enumerate}
+  \item \(\mathfrak a^{ec}=\mathfrak a\) 对一切理想 \(\mathfrak a\subseteq A\)；
+  \item \(\operatorname{Spec}B\to\operatorname{Spec}A\) 满射；
+  \item \(\mathfrak mB\ne B\) 对一切极大理想 \(\mathfrak m\subseteq A\)；
+  \item \(M\ne0\Rightarrow M\otimes_A B\ne0\)；
+  \item \(x\mapsto1\otimes x\) 给出单射 \(M\hookrightarrow M\otimes_A B\)（对一切 \(M\)）。
+\end{enumerate}
+直观上，忠实平坦基变换``既保正合又保非零''，是 descent 与``谱映射满射''的起点。推论：completion 常 flat 但未必 faithfully flat，而 \(\operatorname{Spec}\widehat A\to\operatorname{Spec}A\) 满射恰对应忠实平坦（参 \hyperref[rem:completion-spec-not-surjective]{completion 与谱满射}）。另外，平坦同态 \(A\to B\) 自动有 going-down 性质（AM Ch.5 Ex.11；参 \hyperref[subsec:going-up-down]{整扩张中的上行与下行定理}）。
+
+\medskip
+
+\textbf{4. 有限生成 / Noether / 整环情形。}
+\begin{itemize}
+  \item \textbf{局部环上有限生成平坦 \(\Rightarrow\) 自由}：设 \((A,\mathfrak m)\) Noether 局部、\(k=A/\mathfrak m\)、\(M\) 有限生成，则
+  \[
+    M\text{ 自由}
+    \iff M\text{ 平坦}
+    \iff \mathfrak m\otimes_A M\to M\text{ 单射}
+    \iff \operatorname{Tor}_1^A(k,M)=0
+  \]
+  （AM Ch.7 Ex.15；``平坦 \(\Rightarrow\) 自由''用 Nakayama 引理收尾）。
+  \item \textbf{Noether 环上有限生成：平坦 = 局部自由}（AM Ch.7 Ex.16）：
+  \[
+    M\text{ 平坦}\iff M_{\mathfrak p}\text{ 自由 over }A_{\mathfrak p}\quad(\forall\mathfrak p\iff\forall\mathfrak m).
+  \]
+  \item \textbf{整环上：平坦 \(\Rightarrow\) 无挠}。取非零因子 \(a\in A\)，由 \(0\to A\xrightarrow{\ \cdot a\ }A\) 正合、张量 \(M\) 得 \(0\to M\xrightarrow{\ \cdot a\ }M\)，故 \(a\) 在 \(M\) 上单射。反之一般不成立：Noether 情形平坦 \(=\) 局部自由，而 \(k[x,y]\) 中理想 \((x,y)\) 无挠（子模）但在 \((x,y)\) 处非主、故非平坦。在 \textbf{PID} 上两者等价（无挠 \(\Rightarrow\) 有限生成子模皆自由 \(\Rightarrow\) 滤过余极限平坦）；Dedekind 整环上有限生成更有 无挠 \(\iff\) 投射 \(\iff\) 平坦。
+\end{itemize}
+
+\medskip
+
+\textbf{5. 证明``\(M\) 是平坦模''的一般方法（checklist）。}
+按``从易到难''的次序，常用套路如下（编号对应上面各部分的依据）：
+\begin{enumerate}
+  \item \textbf{先做必要性的快速检查}：若 \(A\) 是整环，\(M\) 无挠是必要条件（见第 4 部分），可先排除一批；若 \(M\) 有限生成，可先盯住``局部自由''这个目标。
+  \item \textbf{从``好模''出发拼}：若 \(M\) 可由自由/投射模、或由已知平坦模经 \textbf{直和、张量积、基变换、局部化、滤过余极限、短正合列扩张} 得到，直接用第 2 部分的封闭性收工——这是多数习题的捷径。
+  \item \textbf{理想判据}（Algebra III Cor 3.1.5；AM Ch.2 Ex.26）：只需验证对一切\textbf{有限生成理想} \(I\)，
+  \[
+    0\to I\otimes_A M\to M
+  \]
+  正合，即 \(I\otimes_A M\cong IM\)；等价地
+  \[
+    \operatorname{Tor}_1^A(M,A/I)=0\qquad \forall I\text{ 有限生成}.
+  \]
+  \item \textbf{方程判据}（equational criterion，Algebra III Prop 3.1.6）：\(M\) 平坦当且仅当对每个关系
+  \[
+    \sum_{i=1}^r a_i x_i=0\qquad(a_i\in A,\ x_i\in M)
+  \]
+  都存在 \(b_{ij}\in A\)、\(y_j\in M\) 使
+  \[
+    \sum_{i=1}^r a_i b_{ij}=0\ \forall j,\qquad
+    x_i=\sum_j b_{ij}y_j\ \forall i.
+  \]
+  也就是说，\(M\) 里的线性关系都能``追溯到''环 \(A\) 上的关系；这是最便于直接手算的判据。
+  \item \textbf{\(\operatorname{Tor}\) 消失}：证 \(\operatorname{Tor}_1^A(M,N)=0\)（可先化到有限生成 \(N\)，再化到循环模 \(A/I\)，见第 1 部分）。
+  \item \textbf{局部化 / 局部自由}（Algebra III Cor 3.1.9）：\(M\) 有限生成时，
+  \[
+    M\text{ 平坦}\iff M_{\mathfrak p}\text{ 自由 over }A_{\mathfrak p}\ \forall\mathfrak p
+    \iff M_{\mathfrak m}\text{ 自由 over }A_{\mathfrak m}\ \forall\mathfrak m,
+  \]
+  于是化到局部环：在局部环上有限生成平坦即自由（Cor 3.1.7），只需证自由。
+  \item \textbf{局部环 + Nakayama}（Algebra III Cor 3.1.7）：\((A,\mathfrak m)\) 局部、\(M\) 有限生成时，等价地验证 \(\mathfrak m\otimes_A M\to M\) 单射，或 \(\operatorname{Tor}_1^A(k,M)=0\)（\(k=A/\mathfrak m\)）。
+  \item \textbf{函子等同}：若 \(-\otimes_A M\) 自然同构于某个已知正合函子，则 \(M\) 平坦。最典型的是局部化：\(-\otimes_A S^{-1}A\cong S^{-1}(-)\)，而 \(S^{-1}\) 正合（Algebra III Prop 2.2.3；AM Cor 3.6）。
+\end{enumerate}
+\textbf{反面提醒}：平坦性对\textbf{子模、商模一般不保持}——\(k[x,y]\) 中理想 \((x,y)\) 是自由模 \(k[x,y]\) 的子模但不平坦；商模 \(k[x]/(x^2)\) 的商 \(k\) 也不平坦。所以``先证它是某平坦模的子模/商模''不能代替平坦性证明。
+
+\medskip
+
+\textbf{6. 与其他专题的接口。}
+\begin{itemize}
+  \item projective / injective / flat 的函子三件套见 \hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}；\(\operatorname{Tor}_1\) 消失的机制见 \hyperref[subsec:topic-derived-functors]{\(\operatorname{Tor}/\operatorname{Ext}\) 主线}。
+  \item 8.3 节的 local criterion of flatness 把平坦性化为 associated graded 与闭纤维上的检验，见 \hyperref[rem:local-flatness-geometry]{Artin-Rees 与 8.3 节的几何含义}。
+  \item completion \(A\to\widehat A\) 的平坦性与忠实平坦性见 \hyperref[rem:completion-spec-not-surjective]{completion 与谱满射}。
+\end{itemize}
 \subsection{Morita 等价：用模范畴比较环}\label{subsec:topic-morita-equivalence}
 
 Morita 等价的核心观点是：研究一个环 \(A\) 时，真正有结构的信息不只是环本身，而是它的模范畴。
@@ -5457,6 +5592,247 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 \end{proof}
 \end{example}
 
+\subsection{\texorpdfstring{\(\operatorname{End}M\otimes\operatorname{End}N\cong\operatorname{End}(M\otimes N)\)：张量积同构的标准三步与无限维反例}{张量积自同态环的同构与无限维反例}}\label{subsec:problem-end-tensor-product}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~146, Section 3.9, Exercise 2）
+
+设 \(M,N\) 是域 \(K\) 上的有限维向量空间。证明存在同构
+\[
+  \operatorname{End}_K M\otimes_K \operatorname{End}_K N
+  \xrightarrow{\ \cong\ }
+  \operatorname{End}_K(M\otimes_K N),
+\]
+它把 \(f\otimes g\)（\(f\in\operatorname{End}_K M\)，\(g\in\operatorname{End}_K N\)）映到线性变换
+\[
+  x\otimes y\longmapsto f(x)\otimes g(y)
+  \qquad (x\in M,\ y\in N).
+\]
+问：若 \(M\) 或 \(N\) 是无限维的，该结论还成立吗？
+
+\textbf{思路：张量积同构题的标准三步。}
+
+\textbf{第 1 步（笛卡尔积上的双线性映射）。}
+先在积空间 \(\operatorname{End}_K M\times\operatorname{End}_K N\) 上定义
+\[
+  \beta:\operatorname{End}_K M\times\operatorname{End}_K N
+  \longrightarrow \operatorname{End}_K(M\otimes_K N),
+  \qquad
+  \beta(f,g):=\bigl(x\otimes y\mapsto f(x)\otimes g(y)\bigr).
+\]
+固定 \(f\) 时 \(g\mapsto\beta(f,g)\) 线性，固定 \(g\) 时 \(f\mapsto\beta(f,g)\) 线性，故 \(\beta\) 是双线性映射。
+
+\textbf{第 2 步（泛性质推至张量积）。}
+由张量积的泛性质，\(\beta\) 唯一地穿过
+\[
+  \operatorname{End}_K M\otimes_K\operatorname{End}_K N
+  \xrightarrow{\ \Phi\ }
+  \operatorname{End}_K(M\otimes_K N),
+\]
+即存在唯一线性映射 \(\Phi\) 使
+\[
+  \Phi(f\otimes g)(x\otimes y)=f(x)\otimes g(y).
+\]
+原题要证明的就是 \(\Phi\) 是同构。
+
+\textbf{第 3 步（单射性）。}
+\(\Phi\) 对所有向量空间（不限于有限维）都是单射。这是向量空间的普遍事实：自然映射
+\[
+  \operatorname{Hom}(U,U')\otimes\operatorname{Hom}(V,V')
+  \longrightarrow \operatorname{Hom}(U\otimes V,U'\otimes V')
+\]
+恒为单射。证明要点：有限多个 \(f_r\in\operatorname{Hom}(M,M)\)、\(g_r\in\operatorname{Hom}(N,N)\) 的线性无关性在某个有限维子空间 \(M_0\subseteq M\)、\(N_0\subseteq N\) 上的限制下仍保持（对每个非零 \(f\) 取一个 \(u\) 使 \(f(u)\neq 0\) 即可），故可化归到有限维情形；而有限维情形由第 4 步即得。
+
+\textbf{第 4 步（有限维情形：单射 + 维数相等）。}
+有限维时
+\[
+\begin{aligned}
+  \dim(\operatorname{End}_K M\otimes_K\operatorname{End}_K N)
+  &=(\dim M)^2(\dim N)^2\\
+  &=(\dim M\dim N)^2
+  =\dim\operatorname{End}_K(M\otimes_K N).
+\end{aligned}
+\]
+有限维向量空间之间，单射加上维数相等自动给出双射，故 \(\Phi\) 是同构。
+（也可取基直接验满射：\(\operatorname{End}(M\otimes N)\) 的基元
+\(e_{i'}\otimes f_{j'}\mapsto e_i\otimes f_j\) 恰是 \(\Phi(E_{i'i}\otimes F_{j'j})\)，
+其中 \(E_{i'i}\in\operatorname{End}M\)、\(F_{j'j}\in\operatorname{End}N\) 是相应初等算子。）
+
+\textbf{无限维时为什么不成立。}
+精确的回答是：只要 \(M,N\) 中有一个有限维，同构仍成立。例如 \(N\) 有限维时
+\[
+  M\otimes N\cong M^n,\qquad
+  \operatorname{End}(M\otimes N)\cong M_n(\operatorname{End}M)
+  \cong \operatorname{End}M\otimes M_n(K)
+  =\operatorname{End}M\otimes\operatorname{End}N,
+\]
+且 \(\Phi\) 正是这一恒等化。真正失败的情形是 \(M,N\) 都无限维：此时 \(\Phi\) 仍单射，但不再满射。
+
+先澄清一个容易误会的点：无限维时``维数相等''这一招失效，并不是因为两边维数不同。事实上对无限基数有 \(\dim\operatorname{End}V=(\dim V)^{\dim V}\)，于是两边维数（作为基数）依然相等：
+\[
+\begin{aligned}
+  \dim(\operatorname{End}M\otimes\operatorname{End}N)
+  &=(\dim M)^{\dim M}(\dim N)^{\dim N}\\
+  &=(\dim M\dim N)^{\dim M\dim N}
+  =\dim\operatorname{End}(M\otimes N)
+\end{aligned}
+\]
+（当 \(\dim M\ge\dim N\) 时两边都等于 \((\dim M)^{\dim M}\)；有限维时退化为第 4 步的维数公式。）真正的失效点是推理规则本身：基数相等的单射不必满射，如 \(\mathbb N\to\mathbb N,\ n\mapsto 2n\)。有限维的``单射 + 等维数 \(\Rightarrow\) 同构''依赖有限集的鸽笼原理，对无限集不再成立，因此无限维时必须单独检验满射性。
+
+而满射性恰好失败：\(\operatorname{Im}\Phi\) 中的每个算子都是``纯算子''的有限和
+\[
+  \Phi\Bigl(\sum_{r=1}^k f_r\otimes g_r\Bigr)
+  =
+  \sum_{r=1}^k (f_r\otimes g_r),
+  \qquad
+  (f_r\otimes g_r)(x\otimes y)=f_r(x)\otimes g_r(y),
+\]
+即每个被加项都保持``单张量''结构；一般的线性算子没有这种限制。
+
+\textbf{反例（双方都无限维时 \(\Phi\) 不满射）。}
+取
+\[
+  M=N=K^{(\mathbb N)}=\bigoplus_{i\in\mathbb N}Ke_i,
+\]
+则 \(M\otimes N\) 以 \(\{e_i\otimes e_j\}_{i,j\in\mathbb N}\) 为基。定义``对角投影''
+\[
+  P(e_i\otimes e_j)=\delta_{ij}\,e_i\otimes e_i,
+\]
+即 \(P\) 把 \(M\otimes N\) 投到对角线子空间 \(\langle e_i\otimes e_i\rangle_{i\in\mathbb N}\)。假设
+\(P=\Phi\bigl(\sum_{r=1}^k f_r\otimes g_r\bigr)\)，并写
+\[
+  f_r(e_i)=\sum_m A^{(r)}_{mi}e_m,\qquad
+  g_r(e_j)=\sum_n B^{(r)}_{nj}e_n.
+\]
+则 \(\Phi\bigl(\sum_r f_r\otimes g_r\bigr)(e_i\otimes e_j)\) 中 \(e_m\otimes e_n\) 的系数是
+\(\sum_r A^{(r)}_{mi}B^{(r)}_{nj}\)。与 \(P(e_i\otimes e_j)=\delta_{ij}e_i\otimes e_i\)
+比较系数（取 \(m=i\)、\(n=j\)）得
+\[
+  \sum_{r=1}^k A^{(r)}_{ii}B^{(r)}_{jj}=\delta_{ij}
+  \qquad (\forall i,j\in\mathbb N).
+\]
+即无限单位矩阵 \((\delta_{ij})_{i,j}\) 被写成了有限个秩 \(\le 1\) 矩阵
+\(\bigl(A^{(r)}_{ii}B^{(r)}_{jj}\bigr)_{i,j}\) 的和。有限个秩 \(\le 1\) 矩阵的和秩仍有限，而单位矩阵的秩为无限，矛盾。故 \(P\notin\operatorname{Im}\Phi\)。
+
+直观上，\(\operatorname{Im}\Phi\) 中的算子只由有限个``方向''拼成，而 \(P\) 在无穷多个两两无关的对角方向上都非零，单靠有限个纯算子无法拼出它。这也说明``张量积的维数 \(=\) 维数之积''这类公式只能帮有限维情形收尾；无限维时真正决定问题的是映射本身的满射性。
+
+\textbf{注}：本节 Exercise~1（\(M^*\otimes N^*\hookrightarrow (M\otimes N)^*\)，有限维时同构）与本题完全平行：同样先由 \(M^*\times N^*\) 上的双线性映射 \((x,y)\mapsto f(x)g(y)\) 出发，经泛性质得到 \(M^*\otimes N^*\to(M\otimes N)^*\)，再证单射、有限维时用维数相等收尾。可见``双线性映射 \(\to\) 泛性质 \(\to\) 单射 \(\to\) 维数相等''是张量积同构题的统一套路。
+\end{example}
+\subsection{\texorpdfstring{基变换与张量积的相容性：\(M_{K'}\otimes_{K'}N_{K'}\cong(M\otimes_KN)_{K'}\) 等}{基变换与张量积的结合律、交换律与单位律}}\label{subsec:problem-base-change-tensor}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~148, Section 3.9, Exercise 13）
+
+设 \(K\) 是交换环，\(M,N\) 是 \(K\)-模，\(A,B\) 是 \(K\)-代数，\(K'\) 是交换 \(K\)-代数，\(K''\) 是交换 \(K'\)-代数。记
+\[
+  M_{K'}:=K'\otimes_K M,
+\]
+而 \(K''\) 经由 \(K\to K'\to K''\) 也是 \(K\)-代数。证明下列同构：
+\begin{enumerate}
+  \item \(M_{K'}\otimes_{K'}N_{K'}\cong(M\otimes_K N)_{K'}\)（作为 \(K'\)-模）；
+  \item \(A_{K'}\otimes_{K'}B_{K'}\cong(A\otimes_K B)_{K'}\)（作为 \(K'\)-代数）；
+  \item \((M_{K'})_{K''}\cong M_{K''}\)（作为 \(K''\)-模）；
+  \item \((A_{K'})_{K''}\cong A_{K''}\)（作为 \(K''\)-代数）。
+\end{enumerate}
+
+\textbf{思路：不逐项验证双线性，全程只搬用张量积的标准自然同构。}
+\begin{itemize}
+  \item \textbf{结合律}：\((X\otimes_R Y)\otimes_S Z\cong X\otimes_R(Y\otimes_S Z)\)，其中 \(Y\) 是 \((R,S)\)-双模（跨环结合律，对任意环成立）；
+  \item \textbf{交换律}：\(K\) 交换时 \(P\otimes_K Q\cong Q\otimes_K P\)（\(x\otimes y\mapsto y\otimes x\)）；
+  \item \textbf{单位律}：\(R\otimes_R P\cong P\)（\(r\otimes p\mapsto rp\)）；
+  \item \textbf{基变换恒等式}：对 \(K'\)-模 \(P\)，
+  \[
+    (K'\otimes_K M)\otimes_{K'}P\cong M\otimes_K P,
+  \]
+  它由 交换律 \(+\) 结合律 \(+\) 单位律 三步拼出（见 (i) 的推导），是``把基变换与张量复合后坍缩''的标准同构。
+\end{itemize}
+
+\textbf{(i) 的证明（一条链）。}
+\[
+\begin{aligned}
+  M_{K'}\otimes_{K'}N_{K'}
+  &=(K'\otimes_K M)\otimes_{K'}(K'\otimes_K N)\\
+  &\cong (K'\otimes_{K'}K')\otimes_K(M\otimes_K N)
+  &&\text{（两个张量函子可交换）}\\
+  &\cong K'\otimes_K(M\otimes_K N)=(M\otimes_K N)_{K'}.
+  &&\text{（单位律）}
+\end{aligned}
+\]
+第一步就是要点辨析二里``\(-\otimes_AM\) 与 \(-\otimes_BN\) 可交换''的直接应用：把两个基变换因子 \(K'\) 在 \(\otimes_{K'}\) 中并成 \(K'\otimes_{K'}K'\)，同时 \(M,N\) 合并为 \(M\otimes_KN\)。对应映射
+\[
+  (k'\otimes m)\otimes_{K'}(k''\otimes n)\longmapsto(k'\otimes_{K'}k'')\otimes(m\otimes n)
+\]
+良定只需 \(\otimes_{K'}\) 的平衡条件 \((ak')\otimes_{K'}k''=k'\otimes_{K'}(ak'')\)，而这在 \(K'\otimes_{K'}K'\) 中恰好成立。第二步是单位律：乘法 \(K'\otimes_{K'}K'\cong K'\)（在 \(K'\) 上做 base change 后坍缩）。
+
+等价地，也可以``一次只挪一个 \(K'\)''：基变换恒等式
+\[
+  (K'\otimes_K M)\otimes_{K'}P\cong M\otimes_K P
+\]
+由 交换律 \(+\) 结合律 \(+\) 单位律 三步拼出：
+\[
+  (K'\otimes_K M)\otimes_{K'}P
+  \cong(M\otimes_K K')\otimes_{K'}P
+  \cong M\otimes_K(K'\otimes_{K'}P)
+  \cong M\otimes_K P,
+\]
+取 \(P=K'\otimes_KN\) 后用交换律/结合律把单个 \(K'\) 挪到 \(M\otimes_KN\) 之外，与上面的链殊途同归。
+
+\textbf{关于``先把两个 \(K'\) 并起来''的写法。} 关键是两个 \(K'\) 因子之间要写 \(\otimes_{K'}\)（在 \(K'\) 上做 base change），即
+\[
+  (K'\otimes_K M)\otimes_{K'}(K'\otimes_K N)
+  \cong (K'\otimes_{K'}K')\otimes_K(M\otimes_K N)
+  \cong K'\otimes_K(M\otimes_K N).
+\]
+这样写是\textbf{对的}。唯一容易写错的是把中间误写成 \(\otimes_K\)，即 \((K'\otimes_KK')\otimes_K(M\otimes_KN)\)：那一般\textbf{不是}同构——乘法映射 \(K'\otimes_KK'\to K'\) 只是满射、一般不单射（如 \(K=\mathbb R\)、\(K'=\mathbb C\) 时 \(\mathbb C\otimes_{\mathbb R}\mathbb C\) 是 4 维实空间而 \(\mathbb C\) 是 2 维），且此时朴素映射 \((k'\otimes m)\otimes_{K'}(k''\otimes n)\mapsto(k'\otimes k'')\otimes(m\otimes n)\) 也不良定。差别全在于两个 \(K'\) 之间是 \(\otimes_{K'}\) 还是 \(\otimes_K\)。
+
+\textbf{(ii)：}由 (i)（取 \(M=A\)、\(N=B\)）得到 \(K'\)-模同构，且它把
+\[
+  (k'\otimes a)\otimes_{K'}(k''\otimes b)\longmapsto k'k''\otimes(a\otimes b)
+\]
+两边的乘积都等于 \(k'k''k'''k''''\otimes(aa'\otimes bb')\)（用到 \(K'\) 交换），故保持乘法与单位，是 \(K'\)-代数同构。
+
+\textbf{(iii)：}
+\[
+  (M_{K'})_{K''}
+  =K''\otimes_{K'}(K'\otimes_K M)
+  \cong(K''\otimes_{K'}K')\otimes_K M
+  \cong K''\otimes_K M
+  =M_{K''},
+\]
+第一步是结合律（\(K''\) 视为 \((K'',K')\)-双模、\(K'\) 视为 \((K',K)\)-双模），第二步是单位律 \(K''\otimes_{K'}K'\cong K''\)。这就是\textbf{基变换的传递性（复合）}：\(K''\otimes_{K'}(K'\otimes_K-)\cong K''\otimes_K-\)。它只用到结合律与单位律，对\textbf{任意}环同态 \(K\to K'\to K''\) 都成立，不需要交换性。
+
+\textbf{(iv)：}同 (iii)，且两边的乘法都来自 \(A\) 的乘法、经上述 \(K''\)-模同构对应，故为 \(K''\)-代数同构。
+
+\textbf{要点辨析一：什么时候张量积可以``交换''？}
+\begin{itemize}
+  \item 对\textbf{交换环} \(K\) 上的模 \(M,N\)，恒有 \(M\otimes_KN\cong N\otimes_KM\)（\(x\otimes y\mapsto y\otimes x\)）。这要求两个模``地位对称''（同侧模结构），交换环自动提供。
+  \item 对\textbf{非交换环} \(R\)，\(M\otimes_RN\) 要求 \(M\) 是右 \(R\)-模、\(N\) 是左 \(R\)-模；\(N\otimes_RM\) 则反过来。二者一般不同时有定义，也没有自然交换同构。因此``张量积可交换''本质上是交换环（或双边相容的双模）特有的性质。本题所有 \(\otimes_K\)、\(\otimes_{K'}\) 的因子交换都依赖 \(K,K'\) 的交换性。
+\end{itemize}
+
+\textbf{要点辨析二：什么时候两个张量函子可以``交换''？}
+\begin{itemize}
+  \item 问的是何时
+  \[
+    (X\otimes_{R_1}M_1)\otimes_{R_2}M_2
+    \cong
+    (X\otimes_{R_2}M_2)\otimes_{R_1}M_1
+  \]
+  自然成立。先决条件是两边都有定义：一般需要 \(M_1\) 是 \((R_1,R_2)\)-双模、\(M_2\) 是 \((R_2,R_1)\)-双模，且 \(X\) 同时是右 \(R_1\)-模与右 \(R_2\)-模。
+  \item 由结合律，两种次序分别化为
+  \[
+    X\otimes_{R_1}(M_1\otimes_{R_2}M_2)
+    \quad\text{与}\quad
+    X\otimes_{R_2}(M_2\otimes_{R_1}M_1),
+  \]
+  因此``可交换''当且仅当存在\textbf{换位同构} \(M_1\otimes_{R_2}M_2\cong M_2\otimes_{R_1}M_1\)（连同相应的模结构）。
+  \item 最常用、最干净的充分条件：
+  \[
+    R_1=R_2=R\text{ 为交换环},\qquad M_1,M_2\text{ 为 }R\text{-模},
+  \]
+  此时 \(x\otimes y\mapsto y\otimes x\) 就是换位同构，两个函子自然同构。
+  \item 若 \(R_1\ne R_2\)，两个复合的范畴归属可能不同（一般分别落在右 \(R_1\)-模与右 \(R_2\)-模范畴），需先说明在哪个范畴比较。本题 (i) 的中间步骤 \((K'\otimes_KM)\otimes_{K'}(K'\otimes_KN)\cong(K'\otimes_{K'}K')\otimes_K(M\otimes_KN)\) 正是该交换律的应用（把两个 \(K'\) 系数并成 \(K'\otimes_{K'}K'\)），再用单位律 \(K'\otimes_{K'}K'\cong K'\) 化简，全程没有手算双线性。
+\end{itemize}
+\end{example}
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -5505,6 +5881,7 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 
 \begin{itemize}
   \item \hyperref[subsec:topic-derived-functors]{[投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线] 投射/内射分解是把一般模替换成“好模”的装置；\(\operatorname{Tor}\) 衡量张量积失去的左正合性，\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 失去的右正合性并分类短正合列扩张。}
+  \item \hyperref[subsec:topic-flat-modules]{[平坦模的性质总览] flat 由张量正合 / \(\operatorname{Tor}_1=0\) 刻画，直和、张量、基变换、局部化与滤过余极限皆保持平坦；忠实平坦的五条等价条件以保非零与 \(\operatorname{Spec}\) 满射为核心；Noether 有限生成时平坦 = 局部自由，局部环上有限生成平坦即自由，整环上平坦 \(\Rightarrow\) 无挠（PID 上反之）。证明平坦常用：理想判据 \(I\otimes M\to M\) 单射、方程判据（Prop 3.1.6）、局部化后证局部自由、以及 Nakayama 的 \(\operatorname{Tor}_1(k,M)=0\)。}
   \item \hyperref[subsec:topic-morita-equivalence]{[Morita 等价：用模范畴比较环] Morita 等价不是环同构，而是模范畴等价；矩阵环、progenerator 与自同态环给出其最常用的判定和构造。}
   \item \hyperref[subsec:topic-local-ring-algebra1]{[Algebra I 中 local ring 的性质与判定] local ring 等价于唯一极大左/右理想，极大理想就是 Jacobson 根；Nakayama 与 strongly indecomposable 的判定都由这个唯一方向控制。}
   \item \hyperref[subsec:topic-galois-radical]{[Galois 扩张与 radical 扩张的主线关系] 关键不是 “Galois \(\Leftrightarrow\) radical”，而是 \(G_f\) 可解等价于“分裂域嵌入某个 radical 扩张”，不等价于“分裂域本身就是 radical”。}
@@ -5561,6 +5938,8 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[subsec:problem-cyclic-p-power-embedding]{[循环 \(p\)-幂扩张的嵌入判别] \(p^s\) 次循环扩张可嵌入 \(p^{s+1}\) 次循环扩张当且仅当 \(\zeta_p\) 是范数；二次时等价于 \(c\) 是两平方和。}
   \item \hyperref[subsec:problem-albert-cyclic-degree-p]{[Albert 的 \(p\) 次循环扩张构造] 若 \(r(a)a^{-t}\) 是 \(p\) 次幂且 \(a\notin W^p\)，则 \(W(u)\), \(u^p=a\), 在 \(F\) 上是 \(ps\) 次循环扩张，并含唯一 \(p\) 次循环子扩张。}
   \item \hyperref[subsec:problem-uchida-generic-trinomials]{[通用三项式的仿射群与射影线性群] \(X^p-sX-t\) 的分裂域给出 \(\operatorname{AGL}(1,\mathbb F_p)\)，而 \(X^{p+1}-sX-t\) 的分裂域给出 \(\operatorname{PGL}_2(\mathbb F_p)\)。}
+  \item \hyperref[subsec:problem-end-tensor-product]{[\(\operatorname{End}M\otimes\operatorname{End}N\) 的张量积同构] 有限维时``双线性映射 → 泛性质 → 单射 → 维数相等''三步得同构；双方都无限维时 \(\Phi\) 单而不满，对角投影 \(P(e_i\otimes e_j)=\delta_{ij}e_i\otimes e_i\) 是反例。}
+  \item \hyperref[subsec:problem-base-change-tensor]{[基变换与张量积的相容性] \(M_{K'}\otimes_{K'}N_{K'}\cong(M\otimes_KN)_{K'}\) 等四式用结合律/交换律/单位律一条链即可，不必手验双线性；把两个 \(K'\) 并成 \(K'\otimes_{K'}K'\)（在 \(K'\) 上做基变换）正是``\(-\otimes_AM\) 与 \(-\otimes_BN\) 交换''的应用，关键是两个 \(K'\) 之间用 \(\otimes_{K'}\) 而非 \(\otimes_K\)。}
 \end{itemize}
 
 \end{document}
