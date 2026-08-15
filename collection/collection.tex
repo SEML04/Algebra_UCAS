@@ -1323,6 +1323,37 @@ Krull 交定理最常用的形式是：若 \(A\) 是 Noether 环，\(I\subset A\
 
 \end{remark}
 
+\begin{remark}
+\phantomsection\label{rem:short-exact-nonsplit-reducible}
+短正合列
+\[
+  0\to M\xrightarrow{i}P\xrightarrow{q}N\to 0
+\]
+只说明 \(i(M)=\ker q\) 且 \(P/i(M)\cong N\)，并不自动给出
+\[
+  P\cong M\oplus N.
+\]
+要得到直和分解，必须额外存在截面 \(s:N\to P\)（即 \(q\circ s=\mathrm{id}_N\)），或者等价地存在收缩
+\(r:P\to M\)（即 \(r\circ i=\mathrm{id}_M\)）。换言之，正合列给出的是“扩张”，分裂只是在该扩张类为零时发生的特殊情形。
+
+最基本的反例是
+\[
+  0\to \mathbb Z\xrightarrow{\times n}\mathbb Z\to \mathbb Z/n\mathbb Z\to 0
+  \qquad (n\ge 2).
+\]
+它是短正合列，但不分裂；否则
+\[
+  \mathbb Z\cong \mathbb Z\oplus \mathbb Z/n\mathbb Z
+\]
+会含有非零挠元，矛盾。
+
+至于 \(P\) 是否“可约”，要区分两种含义：
+\begin{itemize}
+  \item 若“可约”指\textbf{不是单模}，则当 \(M\neq 0\) 且 \(N\neq 0\) 时，\(i(M)\) 是 \(P\) 的非零真子模，所以 \(P\) 一定不是单模。
+  \item 若“可约”指\textbf{可分解为非平凡直和}，则不一定。上面的例子中 \(P=\mathbb Z\) 作为 \(\mathbb Z\)-模是不可分解的，因此短正合列非平凡并不迫使中项可直和分解。
+\end{itemize}
+\end{remark}
+
 \subsection{Semi-simple rings 与 hereditary rings}\label{subsec:semisimple-hereditary}
 
 \begin{remark}
@@ -1915,6 +1946,161 @@ Morita 等价会保持许多只依赖模范畴的性质，例如：
     \text{Morita 等价不是说 }A\cong B,\text{ 而是说 }A\text{ 与 }B\text{ 的模范畴等价。}
   }
 \]
+
+\subsection{\texorpdfstring{Simple rings 与 semi-simple rings：定义、结构定理与常见误解}{Simple rings 与 semi-simple rings}}\label{subsec:topic-simple-semisimple-rings}
+
+这一专题主要整理 noncommutative ring theory 中两个容易混淆的词：
+\[
+  \text{simple ring}
+  \qquad\text{与}\qquad
+  \text{semi-simple ring}.
+\]
+它们都和“simple module”有关，但含义完全不同。特别要警惕：
+\[
+  R\text{ 是 simple ring}
+  \not\Rightarrow
+  {}_RR\text{ 是 simple module}.
+\]
+
+\medskip
+
+\textbf{1. Simple ring：只控制双边理想。}
+
+含幺环 \(R\neq 0\) 称为\textbf{simple ring}，若其双边理想只有
+\[
+  0,\quad R.
+\]
+这里说的是\textbf{two-sided ideals}，不是 left ideals 或 right ideals。因此 simple ring 的特殊性是：
+\[
+  \text{双边理想平凡}
+  \quad\text{但}\quad
+  \text{单边理想可以非常多}.
+\]
+
+标准反例是
+\[
+  R=M_n(k)\qquad (n\ge 2).
+\]
+它是 simple ring，因为任意非零双边理想一旦含有某个非零矩阵，就可通过矩阵单位 \(E_{ij}\) 的左右乘法生成全部矩阵单位，从而等于 \(R\)。但它有非平凡左理想，例如
+\[
+  Re_{11}\subsetneq R,
+\]
+其中 \(e_{11}=E_{11}\)。事实上
+\[
+  R=Re_{11}\oplus Re_{22}\oplus\cdots\oplus Re_{nn}
+\]
+是左 \(R\)-模分解，每个 \(Re_{ii}\) 是 minimal left ideal。因此当 \(n\ge 2\) 时，\(R\) 作为左 \(R\)-模并不是 simple module。
+
+\medskip
+
+\textbf{2. Semi-simple module 与 semi-simple ring。}
+
+一个 \(R\)-模 \(M\) 称为\textbf{semi-simple}，若它是 simple modules 的直和：
+\[
+  M\simeq \bigoplus_{\alpha} S_\alpha,
+  \qquad S_\alpha\text{ simple}.
+\]
+等价地，\(M\) 的每个子模都是直和因子（Cartan--Eilenberg, Ch.~I, Prop.~4.1）。
+
+一个环 \(R\) 称为\textbf{left semi-simple ring}，通常指 \({}_RR\) 作为左 \(R\)-模 semi-simple。Cartan--Eilenberg Ch.~I, Thm.~4.2 给出等价刻画：
+\[
+\begin{array}{c}
+  {}_RR\text{ semi-simple}\\
+  \Longleftrightarrow
+  \text{每个左理想都是 }R\text{ 的直和因子}\\
+  \Longleftrightarrow
+  \text{每个左 }R\text{-模都是 semi-simple}\\
+  \Longleftrightarrow
+  \text{每个左模短正合列都分裂}\\
+  \Longleftrightarrow
+  \text{每个左 }R\text{-模都 projective}\\
+  \Longleftrightarrow
+  \text{每个左 }R\text{-模都 injective}.
+\end{array}
+\]
+由 Wedderburn--Artin 结构定理，这些左/右版本事实上等价。
+
+\medskip
+
+\textbf{3. Wedderburn--Artin theorem：semi-simple Artinian 环的结构。}
+
+经典 Wedderburn--Artin 定理说：
+\[
+  R\text{ semi-simple Artinian}
+  \Longleftrightarrow
+  R\simeq \prod_{i=1}^s M_{n_i}(D_i),
+\]
+其中每个 \(D_i\) 是 division ring。有限直积也可看成有限直和的环分解：
+\[
+  R=R_1\oplus\cdots\oplus R_s,
+  \qquad
+  R_i\simeq M_{n_i}(D_i),
+\]
+这些 \(R_i\) 是 \(R\) 的 simple components。
+
+在 Jacobson \textit{Basic Algebra II} 中有两个特别常用的版本：
+\begin{itemize}
+  \item \(\S 3.13\) 的 Wedderburn--Artin theorem for simple rings：若 \(R\) simple 且含有 minimal right/left ideal，则
+  \[
+    R\simeq \operatorname{End}_D(V)\simeq M_n(D)
+  \]
+  对某个 division ring \(D\) 上有限维向量空间 \(V\) 成立；等价地，\(R\) simple 且左右 Artinian/Noetherian。
+  \item \(\S 4.2\) 的 semi-primitive Artinian 结构定理：Artinian 且 radical 为零的环，等价于有限个 simple Artinian rings 的直和，也就是
+  \[
+    \prod_i M_{n_i}(D_i).
+  \]
+\end{itemize}
+
+\medskip
+
+\textbf{4. Simple Artinian 是一个矩阵块；semi-simple Artinian 是有限多个矩阵块。}
+
+因此应记住这张表：
+\[
+\begin{array}{c|c}
+  \text{性质} & \text{结构}\\ \hline
+  \text{simple Artinian} & M_n(D)\\
+  \text{semi-simple Artinian} & \prod_{i=1}^s M_{n_i}(D_i)
+\end{array}
+\]
+simple Artinian 是 semi-simple Artinian 的一个 indecomposable block；semi-simple Artinian 则允许多个 simple components。
+
+\medskip
+
+\textbf{5. 三个最容易出错的点。}
+
+\begin{itemize}
+  \item \textbf{simple ring 不等于 simple module。}
+  \(M_n(k)\) 是 simple ring，但
+  \[
+    {}_RR\simeq Re_{11}\oplus\cdots\oplus Re_{nn}
+  \]
+  不是 simple module。
+  \item \textbf{双边理想平凡不代表单边理想平凡。}
+  \(M_n(k)\) 的双边理想只有 \(0,R\)，但 \(Re_{11}\) 是非零真左理想。
+  \item \textbf{simple ring 不一定 Artinian，也不一定是矩阵环。}
+  例如特征 \(0\) 域 \(k\) 上第一 Weyl algebra
+  \[
+    A_1(k)=k\langle x,\partial\rangle/(\partial x-x\partial-1)
+  \]
+  是 simple ring，但它不是 Artinian，因此不属于 Wedderburn--Artin 的矩阵环结论范围。
+\end{itemize}
+
+\medskip
+
+\textbf{6. 与 Morita 理论和表示论的联系。}
+
+矩阵环
+\[
+  M_n(D)
+\]
+与 \(D\) Morita 等价，所以 simple Artinian ring 的模论本质上就是 division ring 上向量空间的模论。更具体地：
+\[
+  M_n(D)\text{-}\operatorname{Mod}
+  \simeq
+  D\text{-}\operatorname{Mod}.
+\]
+这解释了为什么 \(M_n(D)\) 虽然作为环不是 division ring，但其 simple modules 都由一个 minimal left ideal 控制；也解释了 Jacobson II 在 \(\S 3.13\) 中用 Morita I 来证明 Wedderburn--Artin theorem for simple rings。
 
 \subsection{Algebra I 中 local ring 的性质与判定}\label{subsec:topic-local-ring-algebra1}
 
@@ -5833,6 +6019,253 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item 若 \(R_1\ne R_2\)，两个复合的范畴归属可能不同（一般分别落在右 \(R_1\)-模与右 \(R_2\)-模范畴），需先说明在哪个范畴比较。本题 (i) 的中间步骤 \((K'\otimes_KM)\otimes_{K'}(K'\otimes_KN)\cong(K'\otimes_{K'}K')\otimes_K(M\otimes_KN)\) 正是该交换律的应用（把两个 \(K'\) 系数并成 \(K'\otimes_{K'}K'\)），再用单位律 \(K'\otimes_{K'}K'\cong K'\) 化简，全程没有手算双线性。
 \end{itemize}
 \end{example}
+
+\subsection{\texorpdfstring{有限生成投射模下 \(\operatorname{Hom}\) 与张量积的交换}{有限生成投射模下 Hom 与张量积的交换}}\label{subsec:problem-projective-hom-tensor}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~155, Section 3.10, Exercise 7）
+
+Let \(R\) and \(S\) be rings. Let \(P\) be a finitely generated projective left
+\(R\)-module, \(M\) an \(R\)-\(S\)-bimodule, and \(N\) a left \(S\)-module. Show
+that there is a group isomorphism
+\[
+  \eta:\operatorname{Hom}_R(P,M)\otimes_S N
+  \longrightarrow
+  \operatorname{Hom}_R(P,M\otimes_S N)
+\]
+such that for \(f\in\operatorname{Hom}_R(P,M)\) and \(y\in N\),
+\(\eta(f\otimes y)\) is the homomorphism
+\[
+  x\longmapsto f(x)\otimes y
+\]
+from \(P\) into \(M\otimes_S N\).
+
+\textbf{解答：}
+
+先说明模结构：\(\operatorname{Hom}_R(P,M)\) 通过
+\[
+  (fs)(x):=f(x)s,\qquad s\in S,
+\]
+成为右 \(S\)-模，所以左端的 \(\otimes_S N\) 有定义。映射
+\[
+  (f,y)\longmapsto \bigl(x\mapsto f(x)\otimes y\bigr)
+\]
+对 \(f\) 加法、对 \(y\) 加法均相容，并满足平衡关系
+\[
+  \eta((fs)\otimes y)(x)
+  =f(x)s\otimes y
+  =
+  f(x)\otimes sy
+  =
+  \eta(f\otimes sy)(x),
+\]
+故由张量积泛性质诱导出题中自然同态 \(\eta\)。
+
+若 \(P=R^n\) 是有限秩自由左 \(R\)-模，则
+\[
+  \operatorname{Hom}_R(R^n,M)\cong M^n,
+  \qquad
+  \operatorname{Hom}_R(R^n,M\otimes_S N)\cong (M\otimes_S N)^n.
+\]
+于是
+\[
+  \operatorname{Hom}_R(R^n,M)\otimes_S N
+  \cong
+  M^n\otimes_S N
+  \cong
+  (M\otimes_S N)^n
+  \cong
+  \operatorname{Hom}_R(R^n,M\otimes_S N),
+\]
+且这正是 \(\eta\)。因此 \(P\) 有限自由时结论成立。
+
+一般地，\(P\) 有限生成投射，故存在有限自由模 \(F=R^n\) 与某个 \(R\)-模 \(P'\)，使得
+\[
+  F\cong P\oplus P'.
+\]
+对直和取 \(\operatorname{Hom}\) 得
+\[
+  \operatorname{Hom}_R(F,M)
+  \cong
+  \operatorname{Hom}_R(P,M)\oplus \operatorname{Hom}_R(P',M),
+\]
+同理对 \(M\otimes_S N\) 也成立；而张量积保持有限直和。于是 \(\eta_F\) 在上述直和分解下就是
+\[
+  \eta_P\oplus \eta_{P'}.
+\]
+由于 \(\eta_F\) 已知为同构，作为其直和分量的 \(\eta_P\) 也是同构。故结论成立。
+
+\textbf{方法要点：}
+有限生成投射模的标准用法是“先证有限自由情形，再把一般情形看成有限自由模的直和因子”。这里有限生成性用在 \(P\) 是某个有限自由模 \(R^n\) 的直和因子。
+\end{example}
+
+\subsection{Schanuel 引理：两个投射表示的稳定同构}\label{subsec:problem-schanuel-lemma}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~155, Section 3.10, Exercise 8）
+
+\textbf{Schanuel's lemma.}
+Suppose we have short exact sequences
+\[
+  0\longrightarrow N_i\longrightarrow P_i\xrightarrow{g_i}M\longrightarrow 0
+  \qquad (i=1,2),
+\]
+where \(P_i\) is projective. Show that
+\[
+  P_1\oplus N_2\cong P_2\oplus N_1.
+\]
+
+\textbf{解答：}
+
+取两个满射 \(g_1:P_1\to M\)、\(g_2:P_2\to M\) 的 pullback：
+\[
+  E:=P_1\times_M P_2
+  =
+  \{(p_1,p_2)\in P_1\oplus P_2\mid g_1(p_1)=g_2(p_2)\}.
+\]
+有自然投影
+\[
+  \pi_1:E\to P_1,\qquad (p_1,p_2)\mapsto p_1.
+\]
+它是满射：给定 \(p_1\in P_1\)，由于 \(g_2\) 满射，可取 \(p_2\in P_2\) 使
+\[
+  g_2(p_2)=g_1(p_1),
+\]
+于是 \((p_1,p_2)\in E\)。其核为
+\[
+  \ker\pi_1
+  =
+  \{(0,p_2)\mid g_2(p_2)=0\}
+  \cong N_2.
+\]
+因此得到短正合列
+\[
+  0\longrightarrow N_2\longrightarrow E\xrightarrow{\pi_1}P_1\longrightarrow 0.
+\]
+因为 \(P_1\) 是投射模，该短正合列分裂，所以
+\[
+  E\cong P_1\oplus N_2.
+\]
+
+同理，另一个投影
+\[
+  \pi_2:E\to P_2
+\]
+给出短正合列
+\[
+  0\longrightarrow N_1\longrightarrow E\xrightarrow{\pi_2}P_2\longrightarrow 0,
+\]
+并因 \(P_2\) 投射而分裂，故
+\[
+  E\cong P_2\oplus N_1.
+\]
+比较两式即得
+\[
+  P_1\oplus N_2\cong E\cong P_2\oplus N_1.
+\]
+
+\textbf{方法要点：}
+Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
+\[
+  P_i\twoheadrightarrow M
+\]
+虽然核 \(N_i\) 与投射模 \(P_i\) 本身未必相同，但它们满足稳定同构
+\[
+  P_1\oplus N_2\cong P_2\oplus N_1.
+\]
+这正是投射分解中“第一 syzygy 在稳定意义下唯一”的基本来源。
+\end{example}
+
+\subsection{\texorpdfstring{分式化中的 divisible 模与 essential monomorphism}{分式化中的 divisible 模与 essential monomorphism}}\label{subsec:problem-essential-monomorphism-fraction}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~164, Section 3.11, Exercise 1）
+
+Let \(D\) be a domain, \(F\) its field of fractions, and \(M\) a \(D\)-module. Show that
+\[
+  M_F:=F\otimes_D M
+\]
+is a divisible \(D\)-module, and that
+\[
+  \iota:M\longrightarrow M_F,\qquad x\longmapsto 1\otimes x
+\]
+is an essential monomorphism if \(M\) is torsion-free.
+
+\textbf{概念说明：}
+
+若 \(M\subseteq N\)，则称 \(M\) 是 \(N\) 的\textbf{大子模}（large submodule），如果任意非零子模
+\[
+  0\neq L\subseteq N
+\]
+都满足
+\[
+  L\cap M\neq 0.
+\]
+一个单同态 \(i:M\to N\) 称为\textbf{essential monomorphism}，如果 \(i(M)\) 是 \(N\) 的大子模；此时也称 \(N\) 是 \(M\) 的 essential extension。
+直观地说，essential monomorphism 表示 \(M\) 在 \(N\) 里“不可避”：\(N\) 的任何非零部分都会碰到 \(M\)。
+
+\textbf{解答：}
+
+记
+\[
+  S=D\setminus\{0\}.
+\]
+则
+\[
+  F\otimes_D M\cong S^{-1}M,
+\]
+元素可记作
+\[
+  \frac{x}{s}\qquad (x\in M,\ s\in S).
+\]
+
+先证 \(M_F\) divisible。对任意 \(0\neq d\in D\) 和任意
+\[
+  \frac{x}{s}\in S^{-1}M,
+\]
+有
+\[
+  d\cdot \frac{x}{ds}=\frac{x}{s}.
+\]
+因此乘以 \(d\) 的映射
+\[
+  M_F\to M_F,\qquad y\mapsto dy
+\]
+是满射，所以 \(M_F\) 是 divisible \(D\)-module。
+
+再看
+\[
+  \iota:M\to S^{-1}M,\qquad x\mapsto \frac{x}{1}.
+\]
+其核为
+\[
+  \ker\iota
+  =
+  \{x\in M\mid \exists s\in S,\ sx=0\}.
+\]
+这正是 \(M\) 的 torsion 子模。因此若 \(M\) torsion-free，则 \(\iota\) 是单射。
+
+最后证 essential 性。取 \(S^{-1}M\) 的任意非零子模 \(L\)，选
+\[
+  0\neq \frac{x}{s}\in L.
+\]
+由于 \(L\) 是 \(D\)-子模，
+\[
+  s\cdot \frac{x}{s}=\frac{x}{1}\in L.
+\]
+而 \(\frac{x}{1}\neq 0\)：否则存在 \(t\in S\) 使 \(tx=0\)，由 \(M\) torsion-free 得 \(x=0\)，从而
+\[
+  \frac{x}{s}=0,
+\]
+矛盾。因此
+\[
+  0\neq \frac{x}{1}\in L\cap \iota(M),
+\]
+故 \(\iota(M)\) 是 \(M_F\) 的大子模，即 \(\iota\) 是 essential monomorphism。
+
+\textbf{方法要点：}
+分式化 \(S^{-1}M\) 中的 essential 性本质上就是“清分母”：任意非零分式 \(\frac{x}{s}\) 乘以分母 \(s\) 后落回原模 \(M\)，而 torsion-free 保证这个过程不会把非零元素杀成零。
+\end{example}
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -5868,6 +6301,7 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[rem:giM-vs-gM]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] \(G_I(M)\) 是标准 \(I\)-adic filtration 的 associated graded，\(G(M)\) 是一般 \(I\)-filtration 的 associated graded；相同的是诱导拓扑，不是分次模本身。}
   \item \hyperref[rem:prop8510-graded-recovery]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] Prop 8.5.10 说明：在完备且 \(\bigcap_{n\ge 0}M_n=0\) 的情形下，\(G(M)\) 的有限生成性与 Noether 性可分别恢复 \(M\) 的对应性质。}
   \item \hyperref[rem:split-projective-injective]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列分裂等价于有截面、收缩或直和分解；projective / injective / flat 分别由 \(\operatorname{Hom}(P,-)\)、\(\operatorname{Hom}(-,I)\)、\(-\otimes_A F\) 的正合性刻画。}
+  \item \hyperref[rem:short-exact-nonsplit-reducible]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列只给出子模与商模，不自动给出补模；中项是否可分解取决于是否分裂。}
   \item \hyperref[rem:semisimple-hereditary]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] semi-simple 强于 hereditary，因为“每个左理想是 \(\Lambda\) 的直和因子”强于“每个左理想是 projective \(\Lambda\)-模”。}
   \item \hyperref[rem:projective-vs-summand]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] projective 模只保证是某个自由模的直和因子，不一定是 \(\Lambda\) 本身的直和因子；\(\mathbb Z\) 给出 hereditary 非 semi-simple 的标准反例。}
   \item \hyperref[rem:semihereditary-injective-quotient]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] semi-hereditary 只控制有限生成子模，无法检验内射性所需的任意嵌入；左 Noether 时才与 hereditary 重合。}
@@ -5883,6 +6317,7 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[subsec:topic-derived-functors]{[投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线] 投射/内射分解是把一般模替换成“好模”的装置；\(\operatorname{Tor}\) 衡量张量积失去的左正合性，\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 失去的右正合性并分类短正合列扩张。}
   \item \hyperref[subsec:topic-flat-modules]{[平坦模的性质总览] flat 由张量正合 / \(\operatorname{Tor}_1=0\) 刻画，直和、张量、基变换、局部化与滤过余极限皆保持平坦；忠实平坦的五条等价条件以保非零与 \(\operatorname{Spec}\) 满射为核心；Noether 有限生成时平坦 = 局部自由，局部环上有限生成平坦即自由，整环上平坦 \(\Rightarrow\) 无挠（PID 上反之）。证明平坦常用：理想判据 \(I\otimes M\to M\) 单射、方程判据（Prop 3.1.6）、局部化后证局部自由、以及 Nakayama 的 \(\operatorname{Tor}_1(k,M)=0\)。}
   \item \hyperref[subsec:topic-morita-equivalence]{[Morita 等价：用模范畴比较环] Morita 等价不是环同构，而是模范畴等价；矩阵环、progenerator 与自同态环给出其最常用的判定和构造。}
+  \item \hyperref[subsec:topic-simple-semisimple-rings]{[Simple rings 与 semi-simple rings] simple ring 只要求双边理想平凡，不要求作为左模单；Wedderburn--Artin 定理把 simple Artinian 环刻画为 \(M_n(D)\)，把 semi-simple Artinian 环刻画为有限个矩阵除环块的直积。}
   \item \hyperref[subsec:topic-local-ring-algebra1]{[Algebra I 中 local ring 的性质与判定] local ring 等价于唯一极大左/右理想，极大理想就是 Jacobson 根；Nakayama 与 strongly indecomposable 的判定都由这个唯一方向控制。}
   \item \hyperref[subsec:topic-galois-radical]{[Galois 扩张与 radical 扩张的主线关系] 关键不是 “Galois \(\Leftrightarrow\) radical”，而是 \(G_f\) 可解等价于“分裂域嵌入某个 radical 扩张”，不等价于“分裂域本身就是 radical”。}
   \item \hyperref[subsec:topic-kummer-artin-schreier]{[Kummer 扩张与 Artin--Schreier 扩张] Kummer 理论用 \(T^n-a\) 描述含足够单位根时的 cyclic 扩张，Artin--Schreier 理论用 \(T^p-T-a\) 描述特征 \(p\) 下的次数 \(p\) cyclic 扩张。}
@@ -5940,6 +6375,9 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
   \item \hyperref[subsec:problem-uchida-generic-trinomials]{[通用三项式的仿射群与射影线性群] \(X^p-sX-t\) 的分裂域给出 \(\operatorname{AGL}(1,\mathbb F_p)\)，而 \(X^{p+1}-sX-t\) 的分裂域给出 \(\operatorname{PGL}_2(\mathbb F_p)\)。}
   \item \hyperref[subsec:problem-end-tensor-product]{[\(\operatorname{End}M\otimes\operatorname{End}N\) 的张量积同构] 有限维时``双线性映射 → 泛性质 → 单射 → 维数相等''三步得同构；双方都无限维时 \(\Phi\) 单而不满，对角投影 \(P(e_i\otimes e_j)=\delta_{ij}e_i\otimes e_i\) 是反例。}
   \item \hyperref[subsec:problem-base-change-tensor]{[基变换与张量积的相容性] \(M_{K'}\otimes_{K'}N_{K'}\cong(M\otimes_KN)_{K'}\) 等四式用结合律/交换律/单位律一条链即可，不必手验双线性；把两个 \(K'\) 并成 \(K'\otimes_{K'}K'\)（在 \(K'\) 上做基变换）正是``\(-\otimes_AM\) 与 \(-\otimes_BN\) 交换''的应用，关键是两个 \(K'\) 之间用 \(\otimes_{K'}\) 而非 \(\otimes_K\)。}
+  \item \hyperref[subsec:problem-projective-hom-tensor]{[有限生成投射模下 Hom 与张量积的交换] \(P\) 有限生成投射时，\(\operatorname{Hom}_R(P,M)\otimes_S N\cong\operatorname{Hom}_R(P,M\otimes_S N)\)，证明先做有限自由再取直和因子。}
+  \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
+  \item \hyperref[subsec:problem-essential-monomorphism-fraction]{[分式化中的 divisible 模与 essential monomorphism] \(F\otimes_D M\) 是 divisible，且 \(M\) torsion-free 时 \(M\to F\otimes_D M\) 是 essential monomorphism；证明核心是清分母。}
 \end{itemize}
 
 \end{document}
