@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper]{ctexart}
+\documentclass[a4paper]{ctexart}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -2101,6 +2101,106 @@ simple Artinian 是 semi-simple Artinian 的一个 indecomposable block；semi-s
   D\text{-}\operatorname{Mod}.
 \]
 这解释了为什么 \(M_n(D)\) 虽然作为环不是 division ring，但其 simple modules 都由一个 minimal left ideal 控制；也解释了 Jacobson II 在 \(\S 3.13\) 中用 Morita I 来证明 Wedderburn--Artin theorem for simple rings。
+
+\subsection{\texorpdfstring{半单、单、半本原、本原与半准素环：概念谱系与 Artin/Noether 关系}{半单、单、半本原、本原与半准素环}}\label{subsec:topic-simple-primitive-spectrum}
+
+这一专题把 \(\mathrm{Algebra\ I}\) 第 \(3\) 章中五个层层递进的概念放在一起对照：\textbf{semi-simple}（半单）、\textbf{simple}（单）、\textbf{semi-primitive}（半本原，又称 Jacobson-semisimple）、\textbf{primitive}（本原）与 \textbf{semi-primary}（半准素）。它们都由 Jacobson radical 串联起来；彼此之间的差别，本质上就是 Artin/Noether 链条件。simple ring 与 semi-simple ring 在定义层面的辨析见 \hyperref[subsec:topic-simple-semisimple-rings]{“Simple rings 与 semi-simple rings”} 专题，这里不再重复。
+
+\medskip
+
+\textbf{1. 五个定义一览。}
+
+\begin{itemize}
+  \item \textbf{semi-simple ring}（半单环）：\({}_RR\) 作为左 \(R\)-模是半单模，即极小左理想的直和（(\(\mathrm{I.Def}\ 3.1.1\))）；左右版本一致（(\(\mathrm{I.Cor}\ 3.1.7\))）。
+  \item \textbf{simple ring}（单环）：无非零真双边理想（(\(\mathrm{I.Def}\ 3.2.1\))）；注意它不是“作为自身左模单”。
+  \item \textbf{semi-primitive ring}（半本原环）：\(\operatorname{rad}(R)=0\)（(\(\mathrm{I.Def}\ 3.5.1\))）。
+  \item \textbf{left primitive ring}（左本原环）：存在忠实单左模（(\(\mathrm{I.Def}\ 3.7.2\))）；右本原类似，且左右并不自动一致（(\(\mathrm{I.Rem}\ 3.7.3\))）。
+  \item \textbf{semi-primary ring}（半准素环）：\(\operatorname{rad}(R)\) 幂零且 \(R/\operatorname{rad}(R)\) 半单（(\(\mathrm{I.Def}\ 3.5.4\))）。
+\end{itemize}
+
+\medskip
+
+\textbf{2. Jacobson radical 的桥梁作用。}
+
+按 (\(\mathrm{I.Def}\ 3.3.1\))，
+\[
+  \operatorname{rad}(R)=\bigcap_{\mathfrak m\text{ 极大左理想}}\mathfrak m
+  =\bigcap_{M\text{ 简单左模}}\operatorname{Ann}_R(M)
+  \qquad (\mathrm{I.Lem}\ 3.3.2,\ \mathrm{I.Cor}\ 3.3.3),
+\]
+且左右定义一致（(\(\mathrm{I.Cor}\ 3.3.4\))）。它连接上述概念的方式是：
+
+\begin{itemize}
+  \item 每个 nil 左理想都含于 \(\operatorname{rad}(R)\)（(\(\mathrm{I.Prop}\ 3.4.3\))）；左 Artin 时 \(\operatorname{rad}(R)\) 恰为最大幂零（左/右/双边）理想且本身幂零（(\(\mathrm{I.Thm}\ 3.4.4\))）。
+  \item \(R/\operatorname{rad}(R)\) 恒为半本原环（(\(\mathrm{I.Def}\ 3.5.1\)) 后）。
+  \item \(R\) 与 \(R/\operatorname{rad}(R)\) 有相同的简单左模（(\(\mathrm{I.Rem}\ 3.5.3\))）。
+  \item 半本原 \(\iff\) 存在忠实半单左模（(\(\mathrm{I.Prop}\ 3.7.1\))）。
+\end{itemize}
+
+\medskip
+
+\textbf{3. 关键定理：链条件如何把概念“收紧”。}
+
+\begin{itemize}
+  \item 半单环必为左 Noether 且左 Artin（有限长度、有合成列）（(\(\mathrm{I.Prop}\ 3.1.4\))）。
+  \item \textbf{半单 \(\iff\) 半本原 + 左 Artin}（(\(\mathrm{I.Thm}\ 3.5.2\))）。
+  \item simple 环：半单 \(\iff\) Artin，此时 \(R\simeq M_n(D)\)（(\(\mathrm{I.Prop}\ 3.2.12\))）。
+  \item 左 Artin 环必为半准素环（(\(\mathrm{I.Prop}\ 3.5.5\))）。
+  \item \textbf{Hopkins--Levitzki}（(\(\mathrm{I.Thm}\ 3.5.6\))）：半准素环上的左模，Noether \(\iff\) Artin \(\iff\) 有合成列（有限长度）。推论：左 Artin 环自动左 Noether（(\(\mathrm{I.Cor}\ 3.5.7\))）。
+  \item simple \(\implies\) primitive（(\(\mathrm{I.Lem}\ 3.7.4\))）；primitive \(\implies\) 半本原（(\(\mathrm{I.Def}\ 3.7.2\)) 后）。
+  \item 左 Artin 时：semi-simple \(\iff\) semi-primitive；simple \(\iff\) left primitive（(\(\mathrm{I.Prop}\ 3.7.6\))）。
+  \item 密度定理（(\(\mathrm{I.Thm}\ 3.7.7\))）：left primitive 时 \(R\to \operatorname{End}_D(V)\) 有稠密像（其中 \(D=\operatorname{End}_R(V)\)，\(V\) 为忠实单左模）；且 \(\dim_D V<\infty\) 当且仅当 \(R\) 左 Artin，此时 \(R\simeq M_n(D)\)。
+\end{itemize}
+
+\medskip
+
+\textbf{4. 关系图示。}
+
+（图中箭头旁括号内为 \(\mathrm{Algebra\ I}\) 条目编号，如 \((\mathrm{I.Prop}\ 3.2.12)\)；完整引用见下方解读。）
+
+\[
+\begin{tikzcd}[column sep=2.7em, row sep=3.2em]
+  \text{simple} \arrow[r, "\scriptsize (3.2.12)"] \arrow[d, bend left, "\scriptsize (3.7.4)"] 
+  & \text{semi-simple} \arrow[r, "\scriptsize (3.1.4)"] \arrow[d, bend left, "\scriptsize (3.5.1)"] 
+  & \text{left artinian} \arrow[r, "\scriptsize (3.5.5)"] \arrow[d, bend left, "\scriptsize (3.5.7)"] 
+  & \text{semi-primary} \\
+  \text{left primitive} \arrow[r, "\scriptsize (3.7.2)"] \arrow[u, bend left, "\scriptsize (3.7.6(ii))"] 
+  & \text{semi-primitive} \arrow[u, bend left, "\scriptsize (3.5.2)"] 
+  & \text{left noetherian} 
+  & {}
+\end{tikzcd}
+\]
+
+解读：
+
+\begin{itemize}
+  \item 第一行是蕴含主线：simple 加 Artin 变半单（(\(\mathrm{I.Prop}\ 3.2.12\))）；半单自动左 Artin（(\(\mathrm{I.Prop}\ 3.1.4\))）；左 Artin 自动半准素（(\(\mathrm{I.Prop}\ 3.5.5\))）；半准素环上 Noether、Artin 与有限长度三者重合（Hopkins--Levitzki，(\(\mathrm{I.Thm}\ 3.5.6\))）。
+  \item 第二行是 radical 控制的“本原谱系”：primitive 严格介于 simple 与半本原之间；而半本原加 Artin 又回到半单（(\(\mathrm{I.Thm}\ 3.5.2\))），本原加 Artin 回到 simple（(\(\mathrm{I.Prop}\ 3.7.6(ii)\))）。
+  \item 两个回头箭头都依赖 Artin 条件：去掉 Artin 性后，simple、半本原都不自动半单。
+\end{itemize}
+
+\medskip
+
+\textbf{5. 反例与边界情形。}
+
+\begin{itemize}
+  \item \textbf{simple 非 semi-simple}：\(V\) 为可数无穷维 \(F\)-向量空间时，\(\operatorname{End}_F(V)\) 的唯一非零真双边理想是有限秩算子理想 \(I\)，商 \(R/I\) 是 simple ring 但不是 semi-simple ring，因为 semi-simple 环满足 IBN 而 \(R/I\) 不满足（(\(\mathrm{I.Ex}\ 3.2.5\))）。
+  \item \textbf{semi-primitive 非 semi-simple，且 primitive 非 simple}：同一个 \(R=\operatorname{End}_F(V)\)（\(V=F^{(\mathbb N)}\)）满足 \(\operatorname{rad}(R)=0\)（(\(\mathrm{I.Ex}\ 3.3.5(6)\))），因而是半本原、本原的，但既非半单也非 simple（(\(\mathrm{I.Ex}\ 3.7.5(ii)\))）。
+  \item \textbf{semi-simple 非 primitive}：Wedderburn--Artin 分解 \(R=\prod_{i=1}^r M_{n_i}(D_i)\) 当 \(r\ge 2\) 时，\(R\) 不能忠实作用于任何一个简单左模（(\(\mathrm{I.Prop}\ 3.7.6\)) 的证明正用到这一点）。
+  \item \textbf{semi-primary 不需要链条件}：半准素环可以既非 Artin 也非 Noether。例如取半单环 \(S\) 与任一 \(S\)-双模 \(N\)，作平凡扩张 \(R=S\ltimes N\)（乘法 \((s,n)(s',n')=(ss',sn'+ns')\)，\(N^2=0\)），则 \(\operatorname{rad}(R)=N\) 幂零且 \(R/\operatorname{rad}(R)\simeq S\) 半单，故 \(R\) 半准素；取 \(N\) 为无有限长度的 \(S\)-模即可（此例为补充构造，书中未列）。
+  \item \textbf{primitive 左右不对称}：左本原与右本原是不同性质（(\(\mathrm{I.Rem}\ 3.7.3\))）。
+\end{itemize}
+
+\medskip
+
+\textbf{6. 判定与使用要点。}
+
+\begin{itemize}
+  \item 判半单：优先用 (\(\mathrm{I.Thm}\ 3.5.2\))——先看 \(\operatorname{rad}(R)=0\)（半本原），再看是否 Artin；两者都满足即半单。
+  \item 判 simple：在 Artin 情形可退化为“本原且只有一个简单模同构类”；非 Artin 时只能回到双边理想的定义。
+  \item Hopkins--Levitzki 的实际用途：在有限维代数（Artin 环）上，Noether 性与 Artin 性自动等价，合成列自动存在；因此表示论中常说“有限维代数都是 Artin 且 Noether 的”。
+  \item “半本原 = Jacobson 半单”是比 semi-simple 更弱的同名陷阱：写作时务必分清 \(\operatorname{rad}(R)=0\) 与整体半单。
+\end{itemize}
 
 \subsection{Algebra I 中 local ring 的性质与判定}\label{subsec:topic-local-ring-algebra1}
 
@@ -6449,6 +6549,7 @@ is primitive.
   \item \hyperref[subsec:topic-flat-modules]{[平坦模的性质总览] flat 由张量正合 / \(\operatorname{Tor}_1=0\) 刻画，直和、张量、基变换、局部化与滤过余极限皆保持平坦；忠实平坦的五条等价条件以保非零与 \(\operatorname{Spec}\) 满射为核心；Noether 有限生成时平坦 = 局部自由，局部环上有限生成平坦即自由，整环上平坦 \(\Rightarrow\) 无挠（PID 上反之）。证明平坦常用：理想判据 \(I\otimes M\to M\) 单射、方程判据（Prop 3.1.6）、局部化后证局部自由、以及 Nakayama 的 \(\operatorname{Tor}_1(k,M)=0\)。}
   \item \hyperref[subsec:topic-morita-equivalence]{[Morita 等价：用模范畴比较环] Morita 等价不是环同构，而是模范畴等价；矩阵环、progenerator 与自同态环给出其最常用的判定和构造。}
   \item \hyperref[subsec:topic-simple-semisimple-rings]{[Simple rings 与 semi-simple rings] simple ring 只要求双边理想平凡，不要求作为左模单；Wedderburn--Artin 定理把 simple Artinian 环刻画为 \(M_n(D)\)，把 semi-simple Artinian 环刻画为有限个矩阵除环块的直积。}
+  \item \hyperref[subsec:topic-simple-primitive-spectrum]{[半单、单、半本原、本原与半准素环] simple 加 Artin 变半单，半单自动 Artin，Artin 自动半准素；primitive 介于 simple 与半本原之间，半本原加 Artin 回到半单；半准素环上 Noether、Artin 与有限长度三者重合。}
   \item \hyperref[subsec:topic-local-ring-algebra1]{[Algebra I 中 local ring 的性质与判定] local ring 等价于唯一极大左/右理想，极大理想就是 Jacobson 根；Nakayama 与 strongly indecomposable 的判定都由这个唯一方向控制。}
   \item \hyperref[subsec:topic-galois-radical]{[Galois 扩张与 radical 扩张的主线关系] 关键不是 “Galois \(\Leftrightarrow\) radical”，而是 \(G_f\) 可解等价于“分裂域嵌入某个 radical 扩张”，不等价于“分裂域本身就是 radical”。}
   \item \hyperref[subsec:topic-kummer-artin-schreier]{[Kummer 扩张与 Artin--Schreier 扩张] Kummer 理论用 \(T^n-a\) 描述含足够单位根时的 cyclic 扩张，Artin--Schreier 理论用 \(T^p-T-a\) 描述特征 \(p\) 下的次数 \(p\) cyclic 扩张。}
