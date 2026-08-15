@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(findstr /i \"claude\")",
+      "Bash(dir D:\\\\Codex Folder\\\\Algebra\\\\*CLAUDE* *)",
+      "Bash(dir D:\\\\Codex Folder\\\\Algebra\\\\\" | findstr claude\" -i *)",
+      "Bash(dir \"D:\\\\Codex Folder\\\\Algebra\")",
+      "Bash(Set-Location \"D:/Codex Folder/Algebra/collection\")",
+      "Bash(xelatex collection.tex)",
+      "Bash(pdftotext -f 248 -l 300 \"D:\\\\Codex Folder\\\\Algebra\\\\references\\\\Jacobson - Basic Algebra I.pdf\" -)",
+      "Bash(xelatex -interaction=nonstopmode collection.tex)",
+      "Bash(pdftotext -layout \"references/Jacobson - Basic Algebra II.pdf\" -)",
+      "Bash(pdftotext -layout \"d:\\\\Codex Folder\\\\Algebra\\\\references\\\\Jacobson - Basic Algebra II.pdf\" -)"
+    ]
+  }
+}
