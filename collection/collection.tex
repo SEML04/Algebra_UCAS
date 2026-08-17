@@ -6497,6 +6497,371 @@ is primitive.
 \]
 因此用平移算子 \(T:f(t)\mapsto f(t+1)\) 表示 \(x\)，用乘法算子 \(t\) 表示 \(y\)，就能自然得到 primitive representation。
 \end{example}
+
+\subsection{含非零幂零理想的环必非半本原}\label{subsec:problem-nilpotent-ideal-not-semiprimitive}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~191, Section 4.1, Exercise 4）
+
+Let \(R\) be a ring containing an ideal \(N\neq 0\) that is nilpotent in the sense that there exists an integer \(m\) such that
+\[
+  N^m=0
+\]
+(that is, the product of any \(m\) elements of \(N\) is \(0\)). Show that \(R\) is not semi-primitive.
+
+\textbf{概念说明：}
+
+semi-primitive 指 Jacobson radical 为零：\(\operatorname{rad}(R)=0\)（\textit{Jacobson II}, \S 4.2）。radical 按极大左理想定义：
+\[
+  \operatorname{rad}(R)=\bigcap_{\mathfrak m\text{ 极大左理想}}\mathfrak m
+  \qquad (\S 4.2,\ \text{Thm 4.1}(2)).
+\]
+
+\textbf{解答：}
+
+取 \(m\) 最小使 \(N^m=0\)，则 \(N^{m-1}\neq 0\)。选
+\[
+  0\neq x\in N^{m-1}.
+\]
+由于 \(N\) 是双边理想，
+\[
+  N\cdot x\subseteq N\cdot N^{m-1}=N^m=0,
+\]
+即 \(Nx=0\)。下面证明 \(x\in\operatorname{rad}(R)\)。
+
+反设 \(x\notin\operatorname{rad}(R)\)，则存在极大左理想 \(\mathfrak m\) 使 \(x\notin\mathfrak m\)。于是
+\[
+  R=\mathfrak m+Rx,
+\]
+故存在 \(r\in R,\ j\in\mathfrak m\) 使
+\[
+  1=j+rx.
+\]
+两边左乘 \(N\)，利用 \(N\) 是双边理想、\(\mathfrak m\) 是左理想以及 \(Nx=0\)：
+\[
+  N=N\cdot 1\subseteq N\mathfrak m+N(rx)\subseteq \mathfrak m+(Nr)x\subseteq \mathfrak m+Nx=\mathfrak m.
+\]
+因此 \(N\subseteq\mathfrak m\)。但
+\[
+  x\in N^{m-1}\subseteq N\subseteq\mathfrak m,
+\]
+与 \(x\notin\mathfrak m\) 矛盾。故 \(x\in\operatorname{rad}(R)\)，即 \(\operatorname{rad}(R)\neq 0\)，\(R\) 不是 semi-primitive。
+
+\textbf{方法要点：}
+本题的实质是“幂零理想必含于 Jacobson radical”（\textit{Jacobson II} \S 4.2 在 Thm 4.1 后指出 \(\operatorname{rad}R\) 含一切 nil 左理想）。上面的证明绕开该结论，只用极大左理想定义：对 \(N^{m-1}\) 中非零元 \(x\)，若 \(x\) 被某个极大左理想 \(\mathfrak m\) 排除，则把 \(1=j+rx\) 左乘 \(N\) 会迫使 \(N\subseteq\mathfrak m\)，从而 \(x\in\mathfrak m\)，矛盾。
+\end{example}
+
+\subsection{Morita 相似保持 primitive 性}\label{subsec:problem-morita-primitive}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~191, Section 4.1, Exercise 7；其下推论含 Exercise 5 与 Exercise 6）
+
+Show that if \(R\) and \(R'\) are Morita similar (p.~179), then \(R\) is primitive if and only if \(R'\) is primitive.
+
+\textbf{概念说明：}
+
+两个环 \(R,R'\) 称为 (Morita) similar，若左模范畴 \(R\text{-}\operatorname{Mod}\) 与 \(R'\text{-}\operatorname{Mod}\) 等价（\textit{Jacobson II}, \S 3.12, p.~179）。primitive 指存在 faithful irreducible 左模（\S 4.1 开头）。
+
+\textbf{解答：}
+
+设
+\[
+  F:R\text{-}\operatorname{Mod}\longrightarrow R'\text{-}\operatorname{Mod}
+\]
+是范畴等价。我们证明“忠实不可约模”被 \(F\) 保持。
+
+\begin{itemize}
+  \item \textbf{不可约性}：\(F\) 保持单态射、子模与余核，因而保持子模格，所以 \(M\) 是不可约 \(R\)-模当且仅当 \(F(M)\) 是不可约 \(R'\)-模。
+  \item \textbf{忠实性}：对 \(b\in R'\)，记 \(a\in R\) 为 Morita 等价诱导的对应元素。由于 \(F\) 保持零态射，
+  \[
+    bF(M)=0 \iff aM=0.
+  \]
+  于是
+  \[
+    \operatorname{ann}_{R'}(F(M))=F\bigl(\operatorname{ann}_R(M)\bigr),
+  \]
+  特别地 \(M\) faithful 当且仅当 \(F(M)\) faithful。
+\end{itemize}
+
+因此
+\[
+  \begin{aligned}
+    R\text{ primitive}
+    &\iff \exists\ \text{faithful irreducible }M\in R\text{-}\operatorname{Mod}\\
+    &\iff \exists\ \text{faithful irreducible }F(M)\in R'\text{-}\operatorname{Mod}\\
+    &\iff R'\text{ primitive}.
+  \end{aligned}
+\]
+
+\medskip
+
+\textbf{推论 1（Exercise 5）：矩阵环保持 primitive。}
+
+若 \(R\) primitive，则 \(R\) 与 \(M_n(R)\) Morita similar（\S 3.12 例，p.~166--167），故
+\[
+  M_n(R)\text{ primitive}.
+\]
+
+\medskip
+
+\textbf{推论 2（Exercise 6）：非零幂等元的 corner 保持 primitive。}
+
+若 \(R\) primitive 且 \(0\neq e=e^2\in R\)，则 \(eRe\)（以 \(e\) 为单位元）primitive。取 faithful irreducible 左 \(R\)-模 \(M\)，验证 \(eM\) 是 faithful irreducible 的 \(eRe\)-模：
+
+\begin{itemize}
+  \item \(eM\neq 0\)：若 \(eM=0\)，则 \(e\in\operatorname{ann}_R(M)=0\)，矛盾于 \(e\neq 0\)。
+  \item \textbf{忠实性}：若 \((ere)(eM)=0\)（\(ere\in eRe\)），则对一切 \(m\in M\) 有 \(ere\cdot m=0\)，即 \(ere\in\operatorname{ann}_R(M)=0\)，故 \(ere=0\)。
+  \item \textbf{不可约性}：任取 \(0\neq em\in eM\) 与 \(em'\in eM\)。因 \(M\) 不可约，存在 \(r\in R\) 使 \(r(em)=m'\)。于是
+  \[
+    (ere)(em)=e\,r\,e\,m=e\,r\,(em)=em',
+  \]
+  故 \((eRe)(em)=eM\)，即 \(eM\) 不可约。
+\end{itemize}
+
+因此 \(eM\) 是 \(eRe\) 的 faithful irreducible 左模，\(eRe\) primitive。
+
+\medskip
+
+\textbf{方法要点：}
+Exercise 7 的本质是“primitive 是模范畴不变性质”：primitive 的定义只涉及“存在忠实不可约模”，而 faithful 与 irreducible 均被范畴等价保持。Exercise 5、6 给出 Morita similar 的两种基本来源——矩阵环 \(M_n(R)\) 与 corner \(eRe\)；注意 Exercise 6 并不要求 \(e\) 是 full idempotent（即不要求 \(ReR=R\)），故不能直接由 Exercise 7 推出，需如上直接验证；若额外假设 \(e\) full，则 \(eRe\) 与 \(R\) Morita similar，Exercise 7 直接适用。
+\end{example}
+
+\subsection{局部环等价于 \(\operatorname{rad}\) 商为除环}\label{subsec:problem-local-rad-division-ring}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~196, Section 4.2, Exercise 1）
+
+Show that a ring \(R\) is a local ring if and only if \(R/\operatorname{rad}R\) is a division ring, and that if this is the case, then \(\operatorname{rad}R\) is the ideal of non-units of \(R\).
+
+\textbf{概念说明：}
+
+local ring 指存在唯一极大左理想（等价地，非单位元构成理想）的环（\textit{Jacobson II}, p.~111）；radical 按 \S 4.2 定义，即极大左理想之交（Thm 4.1(2)）。
+
+\textbf{解答：}
+
+（局部环 \(\implies\) \(R/\operatorname{rad}R\) 为除环）：若 \(R\) 局部，则非单位元集合 \(\mathfrak m\) 是唯一极大左理想，且
+\[
+  \operatorname{rad}(R)=\mathfrak m.
+\]
+任取非零元素 \(\bar x=x+\mathfrak m\in R/\mathfrak m\)，即 \(x\notin\mathfrak m\)，故 \(x\) 是单位，于是 \(\bar x\) 在 \(R/\mathfrak m\) 中可逆。因此 \(R/\operatorname{rad}R\) 是除环，且
+\[
+  \operatorname{rad}(R)=\mathfrak m=\{\text{非单位元}\}.
+\]
+
+（\(R/\operatorname{rad}R\) 为除环 \(\implies\) 局部环）：设 \(R/\operatorname{rad}R\) 是除环。则 \(R/\operatorname{rad}R\) 作为左 \(R\)-模是单模，故 \(\operatorname{rad}R\) 是极大左理想。又对任意极大左理想 \(\mathfrak m\)，恒有 \(\operatorname{rad}R\subseteq\mathfrak m\)；而 \(\mathfrak m/\operatorname{rad}R\) 是除环 \(R/\operatorname{rad}R\) 的左理想，故只能为 \(0\)，即 \(\mathfrak m=\operatorname{rad}R\)。所以 \(\operatorname{rad}R\) 是唯一极大左理想，\(R\) 是局部环。
+
+此时再证 \(\operatorname{rad}R\) 恰为非单位元集合：对 \(x\in R\)，\(x\) 是单位当且仅当 \(\bar x=x+\operatorname{rad}R\neq 0\)。事实上，若 \(x\) 是单位则显然 \(\bar x\neq 0\)；反过来若 \(\bar x\) 可逆，则存在 \(y\in R\) 使
+\[
+  xy=1+z,\qquad z\in\operatorname{rad}R,
+\]
+而 \(1+z\) 可逆（\(\operatorname{rad}R\) 中元素拟正则），故 \(x\) 右可逆，对称地左可逆，从而 \(x\) 是单位。因此
+\[
+  \operatorname{rad}(R)=\{\text{非单位元}\}.
+\]
+
+\textbf{方法要点：}
+这是“用 radical 商去观察环”的典型例子：除环是最小的非平凡环（无真左理想），\(R/\operatorname{rad}R\) 为除环意味着 radical 已经把“不可逆性”全部吸收，剩下的每个非零元都可逆。
+\end{example}
+
+\begin{remark}
+\textbf{一般环中 \(\operatorname{rad}(R)\) 并不是“非单位元理想”。} 上面的等式
+\[
+  \operatorname{rad}(R)=\{\text{非单位元}\}
+\]
+只在局部环（即 \(R/\operatorname{rad}R\) 为除环）时成立。一般环中只有包含关系
+\[
+  \operatorname{rad}(R)\subseteq\{\text{非单位元}\},
+\]
+因为若 \(a\in\operatorname{rad}R\) 可逆，由 Thm 4.1(6)（\(1-xa\) 对一切 \(x\) 可逆）取 \(x=a^{-1}\)，得 \(0=1-a^{-1}a\) 可逆，矛盾。反向包含通常严格失败，而且非单位元集合本身往往连理想都不是：
+
+\begin{itemize}
+  \item \(R=\mathbb Z\)：\(\operatorname{rad}(\mathbb Z)=0\)，而非单位元集合
+  \[
+    \mathbb Z\setminus\{\pm 1\}=\{0,\pm 2,\pm 3,\dots\}
+  \]
+  不是理想，因为 \(2+(-1)=1\) 是单位，加法不封闭。
+  \item \(R=\mathbb Z/12\mathbb Z\)：\(\operatorname{rad}(R)=6\mathbb Z/12\mathbb Z=\{0,6\}\)（(\(\mathrm{I.Ex}\ 3.3.5(1)\))），而非单位元集合是
+  \[
+    \{0,2,3,4,6,8,9,10\},
+  \]
+  其中 \(2+3=5\) 与 \(12\) 互素、是可逆元，故该集合不是理想。
+  \item 对照（局部环）：\(R=F[[t]]\) 中 \(\operatorname{rad}(R)=(t)\) 恰为非单位元（常数项为零的幂级数）构成的理想，等式成立。
+\end{itemize}
+
+事实上，“非单位元集合构成理想”本身就等价于 \(R\) 是局部环；这可以看成本题结论的另一种表述。
+\end{remark}
+
+\subsection{\texorpdfstring{幂等元 corner 的 radical：\(\operatorname{rad}(eRe)=e(\operatorname{rad}R)e\)}{幂等元 corner 的 radical 公式}}\label{subsec:problem-rad-corner-idempotent}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~196, Section 4.2, Exercise 7）
+
+Let \(e\) be a non-zero idempotent in a ring \(R\). Show that
+\[
+  \operatorname{rad}(eRe)=e(\operatorname{rad}R)e=eRe\cap\operatorname{rad}R.
+\]
+
+\textbf{概念说明：}
+
+元素 \(x\) 称为\textbf{左拟正则}（left quasi-regular），若存在 \(y\) 使
+\[
+  x+y=yx;
+\]
+右拟正则若 \(x+y=xy\)。Jacobson radical 的刻画（\textit{Jacobson II}, \S 4.2, Thm 4.1）：
+\[
+  z\in\operatorname{rad}R
+  \iff
+  az\text{ 对一切 }a\in R\text{ 左拟正则}
+  \iff
+  za\text{ 对一切 }a\in R\text{ 右拟正则};
+\]
+且 \(\operatorname{rad}R\) 是含一切拟正则左理想的拟正则理想。幂等元 \(e\) 给出 Peirce 分解
+\[
+  a=eae+ea(1-e)+(1-e)ae+(1-e)a(1-e),
+\]
+其中 \(z\in eRe\) 时 \(z(1-e)=0\)（因 \(z=eze\)）。
+
+\textbf{解答：}
+
+分三步。
+
+\medskip
+
+\textbf{第一步：} \(e(\operatorname{rad}R)e\subseteq\operatorname{rad}(eRe)\)。对 \(x\in\operatorname{rad}R\)，由 Thm 4.1(6)（\(z\in\operatorname{rad}R\) 时 \(az\) 对一切 \(a\in R\) 左拟正则）取 \(a=e\)，得 \(ex\) 在 \(R\) 中左拟正则：存在 \(w\in R\) 使
+\[
+  ex+w=wex.
+\]
+左乘 \(e\) 得 \(ex+ew=ewex\)，再右乘 \(e\) 得
+\[
+  exe+ewe=ewexe.
+\]
+而
+\[
+  (ewe)(exe)=eweexe=ewexe,
+\]
+故
+\[
+  (exe)+(ewe)=(ewe)(exe),
+\]
+即 \(ewe\in eRe\) 是 \(exe\) 的左拟逆。于是 \(e(\operatorname{rad}R)e\) 是 \(eRe\) 的由拟正则元组成的左理想（\(\operatorname{rad}R\) 是双边理想），由 Thm 4.1(5) 含于 \(\operatorname{rad}(eRe)\)。
+
+\medskip
+
+\textbf{第二步：} \(\operatorname{rad}(eRe)\subseteq e(\operatorname{rad}R)e\)。设 \(z\in\operatorname{rad}(eRe)\)，对任意 \(a\in R\) 证明 \(za\) 右拟正则（从而由 Thm 4.1(8) 得 \(z\in\operatorname{rad}R\)）。由 Peirce 分解及 \(z(1-e)=0\)：
+\[
+  za=z\cdot eae+z\cdot ea(1-e).
+\]
+第一项 \(u:=zeae\in eRe\) 在 \(eRe\) 中右拟正则（Thm 4.1 用于 \(eRe\)），取拟逆 \(u'\in eRe\)，即
+\[
+  u+u'=uu'.
+\]
+第二项 \(v:=zea(1-e)\) 满足
+\[
+  v^2=zea(1-e)\,zea(1-e)=0,
+\]
+（因 \((1-e)z=0\)），故 \(v\) 幂零、右拟正则。直接计算（右拟乘 \(\circ\)）：
+\[
+  (za)\circ u'=za+u'-za\,u'=(u+u'-uu')+v-vu'=0+v-0=v,
+\]
+其中 \(vu'=zea(1-e)u'=0\)（因 \((1-e)u'=0\)）。于是 \(v\) 的右拟逆 \(w\) 满足
+\[
+  (za\circ u')\circ w=v\circ w=0,
+\]
+由拟乘结合律 \(za\circ(u'\circ w)=0\)，故 \(za\) 右拟正则。所以 \(z\in\operatorname{rad}R\)；又 \(z\in eRe\)，故 \(z\in eRe\cap\operatorname{rad}R\)，而由第三步
+\[
+  eRe\cap\operatorname{rad}R=e(\operatorname{rad}R)e.
+\]
+
+\medskip
+
+\textbf{第三步：} \(e(\operatorname{rad}R)e=eRe\cap\operatorname{rad}R\)。一方面 \(\operatorname{rad}R\) 是双边理想，故 \(e(\operatorname{rad}R)e\subseteq\operatorname{rad}R\)，且显然 \(e(\operatorname{rad}R)e\subseteq eRe\)；另一方面若 \(x\in eRe\cap\operatorname{rad}R\)，则 \(x=exe\in e(\operatorname{rad}R)e\)。
+
+综上
+\[
+  \operatorname{rad}(eRe)=e(\operatorname{rad}R)e=eRe\cap\operatorname{rad}R.
+\]
+
+\textbf{方法要点：}
+第一步把 \(x\in\operatorname{rad}R\) 的拟正则性“压进 corner”：由 Thm 4.1(6) 取 \(a=e\) 得 \(ex\) 左拟正则，再把它的拟逆 \(w\) 压成 \(ewe\in eRe\)。第二步反向：用 Peirce 分解把 \(za\) 拆成“corner 内的拟正则部分 + 幂零部分”，幂零部分在拟乘下可被吸收，从而 \(za\) 拟正则；这正是 Thm 4.1(6)(8) 的典型用法。为什么不能省去 Peirce 分解，见下一条辨析。
+\end{example}
+
+\begin{remark}
+\textbf{一般子环的 radical 并不单调：}若 \(S\) 是 \(R\) 的子环，不一定有
+\[
+  \operatorname{rad}(S)\subseteq\operatorname{rad}(R).
+\]
+反例：取域 \(F\) 上的二阶矩阵环 \(R=M_2(F)\) 与其上三角子环
+\[
+  S=T_2(F)=\left\{\begin{pmatrix}a&b\\0&c\end{pmatrix}:a,b,c\in F\right\}.
+\]
+一方面 \(R\) 半单，\(\operatorname{rad}(R)=0\)；另一方面 \(S\) 中严格上三角矩阵
+\[
+  N=\left\{\begin{pmatrix}0&b\\0&0\end{pmatrix}:b\in F\right\}
+\]
+满足 \(N^2=0\)，是幂零理想，故 \(N\subseteq\operatorname{rad}(S)\)；而
+\[
+  S/N\cong F\times F
+\]
+半单，故 \(\operatorname{rad}(S)=N\neq 0\)。因此
+\[
+  \operatorname{rad}(S)=N\not\subseteq 0=\operatorname{rad}(R).
+\]
+
+这正说明 Exercise 7 中“\(z\in\operatorname{rad}(eRe)\implies z\in\operatorname{rad}R\)”不能靠子环的单调性白拿：\(eRe\) 只是 \(R\) 的子环，而一般子环的 radical 只会“更大”而非“更小”。之所以能用 Peirce 分解救回来，是因为 \(eRe\) 有幂等元结构：对任意 \(a\in R\)，
+\[
+  za=zeae+zea(1-e),
+\]
+其中“corner 外部分”\(zea(1-e)\) 在 \(z\in eRe\) 时因 \(z(1-e)=0\) 而幂零（平方为 \(0\)），剩下的 \(zeae\in eRe\) 的拟正则性由 \(z\in\operatorname{rad}(eRe)\) 直接给出，两部分经拟乘合成后 \(za\) 仍拟正则，从而把 \(z\) 拉回 \(\operatorname{rad}R\)。换句话说：Peirce 分解是 corner 子环替代一般子环单调性的关键工具。
+\end{remark}
+
+\subsection{\texorpdfstring{矩阵环的 radical：\(\operatorname{rad}M_n(R)=M_n(\operatorname{rad}R)\)}{矩阵环的 radical 公式}}\label{subsec:problem-rad-matrix-ring}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~197, Section 4.2, Exercise 8；本题是上一题（Exercise 7）取 \(e=e_{11}\) 的直接应用）
+
+Show that for any ring \(R\),
+\[
+  \operatorname{rad}M_n(R)=M_n(\operatorname{rad}R).
+\]
+
+\textbf{概念说明：}
+
+记 \(S:=M_n(R)\)，\(e:=e_{11}\) 为 \((1,1)\)-矩阵单位。则
+\[
+  eSe=e_{11}M_n(R)e_{11}
+\]
+恰由形如 \(a\,e_{11}\)（\(a\in R\)）的矩阵组成，且
+\[
+  R\longrightarrow eSe,\qquad a\longmapsto a\,e_{11}
+\]
+是环同构。另外，理想对应
+\[
+  B\longmapsto M_n(B)
+\]
+把 \(R\) 的理想双射地映到 \(M_n(R)\) 的理想（\textit{Jacobson II}, p.~171, Exercise 1）。
+
+\textbf{解答：}
+
+由理想对应，存在唯一理想 \(B\subseteq R\) 使
+\[
+  \operatorname{rad}S=M_n(B).
+\]
+在 \(eSe\cong R\) 的同构下，radical 被保持，故由 Exercise 7 得
+\[
+  \operatorname{rad}(eSe)\cong\operatorname{rad}R.
+\]
+另一方面，Exercise 7 的公式给出
+\[
+  \operatorname{rad}(eSe)=e(\operatorname{rad}S)e=e_{11}M_n(B)e_{11}\cong B.
+\]
+于是 \(B\cong\operatorname{rad}R\)，即 \(B=\operatorname{rad}R\)，从而
+\[
+  \operatorname{rad}M_n(R)=M_n(\operatorname{rad}R).
+\]
+
+\textbf{方法要点：}
+Exercise 8 是 Exercise 7 的“标准应用链”：取矩阵单位 \(e=e_{11}\)，corner \(eSe\) 回到底环 \(R\)，于是“矩阵环的 radical 仍按元素取 radical”。同样的推理也解释了 Morita 相似环（\S 3.12）之间 radical 的对应（4.2 节 Exercise 9）。
+\end{example}
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -6611,6 +6976,11 @@ is primitive.
   \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
   \item \hyperref[subsec:problem-essential-monomorphism-fraction]{[分式化中的 divisible 模与 essential monomorphism] \(F\otimes_D M\) 是 divisible，且 \(M\) torsion-free 时 \(M\to F\otimes_D M\) 是 essential monomorphism；证明核心是清分母。}
   \item \hyperref[subsec:problem-primitive-xy-yx-x]{[关系 \(xy-yx=x\) 给出的 primitive algebra] 用 \(F[t]\) 上的平移算子 \(T:f(t)\mapsto f(t+1)\) 表示 \(x\)，乘法算子表示 \(y\)，可构造 \(F\{x,y\}/(xy-yx-x)\) 的忠实不可约表示。}
+  \item \hyperref[subsec:problem-nilpotent-ideal-not-semiprimitive]{[含非零幂零理想的环必非半本原] 幂零理想必含于 Jacobson radical：对 \(N^{m-1}\) 中非零元 \(x\) 用极大左理想反证，把 \(1=j+rx\) 左乘 \(N\) 推出 \(N\subseteq\mathfrak m\) 的矛盾。}
+  \item \hyperref[subsec:problem-morita-primitive]{[Morita 相似保持 primitive] primitive 是模范畴不变性质（忠实与不可约都被范畴等价保持）；推论：\(M_n(R)\) 与 corner \(eRe\)（\(e\neq 0\) 幂等）均保持 primitive。}
+  \item \hyperref[subsec:problem-local-rad-division-ring]{[局部环等价于 rad 商为除环] \(R/\operatorname{rad}R\) 为除环 \(\iff\) \(R\) 局部，此时 \(\operatorname{rad}R\) 恰为非单位元理想；一般环中仅 \(\operatorname{rad}R\subseteq\{\text{非单位元}\}\)，且非单位元集合未必是理想（\(\mathbb Z\)、\(\mathbb Z/12\mathbb Z\)）。}
+  \item \hyperref[subsec:problem-rad-corner-idempotent]{[幂等元 corner 的 radical] \(\operatorname{rad}(eRe)=e(\operatorname{rad}R)e=eRe\cap\operatorname{rad}R\)：拟正则性经 \(w\mapsto ewe\) 压进 corner，反向用 Peirce 分解把 \(za\) 拆成拟正则加幂零；一般子环的 radical 不单调（\(T_2(F)\subseteq M_2(F)\)）。}
+  \item \hyperref[subsec:problem-rad-matrix-ring]{[矩阵环的 radical] \(\operatorname{rad}M_n(R)=M_n(\operatorname{rad}R)\)，取 \(e=e_{11}\) 使 corner 回到底环 \(R\)，是 Exercise 7 的直接应用。}
 \end{itemize}
 
 \end{document}
