@@ -2160,12 +2160,12 @@ simple Artinian 是 semi-simple Artinian 的一个 indecomposable block；semi-s
 
 \[
 \begin{tikzcd}[column sep=2.7em, row sep=3.2em]
-  \text{simple} \arrow[r, "\scriptsize (3.2.12)"] \arrow[d, bend left, "\scriptsize (3.7.4)"] 
-  & \text{semi-simple} \arrow[r, "\scriptsize (3.1.4)"] \arrow[d, bend left, "\scriptsize (3.5.1)"] 
-  & \text{left artinian} \arrow[r, "\scriptsize (3.5.5)"] \arrow[d, bend left, "\scriptsize (3.5.7)"] 
+  \text{simple} \arrow[r, "{\scriptstyle (3.2.12)}"] \arrow[d, bend left, "{\scriptstyle (3.7.4)}"] 
+  & \text{semi-simple} \arrow[r, "{\scriptstyle (3.1.4)}"] \arrow[d, bend left, "{\scriptstyle (3.5.1)}"] 
+  & \text{left artinian} \arrow[r, "{\scriptstyle (3.5.5)}"] \arrow[d, bend left, "{\scriptstyle (3.5.7)}"] 
   & \text{semi-primary} \\
-  \text{left primitive} \arrow[r, "\scriptsize (3.7.2)"] \arrow[u, bend left, "\scriptsize (3.7.6(ii))"] 
-  & \text{semi-primitive} \arrow[u, bend left, "\scriptsize (3.5.2)"] 
+  \text{left primitive} \arrow[r, "{\scriptstyle (3.7.2)}"] \arrow[u, bend left, "{\scriptstyle (3.7.6(ii))}"] 
+  & \text{semi-primitive} \arrow[u, bend left, "{\scriptstyle (3.5.2)}"] 
   & \text{left noetherian} 
   & {}
 \end{tikzcd}
@@ -2201,6 +2201,123 @@ simple Artinian 是 semi-simple Artinian 的一个 indecomposable block；semi-s
   \item Hopkins--Levitzki 的实际用途：在有限维代数（Artin 环）上，Noether 性与 Artin 性自动等价，合成列自动存在；因此表示论中常说“有限维代数都是 Artin 且 Noether 的”。
   \item “半本原 = Jacobson 半单”是比 semi-simple 更弱的同名陷阱：写作时务必分清 \(\operatorname{rad}(R)=0\) 与整体半单。
 \end{itemize}
+
+\subsection{稠密性定理：从有限点控制到矩阵环结构}\label{subsec:topic-density-theorem}
+
+主要出处是 \textit{Jacobson - Basic Algebra II}, \S 4.3, pp.~197--201；在
+\(\mathrm{Algebra\ I}\) 中对应的是 primitive ring 的密度定理
+\((\mathrm{I.Thm}\ 3.7.7)\)。
+
+\medskip
+
+\textbf{1. 基本语言：dense 是“有限点插值”。}
+
+设 \(V\) 是除环 \(A\) 上的向量空间，\(S\subseteq \operatorname{End}_A(V)\)。
+称 \(S\) 在 \(\operatorname{End}_A(V)\) 中\textbf{稠密}，是指：对任意
+\(A\)-线性无关的有限组
+\[
+  x_1,\dots,x_n\in V
+\]
+和任意目标向量
+\[
+  y_1,\dots,y_n\in V,
+\]
+存在 \(s\in S\)，使得
+\[
+  sx_i=y_i,\qquad 1\le i\le n.
+\]
+这不是拓扑分析中的“极限逼近”，而是有限维切片上的完全插值：只要你给出有限多个独立向量及其目标像，\(S\) 中就有元素能同时实现这些要求。
+
+\medskip
+
+\textbf{2. Completely reducible modules 版本。}
+
+令 \(M\) 是 \(R\)-模，并设
+\[
+  R'=\operatorname{End}_R(M),\qquad
+  R''=\operatorname{End}_{R'}(M).
+\]
+左乘作用给出自然同态
+\[
+  \lambda:R\longrightarrow R'',\qquad
+  a\longmapsto (x\mapsto ax).
+\]
+Jacobson II p.~197 的 density theorem for completely reducible modules 说：
+若 \(M\) 是 completely reducible \(R\)-模，则对任意有限组
+\[
+  x_1,\dots,x_n\in M
+\]
+和任意 \(a''\in R''\)，存在 \(a\in R\)，使得
+\[
+  ax_i=a''x_i,\qquad 1\le i\le n.
+\]
+也就是说，\(\lambda(R)\) 在 \(R''\) 中按“有限点控制”的意义是稠密的。
+
+\medskip
+
+\textbf{3. 三个条件分别对应什么。}
+
+在上面的记号下，可以把三个常见条件分清：
+\[
+\begin{array}{c|c|c}
+\text{条件} & \text{推出的性质} & \text{理由} \\
+\hline
+M\text{ completely reducible} & \lambda(R)\text{ 稠密于 }R'' &
+\text{density theorem} \\
+M\text{ finitely generated over }R' & \lambda:R\to R''\text{ 满射} &
+\text{在 }R'\text{-生成元上相同即可} \\
+M\text{ faithful as }R\text{-module} & \lambda:R\to R''\text{ 单射} &
+\ker\lambda=\operatorname{Ann}_R(M)
+\end{array}
+\]
+因此若三者同时成立，则
+\[
+  R\simeq R''=\operatorname{End}_{R'}(M).
+\]
+primitive ring 的情形是这个框架的特例：若 \(M\) 是忠实不可约 \(R\)-模，则
+\[
+  A:=\operatorname{End}_R(M)
+\]
+是除环，\(M\) 是 \(A\)-向量空间，且 \(R\) 忠实地嵌入
+\[
+  \operatorname{End}_A(M).
+\]
+密度定理说明 \(R\) 的像是 dense 的；若进一步
+\[
+  \dim_A M=n<\infty,
+\]
+则 dense 自动等于全部线性变换环，所以
+\[
+  R\simeq \operatorname{End}_A(M)\simeq M_n(A)
+\]
+（按左右模约定可能出现反环；此处沿用 Jacobson 的记号）。
+
+\medskip
+
+\textbf{4. 哪些题要想到稠密性定理。}
+
+典型信号有以下几种：
+\begin{itemize}
+  \item 题目中出现 primitive ring、faithful irreducible module、\(\operatorname{End}_R(M)\) 是除环、或 dense ring of transformations。
+  \item 要你证明 \(R\) 像矩阵环，或证明 \(R\) 的某个子环有 \(M_k(A)\) 作为同态像。
+  \item 证明中需要“任意指定有限多个向量的像”，例如令 \(rx_i=y_i\)。
+  \item 要构造严格下降的 annihilator 链，例如 Jacobson II Theorem 4.2 中用密度定理证明 primitive left Artinian ring 的 \(M\) 必为有限维。
+  \item 要在有限维切片上制造矩阵单位、投影、或任意线性变换。
+\end{itemize}
+
+\medskip
+
+\textbf{5. 使用模板。}
+
+用稠密性证明时，通常按下面四步走：
+\begin{enumerate}
+  \item 找到作用空间 \(M\)，并确认 \(M\) 是 completely reducible；在 primitive ring 中，\(M\) 是 irreducible，所以自动 completely reducible。
+  \item 令 \(A=\operatorname{End}_R(M)\)，把 \(M\) 看成 \(A\)-向量空间，或者更一般地令 \(R'=\operatorname{End}_R(M)\)。
+  \item 选取有限个 \(A\)-线性无关向量 \(x_i\)，把希望实现的效果翻译成 \(rx_i=y_i\)。
+  \item 由密度定理取 \(r\in R\) 实现这些有限条件；若 \(x_i\) 是一组 \(A\)-基或 \(R'\)-生成元，则“有限点相同”升级为“整个映射相同”，从而得到满射或矩阵环同构。
+\end{enumerate}
+
+一句话记忆：\textbf{半单给稠密，finite generation 把稠密升级为满射，faithful 把表示变成单射；三者合起来给同构。}
 
 \subsection{Algebra I 中 local ring 的性质与判定}\label{subsec:topic-local-ring-algebra1}
 
@@ -6626,7 +6743,7 @@ Show that if \(R\) and \(R'\) are Morita similar (p.~179), then \(R\) is primiti
 Exercise 7 的本质是“primitive 是模范畴不变性质”：primitive 的定义只涉及“存在忠实不可约模”，而 faithful 与 irreducible 均被范畴等价保持。Exercise 5、6 给出 Morita similar 的两种基本来源——矩阵环 \(M_n(R)\) 与 corner \(eRe\)；注意 Exercise 6 并不要求 \(e\) 是 full idempotent（即不要求 \(ReR=R\)），故不能直接由 Exercise 7 推出，需如上直接验证；若额外假设 \(e\) full，则 \(eRe\) 与 \(R\) Morita similar，Exercise 7 直接适用。
 \end{example}
 
-\subsection{局部环等价于 \(\operatorname{rad}\) 商为除环}\label{subsec:problem-local-rad-division-ring}
+\subsection{\texorpdfstring{局部环等价于 \(\operatorname{rad}\) 商为除环}{局部环等价于 rad 商为除环}}\label{subsec:problem-local-rad-division-ring}
 
 \begin{example}
 （出处：\textit{Jacobson - Basic Algebra II}, p.~196, Section 4.2, Exercise 1）
@@ -6862,6 +6979,248 @@ Show that for any ring \(R\),
 \textbf{方法要点：}
 Exercise 8 是 Exercise 7 的“标准应用链”：取矩阵单位 \(e=e_{11}\)，corner \(eSe\) 回到底环 \(R\)，于是“矩阵环的 radical 仍按元素取 radical”。同样的推理也解释了 Morita 相似环（\S 3.12）之间 radical 的对应（4.2 节 Exercise 9）。
 \end{example}
+
+\subsection{Primitive ring 的稠密性与有限矩阵环商}\label{subsec:problem-density-matrix-image}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~201, Section 4.3, Exercise 1）
+
+Let \(R\) be a primitive ring, \(M\) a faithful irreducible module for \(R\), and
+\[
+  A=\operatorname{End}_R(M).
+\]
+Show that either
+\[
+  R\simeq M_n(A)
+\]
+for some \(n\), or for every \(k=1,2,3,\dots\), \(R\) contains a subring having \(M_k(A)\) as a homomorphic image.
+
+\textbf{解答：}
+
+由 Schur 引理，\(A=\operatorname{End}_R(M)\) 是除环。按 Jacobson II p.~199 的 primitive ring density theorem，忠实不可约表示把 \(R\) 嵌入为 \(M\) 上的一个 dense ring of \(A\)-linear transformations。也就是说，对任意 \(A\)-线性无关的有限组
+\[
+  x_1,\dots,x_m\in M
+\]
+和任意目标向量 \(y_1,\dots,y_m\in M\)，存在 \(r\in R\) 使得
+\[
+  rx_i=y_i,\qquad 1\le i\le m.
+\]
+
+若 \(M\) 作为 \(A\)-向量空间有限维，设
+\[
+  \dim_A M=n.
+\]
+取一组 \(A\)-基 \(x_1,\dots,x_n\)。对任意 \(A\)-线性变换 \(T\in\operatorname{End}_A(M)\)，由稠密性可取 \(r\in R\) 使
+\[
+  rx_i=T x_i,\qquad 1\le i\le n.
+\]
+两者在基上相同，故 \(r=T\)。因此
+\[
+  R=\operatorname{End}_A(M)\simeq M_n(A)
+\]
+（按左右模约定，可能出现反环；本题采用书中记号写作 \(M_n(A)\)）。
+
+若 \(M\) 作为 \(A\)-向量空间无限维。任取 \(k\ge 1\)，选取 \(A\)-线性无关向量
+\[
+  x_1,\dots,x_k\in M,
+\]
+令 \(U:=\langle x_1,\dots,x_k\rangle_A\) 为它们张成的 \(A\)-子空间。
+考虑 \(R\) 的子环
+\[
+  S:=\{r\in R\mid rU\subseteq U\}.
+\]
+定义限制同态
+\[
+  \varphi:S\longrightarrow \operatorname{End}_A(U),
+  \qquad
+  r\longmapsto r|_U.
+\]
+其核为
+\[
+  I:=\{r\in S\mid rU=0\},
+\]
+所以若能证明 \(\varphi\) 满射，就有
+\[
+  S/I\simeq \operatorname{End}_A(U)\simeq M_k(A).
+\]
+
+任取 \(T\in\operatorname{End}_A(U)\)。因为 \(x_1,\dots,x_k\) 线性无关，且 \(Tx_i\in U\)，由稠密性存在 \(r\in R\) 使
+\[
+  rx_i=Tx_i,\qquad 1\le i\le k.
+\]
+又 \(r\) 是 \(A\)-线性的，所以 \(rU\subseteq U\)，即 \(r\in S\)，且 \(r|_U=T\)。故 \(\varphi\) 满射，从而
+\[
+  S/I\simeq M_k(A).
+\]
+这说明对每个 \(k\)，\(R\) 都含有一个子环 \(S\)，使得 \(S\) 有一个同态像同构于 \(M_k(A)\)。
+
+\textbf{方法要点：}
+Density theorem 的力量是“有限维切片任意指定”：在无限维情形，虽然 \(R\) 不必等于全变换环，但在任意 \(k\) 维子空间 \(U\) 上，\(R\) 的某个稳定子子环经限制映射可以满射到全部 \(\operatorname{End}_A(U)\)。所以 primitive ring 即使不是矩阵环，也在有限局部上含有任意大的矩阵环商。
+\end{example}
+
+\subsection{不可数代数闭域上的 Schur 型结论}\label{subsec:problem-schur-uncountable-field}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~214, Section 4.5, Exercises 1--3）
+本组题设 \(A\) 是域 \(F\) 上的代数。Exercises 1--3 依次说明：先用 resolvent
+\((a-\alpha 1)^{-1}\) 检测代数性，再用不可数代数闭域排除非平凡除代数，最后推出有限生成代数不可约模的 Schur 端环只是底域。
+
+\textbf{题目 1.}
+Let \(a\in A\), and let \(\alpha_1,\ldots,\alpha_m\in F\) be such that
+\(a-\alpha_i1\) is invertible in \(A\). Show that either \(a\) is algebraic over
+\(F\), or the elements
+\[
+  (a-\alpha_i1)^{-1},\qquad 1\le i\le m,
+\]
+are linearly independent over \(F\).
+
+这里应将 \(\alpha_1,\ldots,\alpha_m\) 理解为两两不同；否则若有重复且 \(a\) 超越，则两个相同逆元已经线性相关，命题本身不成立。
+
+\textbf{解答.}
+反证。若这些逆元线性相关，则存在不全为零的 \(c_i\in F\) 使
+\[
+  \sum_{i=1}^m c_i(a-\alpha_i1)^{-1}=0.
+\]
+设 \(\alpha_i\) 两两不同。令
+\[
+  q(T)=\prod_{i=1}^m (T-\alpha_i),
+  \qquad
+  q_i(T)=\frac{q(T)}{T-\alpha_i}.
+\]
+因为 \(a-\alpha_i1\) 都是 \(F[a]\) 中的元素，它们彼此可交换，且都可逆，所以两边右乘
+\[
+  q(a)=\prod_{i=1}^m(a-\alpha_i1)
+\]
+得到
+\[
+  \sum_{i=1}^m c_iq_i(a)=0.
+\]
+而多项式 \(q_1,\ldots,q_m\) 线性无关：在 \(T=\alpha_j\) 处代入可得
+\[
+  \sum_i c_iq_i(\alpha_j)=c_jq_j(\alpha_j),
+\]
+且 \(q_j(\alpha_j)\neq 0\)。因此
+\[
+  h(T):=\sum_{i=1}^m c_iq_i(T)
+\]
+是非零多项式，并满足 \(h(a)=0\)。故 \(a\) 在 \(F\) 上代数。
+
+\textbf{题目 2.}
+Let \(A\) be a division algebra with a countable base over an uncountable
+algebraically closed field \(F\), for example \(F=\mathbb C\). Show that
+\[
+  A=F.
+\]
+
+\textbf{解答.}
+任取 \(a\in A\)。若 \(a\notin F\)，则对任意 \(\alpha\in F\)，
+\[
+  a-\alpha1\neq 0
+\]
+在除代数 \(A\) 中可逆。若 \(a\) 在 \(F\) 上超越，则由题目 1，任意有限组
+\[
+  (a-\alpha1)^{-1},\qquad \alpha\in F,
+\]
+都线性无关。因此不可数集合
+\[
+  \{(a-\alpha1)^{-1}\mid \alpha\in F\}
+\]
+给出不可数个线性无关向量，这与 \(A\) 在 \(F\) 上有可数基矛盾。故每个
+\(a\in A\) 都在 \(F\) 上代数。由于 \(F\) 代数闭，\(F[a]\) 中 \(a\) 的最小多项式只能是一次的，所以 \(a\in F\)。于是 \(A=F\)。
+
+\textbf{题目 3.}
+Let \(A\) be finitely generated over an uncountable algebraically closed field
+\(F\), and let \(M\) be an irreducible \(A\)-module. Show that
+\[
+  \operatorname{End}_A(M)=F.
+\]
+
+\textbf{解答.}
+由 Schur 引理，
+\[
+  D:=\operatorname{End}_A(M)
+\]
+是除环。又因 \(A\) 是 \(F\)-代数，所有 \(A\)-模自同态都与 \(F\) 的标量作用交换，所以 \(D\) 是 \(F\)-除代数。
+
+取 \(0\neq x\in M\)。由于 \(M\) 不可约，
+\[
+  M=Ax.
+\]
+而 \(A\) 由有限个元素作为 \(F\)-代数生成，所以 \(A\) 由这些生成元的有限单词张成，作为 \(F\)-向量空间至多可数维；于是 \(M=Ax\) 也至多可数维。评价映射
+\[
+  D\longrightarrow M,\qquad \varphi\longmapsto \varphi(x)
+\]
+是 \(F\)-线性单射，因为 \(\varphi(x)=0\) 蕴含 \(\varphi(Ax)=A\varphi(x)=0\)。故 \(D\) 作为 \(F\)-向量空间也至多可数维。由题目 2 应用于除代数 \(D\)，得
+\[
+  \operatorname{End}_A(M)=D=F.
+\]
+
+\textbf{方法要点.}
+这一组三题的套路是：题目 1 把“很多 \((a-\alpha)^{-1}\)”转化为代数性；题目 2 用不可数域与可数维空间的基数冲突逼出除代数平凡；题目 3 再用不可约模的循环性 \(M=Ax\) 把 \(\operatorname{End}_A(M)\) 压成可数维除代数，从而得到 Schur 型结论 \(\operatorname{End}_A(M)=F\)。
+\end{example}
+
+\subsection{Simple ring 的中心是域}\label{subsec:problem-center-simple-ring-field}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~209, Section 4.4, Exercise 2）
+
+Prove that the center of any simple ring is a field.
+
+\textbf{解答：}
+
+设 \(R\) 是含幺 simple ring，\(C=Z(R)\) 为其中心。任取
+\[
+  0\neq c\in C.
+\]
+因为 \(c\) 在中心，所以
+\[
+  Rc=cR
+\]
+是 \(R\) 的双边理想。又 \(c\neq 0\)，故 \(Rc\neq 0\)。由 \(R\) simple，得到
+\[
+  Rc=R.
+\]
+于是存在 \(r\in R\) 使得
+\[
+  rc=1.
+\]
+由于 \(c\in C\)，也有
+\[
+  cr=rc=1.
+\]
+因此 \(c\) 在 \(R\) 中可逆，其逆元 \(r=c^{-1}\)。还需说明 \(r\in C\)。对任意 \(a\in R\)，由 \(ac=ca\) 两边左乘、右乘 \(c^{-1}\)，得
+\[
+  a=cac^{-1}=c^{-1}ac,
+\]
+从而 \(ac^{-1}=c^{-1}a\)。所以 \(c^{-1}\in C\)。
+
+因此 \(C\) 中每个非零元素都在 \(C\) 中可逆，故 \(C\) 是域。
+
+\textbf{方法要点：}
+中心元素 \(c\) 的关键优势是 \(Rc\) 自动成为双边理想；simple ring 只控制双边理想，所以必须把“非零中心元素”转化成“非零双边理想”来用。
+\end{example}
+
+\begin{remark}
+（联系：\textit{Jacobson - Basic Algebra II}, p.~209, Section 4.4, Exercise 3）
+
+若
+\[
+  R=R_1\oplus\cdots\oplus R_s
+\]
+是若干 simple rings 作为双边理想的有限直和，则其中心分解为
+\[
+  Z(R)=Z(R_1)\oplus\cdots\oplus Z(R_s),
+\]
+其中每个 \(Z(R_i)\) 由 Exercise 2 是一个域。因此 \(Z(R)\) 是有限个域的直和，所以是 commutative semi-simple Artinian ring；特别地，每一个域本身当然是 Artinian ring，因为它的理想只有 \(0\) 与自身。
+
+但这里要分清三个层级：
+\[
+  \text{semi-simple}
+  \Longrightarrow
+  \text{semi-primitive }(\operatorname{rad}R=0),
+\]
+反向一般不成立。Exercise 3 中的有限直和情形确实给出 semi-simple Artinian 结构；若只知道某个 \(R\) 是 simple ring，则只能推出它是 semi-primitive：因为 \(\operatorname{rad}R\) 是双边理想，故只能是 \(0\) 或 \(R\)，而 \(1\notin\operatorname{rad}R\)，所以 \(\operatorname{rad}R=0\)。但是 simple ring 不一定 Artinian，例如第一 Weyl algebra 便是 simple 但非 Artinian；没有 Artin 性，就不能套用 Wedderburn--Artin，因此也不能推出 \(R\) 是 semi-simple。
+\end{remark}
 \newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
@@ -6915,6 +7274,7 @@ Exercise 8 是 Exercise 7 的“标准应用链”：取矩阵单位 \(e=e_{11}\
   \item \hyperref[subsec:topic-morita-equivalence]{[Morita 等价：用模范畴比较环] Morita 等价不是环同构，而是模范畴等价；矩阵环、progenerator 与自同态环给出其最常用的判定和构造。}
   \item \hyperref[subsec:topic-simple-semisimple-rings]{[Simple rings 与 semi-simple rings] simple ring 只要求双边理想平凡，不要求作为左模单；Wedderburn--Artin 定理把 simple Artinian 环刻画为 \(M_n(D)\)，把 semi-simple Artinian 环刻画为有限个矩阵除环块的直积。}
   \item \hyperref[subsec:topic-simple-primitive-spectrum]{[半单、单、半本原、本原与半准素环] simple 加 Artin 变半单，半单自动 Artin，Artin 自动半准素；primitive 介于 simple 与半本原之间，半本原加 Artin 回到半单；半准素环上 Noether、Artin 与有限长度三者重合。}
+  \item \hyperref[subsec:topic-density-theorem]{[稠密性定理：从有限点控制到矩阵环结构] completely reducible 给稠密，\(R'\)-有限生成把稠密升级为满射，faithful 给单射；典型用法是在有限组向量上指定 \(rx_i=y_i\)，再推出矩阵环结构或有限切片商。}
   \item \hyperref[subsec:topic-local-ring-algebra1]{[Algebra I 中 local ring 的性质与判定] local ring 等价于唯一极大左/右理想，极大理想就是 Jacobson 根；Nakayama 与 strongly indecomposable 的判定都由这个唯一方向控制。}
   \item \hyperref[subsec:topic-galois-radical]{[Galois 扩张与 radical 扩张的主线关系] 关键不是 “Galois \(\Leftrightarrow\) radical”，而是 \(G_f\) 可解等价于“分裂域嵌入某个 radical 扩张”，不等价于“分裂域本身就是 radical”。}
   \item \hyperref[subsec:topic-kummer-artin-schreier]{[Kummer 扩张与 Artin--Schreier 扩张] Kummer 理论用 \(T^n-a\) 描述含足够单位根时的 cyclic 扩张，Artin--Schreier 理论用 \(T^p-T-a\) 描述特征 \(p\) 下的次数 \(p\) cyclic 扩张。}
@@ -6981,6 +7341,9 @@ Exercise 8 是 Exercise 7 的“标准应用链”：取矩阵单位 \(e=e_{11}\
   \item \hyperref[subsec:problem-local-rad-division-ring]{[局部环等价于 rad 商为除环] \(R/\operatorname{rad}R\) 为除环 \(\iff\) \(R\) 局部，此时 \(\operatorname{rad}R\) 恰为非单位元理想；一般环中仅 \(\operatorname{rad}R\subseteq\{\text{非单位元}\}\)，且非单位元集合未必是理想（\(\mathbb Z\)、\(\mathbb Z/12\mathbb Z\)）。}
   \item \hyperref[subsec:problem-rad-corner-idempotent]{[幂等元 corner 的 radical] \(\operatorname{rad}(eRe)=e(\operatorname{rad}R)e=eRe\cap\operatorname{rad}R\)：拟正则性经 \(w\mapsto ewe\) 压进 corner，反向用 Peirce 分解把 \(za\) 拆成拟正则加幂零；一般子环的 radical 不单调（\(T_2(F)\subseteq M_2(F)\)）。}
   \item \hyperref[subsec:problem-rad-matrix-ring]{[矩阵环的 radical] \(\operatorname{rad}M_n(R)=M_n(\operatorname{rad}R)\)，取 \(e=e_{11}\) 使 corner 回到底环 \(R\)，是 Exercise 7 的直接应用。}
+  \item \hyperref[subsec:problem-density-matrix-image]{[Primitive ring 的稠密性与有限矩阵环商] Density theorem 说明 primitive ring 在忠实不可约模上稠密；有限维时就是矩阵环，无限维时任意 \(k\) 维切片给出 \(M_k(A)\) 作为某个子环的同态像。}
+  \item \hyperref[subsec:problem-schur-uncountable-field]{[不可数代数闭域上的 Schur 型结论] Section 4.5 Exercises 1--3 用 resolvent 的线性无关性、不可数域基数论证与不可约模循环性推出 \(\operatorname{End}_A(M)=F\)。}
+  \item \hyperref[subsec:problem-center-simple-ring-field]{[Simple ring 的中心是域] 非零中心元 \(c\) 生成非零双边理想 \(Rc\)，由 simple 性得 \(Rc=R\)，从而 \(c\) 在中心中可逆；但 simple 只保证 semi-primitive，不保证 Artinian 或 semi-simple。}
 \end{itemize}
 
 \end{document}
