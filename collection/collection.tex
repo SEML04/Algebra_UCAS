@@ -3947,6 +3947,186 @@ M\text{ Noetherian over }A
   \text{局部有限控制与可粘合的几何对象}.
 \]
 而在非 Noether 情形下，往往只能保留部分信息，例如根理想、支撑、associated points 的替代版本，或在额外有限性假设下恢复某种分解。
+\subsection{表示论与模论/环论的接口：群代数与模范畴}\label{subsec:topic-representation-module-bridge}
+
+表示论与模论、环论并不是两套并列的理论，而是同一套语言：\textbf{一个群的表示就是其群代数上的模}。把这句话展开，模论与环论中的半单环结构定理、Schur 引理、张量积与 \(\operatorname{Hom}\) 的伴随、Jacobson 根与 primitive 理想等，就都变成了表示论的标准工具。
+
+\medskip
+\textbf{1. 核心字典：表示 \(=\) 群代数上的模。}
+
+设 \(G\) 是有限群，\(k\) 是域，群代数
+\[
+  k[G]=\left\{\sum_{g\in G}a_g g\;\middle|\;a_g\in k\right\}
+\]
+以 \(G\) 为基、乘法由 \(G\) 的乘法线性延拓。给定一个线性表示
+\[
+  \rho:G\longrightarrow \operatorname{GL}(V),
+\]
+它唯一地延拓为代数同态
+\[
+  \widetilde\rho:k[G]\longrightarrow \operatorname{End}_k(V),
+\]
+从而 \(V\) 成为左 \(k[G]\)-模；反过来，任意有限维左 \(k[G]\)-模都给出一个表示。因此
+\[
+  \{\text{\(G\) 在 \(k\) 上的有限维表示}\}
+  \longleftrightarrow
+  \{\text{有限维左 \(k[G]\)-模}\},
+\]
+并且子表示、不可约表示、表示的直和与等价分别对应子模、单模、模的直和与同构。这就是 \textit{Serre, Linear Representations of Finite Groups}, \S 6.1 与 \textit{Jacobson - Basic Algebra II}, \S 5.2 的共同出发点；\textit{代数学方法 第二卷} 也把 \(G\)-模范畴与 \(k[G]\)-模范畴直接等同（\S 6.1.1、\S 9.8）。
+
+\medskip
+\textbf{2. Maschke 定理：半单性由特征决定。}
+
+模论中“完全可约”对应环论中“半单”。Maschke 定理说：
+\[
+  k[G]\ \text{是半单环}
+  \iff
+  \operatorname{char}k\nmid |G|.
+\]
+充分性用平均化：对任意 \(k[G]\)-子模 \(V'\subset V\)，先取 \(k\)-线性投影 \(p:V\to V'\)，再平均
+\[
+  p^0=\frac1{|G|}\sum_{g\in G}gpg^{-1},
+\]
+得到的 \(p^0\) 是 \(k[G]\)-线性投影，故 \(V'\) 是直和因子。反过来，若 \(\operatorname{char}k=p\mid |G|\)，则增广理想
+\[
+  \omega=\left\{\sum_{g\in G}a_g g\;\middle|\;\sum_{g\in G}a_g=0\right\}
+\]
+不是 \(k[G]\) 的直和因子，故 \(k[G]\) 非半单（Serre, Exercise 6.1）。于是“特征零时每个表示完全可约”只是半单环理论的一个特例。
+
+\medskip
+\textbf{3. Wedderburn--Artin 定理给出不可约表示的分类。}
+
+当 \(k\) 是特征零的代数闭域（例如 \(\mathbb C\)）时，半单环结构定理（见 \hyperref[subsec:topic-simple-semisimple-rings]{Simple rings 与 semi-simple rings}）给出
+\[
+  k[G]\simeq \prod_{i=1}^{h} M_{n_i}(k),
+\]
+其中 \(h\) 是 \(G\) 的共轭类个数，\(n_i\) 是第 \(i\) 个不可约表示的维数。由此立刻得到表示论的标准结论：
+\begin{itemize}
+  \item 不可约表示（同构类）与矩阵块一一对应，个数 \(h\) 等于共轭类数；
+  \item 正则表示 \(k[G]\)（作为自身的左模）分解为
+  \[
+    k[G]\simeq \bigoplus_{i=1}^{h} W_i^{\oplus n_i},
+  \]
+  即每个不可约表示出现 \(n_i\) 次，从而
+  \[
+    |G|=\sum_{i=1}^{h} n_i^2;
+  \]
+  \item 中心 \(Z(k[G])\) 以共轭类和 \(e_C=\sum_{g\in C}g\) 为基，维数也是 \(h\)，且同构于 \(k^h\)；中心幂等元
+  \[
+    e_i=\frac{n_i}{|G|}\sum_{g\in G}\chi_i(g^{-1})g
+  \]
+  正是第 \(i\) 个矩阵块的单位元（Serre, \S 6.2--6.3）。
+\end{itemize}
+这里 Wedderburn--Artin 定理是连接环论与表示论的关键桥梁：\textbf{不可约表示的分类问题被化成了半单环的矩阵块分解问题}。
+
+\medskip
+\textbf{4. Schur 引理与自同态环。}
+
+模论版本的 Schur 引理说：若 \(W\) 是单 \(k[G]\)-模，则
+\[
+  \operatorname{End}_{k[G]}(W)
+\]
+是除环；当 \(k\) 代数闭时它就是 \(k\)。这正是 \hyperref[subsec:problem-schur-converse-counterexample]{Schur 引理逆命题失败的二维例子} 与 \hyperref[subsec:problem-schur-uncountable-field]{不可数代数闭域上的 Schur 型结论} 中反复使用的机制。进一步，对代数闭域上的不可约表示 \(W_i,W_j\)，
+\[
+  \dim_k\operatorname{Hom}_{k[G]}(W_i,W_j)=
+  \begin{cases}
+    1,& i=j,\\
+    0,& i\neq j,
+  \end{cases}
+\]
+这个“intertwining number”把重数计算化成了 \(\operatorname{Hom}\) 的维数，是 Frobenius 互反律的模论基础（Jacobson II, Prop 5.6--5.7）。
+
+\medskip
+\textbf{5. 诱导与限制：张量积与忘却函子。}
+
+设 \(H\le G\)。限制
+\[
+  \operatorname{Res}_H^G:k[G]\text{-}\operatorname{Mod}\longrightarrow k[H]\text{-}\operatorname{Mod}
+\]
+就是把 \(k[G]\)-模沿包含 \(k[H]\hookrightarrow k[G]\) 看成 \(k[H]\)-模，即模论中的“限制标量”（forgetful functor）。诱导
+\[
+  \operatorname{Ind}_H^G W:=k[G]\otimes_{k[H]}W
+\]
+则是“扩张标量”，正是 \hyperref[subsec:problem-base-change-tensor]{基变换与张量积的相容性} 中 \(M_{K'}\otimes_{K'}N_{K'}\) 那一套张量积机器在群代数上的应用（Jacobson II, \S 5.10 直接以 \(A\otimes_B U\) 定义诱导）。于是模论中的张量--\(\operatorname{Hom}\) 伴随给出
+\[
+  \operatorname{Hom}_{k[G]}\bigl(\operatorname{Ind}_H^G W,\,V\bigr)
+  \cong
+  \operatorname{Hom}_{k[H]}\bigl(W,\,\operatorname{Res}_H^G V\bigr),
+\]
+这就是 \textbf{Frobenius 互反律}（Serre, Thm 13；Jacobson II, Prop 5.6）。它说明 \(\operatorname{Ind}\) 与 \(\operatorname{Res}\) 互为伴随函子，重数版本即“\(W\) 在 \(\operatorname{Res}V\) 中的重数等于 \(\operatorname{Ind}W\) 在 \(V\) 中的重数”。诱导的传递性
+\[
+  \operatorname{Ind}_K^G\circ\operatorname{Ind}_H^K\simeq\operatorname{Ind}_H^G
+\]
+则是张量积结合律的直接推论；Mackey 分解把 \(\operatorname{Res}_K^G\operatorname{Ind}_H^G\) 按双陪集 \(K\backslash G/H\) 拆成直和，本质上是 \(k[G]\) 作为 \((k[H],k[H])\)-双模的分解。
+
+\medskip
+\textbf{6. 张量积、对偶与特征标。}
+
+群代数 \(k[G]\) 是 Hopf 代数（余乘 \(g\mapsto g\otimes g\)，对极 \(g\mapsto g^{-1}\)），因此 \(G\)-模的张量积 \(V\otimes W\) 与对偶 \(V^*=\operatorname{Hom}_k(V,k)\) 都自然带有 \(G\)-模结构（\textit{代数学方法 第二卷}, \S 9.8）。特征标
+\[
+  \chi_V(g)=\operatorname{Tr}\rho(g)
+\]
+是类函数，且
+\[
+  \chi_{V\otimes W}=\chi_V\chi_W,\qquad
+  \chi_{V^*}=\overline{\chi_V},
+\]
+在特征零半单情形下特征标完全决定表示（正交关系）。中心同态
+\[
+  \omega_i:Z(k[G])\longrightarrow k,\qquad
+  u\longmapsto \frac1{n_i}\operatorname{Tr}\widetilde\rho_i(u)
+\]
+给出 \(Z(k[G])\simeq k^h\)，这正是 \hyperref[subsec:topic-simple-semisimple-rings]{半单环中心分解} 的表示论面孔。
+
+\medskip
+\textbf{7. 模表示论：非半单时的环论工具。}
+
+当 \(\operatorname{char}k=p\mid |G|\) 时，\(k[G]\) 不是半单环，Jacobson 根 \(\operatorname{rad}k[G]\neq 0\)。这时表示论完全依赖环论工具：
+\begin{itemize}
+  \item 中心幂等元把 \(k[G]\) 分解为\textbf{块}（block），每个块是 indecomposable 双边理想；
+  \item 单模与 projective indecomposable modules（PIM）通过 projective cover 一一对应；
+  \item 有限维 \(k[G]\)-模的范畴是 \textbf{Frobenius 范畴}：projective 与 injective 对象重合，这是模表示论中许多对偶性的来源（Gelfand--Manin, IV.3.4(c)）。
+\end{itemize}
+这些概念正是 \hyperref[subsec:topic-simple-primitive-spectrum]{半单、单、半本原、本原与半准素环} 与 \hyperref[subsec:topic-derived-functors]{\(\operatorname{Tor}/\operatorname{Ext}\) 主线}\allowbreak 中环论与同调工具的用武之地。
+
+\medskip
+\textbf{8. 更广的接口：表示论就是“某个代数上的模论”。}
+
+同样的字典不限于有限群：
+\begin{itemize}
+  \item Lie 代数的表示 \(\iff\) 其包络代数 \(\mathcal U(\mathfrak g)\) 上的模；
+  \item 一个 \(k\)-代数 \(A\) 的表示 \(\iff\) \(A\)-模；箭图（quiver）的表示 \(\iff\) 路径代数上的模；
+  \item \hyperref[subsec:topic-morita-equivalence]{Morita 等价} 说明真正重要的是模范畴本身：两个环 Morita 等价当且仅当它们的表示范畴等价；
+  \item 单模的零化子给出 primitive 理想，\hyperref[subsec:topic-density-theorem]{稠密性定理} 研究的正是忠实单模上的 primitive 环结构。
+\end{itemize}
+
+\medskip
+\textbf{总结主线。} 把以上内容压成一张图：
+\[
+\begin{aligned}
+  \text{群 }G+\text{域 }k
+  &\longrightarrow
+  \text{群代数 }k[G]
+  \longrightarrow
+  \text{表示}=k[G]\text{-模};\\
+  \text{Maschke（半单）}
+  &\longrightarrow
+  \text{Wedderburn--Artin}
+  \longrightarrow
+  \text{不可约表示分类与正则表示分解};\\
+  \text{诱导/限制}
+  &\longrightarrow
+  \text{张量积/忘却函子}
+  \longrightarrow
+  \text{Frobenius 互反律与 Mackey 分解};\\
+  \text{非半单（模表示论）}
+  &\longrightarrow
+  \text{radical、块、Frobenius 范畴}
+  \longrightarrow
+  \text{projective cover 与 PIM}.
+\end{aligned}
+\]
+
 
 \newpage
 \section{题目整理}
@@ -7159,6 +7339,52 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
 这一组三题的套路是：题目 1 把“很多 \((a-\alpha)^{-1}\)”转化为代数性；题目 2 用不可数域与可数维空间的基数冲突逼出除代数平凡；题目 3 再用不可约模的循环性 \(M=Ax\) 把 \(\operatorname{End}_A(M)\) 压成可数维除代数，从而得到 Schur 型结论 \(\operatorname{End}_A(M)=F\)。
 \end{example}
 
+\subsection{Jacobson 根中代数元的幂零性}\label{subsec:problem-radical-algebraic-nilpotent}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~214, Section 4.5, Exercise 4）
+
+Show that the elements of \(\operatorname{rad} A\) are either nilpotent or
+transcendental over \(F\).
+
+\textbf{解答：}
+设 \(a\in\operatorname{rad} A\)，并假设 \(a\) 在 \(F\) 上代数。设
+\(p(T)\in F[T]\) 是 \(a\) 的首一最小多项式。首先 \(p(0)=0\)：若
+\(p(0)\neq 0\)，则 \(\gcd(T,p)=1\)，Bézout 恒等式在 \(a\) 处取值会使
+\(a\) 可逆，这对 \(\operatorname{rad} A\) 中的元素是不可能的。
+
+写成
+\[
+  p(T)=T^r q(T),\qquad r\geq 1,\qquad q(0)\neq 0.
+\]
+若 \(q\) 非恒定，则 \(\gcd(T^r,q)=1\)，由中国剩余定理得
+\[
+  F[T]/(p)\cong F[T]/(T^r)\times F[T]/(q).
+\]
+设 \(e\in F[a]\) 是对应于 \((0,1)\) 的幂等元。则 \(e^2=e\) 且
+\(e\neq 0,1\)。又因为 \(T\) 模 \(q(T)\) 可逆，所以 \(ae\) 在 corner
+\(eAe\) 中可逆。取 \(b\in eAe\) 使
+\[
+  b(ae)=e.
+\]
+
+由于 \(\operatorname{rad} A\) 是双边理想，\(ae\in\operatorname{rad} A\)。
+于是 Jacobson 根的定义性质推出
+\[
+  1-b(ae)=1-e
+\]
+可逆。但 \(1-e\) 是非平凡幂等元，而可逆幂等元只能是 \(0\) 或 \(1\)，矛盾。
+故 \(q\) 恒定，从而
+\[
+  p(T)=T^r,\qquad a^r=0.
+\]
+因此 \(\operatorname{rad} A\) 中每个代数元都幂零；每个非幂零元都在 \(F\) 上超越。
+
+\textbf{方法要点：}
+把最小多项式分解为 \(T^r q(T)\) 并用中国剩余定理。非恒定因子 \(q\) 会造出非平凡幂等元 \(e\)；\(ae\) 在 \(eAe\) 中的可逆性迫使 \(1-e\) 可逆，与其幂等结构矛盾。
+\end{example}
+
+
 \subsection{Simple ring 的中心是域}\label{subsec:problem-center-simple-ring-field}
 
 \begin{example}
@@ -7297,6 +7523,11 @@ Prove that the center of any simple ring is a field.
   \item \hyperref[rem:artin-primary-unique]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] Artin 环是准素分解的特殊整齐情形：所有素理想都极大，因此理想的最小准素分解没有嵌入素理想歧义，并可按局部分量唯一分解。}
   \item \hyperref[rem:primary-cor6211]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] 有限准素分解真正稳定适用的是 Noether 环上的有限生成模及其子模。}
   \item \hyperref[rem:primary-finiteness-failure]{[\hyperref[subsec:topic-primary-coherent]{准素分解的适用范围与凝聚层视角}] 一般模与非 Noether 环的困难核心在于 associated primes 与分解的有限性失控。}
+  \item \hyperref[subsec:topic-representation-module-bridge]{[表示论与模论/环论的接口] 表示 \(=\) 群代数上的模：子表示/不可约/直和/等价分别对应子模/单模/直和/同构。}
+  \item \hyperref[subsec:topic-representation-module-bridge]{[表示论与模论/环论的接口] Maschke 定理把完全可约性化为半单性：\(\operatorname{char}k\nmid |G|\) 当且仅当 \(k[G]\) 半单。}
+  \item \hyperref[subsec:topic-representation-module-bridge]{[表示论与模论/环论的接口] Wedderburn--Artin 给出 \(k[G]\simeq\prod M_{n_i}(k)\)：不可约表示与矩阵块一一对应，正则表示分解给出 \(|G|=\sum n_i^2\)。}
+  \item \hyperref[subsec:topic-representation-module-bridge]{[表示论与模论/环论的接口] 诱导与限制分别是张量积与忘却函子，Frobenius 互反律就是张量--\(\operatorname{Hom}\) 伴随。}
+  \item \hyperref[subsec:topic-representation-module-bridge]{[表示论与模论/环论的接口] 非半单（模表示论）时用 radical、块与 Frobenius 范畴：有限维 \(k[G]\)-模的 projective 与 injective 重合。}
 \end{itemize}
 
 \vspace{0.8em}
@@ -7343,6 +7574,7 @@ Prove that the center of any simple ring is a field.
   \item \hyperref[subsec:problem-rad-matrix-ring]{[矩阵环的 radical] \(\operatorname{rad}M_n(R)=M_n(\operatorname{rad}R)\)，取 \(e=e_{11}\) 使 corner 回到底环 \(R\)，是 Exercise 7 的直接应用。}
   \item \hyperref[subsec:problem-density-matrix-image]{[Primitive ring 的稠密性与有限矩阵环商] Density theorem 说明 primitive ring 在忠实不可约模上稠密；有限维时就是矩阵环，无限维时任意 \(k\) 维切片给出 \(M_k(A)\) 作为某个子环的同态像。}
   \item \hyperref[subsec:problem-schur-uncountable-field]{[不可数代数闭域上的 Schur 型结论] Section 4.5 Exercises 1--3 用 resolvent 的线性无关性、不可数域基数论证与不可约模循环性推出 \(\operatorname{End}_A(M)=F\)。}
+  \item \hyperref[subsec:problem-radical-algebraic-nilpotent]{[Jacobson 根中代数元的幂零性] Section 4.5 Exercise 4 用最小多项式分解与 CRT 排除 \(\operatorname{rad} A\) 中的非幂零代数成分。}
   \item \hyperref[subsec:problem-center-simple-ring-field]{[Simple ring 的中心是域] 非零中心元 \(c\) 生成非零双边理想 \(Rc\)，由 simple 性得 \(Rc=R\)，从而 \(c\) 在中心中可逆；但 simple 只保证 semi-primitive，不保证 Artinian 或 semi-simple。}
 \end{itemize}
 

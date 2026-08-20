@@ -1,5 +1,10 @@
 # Repository Guidelines
 
+## 不进行任何图片处理
+
+- 不输入任何图片内容进行处理, 因此不需要进行任何view image操作.
+- 精简流程, 用尽可能少的调用api次数解决项目目标.
+
 ## OCR 校正规则
 
 - 查阅 `txt/Cartan-Eilenberg - Homological Algebra.txt` 时，注意其会将原书的希腊大写字母 `\Lambda` 误提取为 `A`。在模论语境中，`left A-module`、`left ideal I of A` 等表述应先按 `left \Lambda-module`、`left ideal I of \Lambda` 理解，并以对应 PDF 原页复核。
