@@ -1,0 +1,151 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+
+\newcounter{problem}
+\newenvironment{problem}[1][0]
+  {\refstepcounter{problem}\par\medskip\noindent\textbf{第\theproblem 题}（#1 分）\par\nopagebreak\noindent\ignorespaces}
+  {\par\medskip}
+
+\title{\textbf{中国科学院大学 数学学科 硕转博资格考试综合笔试}\\[4pt]
+       \textbf{《代数学》试卷}}
+\author{考试时间：180 分钟\qquad\qquad 满分：150 分}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{center}\rule{\textwidth}{0.4pt}\end{center}
+
+\textbf{注意事项：}1. 答案写在答题纸上并注明题号；2. 写明关键步骤，仅有结论不得分；3. 可使用教材中的标准定理，但须说明其条件成立。
+
+\vspace{1em}
+
+% ===== 一、Galois 理论和域论 =====
+\section*{一、Galois 理论和域论（共 30 分）}
+
+\begin{problem}[15]
+设 $f(x)=x^3-2\in\mathbb{Q}[x]$，$\omega=e^{2\pi i/3}$。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $K=\mathbb{Q}(\sqrt[3]{2},\omega)$ 是 $f$ 在 $\mathbb{Q}$ 上的分裂域，且 $[K:\mathbb{Q}]=6$。
+\item 证明 $\operatorname{Gal}(K/\mathbb{Q})\cong S_3$，并列出 $K/\mathbb{Q}$ 的全部中间域及其对应的 Galois 子群。
+\item 判断 $\mathbb{Q}(\sqrt[3]{2})/\mathbb{Q}$ 是否为 Galois 扩张，说明理由。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 $p$ 为素数，$q=p^n$，$\mathbb{F}_q$ 为 $q$ 元有限域。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $\mathbb{F}_q/\mathbb{F}_p$ 是 Galois 扩张，且 $\operatorname{Gal}(\mathbb{F}_q/\mathbb{F}_p)$ 是由 Frobenius 自同构 $\sigma(x)=x^p$ 生成的 $n$ 阶循环群。
+\item 对每个正整数 $d\mid n$，证明 $\mathbb{F}_q$ 中存在唯一的 $p^d$ 元子域；由此说明 $\mathbb{F}_q/\mathbb{F}_p$ 的中间域与 $n$ 的正因子之间存在一一对应。
+\item 设 $f(x)\in\mathbb{F}_p[x]$ 不可约且 $\deg f=n$。证明 $f$ 在 $\mathbb{F}_{p^n}$ 中分裂，且对 $f$ 的任一（等价地，每个）根 $\alpha$，其全部根恰为
+\[
+\alpha,\ \alpha^p,\ \ldots,\ \alpha^{p^{n-1}}.
+\]
+\end{enumerate}
+\end{problem}
+
+% ===== 二、模论 =====
+\section*{二、模论（共 30 分）}
+
+\begin{problem}[15]
+\begin{enumerate}[label=(\alph*)]
+\item 叙述主理想整环上有限生成模的结构定理（不变因子形式）。
+\item 利用 (a) 中定理，分类所有 $72$ 阶交换群（按同构分类），并写出每一类的不变因子分解。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 $R$ 为含单位元的环，$M$ 为左 $R$-模。
+\begin{enumerate}[label=(\alph*)]
+\item 设 $M$ 是单模。证明 $\operatorname{End}_R(M)$ 是除环（Schur 引理）。
+\item 证明下列条件等价：
+\begin{enumerate}[label=(\roman*)]
+\item $M$ 的每个子模都是 $M$ 的直和项；
+\item $M$ 是一些单子模的和；
+\item $M$ 是一些单子模的直和。
+\end{enumerate}
+\item 证明：半单模的子模与商模都是半单模。
+\end{enumerate}
+\end{problem}
+
+% ===== 三、环与代数 =====
+\section*{三、环与代数（共 30 分）}
+
+\begin{problem}[15]
+设 $R$ 为含单位元的环，$J(R)$ 为其 Jacobson 根。
+\begin{enumerate}[label=(\alph*)]
+\item 写出 $J(R)$ 的定义，并证明 $J(R/J(R))=0$。
+\item 证明：$x\in J(R)$ 当且仅当对任意 $a\in R$，$1-ax$ 在 $R$ 中可逆。
+\item 设 $R$ 是域 $F$ 上的有限维代数。证明 $J(R)$ 是幂零理想，且 $R/J(R)$ 是半单代数。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 $D$ 为除环，$R=M_n(D)$，$V=D^n$ 为列向量空间（左 $R$-模）。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $R$ 是单环（无非零双边理想），且 $R$ 的中心 $Z(R)=\{\lambda I_n:\lambda\in Z(D)\}$。
+\item 证明 $V$ 是单 $R$-模，且作为左 $R$-模有 $R\cong V^{\oplus n}$；由此推出 $R$ 是半单环（即左 Artinian 且 $J(R)=0$）。
+\item 证明 $\operatorname{End}_R(V)\cong D^{\mathrm{op}}$。
+\end{enumerate}
+\end{problem}
+
+% ===== 四、有限群及其表示论 =====
+\section*{四、有限群及其表示论（共 30 分）}
+
+\begin{problem}[15]
+\begin{enumerate}[label=(\alph*)]
+\item 叙述 Sylow 定理。
+\item 设 $p<q$ 为素数且 $q\not\equiv 1\pmod p$。证明任意 $pq$ 阶群都是循环群。
+\item 由 (b) 推出：任意 $15$ 阶群都是循环群。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 $G=S_3$，所有表示均取在 $\mathbb{C}$ 上。
+\begin{enumerate}[label=(\alph*)]
+\item 列出 $S_3$ 的全部共轭类及其元素个数。
+\item 说明 $S_3$ 恰有 $3$ 个互不同构的不可约复表示，其维数分别为 $1,1,2$（可引用 $\lvert G\rvert=\sum_i d_i^2$ 与共轭类个数的关系）。
+\item 写出 $S_3$ 的完整特征标表，并验证第一正交关系。
+\item 设 $\rho$ 为 $S_3$ 在 $\mathbb{C}^3$ 上的置换表示（作用在坐标置换上），$\chi_{\mathrm{triv}}$ 为平凡表示的特征标。证明 $\rho$ 的“标准表示” $\rho\ominus \chi_{\mathrm{triv}}$ 不可约（例如用内积 $\langle\chi,\chi\rangle=1$ 验证）。
+\end{enumerate}
+\end{problem}
+
+% ===== 五、同调代数 =====
+\section*{五、同调代数（共 30 分）}
+
+\begin{problem}[10]
+设 $R$ 为环，$0\to A\xrightarrow{f} B\xrightarrow{g} C\to 0$ 为左 $R$-模的短正合列，$M$ 为右 $R$-模。
+\begin{enumerate}[label=(\alph*)]
+\item 证明 $M\otimes_R A\xrightarrow{1\otimes f} M\otimes_R B\xrightarrow{1\otimes g} M\otimes_R C\to 0$ 正合（张量积的右正合性）。
+\item 写出“$M$ 是平坦右 $R$-模”的定义，并说明当 $M$ 平坦时 (a) 中的结论可加强为 $0\to M\otimes_R A\to M\otimes_R B\to M\otimes_R C\to 0$ 正合。
+\item 设 $n\ge 2$。证明 $\mathbb{Z}/n\mathbb{Z}$ 不是平坦 $\mathbb{Z}$-模。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[10]
+设 $n,m\ge 2$。用 $\mathbb{Z}$-模的投射（平坦）分解计算下列同调群，并说明所用分解：
+\begin{enumerate}[label=(\alph*)]
+\item $\operatorname{Ext}_{\mathbb{Z}}^i(\mathbb{Z}/n\mathbb{Z},\mathbb{Z})$，对一切 $i\ge 0$；
+\item $\operatorname{Tor}_i^{\mathbb{Z}}(\mathbb{Z}/n\mathbb{Z},\mathbb{Z}/m\mathbb{Z})$，对一切 $i\ge 0$。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[10]
+\begin{enumerate}[label=(\alph*)]
+\item 叙述并证明 Yoneda 引理：设 $\mathcal{C}$ 为范畴，$A\in\mathcal{C}$，$F:\mathcal{C}\to\mathbf{Set}$ 为函子，则
+\[
+\operatorname{Nat}(\operatorname{Hom}_{\mathcal{C}}(A,-),\,F)\cong F(A),
+\]
+双射由 $\varphi\mapsto \varphi(A)(\mathrm{id}_A)$ 给出。
+\item 用 Yoneda 引理证明：对任意对象 $A,B\in\mathcal{C}$，
+\[
+\operatorname{Nat}(\operatorname{Hom}_{\mathcal{C}}(A,-),\,\operatorname{Hom}_{\mathcal{C}}(B,-))\cong \operatorname{Hom}_{\mathcal{C}}(B,A),
+\]
+并由此说明 Yoneda 嵌入 $\mathcal{C}^{\mathrm{op}}\to\operatorname{Fun}(\mathcal{C},\mathbf{Set})$，$A\mapsto\operatorname{Hom}_{\mathcal{C}}(A,-)$ 是全忠实的。
+\end{enumerate}
+\end{problem}
+
+\end{document}

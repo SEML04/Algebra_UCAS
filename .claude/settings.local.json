@@ -10,7 +10,9 @@
       "Bash(pdftotext -f 248 -l 300 \"D:\\\\Codex Folder\\\\Algebra\\\\references\\\\Jacobson - Basic Algebra I.pdf\" -)",
       "Bash(xelatex -interaction=nonstopmode collection.tex)",
       "Bash(pdftotext -layout \"references/Jacobson - Basic Algebra II.pdf\" -)",
-      "Bash(pdftotext -layout \"d:\\\\Codex Folder\\\\Algebra\\\\references\\\\Jacobson - Basic Algebra II.pdf\" -)"
+      "Bash(pdftotext -layout \"d:\\\\Codex Folder\\\\Algebra\\\\references\\\\Jacobson - Basic Algebra II.pdf\" -)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
     ]
   }
 }

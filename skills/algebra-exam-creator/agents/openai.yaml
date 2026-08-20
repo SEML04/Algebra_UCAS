@@ -1,0 +1,6 @@
+interface:
+  display_name: "代数硕转博考卷出题"
+  short_description: "按中科院考纲生成代数硕转博资格考卷，150分/180分钟"
+  default_prompt: "使用 $algebra-exam-creator 按 2024 代数硕转博考纲生成一份综合全面的代数学考卷，放入 exam/ 文件夹。"
+policy:
+  allow_implicit_invocation: true

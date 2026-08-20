@@ -1,0 +1,6 @@
+interface:
+  display_name: "代数硕转博答卷批改"
+  short_description: "逐题检查答卷隐藏漏洞并打分，附参考答案"
+  default_prompt: "使用 $algebra-exam-grader 批改 exam/ 文件夹中的考卷与答卷，生成批改报告与参考答案。"
+policy:
+  allow_implicit_invocation: true
