@@ -20,9 +20,10 @@ description: 以中科院（中国科学院大学）硕转博资格考试出题�
 1. 读取考纲与 `references/exam-design.md`，制定命题蓝图：8–10 道大题覆盖五个部分，标注每题考查点、难度档（基础/进阶/区分度）与分值。
 2. 检查覆盖矩阵：五个部分均有题，分值大致均衡；难度约 30% 基础、40% 进阶、30% 区分度。
 3. 逐题命题：基础题直接考察定义与基本定理；进阶题组合 2–3 个标准定理；区分度题要求构造、反例或多步综合论证。
-4. 生成 LaTeX 考卷：以 `assets/exam-template.tex` 为模板写入 `exam/`，命名 `exam/<YYYY>-<标识>-algebra-exam.tex`（如 `exam/2026-qual-algebra-exam.tex`）。
-5. 编译：在 `exam/` 文件夹内串行执行 `xelatex`（两次），产物留在 `exam/`；完成后清理 aux/log/out/toc 等副产物。不要在仓库根目录编译。
-6. 自检：覆盖完整、难度分层合理、各题分值合计恰为 150、题干无歧义与超纲术语、考卷中不出现答案或提示。
+4. 生成 LaTeX 考卷：以 `assets/exam-template.tex` 为模板写入 `exam/`，统一命名为 `exam/<YYYY>-algebra-qual-exam[-<版本>].tex`（如 `exam/2026-algebra-qual-exam.tex`、`exam/2026-algebra-qual-exam-a.tex`）。
+5. 编译：必须在 `exam/` 文件夹内串行执行 `xelatex`，通常至少两次，直到目录、页码与交叉引用稳定；产物留在 `exam/`。不要在仓库根目录编译，也不要并行运行多个 `xelatex` 进程。
+6. 清理：编译完成后必须删除 `aux/log/out/toc/synctex.gz/fls/fdb_latexmk/xdv` 等副产物；最终只保留本次生成的 `.tex` 与 `.pdf` 文件，不保留 design notes、临时草稿或中间检查文件。
+7. 自检：覆盖完整、难度分层合理、各题分值合计恰为 150、题干无歧义与超纲术语、考卷中不出现答案或提示。
 
 ## 命题质量准则
 
@@ -33,6 +34,6 @@ description: 以中科院（中国科学院大学）硕转博资格考试出题�
 
 ## 输出清单
 
-- `exam/<标识>-algebra-exam.tex`：考卷源文件（LaTeX）。
-- `exam/<标识>-algebra-exam.pdf`：编译产物。
-- 用户要求时可另附 `exam/<标识>-design-notes.md` 记录覆盖矩阵与难度分布（不写入考卷）。
+- `exam/<YYYY>-algebra-qual-exam[-<版本>].tex`：考卷源文件（LaTeX）。
+- `exam/<YYYY>-algebra-qual-exam[-<版本>].pdf`：编译产物。
+- 不输出或保留 `.md`、`.aux`、`.log`、`.out`、`.toc` 等文件；若需要覆盖矩阵与难度分布，只在最终回复中简要说明，不写入仓库文件。

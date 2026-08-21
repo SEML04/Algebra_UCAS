@@ -10,6 +10,7 @@ description: 以中科院硕转博考试批卷人身份，对一份代数考卷�
 扮演中科院硕转博考试批卷人。输入：一份考卷（tex/pdf/txt）与一份答卷（tex/md/pdf/txt）。输出：
 1. 批改报告：总分、每题得分与扣分明细、逐题评语（含隐藏逻辑漏洞）。
 2. 参考答案（独立文件）：每题严谨完整解答，并在错误点附剖析与总结。
+3. 所有正式输出必须以 LaTeX 源文件和编译后的 PDF 成对保存；最终只保留 `.tex` 与 `.pdf` 文件。
 
 ## 输入与读取
 
@@ -26,10 +27,12 @@ description: 以中科院硕转博考试批卷人身份，对一份代数考卷�
    - 情形覆盖：是否遗漏边界情形（零环、零模、特征 p、无限群、非分裂短正合列、不可分扩张、平凡子群等）。
    - 计算：符号、指标、次数、维数、阶数是否一致；反例是否成立。
 3. 给分：按给分点给分；结论正确但论证缺失只给部分分；扣分须说明理由。
-4. 输出两个独立文件到 `exam/`：
-   - `exam/<考卷名>-grading-report.md`：按 `assets/grading-report-template.md` 填写。
-   - `exam/<考卷名>-reference-answers.tex`：按 `assets/reference-answer-template.tex` 编写，每题含“解答”与“答卷错误剖析”。
-5. 汇总：报告末尾单独一节“答卷共性问题总结”，归纳逻辑漏洞类型与知识点缺失。
+4. 输出两个独立 LaTeX 文件到 `exam/`：
+   - `exam/<考卷基名>-grading-report.tex`：包含总分、逐题得分、扣分明细、逐题评语与“答卷共性问题总结”；`<考卷基名>` 沿用 `YYYY-algebra-qual-exam[-<版本>]` 格式。
+   - `exam/<考卷基名>-reference-answers.tex`：按 `assets/reference-answer-template.tex` 编写，每题含“解答”与“答卷错误剖析”。
+5. 编译：必须在 `exam/` 文件夹内分别串行执行 `xelatex`，通常至少两次，生成对应 PDF。不要在仓库根目录编译，也不要并行运行多个 `xelatex` 进程。
+6. 清理：编译完成后必须删除 `aux/log/out/toc/synctex.gz/fls/fdb_latexmk/xdv` 等副产物；最终只保留 `.tex` 与 `.pdf` 文件，不保留 `.md` 报告、临时草稿或中间检查文件。
+7. 汇总：报告末尾单独一节“答卷共性问题总结”，归纳逻辑漏洞类型与知识点缺失。
 
 ## 批改质量准则
 

@@ -13,6 +13,7 @@
 - `txt/`：统一存放所有由 PDF 提取出的可检索文本，文件名应尽量与原 PDF 同名。
 - `collection/collection.tex`：正式主文档，统一收纳概念辨析、专题整理、题目整理与索引。
 - `collection/collection.pdf`：由 `collection.tex` 编译生成的输出文件。
+- `exam/`：资格考试模拟卷与相关正式输出，命名统一采用 `YYYY-algebra-qual-exam[-版本].tex/pdf`，例如 `2026-algebra-qual-exam-a.tex`。
 - `draft.md`：临时工作板，用于记录当前任务、证明草稿、待办与阶段性说明。
 - `AGENTS.md`：仓库协作规则，不存放数学正文。
 
@@ -40,6 +41,7 @@
 - `Select-String -Path ".\txt\Algebra III.txt" -Pattern "Proposition 5.3.12"`：定位原文。
 - `Get-Content .\draft.md`：查看当前工作板。
 - `Set-Location .\collection; xelatex collection.tex`：在 `collection/` 目录内编译正式文档。
+- `Set-Location .\exam; xelatex 2026-algebra-qual-exam-a.tex`：在 `exam/` 目录内编译试卷文件。
 - `Get-ChildItem .\collection,.\review -Recurse -File -Include *.aux,*.log,*.out,*.toc,*.synctex.gz,*.fls,*.fdb_latexmk,*.xdv | Remove-Item -Force`：清理 LaTeX 编译副产物，只保留 `tex/pdf` 与正文实际需要的资源文件。
 
 修改 `collection.tex` 后，通常至少编译两次，以刷新目录和交叉引用。
@@ -54,7 +56,8 @@
 - 索引条目应尽量压缩成一句话，并显式带出所属 `subsection` 信息；若能点击跳转，则优先保留可点击定位。
 - 索引中各条目的排列顺序必须与正文中对应内容的实际出现顺序一致；新增、拆分或移动小节后，要同步检查并重排索引，避免定位顺序错乱。
 - 同一 `tex` 文件若需多次编译（例如为刷新目录、交叉引用），必须串行执行，不能并行运行多个 `xelatex` 进程；否则可能竞争写入 `aux`、`toc`、`out` 与 `pdf` 文件并导致输出损坏。
-- 之后编译 `.tex` 文件时，无论处理的是哪个文件，都只能在 `.\collection` 文件夹内执行编译命令；不要在仓库根目录直接运行 `xelatex "collection/..."`，以免把 `pdf`、`aux`、`toc`、`log` 等产物写到错误位置。
+- 之后编译 `.tex` 文件时，必须进入该文件所属目录执行编译命令；例如 `collection.tex` 只能在 `.\collection` 内编译，试卷只能在 `.\exam` 内编译。不要在仓库根目录直接运行 `xelatex "collection/..."` 或 `xelatex "exam/..."`，以免把 `pdf`、`aux`、`toc`、`log` 等产物写到错误位置。
+- `exam/` 中正式试卷及其 PDF 必须成对命名，统一采用 `YYYY-algebra-qual-exam[-版本].tex/pdf`；批改报告与参考答案沿用考卷基名追加 `-grading-report` 或 `-reference-answers`。
 - 编译结束后，若不再需要中间文件，应清理 `aux`、`log`、`out`、`toc`、`synctex.gz` 等副产物；默认只保留 `tex`、`pdf` 以及正文实际引用的图片等资源文件。
 - 保留数学公式与交换图所需宏包，尤其是 `amsmath`、`amsthm`、`amssymb`、`tikz-cd`。
 - 修改现有文档前，先阅读原内容，避免覆盖已完成整理。

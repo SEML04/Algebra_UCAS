@@ -1,0 +1,133 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+
+\newcounter{problem}
+\newenvironment{problem}[1][0]
+  {\refstepcounter{problem}\par\medskip\noindent\textbf{第\theproblem 题}（#1 分）\par\nopagebreak\noindent\ignorespaces}
+  {\par\medskip}
+
+\title{\textbf{中国科学院大学 数学学科 硕转博资格考试综合笔试}\\[4pt]
+       \textbf{《代数学》模拟试卷 B}}
+\author{考试时间：180 分钟\qquad\qquad 满分：150 分}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{center}\rule{\textwidth}{0.4pt}\end{center}
+
+\textbf{注意事项：}1. 答案写在答题纸上并注明题号；2. 写明关键步骤，仅有结论不得分；3. 可使用教材中的标准定理，但须说明其条件成立。
+
+\vspace{1em}
+
+\section*{一、Galois 理论和域论（共 30 分）}
+
+\begin{problem}[15]
+设 \(p\) 为奇素数，\(\zeta_p\) 为本原 \(p\) 次单位根。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(\mathbb Q(\zeta_p)/\mathbb Q\) 是 Galois 扩张，并求其 Galois 群。
+  \item 描述中间域与 \((\mathbb Z/p\mathbb Z)^\times\) 子群之间的对应。
+  \item 当 \(p=7\) 时，求唯一三次子域的 Galois 群。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(F_q\) 为 \(q\) 元有限域。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(F_{q^n}/F_q\) 是 Galois 扩张，并求其 Galois 群。
+  \item 证明 \(F_{q^m}\subset F_{q^n}\) 当且仅当 \(m\mid n\)。
+  \item 计算范数映射 \(N_{F_{q^n}/F_q}\)，并证明其满射。
+\end{enumerate}
+\end{problem}
+
+\section*{二、模论（共 30 分）}
+
+\begin{problem}[15]
+设 \(R\) 为环，\(M\) 为半单左 \(R\)-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(M\) 的任意子模都是直和因子。
+  \item 证明 \(M\) 是单模的直和。
+  \item 若 \(M\) 有有限长度，说明其 simple composition factors 的重数如何由 Jordan--Hölder 定理确定。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(D\) 为 PID，\(M\) 为有限生成 torsion \(D\)-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 说明 elementary divisors 与 invariant factors 两种分解形式。
+  \item 证明两种形式之间可以相互转换。
+  \item 对 \(D=k[X]\)，分解 \(k[X]/(X^2(X-1))\oplus k[X]/(X^3)\) 的 elementary divisors。
+\end{enumerate}
+\end{problem}
+
+\section*{三、环与代数（共 30 分）}
+
+\begin{problem}[15]
+设 \(R\) 为半单 Artinian 环。
+\begin{enumerate}[label=(\arabic*)]
+  \item 陈述 Wedderburn--Artin 定理。
+  \item 证明 \(R\) 的 Jacobson radical 为 \(0\)。
+  \item 判断 simple ring 是否必为半单 Artinian 环，并给出理由或反例方向。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(A\) 为有限维中心除 \(F\)-代数，\(E\subset A\) 为极大子域。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(C_A(E)=E\)。
+  \item 推出 \([A:F]=[E:F]^2\)。
+  \item 说明 \(E\) 是 \(A\) 的分裂域时 \(A_E\) 的结构。
+\end{enumerate}
+\end{problem}
+
+\section*{四、有限群及其表示论（共 30 分）}
+
+\begin{problem}[15]
+设 \(G\) 为有限群，\(H\leq G\)，\(\chi\) 为 \(H\) 的复特征标。
+\begin{enumerate}[label=(\arabic*)]
+  \item 定义诱导表示与诱导特征标 \(\operatorname{Ind}_H^G\chi\)。
+  \item 陈述并证明 Frobenius 互反律。
+  \item 用互反律判断 \(G\) 的不可约表示在限制到 \(H\) 后含有给定不可约表示的重数。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(G=S_3\)。
+\begin{enumerate}[label=(\arabic*)]
+  \item 写出 \(S_3\) 的共轭类。
+  \item 构造 \(S_3\) 的复不可约特征标表。
+  \item 验证行正交关系与列正交关系。
+\end{enumerate}
+\end{problem}
+
+\section*{五、同调代数（共 30 分）}
+
+\begin{problem}[15]
+设 \(\mathcal A\) 为 Abelian 范畴，给定交换图且两行正合：
+\[
+\begin{array}{ccccccccc}
+0&\to&A'&\to&A&\to&A''&\to&0\\
+ &&\downarrow&&\downarrow&&\downarrow&&\\
+0&\to&B'&\to&B&\to&B''&\to&0 .
+\end{array}
+\]
+\begin{enumerate}[label=(\arabic*)]
+  \item 陈述蛇引理。
+  \item 构造连接同态 \(\ker(A''\to B'')\to \operatorname{coker}(A'\to B')\)。
+  \item 说明蛇引理如何推出同调长正合列。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(R\) 为交换环，\(x_1,\dots,x_n\in R\)。
+\begin{enumerate}[label=(\arabic*)]
+  \item 定义 Koszul 复形 \(K_\bullet(x_1,\dots,x_n;R)\)。
+  \item 当 \(x_1,\dots,x_n\) 为 \(R\)-正则序列时，说明 Koszul 复形的同调。
+  \item 对 \(R=k[x,y]\)，计算 \(K_\bullet(x,y;R)\) 的同调。
+\end{enumerate}
+\end{problem}
+
+\end{document}

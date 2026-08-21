@@ -1,0 +1,137 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{enumitem}
+
+\newcounter{problem}
+\newenvironment{problem}[1][0]
+  {\refstepcounter{problem}\par\medskip\noindent\textbf{第\theproblem 题}（#1 分）\par\nopagebreak\noindent\ignorespaces}
+  {\par\medskip}
+
+\title{\textbf{中国科学院大学 数学学科 硕转博资格考试综合笔试}\\[4pt]
+       \textbf{《代数学》模拟试卷 A}}
+\author{考试时间：180 分钟\qquad\qquad 满分：150 分}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{center}\rule{\textwidth}{0.4pt}\end{center}
+
+\textbf{注意事项：}1. 答案写在答题纸上并注明题号；2. 写明关键步骤，仅有结论不得分；3. 可使用教材中的标准定理，但须说明其条件成立。
+
+\vspace{1em}
+
+\section*{一、Galois 理论和域论（共 30 分）}
+
+\begin{problem}[15]
+设 \(f(X)=X^4-2\in \mathbb Q[X]\)。
+\begin{enumerate}[label=(\arabic*)]
+  \item 求 \(f\) 在 \(\mathbb Q\) 上的分裂域 \(K\)，并计算 \([K:\mathbb Q]\)。
+  \item 确定 \(\operatorname{Gal}(K/\mathbb Q)\) 的群结构。
+  \item 写出所有阶为 \(2\) 的子群，并说明它们对应的中间域次数。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(F\) 为特征 \(p>0\) 的域，\(a\in F\setminus F^p\)，令
+\[
+  E=F(\alpha),\qquad \alpha^{p^n}=a,\quad n\geq 1.
+\]
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(X^{p^n}-a\) 在 \(F[X]\) 中不可约。
+  \item 判断 \(E/F\) 是否可分、是否正规，并说明理由。
+  \item 描述 \(F\subset E\) 的中间域链。
+\end{enumerate}
+\end{problem}
+
+\section*{二、模论（共 30 分）}
+
+\begin{problem}[15]
+设 \(R\) 为主理想整环，\(M\) 为有限生成 \(R\)-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 陈述有限生成 \(R\)-模结构定理的初等因子形式。
+  \item 设 \(R=\mathbb Z\)，计算
+  \[
+    M=\mathbb Z^3/\langle (2,4,0),(0,6,12),(2,0,8)\rangle
+  \]
+  的结构。
+  \item 判断 \(M\) 是否为循环模，并说明理由。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(R\) 为环，\(M\) 为同时满足 Noetherian 与 Artinian 条件的非零 \(R\)-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(M\) 有 composition series。
+  \item 说明 Jordan--Hölder 定理给出的不变量是什么。
+  \item 若 \(M=M_1\oplus\cdots\oplus M_r\) 为 indecomposable 直和分解，说明 Krull--Schmidt 唯一性需要哪些关键输入。
+\end{enumerate}
+\end{problem}
+
+\section*{三、环与代数（共 30 分）}
+
+\begin{problem}[15]
+设 \(A\) 为有限维中心单 \(F\)-代数。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(A\otimes_F A^{op}\simeq \operatorname{End}_F(A)\)。
+  \item 说明该同构如何推出 \([A^{op}]=[A]^{-1}\) 于 \(\operatorname{Br}(F)\)。
+  \item 若 \(E/F\) 分裂 \(A\)，解释 \(A_E\) 的矩阵代数形式。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(R\) 为左 Artinian 环，\(J=\operatorname{rad}R\)。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(J\) 为幂零理想。
+  \item 证明 \(R/J\) 为半单 Artinian 环。
+  \item 若 \(R\) 还是 simple ring，说明 \(R\) 与矩阵除环之间的关系。
+\end{enumerate}
+\end{problem}
+
+\section*{四、有限群及其表示论（共 30 分）}
+
+\begin{problem}[15]
+设 \(G\) 为阶 \(p^2q\) 的有限群，其中 \(p<q\) 为素数且 \(p\nmid(q-1)\)。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(G\) 的 Sylow \(q\)-子群正规。
+  \item 讨论 \(G\) 的 Sylow \(p\)-子群在何种附加条件下正规。
+  \item 在两个 Sylow 子群均正规时，说明 \(G\) 的结构。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(G\) 为有限群，\(k\) 为代数闭域且 \(\operatorname{char}k\nmid |G|\)。
+\begin{enumerate}[label=(\arabic*)]
+  \item 陈述并证明 Maschke 定理。
+  \item 说明 \(k[G]\) 的半单分解与不可约表示之间的关系。
+  \item 若 \(G\) 为阿贝尔群，求所有不可约 \(k\)-表示的维数。
+\end{enumerate}
+\end{problem}
+
+\section*{五、同调代数（共 30 分）}
+
+\begin{problem}[15]
+设
+\[
+  0\to A'\to A\to A''\to 0
+\]
+为 \(R\)-模短正合列，\(B\) 为任意 \(R\)-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 构造由 \(-\otimes_R B\) 导出的长正合列开头部分。
+  \item 证明若 \(B\) 平坦，则张量该短正合列仍正合。
+  \item 给出一个非平坦模导致左端单射失败的例子。
+\end{enumerate}
+\end{problem}
+
+\begin{problem}[15]
+设 \(R\) 为环，\(P\) 为左 \(R\)-模。
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 \(P\) 投射当且仅当 \(\operatorname{Hom}_R(P,-)\) 为正合函子。
+  \item 证明 \(P\) 投射当且仅当任意满射 \(M\twoheadrightarrow P\) 分裂。
+  \item 说明投射分解如何用于定义 \(\operatorname{Ext}^n_R(M,N)\)。
+\end{enumerate}
+\end{problem}
+
+\end{document}
