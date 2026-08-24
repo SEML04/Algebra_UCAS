@@ -8506,6 +8506,368 @@ representation.
 再看平凡特征标即可知道 \(\chi(1)/|G|\) 是整数，随后所有不可约重数都按正则表示的比例出现。
 \end{example}
 
+\subsection{有限 Abel 群的特征标对偶群}\label{subsec:problem-serre-abelian-dual-character}
+
+\begin{example}
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~26, Section 3.1, Exercise 3.3）
+
+Let \(G\) be an abelian group of order \(g\), and let \(C\) be the set of
+irreducible characters of \(G\). If \(\chi_1,\chi_2\in C\), show that
+\(\chi_1\chi_2\in C\), that \(C\) is an abelian group of order \(g\), and that
+the natural evaluation map
+\[
+  G\longrightarrow \widehat{\widehat G},
+  \qquad
+  x\longmapsto(\chi\mapsto \chi(x))
+\]
+is an isomorphism.
+
+\textbf{解答：}
+
+取底域为 \(\mathbb C\)。因为 \(G\) 是 Abel 群，群代数 \(\mathbb C[G]\) 是交换代数；又由 Maschke 定理，
+\(\mathbb C[G]\) 是半单代数。因此 Wedderburn--Artin 分解给出
+\[
+  \mathbb C[G]\simeq \prod_{\chi\in C}\operatorname{End}_{\mathbb C}(V_\chi).
+\]
+左边交换，故每个 simple block \(\operatorname{End}_{\mathbb C}(V_\chi)\) 也交换，于是
+\[
+  \dim_{\mathbb C}V_\chi=1.
+\]
+换言之，有限 Abel 群的每个不可约表示都是一维表示；其特征标就是群同态
+\[
+  \chi:G\longrightarrow \mathbb C^\times.
+\]
+这也可以看成稠密性定理在交换情形下的退化：不可约表示上的像应稠密于
+\(\operatorname{End}(V_\chi)\)，而交换像只能给出一维的 simple block。
+
+若 \(\chi_1,\chi_2\in C\)，则
+\[
+  (\chi_1\chi_2)(xy)
+  =
+  \chi_1(xy)\chi_2(xy)
+  =
+  \chi_1(x)\chi_2(x)\chi_1(y)\chi_2(y),
+\]
+所以 \(\chi_1\chi_2\) 仍是一个一维表示的特征标，因而仍不可约。平凡特征标是单位元，逆元为
+\[
+  \chi^{-1}(x)=\chi(x)^{-1}=\overline{\chi(x)}
+\]
+（有限阶根的倒数等于共轭），故 \(C\) 在逐点乘法下成为 Abel 群。
+
+再由 Wedderburn--Artin 分解比较维数：
+\[
+  |G|=\dim_{\mathbb C}\mathbb C[G]
+  =
+  \sum_{\chi\in C}(\dim V_\chi)^2
+  =
+  |C|.
+\]
+于是 \(C\) 的阶为 \(g\)，这就是通常记作 \(\widehat G\) 的对偶群。
+
+最后定义
+\[
+  \Phi:G\longrightarrow \widehat{\widehat G},
+  \qquad
+  \Phi(x)(\chi)=\chi(x).
+\]
+它是同态，因为
+\[
+  \Phi(xy)(\chi)=\chi(xy)=\chi(x)\chi(y)=\Phi(x)(\chi)\Phi(y)(\chi).
+\]
+若 \(x\in\ker\Phi\)，则对所有不可约特征标 \(\chi\) 都有 \(\chi(x)=1\)。在分解
+\[
+  \mathbb C[G]\simeq \prod_{\chi\in \widehat G}\mathbb C
+\]
+下，群元素 \(x\) 的 \(\chi\)-分量正是 \(\chi(x)\)，而 \(1\) 的每个分量都是 \(1\)。因此 \(x\) 与 \(1\)
+在所有 simple component 中像相同；由半单分解的忠实性可知 \(x=1\)。所以 \(\Phi\) 单射。
+
+因为
+\[
+  |G|=|\widehat G|=|\widehat{\widehat G}|,
+\]
+单射 \(\Phi\) 必为双射，故
+\[
+  G\simeq \widehat{\widehat G}.
+\]
+
+\textbf{方法要点.}
+Abel 性把 \(\mathbb C[G]\) 变成交换半单代数，所以所有 Wedderburn block 都是一维；特征标对偶群本质上就是
+\(\mathbb C[G]\simeq \prod_{\chi\in\widehat G}\mathbb C\) 的全部坐标投影。
+\end{example}
+
+\subsection{\texorpdfstring{\(A_4\) 中由 Klein 四元子群诱导出的三维不可约表示}{A4 中由 Klein 四元子群诱导出的三维不可约表示}}\label{subsec:problem-serre-a4-induced-klein}
+
+\begin{example}
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~41, Section 5.7, Exercise 5.4）
+
+在 \(A_4\) 中记
+\[
+  x=(ab)(cd),\qquad y=(ac)(bd),\qquad z=(ad)(bc),
+\]
+并设
+\[
+  H=\{1,x,y,z\},\qquad t=(abc),\qquad K=\{1,t,t^2\}.
+\]
+教材前文说明 \(H\triangleleft A_4\)，且
+\[
+  txt^{-1}=z,\qquad tzt^{-1}=y,\qquad tyt^{-1}=x.
+\]
+定义 \(H\) 的一维表示 \(\theta\) 为
+\[
+  \theta(1)=\theta(x)=1,\qquad \theta(y)=\theta(z)=-1.
+\]
+证明由 \(\theta\) 诱导到 \(A_4\) 的表示 \(\operatorname{Ind}_H^{A_4}\theta\) 是不可约的，并且其特征标为 \(A_4\) 特征标表中的三维特征标 \(\psi\)。
+
+\textbf{解答：}
+
+因为
+\[
+  [A_4:H]=3,
+\]
+所以
+\[
+  \dim \operatorname{Ind}_H^{A_4}\theta=3.
+\]
+用诱导特征标公式。若 \(\chi=\operatorname{char}(\operatorname{Ind}_H^{A_4}\theta)\)，则
+\[
+  \chi(g)
+  =
+  \frac{1}{|H|}
+  \sum_{\substack{s\in A_4\\ s^{-1}gs\in H}}
+  \theta(s^{-1}gs).
+\]
+由于 \(H\triangleleft A_4\)，若 \(g\notin H\)，则所有共轭元都不在 \(H\)，故
+\[
+  \chi(g)=0,\qquad g\notin H.
+\]
+特别地，在 \(A_4\) 的两个三循环共轭类上，\(\chi\) 都为 \(0\)。
+
+若 \(g=1\)，则
+\[
+  \chi(1)=3.
+\]
+若 \(g=x\)，取 \(A_4/H\) 的代表元 \(1,t,t^2\)。由于 \(H\) 正规，上式可化为
+\[
+  \chi(x)
+  =
+  \theta(x)+\theta(t^{-1}xt)+\theta(t^{-2}xt^2).
+\]
+由 \(t\) 对 \(\{x,y,z\}\) 的共轭作用是一个三循环，得
+\[
+  \{x,t^{-1}xt,t^{-2}xt^2\}=\{x,y,z\}.
+\]
+因此
+\[
+  \chi(x)=\theta(x)+\theta(y)+\theta(z)=1-1-1=-1.
+\]
+同理，对 \(y,z\) 也有
+\[
+  \chi(y)=\chi(z)=-1.
+\]
+
+于是 \(\chi\) 在 \(A_4\) 的四个共轭类
+\[
+  \{1\},\qquad \{x,y,z\},\qquad \{t,tx,ty,tz\},\qquad \{t^2,t^2x,t^2y,t^2z\}
+\]
+上的取值为
+\[
+  (3,-1,0,0).
+\]
+这正是 Serre Section 5.7 中给出的三维特征标 \(\psi\)。并且
+\[
+  (\chi\mid\chi)
+  =
+  \frac{1}{12}\left(3^2+3\cdot(-1)^2\right)
+  =
+  1.
+\]
+由特征标内积判别，\(\operatorname{Ind}_H^{A_4}\theta\) 不可约。
+
+\textbf{方法要点.}
+这里的计算本质上是“正规子群上的一维特征标经共轭轨道求和”：在 \(H\setminus\{1\}\) 上，\(t\) 将 \(x,y,z\) 循环置换，所以诱导特征标给出 \(1-1-1=-1\)；在 \(A_4\setminus H\) 上则因没有共轭元落入 \(H\) 而为 \(0\)。
+
+\begin{remark}[诱导表示的一般形式]
+一般地，设 \(H\leq G\)，\(\theta:H\to\operatorname{GL}(V)\) 是 \(H\) 的表示。诱导表示可记为
+\[
+  \operatorname{Ind}_H^G(\theta)
+  \quad\text{或}\quad
+  \operatorname{Ind}_H^G(V).
+\]
+它可以用函数模型表示为
+\[
+  \operatorname{Ind}_H^G(V)
+  =
+  \{f:G\to V\mid f(hg)=\theta(h)f(g),\ \forall h\in H,\ g\in G\},
+\]
+其中 \(G\) 通过右平移作用：
+\[
+  (g_0f)(g)=f(gg_0).
+\]
+等价地，也可以写成群代数张量积模型
+\[
+  \operatorname{Ind}_H^G(V)
+  =
+  \mathbb C[G]\otimes_{\mathbb C[H]}V,
+\]
+其中 \(G\) 作用在左侧因子上：
+\[
+  g_0\cdot(g\otimes v)=(g_0g)\otimes v.
+\]
+若 \(G\) 是有限群，则
+\[
+  \dim\operatorname{Ind}_H^G(V)=[G:H]\dim V.
+\]
+对应的诱导特征标公式为
+\[
+  \chi_{\operatorname{Ind}_H^G\theta}(g)
+  =
+  \frac{1}{|H|}
+  \sum_{\substack{x\in G\\ x^{-1}gx\in H}}
+  \chi_\theta(x^{-1}gx).
+\]
+本题正是把这个公式用于 \(G=A_4\)、\(H=\{1,x,y,z\}\) 和一维特征标 \(\theta\)。
+\end{remark}
+\end{example}
+
+\subsection{\texorpdfstring{\(\mathbb Z[G]\) 中有限阶单位与 Higman 定理}{Z[G] 中有限阶单位与 Higman 定理}}\label{subsec:problem-serre-higman-units}
+
+\begin{example}
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~49, Section 6.2, Exercise 6.3）
+
+设 \(U\) 是 \(\mathbb C[G]\) 乘法群的有限子群，并且 \(G\subset U\)。设
+\[
+  u=\sum_{s\in G}u(s)s,\qquad
+  u'=\sum_{s\in G}u'(s)s
+\]
+是 \(U\) 中两个元素，满足 \(uu'=1\)。记 \(\rho_i:\mathbb C[G]\to \operatorname{End}(W_i)\)
+为第 \(i\) 个不可约表示诱导出的代数同态，并设
+\[
+  u_i=\rho_i(u),\qquad u_i'=\rho_i(u').
+\]
+证明：
+\begin{enumerate}
+  \item \(\rho_i(s^{-1})u_i=\rho_i(s^{-1}u)\) 的特征值都是单位根，并推出
+  \[
+    \overline{\operatorname{Tr}_{W_i}(\rho_i(s^{-1})u_i)}
+    =
+    \operatorname{Tr}_{W_i}(u_i'\rho_i(s)).
+  \]
+  由 Fourier inversion formula 进一步得到
+  \[
+    \overline{u(s)}=u'(s^{-1}).
+  \]
+  \item 有
+  \[
+    \sum_{s\in G}|u(s)|^2=1.
+  \]
+  \item 若 \(U\subset \mathbb Z[G]\)，则每个 \(u\in U\) 都形如 \(\pm t\)，其中 \(t\in G\)。
+  \item 若 \(G\) 是 Abel 群，则 \(\mathbb Z[G]^\times\) 中每个有限阶元素都属于 \(\pm G\)（Higman 定理）。
+\end{enumerate}
+
+\textbf{解答：}
+
+(a) 因为 \(s\in G\subset U\)，且 \(u\in U\)，所以
+\[
+  s^{-1}u\in U.
+\]
+又 \(U\) 是有限群，故 \(s^{-1}u\) 有有限阶。于是
+\[
+  \rho_i(s^{-1})u_i=\rho_i(s^{-1}u)
+\]
+也是有限阶线性变换，因此其特征值都是单位根。
+
+对有限阶线性变换 \(A\)，特征值为单位根，故
+\[
+  \overline{\operatorname{Tr}(A)}=\operatorname{Tr}(A^{-1}).
+\]
+取 \(A=\rho_i(s^{-1}u)\)，并用 \(u'=u^{-1}\)，得到
+\[
+  A^{-1}=\rho_i(u^{-1}s)=u_i'\rho_i(s).
+\]
+因此
+\[
+  \overline{\operatorname{Tr}_{W_i}(\rho_i(s^{-1})u_i)}
+  =
+  \operatorname{Tr}_{W_i}(u_i'\rho_i(s)).
+\]
+
+Serre Proposition 11 的 Fourier inversion formula 说：若
+\[
+  v=\sum_{s\in G}v(s)s\in\mathbb C[G],
+\]
+则
+\[
+  v(s)=\frac{1}{|G|}
+  \sum_i n_i\operatorname{Tr}_{W_i}\bigl(\rho_i(s^{-1})v_i\bigr),
+  \qquad n_i=\dim W_i.
+\]
+应用于 \(u\)，再取复共轭，得到
+\[
+  \overline{u(s)}
+  =
+  \frac{1}{|G|}
+  \sum_i n_i\operatorname{Tr}_{W_i}(u_i'\rho_i(s)).
+\]
+由迹的循环性，
+\[
+  \operatorname{Tr}_{W_i}(u_i'\rho_i(s))
+  =
+  \operatorname{Tr}_{W_i}(\rho_i(s)u_i').
+\]
+再把 Fourier inversion formula 应用于 \(u'\) 的 \(s^{-1}\) 项：
+\[
+  u'(s^{-1})
+  =
+  \frac{1}{|G|}
+  \sum_i n_i\operatorname{Tr}_{W_i}(\rho_i(s)u_i').
+\]
+因此
+\[
+  \overline{u(s)}=u'(s^{-1}).
+\]
+
+(b) 由 (a) 得
+\[
+  \sum_{s\in G}|u(s)|^2
+  =
+  \sum_{s\in G}u(s)\overline{u(s)}
+  =
+  \sum_{s\in G}u(s)u'(s^{-1}).
+\]
+右端正是乘积 \(uu'\) 中单位元 \(1\) 的系数；因为 \(uu'=1\)，所以
+\[
+  \sum_{s\in G}|u(s)|^2=1.
+\]
+
+(c) 若 \(U\subset \mathbb Z[G]\)，则每个 \(u(s)\in\mathbb Z\)。由
+\[
+  \sum_{s\in G}|u(s)|^2=1
+\]
+可知所有 \(u(s)\) 中恰有一个等于 \(1\) 或 \(-1\)，其余全为 \(0\)。于是
+\[
+  u=\pm t
+\]
+对某个 \(t\in G\) 成立。因此
+\[
+  U\subset \pm G:=\{\pm t\mid t\in G\}.
+\]
+
+(d) 设 \(G\) 是 Abel 群，且 \(u\in \mathbb Z[G]^\times\) 有有限阶。因为 \(\mathbb Z[G]\)
+交换，所以 \(u\) 与每个 \(g\in G\) 交换。于是由 \(G\) 与 \(u\) 生成的子群
+\[
+  U=\langle G,u\rangle
+\]
+是有限子群，并且 \(G\subset U\subset \mathbb Z[G]^\times\)。由 (c) 立刻得到
+\[
+  u\in \pm G.
+\]
+这就是 Abel 情形下的 Higman 定理。
+
+\textbf{方法要点.}
+证明的核心是把群代数元素的系数还原为所有不可约表示上的迹，即 Fourier inversion formula；有限阶条件把迹的复共轭转化为逆元的迹，最终得到
+\(\overline{u(s)}=u'(s^{-1})\)，再由 \(uu'=1\) 提取单位元系数。
+\end{example}
+
 \subsection{不可数代数闭域上的 Schur 型结论}\label{subsec:problem-schur-uncountable-field}
 
 \begin{example}
@@ -8686,6 +9048,7 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
 迫使不可约层上 \(G\) 全部退化为恒等作用。
 \end{example}
 
+\newpage
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
 
@@ -8830,6 +9193,9 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
   \item \hyperref[subsec:problem-serre-contragredient-character]{[对偶表示的特征标] Serre 2.1 Exercise 2.3 中 contragredient 表示由 \(p^\vee_s(\varphi)=\varphi\circ p_{s^{-1}}\) 给出，其特征标为 \(\chi^*\)。}
   \item \hyperref[subsec:problem-serre-permutation-double-transitive]{[置换表示与双重传递性] Serre Exercise 2.6 通过用固定点特征标、轨道数和平凡表示重数证明了双重传递性等价于 \(X\times X\) 上有两个轨道，也等价于标准补表示不可约。}
   \item \hyperref[subsec:problem-serre-regular-character-multiple]{[正则特征标的倍数判别] Serre Exercise 2.7 中若特征标 \(\chi\) 在所有非单位元处为零，则 \(\chi=(\chi(1)/|G|)\rho_0\)，是正则特征标的整数倍。}
+  \item \hyperref[subsec:problem-serre-abelian-dual-character]{[有限 Abel 群的特征标对偶群] Serre Exercise 3.3 用 \(\mathbb C[G]\) 的交换半单分解说明 \(\widehat G\) 由不可约特征标组成，且 \(G\simeq\widehat{\widehat G}\)。}
+  \item \hyperref[subsec:problem-serre-a4-induced-klein]{[\(A_4\) 中由 Klein 四元子群诱导出的表示] Serre Exercise 5.4 用诱导特征标公式计算 \(\operatorname{Ind}_H^{A_4}\theta\) 的特征标为 \((3,-1,0,0)=\psi\)，故不可约。}
+  \item \hyperref[subsec:problem-serre-higman-units]{[\(\mathbb Z[G]\) 中有限阶单位与 Higman 定理] Serre Exercise 6.3 用 Fourier inversion formula 证明 Abel 群情形下 \(\mathbb Z[G]^\times\) 的有限阶元素都属于 \(\pm G\)。}
   \item \hyperref[subsec:problem-schur-uncountable-field]{[不可数代数闭域上的 Schur 型结论] Section 4.5 Exercises 1--3 用 resolvent 的线性无关性、不可数域基数论证与不可约模循环性推出 \(\operatorname{End}_A(M)=F\)。}
   \item \hyperref[subsec:problem-kolchin-unipotent-monoid]{[幺幂变换 monoid 的同时三角化] Kolchin 定理先过到 \(A=FG\) 的 composition factors，再用 Burnside 定理与迹型非退化性说明不可约商只能是一维。}
 \end{itemize}
