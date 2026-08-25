@@ -1,4 +1,4 @@
-\documentclass[a4paper]{ctexart}
+﻿\documentclass[a4paper]{ctexart}
 
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -4560,186 +4560,6 @@ Remark 4.11.26 还特别指出：一般 Kostka 数没有简单闭公式；但当
 
 这里记录经典题目、常用方法，以及做错后值得保留的修正思路。
 
-\subsection{商模的 associated primes 与 support 计算例题}\label{subsec:problem-ass-support-kxy}
-
-\begin{example}
-令
-\[
-  A=k[x,y],\qquad M=A/(x^2,xy).
-\]
-求 \(\operatorname{Spec}A\) 的典型结构，并计算 \(\operatorname{Ass}_A(M)\) 与 \(\operatorname{Supp}(M)\)。
-
-\textbf{解答要点：}
-
-首先，\(\operatorname{Spec}k[x,y]\) 不必理解成一个“可完全枚举的列表”，它就是 \(k[x,y]\) 的全体素理想所成的集合。由于 \(k[x,y]\) 是二维 UFD，其素理想按高度可分成三类：
-\[
-  (0),\qquad (f)\ \text{其中 }f\text{ 不可约},\qquad \mathfrak m\in \operatorname{MaxSpec}A.
-\]
-若 \(k\) 代数闭，则极大理想都形如
-\[
-  (x-a,y-b)\qquad (a,b\in k).
-\]
-
-对模 \(M=A/(x^2,xy)\)，先算 associated primes。记 \(x,y\) 在 \(M\) 中的像仍为 \(x,y\)。则
-\[
-  \operatorname{ann}_A(y)=(x),
-\]
-因为 \(fy\in (x^2,xy)\) 当且仅当 \(f\in (x)\)；故
-\[
-  (x)\in \operatorname{Ass}_A(M).
-\]
-另一方面，
-\[
-  \operatorname{ann}_A(x)=(x,y),
-\]
-故
-\[
-  (x,y)\in \operatorname{Ass}_A(M).
-\]
-而在辨析 1.9 已构造出 prime filtration
-\[
-  0\subset Ax\subset M,
-\]
-其商分别同构于
-\[
-  Ax\cong A/(x,y),\qquad M/Ax\cong A/(x).
-\]
-因此由 \((\mathrm{III.Lem}\ 6.1.9)\) 可知
-\[
-  \operatorname{Ass}_A(M)\subseteq \{(x),(x,y)\}.
-\]
-综合两边包含，得到
-\[
-  \operatorname{Ass}_A(M)=\{(x),(x,y)\}.
-\]
-
-再算 support。因为 \(M\) 有限生成，由 \((\mathrm{III.Thm}\ 6.1.6)\) 前使用的标准事实，
-\[
-  \operatorname{Supp}(M)=V(\operatorname{Ann}(M)).
-\]
-这里
-\[
-  \operatorname{Ann}(M)=\operatorname{ann}(1\bmod (x^2,xy))=(x^2,xy)=x(x,y),
-\]
-所以
-\[
-  \operatorname{Supp}(M)=V(x^2,xy).
-\]
-又因为
-\[
-  \sqrt{(x^2,xy)}=(x),
-\]
-故
-\[
-  V(x^2,xy)=V(x).
-\]
-因此
-\[
-  \operatorname{Supp}(M)=V(x)=\{\mathfrak p\in \operatorname{Spec}A\mid x\in \mathfrak p\}.
-\]
-这也确实包含
-\[
-  \operatorname{Ass}_A(M)=\{(x),(x,y)\},
-\]
-与 \((\mathrm{III.Thm}\ 6.1.6)\) 一致。
-\end{example}
-
-\subsection{\texorpdfstring{有限生成模的 support 在基变换下的原像公式}{有限生成模的 support 在基变换下的原像公式}}\label{subsec:problem-support-base-change}
-
-\begin{example}
-设 \(f:A\to B\) 是环同态，\(M\) 是有限生成 \(A\)-模。证明
-\[
-  \operatorname{Supp}_B(B\otimes_A M)
-  =
-  (f^*)^{-1}(\operatorname{Supp}_A(M)),
-\]
-其中
-\[
-  f^*:\operatorname{Spec}B\to \operatorname{Spec}A,
-  \qquad
-  \mathfrak q\mapsto \mathfrak q\cap A.
-\]
-
-\textbf{解答要点：}
-
-取任意 \(\mathfrak q\in \operatorname{Spec}B\)，记
-\[
-  \mathfrak p=f^*(\mathfrak q)=\mathfrak q\cap A.
-\]
-要证的就是
-\[
-  (B\otimes_A M)_{\mathfrak q}\neq 0
-  \iff
-  M_{\mathfrak p}\neq 0.
-\]
-
-首先有标准同构
-\[
-  (B\otimes_A M)_{\mathfrak q}
-  \cong
-  B_{\mathfrak q}\otimes_A M
-  \cong
-  B_{\mathfrak q}\otimes_{A_{\mathfrak p}} M_{\mathfrak p}.
-\]
-最后一个同构的原因是：\(A\setminus \mathfrak p\) 中元素在 \(B_{\mathfrak q}\) 里的像都变成单位，因此 \(A\to B_{\mathfrak q}\) 由局部化泛性质唯一分解为
-\[
-  A_{\mathfrak p}\to B_{\mathfrak q},
-\]
-而
-\[
-  M_{\mathfrak p}=A_{\mathfrak p}\otimes_A M.
-\]
-于是由张量积结合律得到所需改写。
-
-若 \(M_{\mathfrak p}=0\)，则显然
-\[
-  B_{\mathfrak q}\otimes_{A_{\mathfrak p}} M_{\mathfrak p}=0.
-\]
-
-反过来，若 \(M_{\mathfrak p}\neq 0\)，则因 \(M\) 有限生成，\(M_{\mathfrak p}\) 是局部环 \(A_{\mathfrak p}\) 上有限生成模。由 Nakayama 引理，
-\[
-  M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\neq 0.
-\]
-设
-\[
-  k(\mathfrak p)=\operatorname{Frac}(A_{\mathfrak p}/\mathfrak pA_{\mathfrak p}),
-  \qquad
-  k(\mathfrak q)=B_{\mathfrak q}/\mathfrak qB_{\mathfrak q}.
-\]
-则 \(k(\mathfrak q)\) 是 \(k(\mathfrak p)\) 的域扩张，并且
-\[
-  (B\otimes_A M)_{\mathfrak q}\otimes_{B_{\mathfrak q}} k(\mathfrak q)
-  \cong
-  M_{\mathfrak p}\otimes_{A_{\mathfrak p}} k(\mathfrak q)
-  \cong
-  \bigl(M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\bigr)\otimes_{k(\mathfrak p)} k(\mathfrak q).
-\]
-右端是非零向量空间对域扩张做张量，因此仍非零。故
-\[
-  (B\otimes_A M)_{\mathfrak q}\neq 0.
-\]
-
-综上，
-\[
-  \mathfrak q\in \operatorname{Supp}_B(B\otimes_A M)
-  \iff
-  f^*(\mathfrak q)\in \operatorname{Supp}_A(M),
-\]
-也就是
-\[
-  \operatorname{Supp}_B(B\otimes_A M)
-  =
-  (f^*)^{-1}(\operatorname{Supp}_A(M)).
-\]
-
-这里有限生成性只用在一处：为了对 \(M_{\mathfrak p}\) 应用 Nakayama，引出
-\[
-  M_{\mathfrak p}\neq 0
-  \Rightarrow
-  M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\neq 0.
-\]
-\end{example}
-
 \subsection{\texorpdfstring{上中心列与幂零性的等价刻画}{上中心列与幂零性的等价刻画}}\label{subsec:problem-upper-central-nilpotent}
 
 \begin{example}
@@ -6059,6 +5879,186 @@ Galois 基本定理在 \(S_n/A_n\) 情形下的直接推论。
 \end{proof}
 \end{example}
 
+\subsection{商模的 associated primes 与 support 计算例题}\label{subsec:problem-ass-support-kxy}
+
+\begin{example}
+令
+\[
+  A=k[x,y],\qquad M=A/(x^2,xy).
+\]
+求 \(\operatorname{Spec}A\) 的典型结构，并计算 \(\operatorname{Ass}_A(M)\) 与 \(\operatorname{Supp}(M)\)。
+
+\textbf{解答要点：}
+
+首先，\(\operatorname{Spec}k[x,y]\) 不必理解成一个“可完全枚举的列表”，它就是 \(k[x,y]\) 的全体素理想所成的集合。由于 \(k[x,y]\) 是二维 UFD，其素理想按高度可分成三类：
+\[
+  (0),\qquad (f)\ \text{其中 }f\text{ 不可约},\qquad \mathfrak m\in \operatorname{MaxSpec}A.
+\]
+若 \(k\) 代数闭，则极大理想都形如
+\[
+  (x-a,y-b)\qquad (a,b\in k).
+\]
+
+对模 \(M=A/(x^2,xy)\)，先算 associated primes。记 \(x,y\) 在 \(M\) 中的像仍为 \(x,y\)。则
+\[
+  \operatorname{ann}_A(y)=(x),
+\]
+因为 \(fy\in (x^2,xy)\) 当且仅当 \(f\in (x)\)；故
+\[
+  (x)\in \operatorname{Ass}_A(M).
+\]
+另一方面，
+\[
+  \operatorname{ann}_A(x)=(x,y),
+\]
+故
+\[
+  (x,y)\in \operatorname{Ass}_A(M).
+\]
+而在辨析 1.9 已构造出 prime filtration
+\[
+  0\subset Ax\subset M,
+\]
+其商分别同构于
+\[
+  Ax\cong A/(x,y),\qquad M/Ax\cong A/(x).
+\]
+因此由 \((\mathrm{III.Lem}\ 6.1.9)\) 可知
+\[
+  \operatorname{Ass}_A(M)\subseteq \{(x),(x,y)\}.
+\]
+综合两边包含，得到
+\[
+  \operatorname{Ass}_A(M)=\{(x),(x,y)\}.
+\]
+
+再算 support。因为 \(M\) 有限生成，由 \((\mathrm{III.Thm}\ 6.1.6)\) 前使用的标准事实，
+\[
+  \operatorname{Supp}(M)=V(\operatorname{Ann}(M)).
+\]
+这里
+\[
+  \operatorname{Ann}(M)=\operatorname{ann}(1\bmod (x^2,xy))=(x^2,xy)=x(x,y),
+\]
+所以
+\[
+  \operatorname{Supp}(M)=V(x^2,xy).
+\]
+又因为
+\[
+  \sqrt{(x^2,xy)}=(x),
+\]
+故
+\[
+  V(x^2,xy)=V(x).
+\]
+因此
+\[
+  \operatorname{Supp}(M)=V(x)=\{\mathfrak p\in \operatorname{Spec}A\mid x\in \mathfrak p\}.
+\]
+这也确实包含
+\[
+  \operatorname{Ass}_A(M)=\{(x),(x,y)\},
+\]
+与 \((\mathrm{III.Thm}\ 6.1.6)\) 一致。
+\end{example}
+
+\subsection{\texorpdfstring{有限生成模的 support 在基变换下的原像公式}{有限生成模的 support 在基变换下的原像公式}}\label{subsec:problem-support-base-change}
+
+\begin{example}
+设 \(f:A\to B\) 是环同态，\(M\) 是有限生成 \(A\)-模。证明
+\[
+  \operatorname{Supp}_B(B\otimes_A M)
+  =
+  (f^*)^{-1}(\operatorname{Supp}_A(M)),
+\]
+其中
+\[
+  f^*:\operatorname{Spec}B\to \operatorname{Spec}A,
+  \qquad
+  \mathfrak q\mapsto \mathfrak q\cap A.
+\]
+
+\textbf{解答要点：}
+
+取任意 \(\mathfrak q\in \operatorname{Spec}B\)，记
+\[
+  \mathfrak p=f^*(\mathfrak q)=\mathfrak q\cap A.
+\]
+要证的就是
+\[
+  (B\otimes_A M)_{\mathfrak q}\neq 0
+  \iff
+  M_{\mathfrak p}\neq 0.
+\]
+
+首先有标准同构
+\[
+  (B\otimes_A M)_{\mathfrak q}
+  \cong
+  B_{\mathfrak q}\otimes_A M
+  \cong
+  B_{\mathfrak q}\otimes_{A_{\mathfrak p}} M_{\mathfrak p}.
+\]
+最后一个同构的原因是：\(A\setminus \mathfrak p\) 中元素在 \(B_{\mathfrak q}\) 里的像都变成单位，因此 \(A\to B_{\mathfrak q}\) 由局部化泛性质唯一分解为
+\[
+  A_{\mathfrak p}\to B_{\mathfrak q},
+\]
+而
+\[
+  M_{\mathfrak p}=A_{\mathfrak p}\otimes_A M.
+\]
+于是由张量积结合律得到所需改写。
+
+若 \(M_{\mathfrak p}=0\)，则显然
+\[
+  B_{\mathfrak q}\otimes_{A_{\mathfrak p}} M_{\mathfrak p}=0.
+\]
+
+反过来，若 \(M_{\mathfrak p}\neq 0\)，则因 \(M\) 有限生成，\(M_{\mathfrak p}\) 是局部环 \(A_{\mathfrak p}\) 上有限生成模。由 Nakayama 引理，
+\[
+  M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\neq 0.
+\]
+设
+\[
+  k(\mathfrak p)=\operatorname{Frac}(A_{\mathfrak p}/\mathfrak pA_{\mathfrak p}),
+  \qquad
+  k(\mathfrak q)=B_{\mathfrak q}/\mathfrak qB_{\mathfrak q}.
+\]
+则 \(k(\mathfrak q)\) 是 \(k(\mathfrak p)\) 的域扩张，并且
+\[
+  (B\otimes_A M)_{\mathfrak q}\otimes_{B_{\mathfrak q}} k(\mathfrak q)
+  \cong
+  M_{\mathfrak p}\otimes_{A_{\mathfrak p}} k(\mathfrak q)
+  \cong
+  \bigl(M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\bigr)\otimes_{k(\mathfrak p)} k(\mathfrak q).
+\]
+右端是非零向量空间对域扩张做张量，因此仍非零。故
+\[
+  (B\otimes_A M)_{\mathfrak q}\neq 0.
+\]
+
+综上，
+\[
+  \mathfrak q\in \operatorname{Supp}_B(B\otimes_A M)
+  \iff
+  f^*(\mathfrak q)\in \operatorname{Supp}_A(M),
+\]
+也就是
+\[
+  \operatorname{Supp}_B(B\otimes_A M)
+  =
+  (f^*)^{-1}(\operatorname{Supp}_A(M)).
+\]
+
+这里有限生成性只用在一处：为了对 \(M_{\mathfrak p}\) 应用 Nakayama，引出
+\[
+  M_{\mathfrak p}\neq 0
+  \Rightarrow
+  M_{\mathfrak p}/\mathfrak pA_{\mathfrak p}M_{\mathfrak p}\neq 0.
+\]
+\end{example}
+
 \subsection{\texorpdfstring{自由模之间单射与满射的秩比较}{自由模之间单射与满射的秩比较}}\label{subsec:problem-free-rank-comparison}
 
 \begin{example}
@@ -6581,83 +6581,6 @@ from \(P\) into \(M\otimes_S N\).
 有限生成投射模的标准用法是“先证有限自由情形，再把一般情形看成有限自由模的直和因子”。这里有限生成性用在 \(P\) 是某个有限自由模 \(R^n\) 的直和因子。
 \end{example}
 
-\subsection{Schanuel 引理：两个投射表示的稳定同构}\label{subsec:problem-schanuel-lemma}
-
-\begin{example}
-（出处：\textit{Jacobson - Basic Algebra II}, p.~155, Section 3.10, Exercise 8）
-
-\textbf{Schanuel's lemma.}
-Suppose we have short exact sequences
-\[
-  0\longrightarrow N_i\longrightarrow P_i\xrightarrow{g_i}M\longrightarrow 0
-  \qquad (i=1,2),
-\]
-where \(P_i\) is projective. Show that
-\[
-  P_1\oplus N_2\cong P_2\oplus N_1.
-\]
-
-\textbf{解答：}
-
-取两个满射 \(g_1:P_1\to M\)、\(g_2:P_2\to M\) 的 pullback：
-\[
-  E:=P_1\times_M P_2
-  =
-  \{(p_1,p_2)\in P_1\oplus P_2\mid g_1(p_1)=g_2(p_2)\}.
-\]
-有自然投影
-\[
-  \pi_1:E\to P_1,\qquad (p_1,p_2)\mapsto p_1.
-\]
-它是满射：给定 \(p_1\in P_1\)，由于 \(g_2\) 满射，可取 \(p_2\in P_2\) 使
-\[
-  g_2(p_2)=g_1(p_1),
-\]
-于是 \((p_1,p_2)\in E\)。其核为
-\[
-  \ker\pi_1
-  =
-  \{(0,p_2)\mid g_2(p_2)=0\}
-  \cong N_2.
-\]
-因此得到短正合列
-\[
-  0\longrightarrow N_2\longrightarrow E\xrightarrow{\pi_1}P_1\longrightarrow 0.
-\]
-因为 \(P_1\) 是投射模，该短正合列分裂，所以
-\[
-  E\cong P_1\oplus N_2.
-\]
-
-同理，另一个投影
-\[
-  \pi_2:E\to P_2
-\]
-给出短正合列
-\[
-  0\longrightarrow N_1\longrightarrow E\xrightarrow{\pi_2}P_2\longrightarrow 0,
-\]
-并因 \(P_2\) 投射而分裂，故
-\[
-  E\cong P_2\oplus N_1.
-\]
-比较两式即得
-\[
-  P_1\oplus N_2\cong E\cong P_2\oplus N_1.
-\]
-
-\textbf{方法要点：}
-Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
-\[
-  P_i\twoheadrightarrow M
-\]
-虽然核 \(N_i\) 与投射模 \(P_i\) 本身未必相同，但它们满足稳定同构
-\[
-  P_1\oplus N_2\cong P_2\oplus N_1.
-\]
-这正是投射分解中“第一 syzygy 在稳定意义下唯一”的基本来源。
-\end{example}
-
 \subsection{\texorpdfstring{分式化中的 divisible 模与 essential monomorphism}{分式化中的 divisible 模与 essential monomorphism}}\label{subsec:problem-essential-monomorphism-fraction}
 
 \begin{example}
@@ -6747,6 +6670,128 @@ is an essential monomorphism if \(M\) is torsion-free.
 
 \textbf{方法要点：}
 分式化 \(S^{-1}M\) 中的 essential 性本质上就是“清分母”：任意非零分式 \(\frac{x}{s}\) 乘以分母 \(s\) 后落回原模 \(M\)，而 torsion-free 保证这个过程不会把非零元素杀成零。
+\end{example}
+
+\subsection{全自同态环作用下的不可约性}
+\label{subsec:problem-endomorphism-ring-irreducible}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercise 1）
+
+Let \(M\) be a finite dimensional left vector space over a field \(F\). Show that
+\(M\), regarded as a right module for
+\[
+  R=\operatorname{End}_F(M)
+\]
+in the natural way, is irreducible. Does this hold if \(F\) is replaced by a
+division ring? Does it hold if the finiteness condition is dropped?
+
+\textbf{解答：}
+设 \(0\ne N\subset M\) 是右 \(R\)-子模。取 \(0\ne v\in N\)。对任意 \(w\in M\)，都可以构造一个
+\(F\)-线性自同态 \(T\in \operatorname{End}_F(M)\) 使得
+\[
+  T(v)=w.
+\]
+有限维时，只需把 \(v\) 扩成一组基，再规定 \(T\) 在这组基上的值；无限维时同样可用基扩张完成构造。因此
+\[
+  w=T(v)=vT\in N.
+\]
+由于 \(w\) 任意，\(N=M\)。所以 \(M_R\) 是不可约模。
+
+若 \(F\) 换成 division ring，同样成立；证明只需把“向量空间”理解为 division ring 上的左向量空间，线性映射仍可由基上的取值决定。有限维条件也可以去掉。
+\end{example}
+
+\subsection{Schur 引理逆命题失败的二维例子}
+\label{subsec:problem-schur-converse-counterexample}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercise 2）
+
+Let \(M\) be the vector space with basis \(e_1,e_2\) over a field \(F\). Let \(R'\) be
+the set of linear transformations \(a\) of \(M\) such that
+\[
+  a(e_1)=\alpha e_1,\qquad
+  a(e_2)=\beta e_1+\gamma e_2,
+  \qquad \alpha,\beta,\gamma\in F.
+\]
+Show that \(R'\) is a ring of endomorphisms and that if \(M\) is regarded in the
+natural way as a right \(R'\)-module, then \(M\) is not irreducible. Show that
+\(\operatorname{End}_{R'}(M)\) is the field consisting of the scalar
+multiplications \(x\mapsto \lambda x\). This example shows that the converse of
+Schur's lemma does not hold.
+
+\textbf{解答：}
+在基 \(e_1,e_2\) 下，\(R'\) 正是所有上三角矩阵
+\[
+  \begin{pmatrix}
+    \alpha & \beta\\
+    0 & \gamma
+  \end{pmatrix},
+  \qquad \alpha,\beta,\gamma\in F.
+\]
+上三角矩阵对加法、乘法封闭，并含有恒等变换，所以 \(R'\subset \operatorname{End}_F(M)\) 是子环。
+
+由于
+\[
+  a(e_1)=\alpha e_1
+\]
+对所有 \(a\in R'\) 都成立，一维子空间
+\[
+  Fe_1\subset M
+\]
+在右 \(R'\)-作用下稳定。因此 \(M_{R'}\) 有非零真子模 \(Fe_1\)，不是不可约模。
+
+现在计算 \(\operatorname{End}_{R'}(M)\)。一个右 \(R'\)-模自同态就是一个与所有 \(R'\) 中元素可交换的
+\(F\)-线性变换。设
+\[
+  T=
+  \begin{pmatrix}
+    a & b\\
+    c & d
+  \end{pmatrix}.
+\]
+因为 \(T\) 与
+\[
+  E_{11}=
+  \begin{pmatrix}
+    1&0\\
+    0&0
+  \end{pmatrix}
+  \in R'
+\]
+交换，直接比较 \(TE_{11}=E_{11}T\) 得
+\[
+  b=c=0.
+\]
+因此 \(T=\operatorname{diag}(a,d)\)。再令
+\[
+  E_{12}=
+  \begin{pmatrix}
+    0&1\\
+    0&0
+  \end{pmatrix}
+  \in R',
+\]
+由 \(TE_{12}=E_{12}T\) 得
+\[
+  a=d.
+\]
+所以
+\[
+  T=aI.
+\]
+反过来，任意标量乘法当然与 \(R'\) 中所有变换可交换。因此
+\[
+  \operatorname{End}_{R'}(M)\cong F.
+\]
+
+这说明：\(\operatorname{End}_{R'}(M)\) 是除环并不能推出 \(M\) 不可约；Schur 引理只给出
+\[
+  M\ \text{irreducible}
+  \Longrightarrow
+  \operatorname{End}_{R'}(M)\ \text{is a division ring},
+\]
+其逆命题一般不成立。
 \end{example}
 
 \subsection{局部环上矩阵环的阶数与底环由同构决定}
@@ -7907,128 +7952,187 @@ Prove that the center of any simple ring is a field.
 \end{remark}
 \newpage
 
-\subsection{全自同态环作用下的不可约性}
-\label{subsec:problem-endomorphism-ring-irreducible}
+\subsection{不可数代数闭域上的 Schur 型结论}\label{subsec:problem-schur-uncountable-field}
 
 \begin{example}
-（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercise 1）
+（出处：\textit{Jacobson - Basic Algebra II}, p.~214, Section 4.5, Exercises 1--3）
+本组题设 \(A\) 是域 \(F\) 上的代数。Exercises 1--3 依次说明：先用 resolvent
+\((a-\alpha 1)^{-1}\) 检测代数性，再用不可数代数闭域排除非平凡除代数，最后推出有限生成代数不可约模的 Schur 端环只是底域。
 
-Let \(M\) be a finite dimensional left vector space over a field \(F\). Show that
-\(M\), regarded as a right module for
+\textbf{题目 1.}
+Let \(a\in A\), and let \(\alpha_1,\ldots,\alpha_m\in F\) be such that
+\(a-\alpha_i1\) is invertible in \(A\). Show that either \(a\) is algebraic over
+\(F\), or the elements
 \[
-  R=\operatorname{End}_F(M)
+  (a-\alpha_i1)^{-1},\qquad 1\le i\le m,
 \]
-in the natural way, is irreducible. Does this hold if \(F\) is replaced by a
-division ring? Does it hold if the finiteness condition is dropped?
+are linearly independent over \(F\).
 
-\textbf{解答：}
-设 \(0\ne N\subset M\) 是右 \(R\)-子模。取 \(0\ne v\in N\)。对任意 \(w\in M\)，都可以构造一个
-\(F\)-线性自同态 \(T\in \operatorname{End}_F(M)\) 使得
-\[
-  T(v)=w.
-\]
-有限维时，只需把 \(v\) 扩成一组基，再规定 \(T\) 在这组基上的值；无限维时同样可用基扩张完成构造。因此
-\[
-  w=T(v)=vT\in N.
-\]
-由于 \(w\) 任意，\(N=M\)。所以 \(M_R\) 是不可约模。
+这里应将 \(\alpha_1,\ldots,\alpha_m\) 理解为两两不同；否则若有重复且 \(a\) 超越，则两个相同逆元已经线性相关，命题本身不成立。
 
-若 \(F\) 换成 division ring，同样成立；证明只需把“向量空间”理解为 division ring 上的左向量空间，线性映射仍可由基上的取值决定。有限维条件也可以去掉。
+\textbf{解答.}
+反证。若这些逆元线性相关，则存在不全为零的 \(c_i\in F\) 使
+\[
+  \sum_{i=1}^m c_i(a-\alpha_i1)^{-1}=0.
+\]
+设 \(\alpha_i\) 两两不同。令
+\[
+  q(T)=\prod_{i=1}^m (T-\alpha_i),
+  \qquad
+  q_i(T)=\frac{q(T)}{T-\alpha_i}.
+\]
+因为 \(a-\alpha_i1\) 都是 \(F[a]\) 中的元素，它们彼此可交换，且都可逆，所以两边右乘
+\[
+  q(a)=\prod_{i=1}^m(a-\alpha_i1)
+\]
+得到
+\[
+  \sum_{i=1}^m c_iq_i(a)=0.
+\]
+而多项式 \(q_1,\ldots,q_m\) 线性无关：在 \(T=\alpha_j\) 处代入可得
+\[
+  \sum_i c_iq_i(\alpha_j)=c_jq_j(\alpha_j),
+\]
+且 \(q_j(\alpha_j)\neq 0\)。因此
+\[
+  h(T):=\sum_{i=1}^m c_iq_i(T)
+\]
+是非零多项式，并满足 \(h(a)=0\)。故 \(a\) 在 \(F\) 上代数。
+
+\textbf{题目 2.}
+Let \(A\) be a division algebra with a countable base over an uncountable
+algebraically closed field \(F\), for example \(F=\mathbb C\). Show that
+\[
+  A=F.
+\]
+
+\textbf{解答.}
+任取 \(a\in A\)。若 \(a\notin F\)，则对任意 \(\alpha\in F\)，
+\[
+  a-\alpha1\neq 0
+\]
+在除代数 \(A\) 中可逆。若 \(a\) 在 \(F\) 上超越，则由题目 1，任意有限组
+\[
+  (a-\alpha1)^{-1},\qquad \alpha\in F,
+\]
+都线性无关。因此不可数集合
+\[
+  \{(a-\alpha1)^{-1}\mid \alpha\in F\}
+\]
+给出不可数个线性无关向量，这与 \(A\) 在 \(F\) 上有可数基矛盾。故每个
+\(a\in A\) 都在 \(F\) 上代数。由于 \(F\) 代数闭，\(F[a]\) 中 \(a\) 的最小多项式只能是一次的，所以 \(a\in F\)。于是 \(A=F\)。
+
+\textbf{题目 3.}
+Let \(A\) be finitely generated over an uncountable algebraically closed field
+\(F\), and let \(M\) be an irreducible \(A\)-module. Show that
+\[
+  \operatorname{End}_A(M)=F.
+\]
+
+\textbf{解答.}
+由 Schur 引理，
+\[
+  D:=\operatorname{End}_A(M)
+\]
+是除环。又因 \(A\) 是 \(F\)-代数，所有 \(A\)-模自同态都与 \(F\) 的标量作用交换，所以 \(D\) 是 \(F\)-除代数。
+
+取 \(0\neq x\in M\)。由于 \(M\) 不可约，
+\[
+  M=Ax.
+\]
+而 \(A\) 由有限个元素作为 \(F\)-代数生成，所以 \(A\) 由这些生成元的有限单词张成，作为 \(F\)-向量空间至多可数维；于是 \(M=Ax\) 也至多可数维。评价映射
+\[
+  D\longrightarrow M,\qquad \varphi\longmapsto \varphi(x)
+\]
+是 \(F\)-线性单射，因为 \(\varphi(x)=0\) 蕴含 \(\varphi(Ax)=A\varphi(x)=0\)。故 \(D\) 作为 \(F\)-向量空间也至多可数维。由题目 2 应用于除代数 \(D\)，得
+\[
+  \operatorname{End}_A(M)=D=F.
+\]
+
+\textbf{方法要点.}
+这一组三题的套路是：题目 1 把“很多 \((a-\alpha)^{-1}\)”转化为代数性；题目 2 用不可数域与可数维空间的基数冲突逼出除代数平凡；题目 3 再用不可约模的循环性 \(M=Ax\) 把 \(\operatorname{End}_A(M)\) 压成可数维除代数，从而得到 Schur 型结论 \(\operatorname{End}_A(M)=F\)。
 \end{example}
 
-\subsection{Schur 引理逆命题失败的二维例子}
-\label{subsec:problem-schur-converse-counterexample}
+\subsection{幺幂变换 monoid 的同时三角化}\label{subsec:problem-kolchin-unipotent-monoid}
 
 \begin{example}
-（出处：\textit{Jacobson - Basic Algebra II}, p.~122, Section 3.5, Exercise 2）
-
-Let \(M\) be the vector space with basis \(e_1,e_2\) over a field \(F\). Let \(R'\) be
-the set of linear transformations \(a\) of \(M\) such that
-\[
-  a(e_1)=\alpha e_1,\qquad
-  a(e_2)=\beta e_1+\gamma e_2,
-  \qquad \alpha,\beta,\gamma\in F.
-\]
-Show that \(R'\) is a ring of endomorphisms and that if \(M\) is regarded in the
-natural way as a right \(R'\)-module, then \(M\) is not irreducible. Show that
-\(\operatorname{End}_{R'}(M)\) is the field consisting of the scalar
-multiplications \(x\mapsto \lambda x\). This example shows that the converse of
-Schur's lemma does not hold.
-
-\textbf{解答：}
-在基 \(e_1,e_2\) 下，\(R'\) 正是所有上三角矩阵
+（出处：\textit{Jacobson - Basic Algebra II}, p.~215, Section 4.5, Exercise 9）
+线性变换称为 unipotent，若它形如 \(1+z\)，其中 \(z\) 幂零。设 \(G\) 是代数闭域 \(F\) 上有限维向量空间 \(V\) 中由 unipotent 线性变换组成的 monoid。证明 Kolchin 定理：存在 \(V\) 的一组基，使得每个 \(a\in G\) 的矩阵均为
 \[
   \begin{pmatrix}
-    \alpha & \beta\\
-    0 & \gamma
-  \end{pmatrix},
-  \qquad \alpha,\beta,\gamma\in F.
-\]
-上三角矩阵对加法、乘法封闭，并含有恒等变换，所以 \(R'\subset \operatorname{End}_F(M)\) 是子环。
-
-由于
-\[
-  a(e_1)=\alpha e_1
-\]
-对所有 \(a\in R'\) 都成立，一维子空间
-\[
-  Fe_1\subset M
-\]
-在右 \(R'\)-作用下稳定。因此 \(M_{R'}\) 有非零真子模 \(Fe_1\)，不是不可约模。
-
-现在计算 \(\operatorname{End}_{R'}(M)\)。一个右 \(R'\)-模自同态就是一个与所有 \(R'\) 中元素可交换的
-\(F\)-线性变换。设
-\[
-  T=
-  \begin{pmatrix}
-    a & b\\
-    c & d
+  1 & * & \cdots & *\\
+  0 & 1 & \cdots & *\\
+  \vdots & \ddots & \ddots & \vdots\\
+  0 & \cdots & 0 & 1
   \end{pmatrix}.
 \]
-因为 \(T\) 与
+并将结论推广到任意底域 \(F\)。
+
+\textbf{解答.}
+先设 \(F\) 代数闭。令
 \[
-  E_{11}=
-  \begin{pmatrix}
-    1&0\\
-    0&0
-  \end{pmatrix}
-  \in R'
+  A:=FG\subset \operatorname{End}_F(V)
 \]
-交换，直接比较 \(TE_{11}=E_{11}T\) 得
+为 \(G\) 生成的包络代数。因为 \(V\) 有限维，所以 \(V\) 作为有限维 \(A\)-模有 composition series
 \[
-  b=c=0.
+  V=V_0\supset V_1\supset\cdots\supset V_r=0,
 \]
-因此 \(T=\operatorname{diag}(a,d)\)。再令
+其中每个商
 \[
-  E_{12}=
-  \begin{pmatrix}
-    0&1\\
-    0&0
-  \end{pmatrix}
-  \in R',
+  W_i:=V_i/V_{i+1}
 \]
-由 \(TE_{12}=E_{12}T\) 得
+是不可约 \(A\)-模。对任意 \(g\in G\)，它在 \(W_i\) 上的诱导变换仍然 unipotent，故
 \[
-  a=d.
-\]
-所以
-\[
-  T=aI.
-\]
-反过来，任意标量乘法当然与 \(R'\) 中所有变换可交换。因此
-\[
-  \operatorname{End}_{R'}(M)\cong F.
+  \operatorname{tr}(g|_{W_i})=\dim_F W_i.
 \]
 
-这说明：\(\operatorname{End}_{R'}(M)\) 是除环并不能推出 \(M\) 不可约；Schur 引理只给出
+现在说明每个 \(W_i\) 必为一维。若 \(W=W_i\)，则 \(G\) 在 \(W\) 上不可约。由 Burnside 定理，\(G\) 的像张成
 \[
-  M\ \text{irreducible}
-  \Longrightarrow
-  \operatorname{End}_{R'}(M)\ \text{is a division ring},
+  \operatorname{End}_F(W).
 \]
-其逆命题一般不成立。
+设 \(n=\dim_F W\)。由 Exercise 7 的迹型双线性形式
+\[
+  t(x,y)=\operatorname{tr}(xy)
+\]
+在 \(\operatorname{End}_F(W)\) 上非退化。任取 \(g,h\in G\)，由于 \(G\) 是 monoid，\(gh\in G\)，且 \(g,h,gh\) 都 unipotent，所以
+\[
+  \operatorname{tr}(gh)=n=\operatorname{tr}(h).
+\]
+于是
+\[
+  t(g-1,h)=\operatorname{tr}((g-1)h)=0,\qquad h\in G.
+\]
+而 \(G\) 张成 \(\operatorname{End}_F(W)\)，故由非退化性得 \(g-1=0\)。所以每个 \(g\in G\) 在 \(W\) 上均为恒等变换。若 \(\dim_F W>1\)，则任意一维子空间都被 \(G\) 稳定，违背不可约性。因此 \(\dim_F W=1\)。
+
+于是上面的 composition series 实际给出一条 \(G\)-稳定完全旗
+\[
+  V=V_0\supset V_1\supset\cdots\supset V_n=0,\qquad \dim_F(V_i/V_{i+1})=1.
+\]
+取一组适应该旗的基，则每个 \(g\in G\) 的矩阵上三角；又因 \(g\) unipotent，其特征根全为 \(1\)，所以上三角矩阵的对角元全为 \(1\)。这就是所需形式。
+
+若 \(F\) 不代数闭，取代数闭包 \(\overline F\)，在
+\[
+  \overline V:=\overline F\otimes_F V
+\]
+上应用上面的结论，得到 \(\overline G\) 的公共非零固定向量，即存在 \(0\neq \bar v\in\overline V\) 使
+\[
+  (g-1)\bar v=0,\qquad g\in G.
+\]
+把 \(\bar v\) 写成 \(F\)-基下的坐标，并取其中一组在 \(F\) 上线性无关的系数；比较这些系数可得 \(V\) 中存在非零向量 \(v\) 满足
+\[
+  gv=v,\qquad g\in G.
+\]
+于是 \(Fv\) 是公共不变一维子空间。对 \(V/Fv\) 归纳，即得任意底域上的同时上三角化结论。
+
+\textbf{方法要点.}
+本题的关键不是直接求矩阵，而是先用 \(A=FG\) 的 composition series 把问题降到不可约商；再用 Burnside 定理和迹型非退化性证明不可约商只能是一维。换言之，unipotent 条件通过
+\[
+  \operatorname{tr}(gh)=\operatorname{tr}(h)
+\]
+迫使不可约层上 \(G\) 全部退化为恒等作用。
 \end{example}
 
+\newpage
 \subsection{\texorpdfstring{\(S_3\) 的 Specht 模、Kostka 数与特征标表计算}{S3 的 Specht 模、Kostka 数与特征标表计算}}
 \label{subsec:problem-s3-specht-kostka}
 
@@ -8729,6 +8833,91 @@ Abel 性把 \(\mathbb C[G]\) 变成交换半单代数，所以所有 Wedderburn 
 \end{remark}
 \end{example}
 
+\subsection{\texorpdfstring{Plancherel 公式：群代数内积的表示论展开}{Plancherel 公式}}\label{subsec:problem-serre-plancherel-formula}
+
+\begin{example}
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~49, Chapter 6, Section 6.2, Exercise 6.2）
+
+设
+\[
+  u=\sum_{s\in G}u(s)s,\qquad v=\sum_{s\in G}v(s)s
+\]
+是 \(\mathbb C[G]\) 中两个元素，定义双线性型
+\[
+  (u,v):=\frac{1}{g}\sum_{s\in G}u(s^{-1})v(s).
+\]
+书中给出的公式是
+\[
+  (u,v)=\sum_{i=1}^{h}n_i\operatorname{Tr}_{W_i}\bigl(\tilde\rho_i(uv)\bigr),
+\]
+但这一式\textbf{缺了系数 \(\frac{1}{g^2}\)}：取 \(u=v=1\) 时左端为
+\[
+  (1,1)=\frac{1}{g}\cdot 1\cdot 1=\frac{1}{g},
+\]
+而右端按书中公式等于 \(\sum_i n_i\cdot \operatorname{Tr}_{W_i}(\mathrm{id})=\sum_i n_i^2=g\neq\frac{1}{g}\)。故正确结果应为
+\[
+  \boxed{(u,v)=\frac{1}{g^2}\sum_{i=1}^{h}n_i\operatorname{Tr}_{W_i}\bigl(\tilde\rho_i(uv)\bigr),}
+\]
+其中 \(\tilde\rho_i:\mathbb C[G]\to\operatorname{End}(W_i)\) 是第 \(i\) 个不可约表示 \(\rho_i\) 的代数扩展，\(n_i=\dim W_i\)，\(h\) 为不可约表示数。本题给出这一（修正后的）公式的证明。书中提示：先化到 \(u,v\in G\) 的情形。
+
+\textbf{概念说明：}
+
+\(\tilde\rho_i(w)=\sum_{s\in G}w(s)\rho_i(s)\) 是代数同态，故
+\[
+  \tilde\rho_i(uv)=\tilde\rho_i(u)\tilde\rho_i(v),\qquad
+  \operatorname{Tr}_{W_i}\tilde\rho_i(st)=\chi_i(st)\quad(s,t\in G).
+\]
+关键工具是\textbf{正则特征标}（2.4 节，cor. of prop. 5）：
+\[
+  r(x):=\sum_{i=1}^{h}n_i\chi_i(x)
+  =
+  \begin{cases}
+    g,&x=1,\\
+    0,&x\neq 1,
+  \end{cases}
+\]
+即 \(\sum_i n_i\chi_i(x)=g\delta_{x,1}\)。
+
+\textbf{解答：}
+
+\textbf{第一步（群元情形）。} 取 \(u=s,\ v=t\in G\)。左端：
+\[
+  (s,t)=\frac{1}{g}\sum_{x\in G}u(x^{-1})v(x)
+  =\frac{1}{g}\sum_{x\in G}\delta_{x,s^{-1}}\delta_{x,t}
+  =\frac{1}{g}\delta_{s^{-1},t}
+  =\frac{1}{g}\delta_{st,1}.
+\]
+右端：
+\[
+  \frac{1}{g^2}\sum_{i=1}^{h}n_i\operatorname{Tr}_{W_i}\tilde\rho_i(st)
+  =\frac{1}{g^2}\sum_{i=1}^{h}n_i\chi_i(st)
+  =\frac{1}{g^2}\,r(st)
+  =\frac{1}{g}\delta_{st,1}.
+\]
+两者相等。
+
+\textbf{第二步（双线性扩展）。} 左端关于 \(u,v\) 双线性，右端亦然（\(\tilde\rho_i\) 线性、迹线性），且
+\[
+  \tilde\rho_i(uv)
+  =\Bigl(\sum_{s\in G}u(s)\rho_i(s)\Bigr)\Bigl(\sum_{t\in G}v(t)\rho_i(t)\Bigr),
+\]
+故右端展开为
+\[
+  \frac{1}{g^2}\sum_{i=1}^{h}n_i\operatorname{Tr}_{W_i}\tilde\rho_i(uv)
+  =
+  \sum_{s,t\in G}u(s)v(t)\cdot\frac{1}{g^2}\sum_{i=1}^{h}n_i\chi_i(st)
+  =
+  \sum_{s,t\in G}u(s)v(t)\cdot(s,t),
+\]
+最后一个等号用的是第一步在群元上的结论。于是由双线性性，对任意 \(u,v\in\mathbb C[G]\) 有
+\[
+  (u,v)=\frac{1}{g^2}\sum_{i=1}^{h}n_i\operatorname{Tr}_{W_i}\bigl(\tilde\rho_i(uv)\bigr).
+\]
+
+\textbf{方法要点：}
+Plancherel 公式是 Fourier inversion（6.2 节 Prop 11）的“内积版本”：先把双线性型在群元基（单点）上算出来，结果归结为正则特征标 \(r(x)=g\delta_{x,1}\)，再按双线性性扩到全空间。最容易丢的是系数：正则特征标已经贡献一个 \(g\)，加上定义里的 \(\frac{1}{g}\)，总共 \(\frac{1}{g^2}\)；若误写成 \(\frac{1}{g}\)，取 \(u=v=1\) 或任意 \(st\neq 1\) 的群元对即可发现矛盾。
+\end{example}
+
 \subsection{\texorpdfstring{\(\mathbb Z[G]\) 中有限阶单位与 Higman 定理}{Z[G] 中有限阶单位与 Higman 定理}}\label{subsec:problem-serre-higman-units}
 
 \begin{example}
@@ -8868,187 +9057,318 @@ Serre Proposition 11 的 Fourier inversion formula 说：若
 \(\overline{u(s)}=u'(s^{-1})\)，再由 \(uu'=1\) 提取单位元系数。
 \end{example}
 
-\subsection{不可数代数闭域上的 Schur 型结论}\label{subsec:problem-schur-uncountable-field}
+\subsection{\texorpdfstring{群代数中心的幂等元基：\(P_i\) 与典范分解投影}{群代数中心的幂等元基}}\label{subsec:problem-serre-center-idempotents}
 
 \begin{example}
-（出处：\textit{Jacobson - Basic Algebra II}, p.~214, Section 4.5, Exercises 1--3）
-本组题设 \(A\) 是域 \(F\) 上的代数。Exercises 1--3 依次说明：先用 resolvent
-\((a-\alpha 1)^{-1}\) 检测代数性，再用不可数代数闭域排除非平凡除代数，最后推出有限生成代数不可约模的 Schur 端环只是底域。
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~50, Chapter 6, Exercise 6.4）
 
-\textbf{题目 1.}
-Let \(a\in A\), and let \(\alpha_1,\ldots,\alpha_m\in F\) be such that
-\(a-\alpha_i1\) is invertible in \(A\). Show that either \(a\) is algebraic over
-\(F\), or the elements
+记 \(g=|G|\)，\(\chi_1,\dots,\chi_h\) 为 \(G\) 的互异不可约特征标，\(n_i=\chi_i(1)\) 为对应表示的度数。令
 \[
-  (a-\alpha_i1)^{-1},\qquad 1\le i\le m,
+  P_i=\frac{n_i}{g}\sum_{s\in G}\chi_i(s^{-1})s\qquad (1\le i\le h).
 \]
-are linearly independent over \(F\).
+证明：
+\begin{enumerate}
+  \item \(P_1,\dots,P_h\) 构成 \(\operatorname{Cent}\mathbb C[G]\) 的一组基；
+  \item \(P_i^2=P_i\)，且 \(P_iP_j=0\)（\(i\neq j\)），以及 \(P_1+\cdots+P_h=1\)；
+  \item 由此给出 2.6 节定理 8 的另一证明；
+  \item \(\omega_i(P_j)=\delta_{ij}\)。
+\end{enumerate}
 
-这里应将 \(\alpha_1,\ldots,\alpha_m\) 理解为两两不同；否则若有重复且 \(a\) 超越，则两个相同逆元已经线性相关，命题本身不成立。
+（注：公式中的度数因子 \(n_i\) 必不可少——若去掉它，则 \(\sum_i P_i\neq 1\)。例如 \(G=S_3\) 时三轮换类的系数为 \(\frac{1}{g}\sum_i\chi_i\neq 0\)。提取自 PDF 的文本极易把这些 \(n_i\) 弄丢，须以原页为准。）
 
-\textbf{解答.}
-反证。若这些逆元线性相关，则存在不全为零的 \(c_i\in F\) 使
+\textbf{概念说明：}
+
+中心 \(\operatorname{Cent}\mathbb C[G]\) 由\textbf{类元素}
 \[
-  \sum_{i=1}^m c_i(a-\alpha_i1)^{-1}=0.
+  e_c=\sum_{s\in c}s\qquad (c\text{ 为共轭类})
 \]
-设 \(\alpha_i\) 两两不同。令
+张成，故维数为 \(h\)（6.3 节开头）。中心同态 \(\omega_i\)（Prop 12、13）定义为
 \[
-  q(T)=\prod_{i=1}^m (T-\alpha_i),
+  \omega_i(u)=\frac{1}{n_i}\operatorname{Tr}_{W_i}\rho_i(u).
+\]
+要用到的特征标事实（2.4 节）：
+\[
+  \sum_{s\in G}\chi_i(s)\chi_j(s^{-1})=g\delta_{ij},
   \qquad
-  q_i(T)=\frac{q(T)}{T-\alpha_i}.
+  \sum_{t\in G}\chi_j(t)\chi_i(t^{-1}x)=\frac{g}{n_j}\delta_{ij}\chi_j(x)
 \]
-因为 \(a-\alpha_i1\) 都是 \(F[a]\) 中的元素，它们彼此可交换，且都可逆，所以两边右乘
+（第二式的严格证明见下方的预备引理），以及正则特征标
 \[
-  q(a)=\prod_{i=1}^m(a-\alpha_i1)
-\]
-得到
-\[
-  \sum_{i=1}^m c_iq_i(a)=0.
-\]
-而多项式 \(q_1,\ldots,q_m\) 线性无关：在 \(T=\alpha_j\) 处代入可得
-\[
-  \sum_i c_iq_i(\alpha_j)=c_jq_j(\alpha_j),
-\]
-且 \(q_j(\alpha_j)\neq 0\)。因此
-\[
-  h(T):=\sum_{i=1}^m c_iq_i(T)
-\]
-是非零多项式，并满足 \(h(a)=0\)。故 \(a\) 在 \(F\) 上代数。
-
-\textbf{题目 2.}
-Let \(A\) be a division algebra with a countable base over an uncountable
-algebraically closed field \(F\), for example \(F=\mathbb C\). Show that
-\[
-  A=F.
+  r(x):=\sum_{i=1}^h n_i\chi_i(x)=g\delta_{x,1}.
 \]
 
-\textbf{解答.}
-任取 \(a\in A\)。若 \(a\notin F\)，则对任意 \(\alpha\in F\)，
-\[
-  a-\alpha1\neq 0
-\]
-在除代数 \(A\) 中可逆。若 \(a\) 在 \(F\) 上超越，则由题目 1，任意有限组
-\[
-  (a-\alpha1)^{-1},\qquad \alpha\in F,
-\]
-都线性无关。因此不可数集合
-\[
-  \{(a-\alpha1)^{-1}\mid \alpha\in F\}
-\]
-给出不可数个线性无关向量，这与 \(A\) 在 \(F\) 上有可数基矛盾。故每个
-\(a\in A\) 都在 \(F\) 上代数。由于 \(F\) 代数闭，\(F[a]\) 中 \(a\) 的最小多项式只能是一次的，所以 \(a\in F\)。于是 \(A=F\)。
+\medskip
 
-\textbf{题目 3.}
-Let \(A\) be finitely generated over an uncountable algebraically closed field
-\(F\), and let \(M\) be an irreducible \(A\)-module. Show that
+\textbf{预备引理（卷积公式）}。对任意 \(i,j\) 与 \(x\in G\)，
 \[
-  \operatorname{End}_A(M)=F.
+  \sum_{t\in G}\chi_j(t)\chi_i(t^{-1}x)=\frac{g}{n_i}\delta_{ij}\chi_i(x).
 \]
+它由 \S 2.2 推论 2、3 的\textbf{矩阵系数正交性}严格推出。取西矩阵表示（1.3），即 \(\rho_\ell(t^{-1})_{pq}=\overline{\rho_\ell(t)_{qp}}\)，则
+\[
+  \chi_i(t^{-1}x)=\operatorname{Tr}\rho_i(t^{-1}x)
+  =\sum_{k,l}\rho_i(t^{-1})_{kl}\rho_i(x)_{lk}
+  =\sum_{k,l}\overline{\rho_i(t)_{lk}}\rho_i(x)_{lk},
+\]
+且 \(\chi_j(t)=\sum_m\rho_j(t)_{mm}\)。于是
+\[
+  \begin{aligned}
+    \sum_{t\in G}\chi_j(t)\chi_i(t^{-1}x)
+    &=\sum_{k,l}\rho_i(x)_{lk}\sum_m\Bigl(\sum_{t\in G}\overline{\rho_i(t)_{lk}}\rho_j(t)_{mm}\Bigr)\\
+    &=\sum_{k,l}\rho_i(x)_{lk}\sum_m\frac{g}{n_i}\delta_{ij}\delta_{lm}\delta_{km}\\
+    &=\frac{g}{n_i}\delta_{ij}\sum_{k,l}\rho_i(x)_{lk}\delta_{lk}
+    =\frac{g}{n_i}\delta_{ij}\chi_i(x).
+  \end{aligned}
+\]
+这里用到的矩阵系数正交性（\S 2.2 推论 2、3）：对 \(W_i,W_j\) 取西基后，
+\[
+  \frac{1}{g}\sum_{t\in G}\overline{\rho_i(t)_{ab}}\rho_j(t)_{cd}
+  =\frac{1}{n_i}\delta_{ij}\delta_{ac}\delta_{bd}
+  \qquad
+  \Bigl(\text{同构时也等于 }\frac{1}{n_j}\delta_{ij}\delta_{ac}\delta_{bd}\Bigr),
+\]
+即 \(i\neq j\)（表示不同构）时为 \(0\)，\(i=j\) 时为 \(\frac{1}{n_i}\delta_{ac}\delta_{bd}\)；倒数第二步用到 \(\sum_m\delta_{lm}\delta_{km}=\delta_{lk}\)。
 
-\textbf{解答.}
-由 Schur 引理，
+特别地，取 \(x=u^{-1}\) 并作变量替换 \(t=u^{-1}s\)（于是 \(s=ut\)、\(s^{-1}=t^{-1}u^{-1}\)、\(u^{-1}s=t\)），得到下面解答 (2) 中反复使用的
 \[
-  D:=\operatorname{End}_A(M)
-\]
-是除环。又因 \(A\) 是 \(F\)-代数，所有 \(A\)-模自同态都与 \(F\) 的标量作用交换，所以 \(D\) 是 \(F\)-除代数。
-
-取 \(0\neq x\in M\)。由于 \(M\) 不可约，
-\[
-  M=Ax.
-\]
-而 \(A\) 由有限个元素作为 \(F\)-代数生成，所以 \(A\) 由这些生成元的有限单词张成，作为 \(F\)-向量空间至多可数维；于是 \(M=Ax\) 也至多可数维。评价映射
-\[
-  D\longrightarrow M,\qquad \varphi\longmapsto \varphi(x)
-\]
-是 \(F\)-线性单射，因为 \(\varphi(x)=0\) 蕴含 \(\varphi(Ax)=A\varphi(x)=0\)。故 \(D\) 作为 \(F\)-向量空间也至多可数维。由题目 2 应用于除代数 \(D\)，得
-\[
-  \operatorname{End}_A(M)=D=F.
+  \sum_{s\in G}\chi_i(s^{-1})\chi_j(u^{-1}s)
+  =\sum_{t\in G}\chi_i(t^{-1}u^{-1})\chi_j(t)
+  =\sum_{t\in G}\chi_j(t)\chi_i(t^{-1}u^{-1})
+  =\frac{g}{n_i}\delta_{ij}\chi_i(u^{-1}).
 \]
 
-\textbf{方法要点.}
-这一组三题的套路是：题目 1 把“很多 \((a-\alpha)^{-1}\)”转化为代数性；题目 2 用不可数域与可数维空间的基数冲突逼出除代数平凡；题目 3 再用不可约模的循环性 \(M=Ax\) 把 \(\operatorname{End}_A(M)\) 压成可数维除代数，从而得到 Schur 型结论 \(\operatorname{End}_A(M)=F\)。
+\textbf{解答：}
+
+（1）\(P_i\in\operatorname{Cent}\mathbb C[G]\)：\(\chi_i\) 是类函数，故
+\[
+  P_i=\frac{1}{g}\sum_{c}\chi_i(c^{-1})e_c.
+\]
+（注意 \(P_i\) 恰是 6.3 节开头中心基 \(\{e_c\}\) 的换基。）
+
+（2）计算乘积。令 \(u=st\)，即 \(t=s^{-1}u\)、\(t^{-1}=u^{-1}s\)，并作和变量替换 \(t:=u^{-1}s\)：
+\[
+  \begin{aligned}
+    P_iP_j
+    &=\frac{n_in_j}{g^2}\sum_{s,u\in G}\chi_i(s^{-1})\chi_j(u^{-1}s)\,u\\
+    &=\frac{n_in_j}{g^2}\sum_{u\in G}\Bigl(\sum_{t\in G}\chi_j(t)\chi_i(t^{-1}u^{-1})\Bigr)u\\
+    &=\frac{n_in_j}{g^2}\sum_{u\in G}\frac{g}{n_j}\delta_{ij}\chi_j(u^{-1})\,u\\
+    &=\delta_{ij}\cdot\frac{n_i}{g}\sum_{u\in G}\chi_j(u^{-1})\,u\\
+    &=\delta_{ij}P_i.
+  \end{aligned}
+\]
+第三步到第四步分两个小步看。
+
+先合并常数：把和号外的系数相消，
+\[
+  \frac{n_in_j}{g^2}\cdot\frac{g}{n_j}=\frac{n_i}{g}
+\]
+（约去一个 \(g\) 与一个 \(n_j\)），并把 \(\delta_{ij}\) 提到和号外，得到
+\[
+  \delta_{ij}\cdot\frac{n_i}{g}\sum_{u\in G}\chi_j(u^{-1})\,u.
+\]
+再看 \(\delta_{ij}\) 的作用，分两种情形：
+\begin{itemize}
+  \item 若 \(i\neq j\)：\(\delta_{ij}=0\)，整式为 \(0\)，与 \(\delta_{ij}P_i\) 一致；
+  \item 若 \(i=j\)：\(\delta_{ij}=1\)，且此时下标可统一（\(\chi_j=\chi_i,\ n_j=n_i\)），剩余和式
+  \[
+    \frac{n_i}{g}\sum_{u\in G}\chi_i(u^{-1})\,u
+  \]
+  正是 \(P_i\) 的定义式 \(\displaystyle P_i=\frac{n_i}{g}\sum_{s\in G}\chi_i(s^{-1})s\)，整式等于 \(P_i\)。
+\end{itemize}
+故两种情形统一写作 \(\delta_{ij}P_i\)。
+第一行到第二行：令 \(t=u^{-1}s\)，则 \(s=ut\)、\(s^{-1}=t^{-1}u^{-1}\)、\(u^{-1}s=t\)；第二行到第三行用上面的预备引理（卷积公式）取 \(x=u^{-1}\) 的情形，其严格证明见解答前。特别地
+\[
+  P_i^2=P_i,\qquad P_iP_j=0\ (i\neq j).
+\]
+
+（3）和为 \(1\)：利用正则特征标，
+\[
+  \sum_{i=1}^h P_i
+  =\frac{1}{g}\sum_{u\in G}\Bigl(\sum_{i=1}^h n_i\chi_i(u^{-1})\Bigr)u
+  =\frac{1}{g}\sum_{u\in G}r(u^{-1})u
+  =\frac{1}{g}\cdot g\cdot 1=1.
+\]
+
+（4）基：若 \(\sum_i c_iP_i=0\)，乘以 \(P_j\) 得 \(c_jP_j=0\)；而 \(P_j\neq 0\)（例如其某类元素系数非零），故 \(c_j=0\)。因此 \(P_1,\dots,P_h\) 线性无关，又 \(\operatorname{Cent}\mathbb C[G]\) 维数为 \(h\)，所以它们构成一组基。
+
+（5）\(\omega_j(P_i)=\delta_{ij}\)：由定义与正交关系
+\[
+  \omega_j(P_i)
+  =\frac{1}{n_j}\operatorname{Tr}\Bigl(\frac{n_i}{g}\sum_{s\in G}\chi_i(s^{-1})\rho_j(s)\Bigr)
+  =\frac{n_i}{n_jg}\sum_{s\in G}\chi_i(s^{-1})\chi_j(s)
+  =\frac{n_i}{n_jg}\cdot g\delta_{ij}
+  =\delta_{ij}.
+\]
+
+（6）定理 8（2.6 节）的另一证明：定理 8 说任一表示 \(V\) 有\textbf{典范分解}
+\[
+  V=\bigoplus_{i=1}^h V_i,\qquad V_i:=\text{与 }W_i\text{ 同构的所有不可约成分之直和},
+\]
+且投影
+\[
+  p_i=\frac{n_i}{g}\sum_{s\in G}\chi_i(s)^*\rho_s
+  =\frac{n_i}{g}\sum_{s\in G}\chi_i(s^{-1})\rho_s
+\]
+（这里 \(\chi_i(s)^*=\chi_i(s^{-1})=\) 复共轭）。而 \(P_i\) 左乘于 \(V\) 实现的正是 \(p_i\)（因为 \(\rho_s(v)\) 与 \(sv\) 对应）。由 (2)(3)，\((P_i)_i\) 是完备的正交幂等元族，故给出直和分解 \(V=\bigoplus_i P_iV\)，且 \(P_iV\) 恰是等型为 \(W_i\) 的部分；这些投影由特征标数据唯一确定，不依赖于 \(V\) 的初始不可约分解，于是分解的典范性（定理 8 的 (i)）与投影公式（(ii)）一并得到。
+
+\textbf{方法要点：}
+\(P_i\) 是“左正则表示典范分解”在群代数里写下的投影算子。本题的算术核心是：第一正交关系 ⟹ 卷积公式 ⟹ \(P_iP_j=\delta_{ij}P_i\)；而 \(\sum_iP_i=1\) 靠正则特征标 \(r(x)=g\delta_{x,1}\) 收口。得到的中心幂等元基与 \(e_c\) 基、以及与 Prop 13 的中心分解 \(\operatorname{Cent}\mathbb C[G]\cong\mathbb C^h\) 互相印证。
 \end{example}
 
-\subsection{幺幂变换 monoid 的同时三角化}\label{subsec:problem-kolchin-unipotent-monoid}
+\subsection{\texorpdfstring{置换表示与诱导表示：\(\chi=\operatorname{Ind}_H^G(1)\) 及 \(\chi-1\) 不可约的判定}{置换表示与诱导表示}}\label{subsec:problem-serre-permutation-induced-char}
 
 \begin{example}
-（出处：\textit{Jacobson - Basic Algebra II}, p.~215, Section 4.5, Exercise 9）
-线性变换称为 unipotent，若它形如 \(1+z\)，其中 \(z\) 幂零。设 \(G\) 是代数闭域 \(F\) 上有限维向量空间 \(V\) 中由 unipotent 线性变换组成的 monoid。证明 Kolchin 定理：存在 \(V\) 的一组基，使得每个 \(a\in G\) 的矩阵均为
-\[
-  \begin{pmatrix}
-  1 & * & \cdots & *\\
-  0 & 1 & \cdots & *\\
-  \vdots & \ddots & \ddots & \vdots\\
-  0 & \cdots & 0 & 1
-  \end{pmatrix}.
-\]
-并将结论推广到任意底域 \(F\)。
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~51, Chapter 7, Section 7.1, Exercise 7.2）
 
-\textbf{解答.}
-先设 \(F\) 代数闭。令
+Let \(H\) be a subgroup of \(G\) and let \(\chi\) be the character of the permutation representation associated with \(G/H\) (cf.~1.2). Show that
 \[
-  A:=FG\subset \operatorname{End}_F(V)
+  \chi=\operatorname{Ind}_H^G(1),
 \]
-为 \(G\) 生成的包络代数。因为 \(V\) 有限维，所以 \(V\) 作为有限维 \(A\)-模有 composition series
+and that \(\psi=\chi-1\) is the character of a representation of \(G\); determine under what condition the latter representation is irreducible [use ex.~2.6, or apply the reciprocity formula].
+
+\textbf{概念说明：}
+
+置换表示（1.2）：\(G\) 左乘作用在陪集空间 \(G/H\) 上，在自由向量空间 \(\mathbb C[G/H]\) 上给出表示，其特征标是\textbf{固定点数}
 \[
-  V=V_0\supset V_1\supset\cdots\supset V_r=0,
+  \chi(s)=\#\{gH\in G/H:\ sgH=gH\}
+  =\#\{gH:\ g^{-1}sg\in H\}.
 \]
-其中每个商
+诱导特征标公式与 Frobenius reciprocity（7.2 节）：
 \[
-  W_i:=V_i/V_{i+1}
+  \operatorname{Ind}_H^G\theta(s)
+  =\frac{1}{|H|}\sum_{\substack{x\in G\\ x^{-1}sx\in H}}\theta(x^{-1}sx),
+  \qquad
+  (\operatorname{Ind}_H^G\theta,\varphi)_G=(\theta,\operatorname{Res}_H^G\varphi)_H.
 \]
-是不可约 \(A\)-模。对任意 \(g\in G\)，它在 \(W_i\) 上的诱导变换仍然 unipotent，故
+不可约性判定与 \hyperref[subsec:problem-serre-permutation-double-transitive]{Exercise 2.6}（\(G\) 在 \(X\) 上双重传递 ⟺ 置换表示的标准补表示不可约）直接相关。
+
+\textbf{解答：}
+
+\textbf{（1）\(\chi=\operatorname{Ind}_H^G(1)\)。} 取 \(\theta=1\)，诱导公式给出
 \[
-  \operatorname{tr}(g|_{W_i})=\dim_F W_i.
+  \operatorname{Ind}_H^G(1)(s)
+  =\frac{1}{|H|}\#\{x\in G:\ x^{-1}sx\in H\}.
+\]
+条件 \(x^{-1}sx\in H\) 只依赖于陪集 \(xH\)，且每个满足条件的陪集恰含 \(|H|\) 个这样的 \(x\)，故
+\[
+  \operatorname{Ind}_H^G(1)(s)
+  =\#\{xH:\ x^{-1}sx\in H\}
+  =\#\{gH:\ sgH=gH\}
+  =\chi(s).
 \]
 
-现在说明每个 \(W_i\) 必为一维。若 \(W=W_i\)，则 \(G\) 在 \(W\) 上不可约。由 Burnside 定理，\(G\) 的像张成
+\textbf{（2）\(\psi=\chi-1\) 是特征标。} 由 Frobenius reciprocity，
 \[
-  \operatorname{End}_F(W).
+  (\operatorname{Ind}_H^G(1),1_G)_G=(1_H,\operatorname{Res}_H^G(1_G))_H=(1_H,1_H)_H=1,
 \]
-设 \(n=\dim_F W\)。由 Exercise 7 的迹型双线性形式
+故平凡表示在 \(\operatorname{Ind}_H^G(1)\) 中的重数恰为 \(1\)：存在表示 \(U\) 使
 \[
-  t(x,y)=\operatorname{tr}(xy)
+  \operatorname{Ind}_H^G(1)\cong 1_G\oplus U,
 \]
-在 \(\operatorname{End}_F(W)\) 上非退化。任取 \(g,h\in G\)，由于 \(G\) 是 monoid，\(gh\in G\)，且 \(g,h,gh\) 都 unipotent，所以
-\[
-  \operatorname{tr}(gh)=n=\operatorname{tr}(h).
-\]
-于是
-\[
-  t(g-1,h)=\operatorname{tr}((g-1)h)=0,\qquad h\in G.
-\]
-而 \(G\) 张成 \(\operatorname{End}_F(W)\)，故由非退化性得 \(g-1=0\)。所以每个 \(g\in G\) 在 \(W\) 上均为恒等变换。若 \(\dim_F W>1\)，则任意一维子空间都被 \(G\) 稳定，违背不可约性。因此 \(\dim_F W=1\)。
+从而 \(\psi=\chi-1\) 是 \(U\) 的特征标。
 
-于是上面的 composition series 实际给出一条 \(G\)-稳定完全旗
-\[
-  V=V_0\supset V_1\supset\cdots\supset V_n=0,\qquad \dim_F(V_i/V_{i+1})=1.
-\]
-取一组适应该旗的基，则每个 \(g\in G\) 的矩阵上三角；又因 \(g\) unipotent，其特征根全为 \(1\)，所以上三角矩阵的对角元全为 \(1\)。这就是所需形式。
+\textbf{（3）\(U\)（即 \(\psi\)）不可约 \(\iff\) \(G\) 在 \(G/H\) 上双重传递。} 两种算法：
 
-若 \(F\) 不代数闭，取代数闭包 \(\overline F\)，在
-\[
-  \overline V:=\overline F\otimes_F V
-\]
-上应用上面的结论，得到 \(\overline G\) 的公共非零固定向量，即存在 \(0\neq \bar v\in\overline V\) 使
-\[
-  (g-1)\bar v=0,\qquad g\in G.
-\]
-把 \(\bar v\) 写成 \(F\)-基下的坐标，并取其中一组在 \(F\) 上线性无关的系数；比较这些系数可得 \(V\) 中存在非零向量 \(v\) 满足
-\[
-  gv=v,\qquad g\in G.
-\]
-于是 \(Fv\) 是公共不变一维子空间。对 \(V/Fv\) 归纳，即得任意底域上的同时上三角化结论。
+\textbf{（a）用 Exercise 2.6。} 置换表示的标准补正是与平凡部分正交的 \(U\)（特征标 \(\chi-1\)）；\hyperref[subsec:problem-serre-permutation-double-transitive]{Exercise 2.6} 说标准补不可约当且仅当 \(G\) 在 \(G/H\) 上双重传递。
 
-\textbf{方法要点.}
-本题的关键不是直接求矩阵，而是先用 \(A=FG\) 的 composition series 把问题降到不可约商；再用 Burnside 定理和迹型非退化性证明不可约商只能是一维。换言之，unipotent 条件通过
+\textbf{（b）用 reciprocity 直接数内积。}
 \[
-  \operatorname{tr}(gh)=\operatorname{tr}(h)
+  (\psi,\psi)_G=(\chi-1,\chi-1)_G=(\chi,\chi)_G-1,
 \]
-迫使不可约层上 \(G\) 全部退化为恒等作用。
+（因 \((\chi,1)_G=1\)）。而由 Mackey 公式分解 \(\operatorname{Res}_H^G\operatorname{Ind}_H^G(1)=\bigoplus_{H\backslash G/H}\operatorname{Ind}_{H\cap sHs^{-1}}^H(1)\) 再取与 \(1_H\) 的内积：
+\[
+  (\chi,\chi)_G=(\operatorname{Ind}_H^G 1,\operatorname{Ind}_H^G 1)_G
+  =(\operatorname{Res}_H^G\operatorname{Ind}_H^G 1,\ 1)_H
+  =\#(H\backslash G/H).
+\]
+因此
+\[
+  (\psi,\psi)_G=\#(H\backslash G/H)-1.
+\]
+\(\psi\) 不可约 \(\iff\) \((\psi,\psi)_G=1\) \(\iff\) \(\#(H\backslash G/H)=2\) \(\iff\) \(G\) 在 \(G/H\) 上双重传递（固定陪集 \(H\) 后，\(H\) 在其余陪集上传递，即 \(H\backslash G/H=\{H\}\cup\{\text{一个}\}\)）。
+
+\textbf{方法要点：}
+本题是“置换表示 = 诱导平凡表示”的标尺：固定点数与诱导公式是同一计数；平凡重数由 reciprocity 一眼看出；不可约性归结为双重传递（\(H\backslash G/H\) 只有 2 个双陪集）。它与 \hyperref[subsec:problem-serre-permutation-double-transitive]{Exercise 2.6} 首尾呼应，也是后续 Exercise 7.3（Frobenius 子群）论证的基础。
+\end{example}
+
+\subsection{Schanuel 引理：两个投射表示的稳定同构}\label{subsec:problem-schanuel-lemma}
+
+\begin{example}
+（出处：\textit{Jacobson - Basic Algebra II}, p.~155, Section 3.10, Exercise 8）
+
+\textbf{Schanuel's lemma.}
+Suppose we have short exact sequences
+\[
+  0\longrightarrow N_i\longrightarrow P_i\xrightarrow{g_i}M\longrightarrow 0
+  \qquad (i=1,2),
+\]
+where \(P_i\) is projective. Show that
+\[
+  P_1\oplus N_2\cong P_2\oplus N_1.
+\]
+
+\textbf{解答：}
+
+取两个满射 \(g_1:P_1\to M\)、\(g_2:P_2\to M\) 的 pullback：
+\[
+  E:=P_1\times_M P_2
+  =
+  \{(p_1,p_2)\in P_1\oplus P_2\mid g_1(p_1)=g_2(p_2)\}.
+\]
+有自然投影
+\[
+  \pi_1:E\to P_1,\qquad (p_1,p_2)\mapsto p_1.
+\]
+它是满射：给定 \(p_1\in P_1\)，由于 \(g_2\) 满射，可取 \(p_2\in P_2\) 使
+\[
+  g_2(p_2)=g_1(p_1),
+\]
+于是 \((p_1,p_2)\in E\)。其核为
+\[
+  \ker\pi_1
+  =
+  \{(0,p_2)\mid g_2(p_2)=0\}
+  \cong N_2.
+\]
+因此得到短正合列
+\[
+  0\longrightarrow N_2\longrightarrow E\xrightarrow{\pi_1}P_1\longrightarrow 0.
+\]
+因为 \(P_1\) 是投射模，该短正合列分裂，所以
+\[
+  E\cong P_1\oplus N_2.
+\]
+
+同理，另一个投影
+\[
+  \pi_2:E\to P_2
+\]
+给出短正合列
+\[
+  0\longrightarrow N_1\longrightarrow E\xrightarrow{\pi_2}P_2\longrightarrow 0,
+\]
+并因 \(P_2\) 投射而分裂，故
+\[
+  E\cong P_2\oplus N_1.
+\]
+比较两式即得
+\[
+  P_1\oplus N_2\cong E\cong P_2\oplus N_1.
+\]
+
+\textbf{方法要点：}
+Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
+\[
+  P_i\twoheadrightarrow M
+\]
+虽然核 \(N_i\) 与投射模 \(P_i\) 本身未必相同，但它们满足稳定同构
+\[
+  P_1\oplus N_2\cong P_2\oplus N_1.
+\]
+这正是投射分解中“第一 syzygy 在稳定意义下唯一”的基本来源。
 \end{example}
 
 \newpage
+
 \section*{索引}
 \addcontentsline{toc}{section}{索引}
 
@@ -9099,7 +9419,7 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
 
 \begin{itemize}
   \item \hyperref[subsec:topic-derived-functors]{[投射分解、内射分解与 \(\operatorname{Tor}/\operatorname{Ext}\) 的主线] 投射/内射分解是把一般模替换成“好模”的装置；\(\operatorname{Tor}\) 衡量张量积失去的左正合性，\(\operatorname{Ext}\) 衡量 \(\operatorname{Hom}\) 失去的右正合性并分类短正合列扩张。}
-  \item \hyperref[subsec:topic-flat-modules]{[平坦模的性质总览] flat 由张量正合 / \(\operatorname{Tor}_1=0\) 刻画，直和、张量、基变换、局部化与滤过余极限皆保持平坦；忠实平坦的五条等价条件以保非零与 \(\operatorname{Spec}\) 满射为核心；Noether 有限生成时平坦 = 局部自由，局部环上有限生成平坦即自由，整环上平坦 \(\Rightarrow\) 无挠（PID 上反之）。证明平坦常用：理想判据 \(I\otimes M\to M\) 单射、方程判据（Prop 3.1.6）、局部化后证局部自由、以及 Nakayama 的 \(\operatorname{Tor}_1(k,M)=0\)。}
+  \item \hyperref[subsec:topic-flat-modules]{[平坦模的性质总览] flat 由张量正合 / \(\operatorname{Tor}_1=0\) 刻画，直和、张量、基变换、局部化与滤过余极限皆保持平坦；忠实平坦的五条等价条件以保非零与 \(\operatorname{Spec}\) 满射为主；Noether 有限生成时平坦 = 局部自由，局部环上有限生成平坦自由，整环上平坦 \(\Rightarrow\) 无挠（PID 上反之）。证明平坦常用：理想判据 \(I\otimes M\to M\) 单射、方程判据（Prop 3.1.6）、局部化后局部自由、以及 Nakayama 的 \(\operatorname{Tor}_1(k,M)=0\)。}
   \item \hyperref[subsec:topic-morita-equivalence]{[Morita 等价：用模范畴比较环] Morita 等价不是环同构，而是模范畴等价；矩阵环、progenerator 与自同态环给出其最常用的判定和构造。}
   \item \hyperref[subsec:topic-simple-semisimple-rings]{[Simple rings 与 semi-simple rings] simple ring 只要求双边理想平凡，不要求作为左模单；Wedderburn--Artin 定理把 simple Artinian 环刻画为 \(M_n(D)\)，把 semi-simple Artinian 环刻画为有限个矩阵除环块的直积。}
   \item \hyperref[subsec:topic-simple-primitive-spectrum]{[半单、单、半本原、本原与半准素环] simple 加 Artin 变半单，半单自动 Artin，Artin 自动半准素；primitive 介于 simple 与半本原之间，半本原加 Artin 回到半单；半准素环上 Noether、Artin 与有限长度三者重合。}
@@ -9143,9 +9463,6 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
 \noindent\textbf{题目整理}
 
 \begin{itemize}
-
-  \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
-  \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-upper-central-nilpotent]{[上中心列与幂零性] 有限群幂零（下中心列终止于 \(1\)）当且仅当上中心列在有限步到达 \(G\)；由此与 Theorem~4.8 一并推出 \(p\)-群必幂零。}
   \item \hyperref[subsec:problem-nilpotent-p-product]{[有限幂零群的结构] 有限群幂零当且仅当它是 \(p\)-群的直积；各 Sylow 子群正规且互素阶元可换，乘积映射即给出直积分解。}
   \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
@@ -9164,14 +9481,17 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
   \item \hyperref[subsec:problem-cyclic-p-power-embedding]{[循环 \(p\)-幂扩张的嵌入判别] \(p^s\) 次循环扩张可嵌入 \(p^{s+1}\) 次循环扩张当且仅当 \(\zeta_p\) 是范数；二次时等价于 \(c\) 是两平方和。}
   \item \hyperref[subsec:problem-albert-cyclic-degree-p]{[Albert 的 \(p\) 次循环扩张构造] 若 \(r(a)a^{-t}\) 是 \(p\) 次幂且 \(a\notin W^p\)，则 \(W(u)\), \(u^p=a\), 在 \(F\) 上是 \(ps\) 次循环扩张，并含唯一 \(p\) 次循环子扩张。}
   \item \hyperref[subsec:problem-uchida-generic-trinomials]{[通用三项式的仿射群与射影线性群] \(X^p-sX-t\) 的分裂域给出 \(\operatorname{AGL}(1,\mathbb F_p)\)，而 \(X^{p+1}-sX-t\) 的分裂域给出 \(\operatorname{PGL}_2(\mathbb F_p)\)。}
+  \item \hyperref[subsec:problem-ass-support-kxy]{[\(k[x,y]/(x^2,xy)\) 的 \(\operatorname{Ass}\) 与 \(\operatorname{Supp}\)] 对 \(k[x,y]/(x^2,xy)\)，associated primes 可由具体元素的湮灭子读出，support 则由 \(V(\operatorname{Ann}(M))\) 给出。}
+  \item \hyperref[subsec:problem-support-base-change]{[有限生成模的 support 在基变换下的原像公式] 有限生成模在基变换下的 support，等于原 support 经 \(f^*\) 的逆像。}
   \item \hyperref[subsec:problem-free-rank-comparison]{[自由模之间单射与满射的秩比较] 对交换环，\(A^m\twoheadrightarrow A^n\) 必有 \(m\ge n\)，而 \(A^m\hookrightarrow A^n\) 必有 \(m\le n\)。}
   \item \hyperref[subsec:problem-surjective-free-endomorphism]{[满射自由模自同态的可逆性] 交换环上有限秩自由模的满射自同态必为双射，但单射自同态不必满射。}
   \item \hyperref[subsec:problem-gaussian-integer-module]{[高斯整数上的有限生成模结构] 在 \(\mathbb Z[i]\) 上用 Smith 标准形得 \(D^{(3)}/K\simeq D/(6)\oplus D/(-96+24i)\)，阶为 \(352512\)。}
   \item \hyperref[subsec:problem-end-tensor-product]{[\(\operatorname{End}M\otimes\operatorname{End}N\) 的张量积同构] 有限维时``双线性映射 → 泛性质 → 单射 → 维数相等''三步得同构；双方都无限维时 \(\Phi\) 单而不满，对角投影 \(P(e_i\otimes e_j)=\delta_{ij}e_i\otimes e_i\) 是反例。}
   \item \hyperref[subsec:problem-base-change-tensor]{[基变换与张量积的相容性] \(M_{K'}\otimes_{K'}N_{K'}\cong(M\otimes_KN)_{K'}\) 等四式用结合律/交换律/单位律一条链即可，不必手验双线性；把两个 \(K'\) 并成 \(K'\otimes_{K'}K'\)（在 \(K'\) 上做基变换）正是``\(-\otimes_AM\) 与 \(-\otimes_BN\) 交换''的应用，关键是两个 \(K'\) 之间用 \(\otimes_{K'}\) 而非 \(\otimes_K\)。}
   \item \hyperref[subsec:problem-projective-hom-tensor]{[有限生成投射模下 Hom 与张量积的交换] \(P\) 有限生成投射时，\(\operatorname{Hom}_R(P,M)\otimes_S N\cong\operatorname{Hom}_R(P,M\otimes_S N)\)，证明先做有限自由再取直和因子。}
-  \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
   \item \hyperref[subsec:problem-essential-monomorphism-fraction]{[分式化中的 divisible 模与 essential monomorphism] \(F\otimes_D M\) 是 divisible，且 \(M\) torsion-free 时 \(M\to F\otimes_D M\) 是 essential monomorphism；证明核心是清分母。}
+  \item \hyperref[subsec:problem-endomorphism-ring-irreducible]{[全自同态环作用下的不可约性] 向量空间在全自同态环作用下是不可约模；division ring 与无限维情形同样成立。}
+  \item \hyperref[subsec:problem-schur-converse-counterexample]{[Schur 引理逆命题失败的二维例子] 上三角变换环作用下的二维模不可约性失败，但其模自同态环仍是域。}
   \item \hyperref[subsec:problem-matrix-ring-local-ks]{[局部环上矩阵环阶数与底环由同构决定] local rings上矩阵环同构时，Krull--Schmidt唯一性给出阶数和底环；右理想自同态环无反环。}
   \item \hyperref[subsec:problem-noether-artin-examples]{[Noether 与 Artin 条件的反例及不可能情形] Dieudonn\'e 环是 left Noetherian 非 right Noetherian；\(k[t]\) 是 Noether 非 Artin；Artin 非 Noether 不存在；无限变量多项式环两者皆非。}
   \item \hyperref[subsec:problem-primitive-xy-yx-x]{[关系 \(xy-yx=x\) 给出的 primitive algebra] 用 \(F[t]\) 上的平移算子 \(T:f(t)\mapsto f(t+1)\) 表示 \(x\)，乘法算子表示 \(y\)，可构造 \(F\{x,y\}/(xy-yx-x)\) 的忠实不可约表示。}
@@ -9187,17 +9507,19 @@ Let \(A\) be finitely generated over an uncountable algebraically closed field
   \item \hyperref[subsec:problem-semisimple-subalgebra-centralizer]{[半单子代数的中心化子结构] Section 4.6 Exercise 12 将 \(A\otimes_F B^{op}\) 的半单性转化为 \(B\) 的完全可约分解，并由 \(C_B(A)\simeq\operatorname{End}_{A\otimes B^{op}}(B)\) 得中心化子半单。}
   \item \hyperref[subsec:problem-brauer-centralizer-restriction]{[Brauer 群中中心化子的限制标量关系] Section 4.7 Exercise 1 用 Theorem 4.11 比较 \(A_E^{op}\) 与 \(C_A(E)\) 的除代数分量，得到 \(C_A(E)\sim A_E\) 于 \(\operatorname{Br}(E)\)。}
   \item \hyperref[subsec:problem-center-simple-ring-field]{[Simple ring 的中心是域] 非零中心元 \(c\) 生成非零双边理想 \(Rc\)，由 simple 性得 \(Rc=R\)，从而 \(c\) 在中心中可逆；但 simple 只保证 semi-primitive，不保证 Artinian 或 semi-simple。}
-  \item \hyperref[subsec:problem-endomorphism-ring-irreducible]{[全自同态环作用下的不可约性] 向量空间在全自同态环作用下是不可约模；division ring 与无限维情形同样成立。}
-  \item \hyperref[subsec:problem-schur-converse-counterexample]{[Schur 引理逆命题失败的二维例子] 上三角变换环作用下的二维模不可约性失败，但其模自同态环仍是域。}
+  \item \hyperref[subsec:problem-schur-uncountable-field]{[不可数代数闭域上的 Schur 型结论] Section 4.5 Exercises 1--3 用 resolvent 的线性无关性、不可数域基数论证与不可约模循环性推出 \(\operatorname{End}_A(M)=F\)。}
+  \item \hyperref[subsec:problem-kolchin-unipotent-monoid]{[幺幂变换 monoid 的同时三角化] Kolchin 定理先过到 \(A=FG\) 的 composition factors，再用 Burnside 定理与迹型非退化性说明不可约商只能是一维。}
   \item \hyperref[subsec:problem-s3-specht-kostka]{[\(S_3\) 的 Specht 模与 Kostka 数计算] \(S_3\) 中分拆 \((3),(2,1),(1,1,1)\) 给出平凡、标准、符号三类不可约表示，且 \(M^{(2,1)}\cong S^{(3)}\oplus S^{(2,1)}\)。}
   \item \hyperref[subsec:problem-serre-contragredient-character]{[对偶表示的特征标] Serre 2.1 Exercise 2.3 中 contragredient 表示由 \(p^\vee_s(\varphi)=\varphi\circ p_{s^{-1}}\) 给出，其特征标为 \(\chi^*\)。}
   \item \hyperref[subsec:problem-serre-permutation-double-transitive]{[置换表示与双重传递性] Serre Exercise 2.6 通过用固定点特征标、轨道数和平凡表示重数证明了双重传递性等价于 \(X\times X\) 上有两个轨道，也等价于标准补表示不可约。}
   \item \hyperref[subsec:problem-serre-regular-character-multiple]{[正则特征标的倍数判别] Serre Exercise 2.7 中若特征标 \(\chi\) 在所有非单位元处为零，则 \(\chi=(\chi(1)/|G|)\rho_0\)，是正则特征标的整数倍。}
   \item \hyperref[subsec:problem-serre-abelian-dual-character]{[有限 Abel 群的特征标对偶群] Serre Exercise 3.3 用 \(\mathbb C[G]\) 的交换半单分解说明 \(\widehat G\) 由不可约特征标组成，且 \(G\simeq\widehat{\widehat G}\)。}
   \item \hyperref[subsec:problem-serre-a4-induced-klein]{[\(A_4\) 中由 Klein 四元子群诱导出的表示] Serre Exercise 5.4 用诱导特征标公式计算 \(\operatorname{Ind}_H^{A_4}\theta\) 的特征标为 \((3,-1,0,0)=\psi\)，故不可约。}
+  \item \hyperref[subsec:problem-serre-plancherel-formula]{[Plancherel 公式] Serre Exercise 6.2：\(\frac{1}{g}\sum_s u(s^{-1})v(s)=\frac{1}{g^2}\sum_i n_i\operatorname{Tr}_{W_i}\tilde\rho_i(uv)\)，书中漏了 \(\frac{1}{g^2}\)。}
   \item \hyperref[subsec:problem-serre-higman-units]{[\(\mathbb Z[G]\) 中有限阶单位与 Higman 定理] Serre Exercise 6.3 用 Fourier inversion formula 证明 Abel 群情形下 \(\mathbb Z[G]^\times\) 的有限阶元素都属于 \(\pm G\)。}
-  \item \hyperref[subsec:problem-schur-uncountable-field]{[不可数代数闭域上的 Schur 型结论] Section 4.5 Exercises 1--3 用 resolvent 的线性无关性、不可数域基数论证与不可约模循环性推出 \(\operatorname{End}_A(M)=F\)。}
-  \item \hyperref[subsec:problem-kolchin-unipotent-monoid]{[幺幂变换 monoid 的同时三角化] Kolchin 定理先过到 \(A=FG\) 的 composition factors，再用 Burnside 定理与迹型非退化性说明不可约商只能是一维。}
+  \item \hyperref[subsec:problem-serre-center-idempotents]{[群代数中心的幂等元基] Serre Exercise 6.4 的 \(P_i=\frac{n_i}{g}\sum_s\chi_i(s^{-1})s\) 是正交幂等元且和为 \(1\)，构成 \(\operatorname{Cent}\mathbb C[G]\) 的基，并给出 2.6 节定理 8（典范分解投影）的另一证明；\(\omega_i(P_j)=\delta_{ij}\)。}
+  \item \hyperref[subsec:problem-serre-permutation-induced-char]{[置换表示与诱导表示] Serre Exercise 7.2：\(G/H\) 置换表示特征标 \(\chi=\operatorname{Ind}_H^G(1)\)（固定点数=诱导公式），\(\chi-1\) 是特征标（平凡重数 1），其不可约 \(\iff\) \(G\) 在 \(G/H\) 上双重传递（\(\#(H\backslash G/H)=2\)）。}
+  \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
 \end{itemize}
 
 \end{document}
