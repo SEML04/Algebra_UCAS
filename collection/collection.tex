@@ -1,4 +1,4 @@
-﻿\documentclass[a4paper]{ctexart}
+\documentclass[a4paper]{ctexart}
 
 \usepackage{newunicodechar}
 \newunicodechar{⟹}{\ensuremath{\Longrightarrow}}
@@ -1705,6 +1705,103 @@ KS 不要求有限长度，不能说明所有模都有 indecomposable 直和分�
   1+\omega^2+\omega=0.
 \]
 因此特征标表同时编码了共轭类、不可约表示、维数平方和、张量积分解和重数计算；考试中常见用法是“先由共轭类数确定不可约表示个数，再由一维特征标和 \(\sum n_i^2=|G|\) 补出维数，最后用正交关系补未知表项”。
+\end{remark}
+
+\subsection{Mackey 分解：诱导表示限制到另一子群的结构与不可约准则}\label{subsec:mackey-decomposition}
+
+\textbf{要解决的问题。} 在处理有限群表示时，常会先\textbf{诱导}再\textbf{限制}，而这两个函子一般不可交换：
+\[
+  \operatorname{Res}_K^G\operatorname{Ind}_H^G\ \not\cong\ \text{某种 “}\operatorname{Ind}_K^G\text{”} 的简单形式.
+\]
+Mackey 分解定理回答的正是：\(\operatorname{Ind}_H^G W\) 限制到另一子群 \(K\) 后，如何按 \((K,H)\)-双陪集拆成更小的诱导表示的直和。
+
+\medskip
+
+\textbf{记号。} 设 \(H,K\le G\)，\(W\) 为 \(H\)-模、\(\theta\) 为其特征标。取 \((K,H)\)-双陪集分解
+\[
+  G=\bigsqcup_{s\in S}KsH,
+\]
+其中 \(S\) 为双陪集代表元集合。对每个 \(s\in S\)：
+
+\begin{itemize}
+  \item \textbf{共轭子群的交}：\(H_s:=sHs^{-1}\cap K\le K\)；
+  \item \textbf{共轭表示}：把 \(W\) 沿 \(s\) 共轭成子群 \(sHs^{-1}\) 上的表示 \(W^s\)，作用为
+  \[
+    (shs^{-1})\cdot w=hw\qquad (h\in H,\ w\in W),
+  \]
+  其特征标为
+  \[
+    \theta^s(x)=\theta(s^{-1}xs)\qquad (x\in sHs^{-1});
+  \]
+  \item 再\textbf{限制}到 \(H_s\)，记 \(\operatorname{Res}_{H_s}W^s\)。
+\end{itemize}
+
+\medskip
+
+\textbf{Mackey 分解定理。} 有模的同构
+\[
+  \operatorname{Res}_K^G\operatorname{Ind}_H^G W
+  \cong
+  \bigoplus_{s\in S}\operatorname{Ind}_{H_s}^K\bigl(\operatorname{Res}_{H_s}W^s\bigr),
+\]
+特征标层面
+\[
+  \operatorname{Res}_K^G\operatorname{Ind}_H^G\theta
+  =
+  \sum_{s\in S}\operatorname{Ind}_{H_s}^K\bigl(\theta^s\big|_{H_s}\bigr).
+\]
+要点是：交叉项按双陪集归类，每个双陪集 \(KsH\) 只贡献一个更低层面的诱导 \(H_s\to K\)。
+
+\medskip
+
+\textbf{推论 1（两个诱导特征标的内积）。} 由 Mackey 分解配合 Frobenius 互反律：
+\[
+  \langle \operatorname{Ind}_H^G\theta,\ \operatorname{Ind}_K^G\psi\rangle_G
+  =
+  \sum_{s\in K\backslash G/H}
+  \langle \theta^s,\ \psi\rangle_{sHs^{-1}\cap K}.
+\]
+特别地取 \(K=H\)（自身诱导特征标的内积）：
+\[
+  \langle \operatorname{Ind}_H^G\theta,\ \operatorname{Ind}_H^G\theta\rangle_G
+  =
+  \sum_{s\in H\backslash G/H}
+  \langle \theta^s,\ \theta\rangle_{sHs^{-1}\cap H}.
+\]
+
+\medskip
+
+\textbf{推论 2（Mackey 不可约准则）。} 设 \(\theta\) 是 \(H\) 的\textbf{不可约}特征标，则
+\[
+  \operatorname{Ind}_H^G\theta\ \text{不可约}
+  \iff
+  \forall\, s\in G\setminus H,\quad
+  \langle \theta^s,\theta\rangle_{sHs^{-1}\cap H}=0.
+\]
+
+\begin{remark}
+\phantomsection\label{rem:mackey-irreducible-principle}
+\textbf{主双陪集的角色与易错点。} 不可约性由自内积
+\[
+  \langle \operatorname{Ind}_H^G\theta,\ \operatorname{Ind}_H^G\theta\rangle_G=1
+\]
+判定。双陪集分解中取代表元 \(s=1\)（主双陪集 \(H\cdot 1\cdot H=H\)）时，
+\[
+  H_1=H,\qquad \theta^1=\theta,
+\]
+该项恰为
+\[
+  \langle \theta,\theta\rangle_H=1
+  \qquad(\theta\ \text{不可约}).
+\]
+于是诱导表示的“1”已由主双陪集免费贡献，只需令其余所有\textbf{非平凡双陪集} \(s\notin H\) 的贡献全为 \(0\)。几个易错点：
+
+\begin{itemize}
+  \item \(s\) 取的是双陪集\textbf{代表元}（\(H\backslash G/H\)），而非单陪集 \(G/H\)；同一双陪集内不同代表给出同一项。
+  \item 若 \(\theta\) 本身非不可约，则 \(s=1\) 项已 \(\ge 1\)，准则不再适用，也不能由该式直接判定可约性。
+  \item \(\theta^s\) 做内积的另一支是限制在交 \(sHs^{-1}\cap H\) 上，切勿误写成整群 \(H\) 或 \(sHs^{-1}\) 上的内积。
+  \item 判定诱导表示可约性/分解的标准套路是 Frobenius 互反、Mackey 分解与内积公式三者联用（如 \hyperref[subsec:problem-serre-a4-induced-klein]{\(A_4\) 诱导表示} 一题）。
+\end{itemize}
 \end{remark}
 
 \newpage
@@ -9294,6 +9391,119 @@ and that \(\psi=\chi-1\) is the character of a representation of \(G\); determin
 本题是“置换表示 = 诱导平凡表示”的标尺：固定点数与诱导公式是同一计数；平凡重数由 reciprocity 一眼看出；不可约性归结为双重传递（\(H\backslash G/H\) 只有 2 个双陪集）。它与 \hyperref[subsec:problem-serre-permutation-double-transitive]{Exercise 2.6} 首尾呼应，也是后续 Exercise 7.3（Frobenius 子群）论证的基础。
 \end{example}
 
+\subsection{\texorpdfstring{\(\operatorname{SL}_2(k)\) 上由 Borel 子群诱导的特征标：Mackey 不可约准则的应用}{SL2(k) 上由 Borel 子群诱导的特征标：Mackey 不可约准则的应用}}\label{subsec:problem-serre-sl2-induced-mackey}
+
+\begin{example}
+（出处：\textit{Serre - Linear Representations of Finite Groups}, p.~60, Chapter 7, Exercise 7.4；方法上直接使用 \S7.3 的 Mackey 分解定理（Prop 22）与 \S7.4 的 Mackey 不可约准则（Prop 23））
+
+设 \(k\) 为有限域，\(G=\operatorname{SL}_2(k)\)，\(H\) 为 \(G\) 中由满足 \(c=0\) 的矩阵
+\[
+  \begin{pmatrix} a & b \\ c & d \end{pmatrix}
+\]
+构成的子群（即上三角 Borel 子群；由 \(\det=ad-bc=1\) 自动有 \(d=a^{-1}\)）。设 \(\omega\colon k^\times\to\mathbb C^\times\) 为同态，\(\chi_\omega\) 为 \(H\) 上次数 \(1\) 的特征标，定义为
+\[
+  \chi_\omega\begin{pmatrix} a & b \\ 0 & a^{-1} \end{pmatrix}=\omega(a).
+\]
+证明：当 \(\omega^2\neq 1\) 时，由 \(\chi_\omega\) 诱导的表示 \(\operatorname{Ind}_H^G\chi_\omega\) 不可约。
+
+\textbf{解答：}
+
+\textbf{（1）化归到 Mackey 不可约准则。} 由 \hyperref[subsec:mackey-decomposition]{Mackey 不可约准则}（Serre Prop 23），
+\[
+  \operatorname{Ind}_H^G\theta\ \text{不可约}
+  \iff
+  \theta\ \text{不可约，且}\ \forall\, s\in G\setminus H,\quad
+  \langle\theta^s,\theta\rangle_{sHs^{-1}\cap H}=0.
+\]
+这里 \(\theta=\chi_\omega\) 是一维特征标，自动不可约，所以只剩条件 (b)。
+
+\textbf{（2）双陪集与代表元的选取。} \(\operatorname{SL}_2(k)\) 有 Bruhat 分解
+\[
+  G=H\sqcup HwH,\qquad w=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix},
+\]
+即 \(H\backslash G/H\) 只有主双陪集与非平凡双陪集 \(\{HwH\}\) 两个元素。条件 (b) 中的内积只依赖于 \(s\) 所在的\textbf{双陪集}（同一双陪集内换代表元，\(H_s\) 互相共轭，内积不变），因此只需检验 \(s=w\)。主双陪集 \(s=1\) 的贡献为
+\[
+  \langle\chi_\omega,\chi_\omega\rangle_H=1,
+\]
+正是不可约性要求的“1”。
+
+\textbf{（3）检验 \(s=w\)。} 计算交群
+\[
+  H_w=wHw^{-1}\cap H=\Bigl\{\operatorname{diag}(a,a^{-1}):\ a\in k^\times\Bigr\},
+\]
+因为
+\[
+  w\begin{pmatrix} a & b \\ 0 & a^{-1}\end{pmatrix}w^{-1}
+  =
+  \begin{pmatrix} a^{-1} & 0 \\ -b & a \end{pmatrix}
+  \in H
+  \iff b=0.
+\]
+在 \(H_w\cong k^\times\) 上：
+\[
+  \chi_\omega\bigl(\operatorname{diag}(a,a^{-1})\bigr)=\omega(a),
+\]
+而
+\[
+  \chi_\omega^w\bigl(\operatorname{diag}(a,a^{-1})\bigr)
+  =\chi_\omega\bigl(w^{-1}\operatorname{diag}(a,a^{-1})w\bigr)
+  =\chi_\omega\bigl(\operatorname{diag}(a^{-1},a)\bigr)
+  =\omega(a^{-1})=\omega(a)^{-1},
+\]
+（因为 \(w^{-1}\operatorname{diag}(a,a^{-1})w=\operatorname{diag}(a^{-1},a)\)）。于是两个一维特征标在 \(H_w\) 上的内积为
+\[
+  \langle\chi_\omega^w,\chi_\omega\rangle_{H_w}
+  =
+  \frac{1}{|k^\times|}\sum_{a\in k^\times}\omega(a^{-1})\overline{\omega(a)}
+  =
+  \frac{1}{|k^\times|}\sum_{a\in k^\times}\omega(a)^{-2}
+  =
+  \begin{cases}
+    1, & \omega^2=1,\\
+    0, & \omega^2\neq 1,
+  \end{cases}
+\]
+（最后一等号是 \(k^\times\) 上非平凡特征标 \(\omega^{-2}\) 的正交关系）。
+
+\textbf{（4）结论。} 由（2）（3）：\(\omega^2\neq 1\) 时对所有 \(s\notin H\) 都有 \(\langle\chi_\omega^s,\chi_\omega\rangle_{H_s}=0\)，故按 Mackey 不可约准则，\(\operatorname{Ind}_H^G\chi_\omega\) 不可约。反过来当 \(\omega^2=1\) 时 \(\langle\chi_\omega^w,\chi_\omega\rangle_{H_w}=1\neq 0\)，诱导表示必可约，所以条件 \(\omega^2\neq 1\) 也是必要的。
+
+\begin{remark}[所用工具：Mackey 分解与 Mackey 不可约准则]
+本题利用到了 \hyperref[subsec:mackey-decomposition]{Mackey 分解定理}（Serre \S7.3，Prop 22）以及 Mackey 不可约准则（Serre \S7.4，Prop 23）。两条工具的具体内容如下。
+
+\textbf{Mackey 分解定理。} 设 \(H,K\le G\)，\(W\) 为 \(H\)-模、\(\theta\) 为其特征标，取双陪集分解 \(G=\bigsqcup_{s\in S}KsH\)，记 \(H_s=sHs^{-1}\cap K\)。将诱导表示 \(\operatorname{Ind}_H^G W\) 限制到子群 \(K\) 上，具有如下模直和分解：
+\[
+  \operatorname{Res}_K^G\bigl(\operatorname{Ind}_H^G W\bigr)
+  \cong
+  \bigoplus_{s\in S}\operatorname{Ind}_{H_s}^K\Bigl(\operatorname{Res}_{H_s}(W^s)\Bigr).
+\]
+对应到特征标层面，公式为：
+\[
+  \operatorname{Res}_K^G\bigl(\operatorname{Ind}_H^G\theta\bigr)
+  =
+  \sum_{s\in S}\operatorname{Ind}_{H_s}^K\bigl(\theta^s\big|_{H_s}\bigr).
+\]
+
+\textbf{两诱导特征标的内积。} 结合 Frobenius 互反律与 Mackey 分解，可以计算两个诱导特征标 \(\operatorname{Ind}_H^G\theta\) 与 \(\operatorname{Ind}_K^G\psi\) 的内积：
+\[
+  \langle\operatorname{Ind}_H^G\theta,\ \operatorname{Ind}_K^G\psi\rangle_G
+  =
+  \sum_{s\in K\backslash G/H}
+  \langle\theta^s,\ \psi\rangle_{sHs^{-1}\cap K}.
+\]
+特别地，当 \(K=H\) 时（自身诱导特征标的内积）：
+\[
+  \langle\operatorname{Ind}_H^G\theta,\ \operatorname{Ind}_H^G\theta\rangle_G
+  =
+  \sum_{s\in H\backslash G/H}
+  \langle\theta^s,\ \theta\rangle_{sHs^{-1}\cap H}.
+\]
+本题正是把最后一个公式用于 \(G=\operatorname{SL}_2(k)\)、\(H=\text{Borel 子群}\)、\(\theta=\chi_\omega\)：主双陪集 \(s=1\) 恒贡献 \(1\)，非平凡双陪集 \(HwH\) 的贡献为 \(\langle\chi_\omega^w,\chi_\omega\rangle_{H_w}\)，故诱导表示不可约恰好当该项为 \(0\)，即 \(\omega^2\neq 1\)。完整的记号约定与易错点见 \hyperref[subsec:mackey-decomposition]{概念辨析：Mackey 分解} 一节。
+\end{remark}
+
+\textbf{方法要点：}
+“诱导表示不可约”的通用套路是：Mackey 不可约准则把它化约为“非平凡双陪集上的不相交性”；Bruhat 分解把双陪集数降到最少（这里只有 2 个）；两个一维特征标的不相交性即 \(\omega\neq\omega^{-1}\)，即 \(\omega^2\neq 1\)。本题与 \hyperref[subsec:problem-serre-a4-induced-klein]{\(A_4\) 诱导表示} 一题互补：那边按共轭类硬算特征标表，这里直接用 Mackey 准则免去整张表的计算；另外 \(\dim\operatorname{Ind}_H^G\chi_\omega=[G:H]=|k|+1\)（射影直线上的点数），可作为结果的自检。
+\end{example}
+
 \subsection{Schanuel 引理：两个投射表示的稳定同构}\label{subsec:problem-schanuel-lemma}
 
 \begin{example}
@@ -9416,6 +9626,7 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
   \item \hyperref[rem:indecomposable-decomposition-not-automatic]{[\hyperref[subsec:jh-ks-decomposition]{Jordan--Hölder 与 Krull--Schmidt 分解}] 一般模未必能分解为 indecomposable 直和，有限长度同时保证有限存在性与唯一性。}
   \item \hyperref[rem:character-table-information]{[\hyperref[subsec:character-table-a4]{特征标表、正交关系与 \(A_4\) 的例子}] 特征标表把共轭类、不可约维数、重数计算、张量积分解与行列正交关系集中编码。}
   \item \hyperref[rem:a4-character-table]{[\hyperref[subsec:character-table-a4]{特征标表、正交关系与 \(A_4\) 的例子}] \(A_4\) 的四个共轭类给出三个一维特征标和一个三维特征标，正交关系可直接补全并检验整张表。}
+  \item \hyperref[subsec:mackey-decomposition]{[Mackey 分解与不可约准则] \(\operatorname{Res}_K^G\operatorname{Ind}_H^G\cong\bigoplus_{s\in K\backslash G/H}\operatorname{Ind}_{H_s}(\operatorname{Res}_{H_s}W^s)\)；两诱导特征标内积按双陪集求；\(\theta\) 不可约时诱导不可约 ⟺ 非平凡双陪集贡献全为 0（主双陪集恰贡献 1）。}
 \end{itemize}
 
 \vspace{0.8em}
@@ -9523,6 +9734,7 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
   \item \hyperref[subsec:problem-serre-higman-units]{[\(\mathbb Z[G]\) 中有限阶单位与 Higman 定理] Serre Exercise 6.3 用 Fourier inversion formula 证明 Abel 群情形下 \(\mathbb Z[G]^\times\) 的有限阶元素都属于 \(\pm G\)。}
   \item \hyperref[subsec:problem-serre-center-idempotents]{[群代数中心的幂等元基] Serre Exercise 6.4 的 \(P_i=\frac{n_i}{g}\sum_s\chi_i(s^{-1})s\) 是正交幂等元且和为 \(1\)，构成 \(\operatorname{Cent}\mathbb C[G]\) 的基，并给出 2.6 节定理 8（典范分解投影）的另一证明；\(\omega_i(P_j)=\delta_{ij}\)。}
   \item \hyperref[subsec:problem-serre-permutation-induced-char]{[置换表示与诱导表示] Serre Exercise 7.2：\(G/H\) 置换表示特征标 \(\chi=\operatorname{Ind}_H^G(1)\)（固定点数=诱导公式），\(\chi-1\) 是特征标（平凡重数 1），其不可约 \(\iff\) \(G\) 在 \(G/H\) 上双重传递（\(\#(H\backslash G/H)=2\)）。}
+  \item \hyperref[subsec:problem-serre-sl2-induced-mackey]{[\(\operatorname{SL}_2(k)\) 上由 Borel 子群诱导的特征标] Serre Exercise 7.4：\(G=\operatorname{SL}_2(k)\)，\(H\) 为满足 \(c=0\) 的上三角子群，\(\chi_\omega(\begin{smallmatrix}a&b\\0&a^{-1}\end{smallmatrix})=\omega(a)\)；用 Mackey 不可约准则（Prop 23）与 Bruhat 分解 \(G=H\sqcup HwH\) 归约为 \(\langle\chi_\omega^w,\chi_\omega\rangle_{H_w}=\frac{1}{|k^\times|}\sum_a\omega(a)^{-2}\)，故 \(\operatorname{Ind}_H^G\chi_\omega\) 不可约 \(\iff\omega^2\neq 1\)；本条目同时收录 Mackey 分解与两诱导特征标内积的公式组。}
   \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
 \end{itemize}
 
