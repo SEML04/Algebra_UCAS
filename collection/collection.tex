@@ -9601,19 +9601,19 @@ Frobenius 核的标准构造如下：记
 
 \emph{引理（诱导类函数的限制）。} 设 \(\varphi\) 是 \(H\) 上的类函数且 \(\varphi(1)=0\)，诱导类函数定义为
 \[
-  \varphi^G(a):=\frac{1}{|H|}\sum_{\substack{t\in G\\ t^{-1}at\in H}}\varphi(t^{-1}at),
+  \operatorname{Ind}_H^G(\varphi)(a):=\frac{1}{|H|}\sum_{\substack{t\in G\\ t^{-1}at\in H}}\varphi(t^{-1}at),
 \]
 则
 \[
-  (\varphi^G)\big|_H=\varphi.
+  (\operatorname{Ind}_H^G(\varphi))\big|_H=\varphi.
 \]
 证明：对 \(h\in H\setminus\{1\}\)，\(t^{-1}ht\in H\iff h\in tHt^{-1}\)；若 \(t\notin H\)，按 Frobenius 补的条件 \(tHt^{-1}\cap H=\{1\}\) 知这不可能，故求和只跑过 \(t\in H\)，而 \(\varphi\) 是类函数，得
 \[
-  \varphi^G(h)=\frac{1}{|H|}\sum_{t\in H}\varphi(t^{-1}ht)=\varphi(h);
+  \operatorname{Ind}_H^G(\varphi)(h)=\frac{1}{|H|}\sum_{t\in H}\varphi(t^{-1}ht)=\varphi(h);
 \]
 又
 \[
-  \varphi^G(1)=\frac{|G|}{|H|}\varphi(1)=0=\varphi(1).
+  \operatorname{Ind}_H^G(\varphi)(1)=\frac{|G|}{|H|}\varphi(1)=0=\varphi(1).
 \]
 \(\square\)
 
@@ -9627,21 +9627,21 @@ Frobenius 核的标准构造如下：记
 \[
   \varphi:=\psi-\psi(1)\cdot 1_H,
 \]
-这是 \(H\) 的广义特征标（满足 \(\varphi(1)=0\)）。由引理 \((\varphi^G)|_H=\varphi\)；Frobenius 互反律给出
+这是 \(H\) 的广义特征标（满足 \(\varphi(1)=0\)）。由引理 \((\operatorname{Ind}_H^G(\varphi))|_H=\varphi\)；Frobenius 互反律给出
 \[
-  (\varphi^G,\varphi^G)_G=(\varphi,\varphi)_H=1+\psi(1)^2,
+  (\operatorname{Ind}_H^G(\varphi),\operatorname{Ind}_H^G(\varphi))_G=(\varphi,\varphi)_H=1+\psi(1)^2,
   \qquad
-  (\varphi^G,1_G)_G=(\varphi,1_H)_H=-\psi(1).
+  (\operatorname{Ind}_H^G(\varphi),1_G)_G=(\varphi,1_H)_H=-\psi(1).
 \]
 令
 \[
-  \psi^*:=\varphi^G+\psi(1)\cdot 1_G.
+  \psi^*:=\operatorname{Ind}_H^G(\varphi)+\psi(1)\cdot 1_G.
 \]
 则 \(\psi^*\) 是 \(G\) 的广义特征标，且
 \[
   (\psi^*,\psi^*)_G=(1+\psi(1)^2)+2\psi(1)(-\psi(1))+\psi(1)^2=1,
   \qquad
-  \psi^*(1)=\varphi^G(1)+\psi(1)=\psi(1)>0,
+  \psi^*(1)=\operatorname{Ind}_H^G(\varphi)(1)+\psi(1)=\psi(1)>0,
 \]
 限制为
 \[
@@ -9659,7 +9659,7 @@ Frobenius 核的标准构造如下：记
 \]
 则 \(K^*\trianglelefteq G\)（核的交仍为正规子群）。
 
-\textbf{\(K\subseteq K^*\)：} 若 \(k\in K\setminus\{1\}\)，则 \(k\) 的任一共轭都不落入 \(H\)，于是按定义 \(\varphi^G(k)=0\)（诱导公式中的求和为空集），故
+\textbf{\(K\subseteq K^*\)：} 若 \(k\in K\setminus\{1\}\)，则 \(k\) 的任一共轭都不落入 \(H\)，于是按定义 \(\operatorname{Ind}_H^G(\varphi)(k)=0\)（诱导公式中的求和为空集），故
 \[
   \psi^*(k)=0+\psi(1)=\psi^*(1),
 \]
