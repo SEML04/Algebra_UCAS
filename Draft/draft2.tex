@@ -1,59 +1,339 @@
 \documentclass[12pt,a4paper]{ctexart}
-\usepackage[margin=1in]{geometry}
+\usepackage{geometry}
 \usepackage{amsmath,amssymb,amsthm}
+\usepackage{enumitem}
 \usepackage{hyperref}
+\geometry{margin=1in}
+\setlist[itemize]{itemsep=0.35em, topsep=0.35em}
+\setlist[enumerate]{itemsep=0.35em, topsep=0.35em}
 
-\title{Semi-hereditary 与 Hereditary：为何内射商性质出现差异}
+\DeclareMathOperator{\Hom}{Hom}
+\DeclareMathOperator{\Ext}{Ext}
+\DeclareMathOperator{\Tor}{Tor}
+\DeclareMathOperator{\Coker}{Coker}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\Der}{Der}
+\DeclareMathOperator{\Tot}{Tot}
+\DeclareMathOperator{\Res}{Res}
+\DeclareMathOperator{\Cor}{Cor}
+\DeclareMathOperator{\pd}{pd}
+\DeclareMathOperator{\id}{id}
+% 《重点》标记
+\newcommand{\keypoint}{\text{\textbf{\ensuremath{\bigstar}}\;}}
+\newcommand{\method}{\text{\textbf{方法}}\;}
+
+\title{同调代数快速通道（零基础直达做题）\\[0.5em]
+\large 范畴 $\to$ Abelian 范畴/复形/同调 $\to$ Ext/Tor $\to$ 群上同调与谱序列 $\to$ derived category 一览}
 \author{}
 \date{\today}
 
 \begin{document}
-\pagestyle{plain}
 \maketitle
 
-\section{原书中的两个等价刻画}
+\tableofcontents
+\newpage
 
-在 Cartan--Eilenberg, Chapter I 中，\emph{left hereditary} 指每个左理想均为投射模；\emph{left semi-hereditary} 则只要求每个\textbf{有限生成}左理想为投射模。
+\section{怎么用这份文档（60 秒版）}
 
-Theorem 5.4 给出
+\textbf{目标}：此前没有系统学过同调代数，要在最短时间内达到“会陈述定理、会标准证明、会典型计算、会接资格考试同调题”。
+
+\textbf{资料映射}（即你列的五条，本提纲按同一顺序展开）：
+\begin{itemize}
+  \item 范畴、函子、自然变换、可表函子、Yoneda：\textbf{Jacobson II, Ch.~1}（另可补 \textbf{Gelfand--Manin, Ch.~II}）。
+  \item Abelian 范畴、复形、同调、长正合列、同伦：\textbf{Cartan--Eilenberg (CE), Ch.~I--V}。
+  \item tensor / flat / projective / injective / Ext / Tor：\textbf{CE, Ch.~VI}（背景补 Atiyah--Macdonald、Algebra~III）。
+  \item 群上同调、extensions、spectral sequence：\textbf{CE, Ch.~XII, XIV, XV} 重点节选（+ Ch.~XVI 的复合函子谱序列用法）。
+  \item derived category 与现代语言：\textbf{Gelfand--Manin, Ch.~III--IV} 作概念补强，\textbf{不作为第一轮刷题源}。
+\end{itemize}
+
+\textbf{最短路径（建议 5 天，每天 2--3 小时）}：
+\begin{enumerate}
+  \item 第 1 天：\S2 范畴与 Yoneda（定义 + 定理 + 3 道自测题）。
+  \item 第 2 天：\S3 Abelian 范畴、复形、同调、长正合列（蛇引理、五引理必须会 chase）。
+  \item 第 3 天：\S4 Ext/Tor 与维数（重点：投射/内射/平坦判定 + 长正合列 + 典型计算模板）。
+  \item 第 4 天：\S5 群上同调（H$^0$--H$^2$ 词汇表 + 标准计算）+ extensions 分类。
+  \item 第 5 天：\S6 谱序列（概念 + 退化判据 + Hochschild--Serre 用法）+ \S7 速查表总复习 + 刷题。
+\end{enumerate}
+
+\textbf{达标标准（每块末尾的“自测”能独立做出来才算过关）}：定义能默写、重点定理能陈述（条件一个不落）、下列“标准计算”能从头算到底。不会做难题没关系，考试同调题的 90\% 是“定义 + 长正合列 + 一个分解”的组合。
+
+\section{范畴、函子、自然变换、可表函子与 Yoneda（Jacobson II Ch.~1；GM Ch.~II）}
+
+\subsection{必背定义（能默写）}
+
+\begin{itemize}
+  \item \textbf{范畴} $\mathcal{C}$：对象类 + 态射集 $\Hom_{\mathcal C}(A,B)$ + 结合复合 + 单位态射。
+  \item \textbf{函子}：$F\colon\mathcal C\to\mathcal D$ 协变（$F(g\circ f)=F(g)\circ F(f)$，$F(1)=1$）；反变即 $\mathcal C^{op}\to\mathcal D$。\textbf{忠实}（态射集单射）、\textbf{满}（态射集满射）、\textbf{本质满}（每个对象同构于某 $F(X)$）；三种都满足 $\Rightarrow$ \textbf{范畴等价}。
+  \item \textbf{自然变换} $\alpha\colon F\Rightarrow G$：一族态射 $\alpha_A\colon FA\to GA$ 满足自然性方框 $\alpha_B\circ F(f)=G(f)\circ\alpha_A$（对一切 $f$）。自然同构 = 每个分量可逆。
+  \item \textbf{对偶原则}：$\mathcal C^{op}$ 中的陈述到 $\mathcal C$ 自动对偶（极限 $\leftrightarrow$ 余极限、单态射 $\leftrightarrow$ 满态射）。
+  \item \textbf{可表函子}：$F\colon\mathcal C\to\mathbf{Set}$ 可表 $\iff$ $\exists A$ 与自然同构 $F\cong\Hom_{\mathcal C}(A,-)$；\textbf{泛对象/泛元素}：$(A,u\in FA)$ 使每个 $x\in FB$ 唯一来自 $f\colon A\to B$ 的 $(Ff)(u)$。
+  \item \textbf{伴随}：$F\colon\mathcal C\to\mathcal D,\ G\colon\mathcal D\to\mathcal C$，$F\dashv G$ $\iff$ 存在自然同构 $\Hom(FA,B)\cong\Hom(A,GB)$；单位 $\eta\colon1\to GF$、余单位 $\varepsilon\colon FG\to1$ 满足三角恒等式。
+\end{itemize}
+
+\subsection{\keypoint 重点定理}
+
+\begin{enumerate}
+  \item \textbf{Yoneda 引理}（Jacobson II, 1.4 附近）：设 $F\colon\mathcal C\to\mathbf{Set}$，则自然变换集合
+  \[
+    \operatorname{Nat}(\Hom_{\mathcal C}(A,-),\,F)\ \cong\ F(A),
+    \qquad \Phi\longmapsto \Phi_A(1_A).
+  \]
+  \textit{证明技巧就一句：\keypoint “吃单位元”——一个自然变换完全由它在 $1_A$ 上的值决定；逆构造把 $x\in FA$ 映到 $f\mapsto(Ff)(x)$。}
+\item \textbf{Yoneda 嵌入}：$y\colon A\mapsto\Hom(A,-)$ 是全忠实函子 $\mathcal C^{op}\to[\mathcal C,\mathbf{Set}]$；
+  \[
+    \Hom(A,B)\cong\Hom(B,-)\ A\ \Longleftrightarrow\ A\cong B.
+  \]
+  \keypoint 用法：想证 $A\cong B$，改证（或已验证）代表函子 $\Hom(A,-)\cong\Hom(B,-)$；想证某对象有普适性质，就证对应函子可表。
+  \item \textbf{可表 $\iff$ 存在泛对象}；\textbf{伴随 $\iff$ 双可表}：固定 $B$，$X\mapsto\Hom(B,GX)$ 由 $FB$ 表示。\keypoint 伴随自动给出：$F$ 保余极限（特别地余积、推出）、$G$ 保极限（积、等化子、拉回）。这是考试最爱：\textit{“证明 $F$ 保余积”——用伴随转成 $\Hom$ 的泛性质，不要硬追对象。}
+\end{enumerate}
+
+\subsection{\method 解题模板}
+
+\begin{itemize}
+  \item \textbf{证自然同构}：① 定义对象级双射；② 验证对 $f$ 自然（方框交换）；③ 若两个方向互为逆，主任务完成。
+  \item \textbf{证可表/泛性质}：把目标翻译成“某个 $\Hom(-\ ,\ ?)$ 函子与给定函子自然同构”，再用构造 + 唯一性。
+  \item \textbf{用 Yoneda 反推态射}：$\alpha\in\operatorname{Nat}(\Hom(A,-),\Hom(B,-))\cong\Hom(B,A)$ ——“自然变换就是态射本身”，很多证明（Adjoint 的 unit 唯一性、Free 函子唯一性）一步到位。
+\end{itemize}
+
+\subsection{达标自测}
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 $\operatorname{Nat}(\Hom(A,-),\Hom(B,-))\cong\Hom(B,A)$（直接写 Yoneda 的 $A,B$ 情形）。
+  \item 证明 $G\colon\mathbf{Set}\to\mathbf{Grp}$（自由群）与忘却函子 $U\colon\mathbf{Grp}\to\mathbf{Set}$ 有 $F\dashv U$；推出 $F$ 保余积。
+  \item 判断：$\Hom(-,A)\colon\mathcal C^{op}\to\mathbf{Set}$ 的可表对象是什么？Yoneda 对反变函子怎么写？
+  \item 证明“可表函子保极限”（任一可表函子 $\Hom(A,-)$ 保持任意存在的极限）。
+\end{enumerate}
+
+\section{Abelian 范畴、复形、同调、长正合列、同伦（CE Ch.~I--V）}
+
+\subsection{必背定义}
+
+\begin{itemize}
+  \item \textbf{Abelian 范畴}：加性范畴（$\Hom$ 是 Abel 群、双线性复合、有限直和）+ 核/余核存在 + “单态射 = 其余核的核”、“满态射 = 其核的余核”。
+  \item \textbf{复形} $X_\bullet$：$d_n\colon X_n\to X_{n-1}$（或上链 $d^n\colon C^n\to C^{n+1}$），$d^2=0$。\textbf{同调} $H_n(X_\bullet)=\ker d_n/\im d_{n+1}$。记号：$Z_n=\ker d_n$（闭链/cycles）、$B_n=\im d_{n+1}$（边界），$0\to B_n\to Z_n\to H_n\to0$ 正合。
+  \item \textbf{链映射} $f\colon X\to Y$（$fd_Y=d_Xf$）诱导 $H_n(f)$；\textbf{正合}：$A\xrightarrow{f}B\xrightarrow{g}C$ 正合 $\iff\im f=\ker g$。
+  \item \textbf{链同伦}：$s\colon X_n\to Y_{n+1}$，$f-g=d_Ys+sd_X$。\keypoint 链同伦 $\Rightarrow$ 同调同构；\textbf{拟同构}：$H(f)$ 是同构的链映射（不需要同伦逆）。
+  \item \textbf{分裂短正合列}：$0\to A\to B\to C\to0$ 分裂 $\iff$ 存在收缩 $B\to A$（$\iff$ 存在截面 $C\to B$）$\iff$ $B\cong A\oplus C$。
+\end{itemize}
+
+\subsection{\keypoint 重点定理}
+
+\begin{enumerate}
+  \item \textbf{长正合列定理}：短正合列链映射
+  \[
+    0\to A_\bullet\xrightarrow{f}B_\bullet\xrightarrow{g}C_\bullet\to0
+  \]
+  诱导同调长正合列
+  \[
+    \cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots
+  \]
+  连接同态公式：$\partial[c]=f^{-1}dg^{-1}c$（构造见蛇引理）。
+  \item \textbf{蛇引理}：交换图（横排正合，竖行有任意同态）
+  \[
+    \begin{array}{ccc}
+      0\to A'\to A\to A''\to 0\\
+      \ \downarrow f'\quad\ \downarrow f\quad\ \downarrow f''\\
+      0\to B'\to B\to B''\to 0
+    \end{array}
+  \]
+  给出正合列 $0\to\ker f'\to\ker f\to\ker f''\to\Coker f'\to\Coker f\to\Coker f''\to0$。\keypoint 长正合列里的 $\partial$ 就是蛇引理中的连接同态；这是 homological algebra 的“发动机”。
+  \item \textbf{五引理}：交换图中两行各 5 项正合，$f_1,f_2,f_4,f_5$ 为同构 $\Rightarrow f_3$ 为同构。\keypoint 考试用法：证“某个诱导映射是同构”，凑两个长正合列 + 五引理，避免直接 chase 大图。
+  \item \textbf{同调代数基本引理/比较引理}（CE, Ch.~III--V）：$P_\bullet\to A\to0$ 为投射消解、$C_\bullet$ 正合且 $\dots$，链映射存在且任意两个链映射同伦（同伦唯一）。这是“消解的唯一性（同伦意义下）”与《派生函子良定义》的基础。
+  \item \textbf{加性函子的正合性}：$F$ 左正合 $\iff$ 保有限直和且 $0\to A\to B\to C\to0$ 正合 $\Rightarrow0\to FA\to FB\to FC$ 正合；右正合类似取尾巴。\keypoint 判定套路：$\Hom(A,-)$ 左正合、$\Hom(-,B)$ 反变将满射映为单射（反变左正合）、$A\otimes-$ 右正合。
+\end{enumerate}
+
+\subsection{\method 解题模板（diagram chasing 三原则）}
+
+\begin{enumerate}
+  \item \textbf{追元素（Ab 范畴取 $R$-模想）}：为证 $x\in\im g$，把 $x$ 沿可逆箭头抬一层、沿满射抓原像、沿单射唯一化；每步记下“回到哪一层”。
+  \item \textbf{连接同态公式} $\partial[c]=f^{-1}dg^{-1}c$ 每次直接写，不要现场推。
+  \item \textbf{长正合列配五引理}是“证同构”的万能二段式：先造两个同长度正合列的交换图，再套五引理。
+\end{enumerate}
+
+\subsection{达标自测}
+\begin{enumerate}[label=(\arabic*)]
+  \item 完全书写蛇引理证明（逐项 chase），或至少写出 $\ker f''\to\Coker f'$ 的构造并说明良定义。
+  \item 证明“链同伦保持同调”：$f-g=d_Ys+sd_X$ 时 $H(f)=H(g)$。
+  \item 对 $0\to A\to B\to C\to0$，写同调长正合列并在“$A=C=0$”时读出结论。
+  \item 证明 $\Hom(A,-)$ 左正合、$A\otimes-$ 右正合（用定义）。
+\end{enumerate}
+
+\section{tensor、flat、projective、injective、Ext、Tor（CE Ch.~VI；背景 A--M）}
+
+\subsection{必背定义与判定}
+
+\begin{itemize}
+  \item \textbf{投射模}：对每个满射 $p\colon B\to C$ 与 $f\colon P\to C$，存在提升 $\tilde f\colon P\to B$。等价：\keypoint $P$ 是某个自由模的直和因子；$\Ext^1_R(P,-)=0$（甚至 $\Ext^n=0,\ n\ge1$）。
+  \item \textbf{内射模}：每个单射 $i\colon A\to B$ 与 $f\colon A\to I$ 可延拓到 $B$。\keypoint \textbf{Baer 判据}：$I$ 内射 $\iff$ 每个 $R$-同态（由任意左理想 $J$ 出发）$J\to I$ 都能延拓为 $R\to I$。判定向量模：$\Hom_\mathbb Z(-,\mathbb Q/\mathbb Z)$ 保正合 $\Rightarrow$ divisible $\mathbb Z$-模内射（$\mathbb Q,\mathbb Q/\mathbb Z$ 内射；$\mathbb Z$ 不内射）。
+  \item \textbf{平坦模}：$N'\hookrightarrow N\Rightarrow N'\otimes M\hookrightarrow N\otimes M$ 保持单射。等价：$\Tor_1^R(N,M)=0\ \forall N$。\keypoint 链：自由 $\Rightarrow$ 投射 $\Rightarrow$ 平坦；平坦 $\not\Rightarrow$ 投射（如 $\mathbb Q$ 作为 $\mathbb Z$-模）。\textbf{有限生成平坦 $=$ 有限表示平坦 $=$ 投射}（Noether 或有限表示情形）；局部环上有限生成平坦 $\Rightarrow$ 自由。
+  \item \textbf{消解（resolution）}：投射消解 $\cdots\to P_1\to P_0\to A\to0$（每个 $R$-模都有：取自由模覆盖再迭代）；内射消解 $0\to A\to I^0\to I^1\to\cdots$（Grothendieck 保证 $R\text{-}\mathbf{Mod}$ 内射足够多）。\keypoint 消解是同调计算的“原料”。
+  \item \textbf{Ext 与 Tor 定义}：
+  \[
+    \Ext_R^n(A,B):=(R^n\Hom_R(A,-))(B)=(R^n\Hom_R(-,B))(A),
+    \qquad
+    \Tor_n^R(A,B):=(L_n(-\otimes_RB))(A)=(L_n(A\otimes_R-))(B).
+  \]
+  左右两侧一致（\textbf{平衡性}，CE, Ch.~VI, \S1）。低阶：$\Ext_R^0=\Hom_R$，$\Tor_0^R(A,B)=A\otimes_RB$。
+\end{itemize}
+
+\subsection{\keypoint 重点定理}
+
+\begin{enumerate}
+  \item \textbf{Ext 长正合列}（两变量各一条）：
+  \[
+    0\to A'\to A\to A''\to0
+    \ \Longrightarrow\
+    \cdots\to\Ext^n_R(A'',B)\to\Ext^n_R(A,B)\to\Ext^n_R(A',B)\to\Ext^{n+1}_R(A'',B)\to\cdots;
+  \]
+  \[
+    0\to B'\to B\to B''\to0
+    \ \Longrightarrow\
+    \cdots\to\Ext^n_R(A,B'')\to\Ext^n_R(A,B)\to\Ext^n_R(A,B')\to\Ext^{n+1}_R(A,B'')\to\cdots.
+  \]
+  \textbf{Tor 长正合列}：$0\to B'\to B\to B''\to0$ $\Rightarrow$
+  \[
+    \cdots\to\Tor_n^R(A,B')\to\Tor_n^R(A,B)\to\Tor_n^R(A,B'')\to\Tor^R_{n-1}(A,B')\to\cdots.
+  \]
+  （Tor 对两个变量都左右正合、长正合列在两个变量方向都有。）
+  \item \textbf{维数平移（dimension shifting）}：$0\to M\to P\to M'\to0$ 且 $P$ 投射 $\Rightarrow\Ext_R^{n+1}(A,M)\cong\Ext_R^n(A,M')$；Tor 同理。\keypoint 这是递推计算的最主要工具。
+  \item \textbf{维数与环性质}：$\pd_R(A)\le n\iff\Ext_R^{n+1}(A,-)=0$；$\id_R(A)\le n\iff\Ext_R^{n+1}(-,A)=0$；\textbf{整体维数} $\mathrm{gl.dim}\,R=\sup_A\pd_RA$。
+  \keypoint 速查：$\mathrm{gl.dim}\,R=0\iff R$ 半单 Artin；$\mathrm{gl.dim}\,R\le1\iff R$ hereditary（子模投射性）；域/PID：$\mathrm{gl.dim}\,\mathbb Z=1$、$\mathrm{gl.dim}\,k=0$；$\mathrm{gl.dim}\,R[x]=\mathrm{gl.dim}\,R+1$（Hilbert syzygy，CE/背景）。
+  \item \textbf{消解唯一性（同伦意义下）}：任意两个投射消解给出同构的 $\Ext$（\S3.4 比较引理的应用）——所以“换消解”不影响答案，选最顺手的消解算。
+  \item \textbf{K\"unneth / 系数}（CE, Ch.~VI, \S3，了解）：双复形的两个方向取同调可换序（谱序列的雏形）；$H_n(X\otimes Y)$ 与 $H_n(X)\otimes H_m(Y)$ 的关系有一阶 Tor 修正项。
+\end{enumerate}
+
+\subsection{\method 标准计算模板（必会）}
+
+\textbf{模板：算 $\Ext^1_R(A,B)$}——① 写出 $A$ 的短投射消解 $0\to P_1\to P_0\to A\to0$；② 作用 $\Hom_R(-,B)$ 得 $0\to\Hom(A,B)\to\Hom(P_0,B)\to\Hom(P_1,B)\to0$（一般只左正合，尾巴用余核）；③ $\Ext^1(A,B)=\Coker\bigl(\Hom(P_0,B)\to\Hom(P_1,B)\bigr)$。
+
+\textbf{例题 1}：$\mathbb Z$ 上 $\Ext^1_\mathbb Z(\mathbb Z/p,\ M)=M/pM$，$\Hom_\mathbb Z(\mathbb Z/p,M)=M[p]$（$p$-挠）。用 $0\to\mathbb Z\xrightarrow{\times p}\mathbb Z\to\mathbb Z/p\to0$：$\Hom(\mathbb Z,M)=M$，$(\times p)^*$ 是 $m\mapsto pm$。
+\textbf{例题 2}：$\Tor_1^\mathbb Z(\mathbb Z/p,\ \mathbb Z/q)=\mathbb Z/(p,q)$（张量化同一消解）。
+
+\textbf{模板：证某模平坦/投射/内射}——平坦：证 $\Tor_1(-,M)=0$ 或理想判据/局部化；投射：找直和因子地位或证 $\Ext^1(P,-)=0$；内射：Baer 判据。
+
+\subsection{达标自测}
+\begin{enumerate}[label=(\arabic*)]
+  \item 算 $\Ext^1_\mathbb Z(\mathbb Z/n,\mathbb Z)$、$\Ext^1_\mathbb Z(\mathbb Z,\mathbb Z/n)$、$\Tor_1^\mathbb Z(\mathbb Z/n,\mathbb Z/m)$。
+  \item 证明 $\mathbb Q$ 是平坦而非投射的 $\mathbb Z$-模；$\mathbb Z/p$ 非平坦。
+  \item 用定义证明自由模投射；用 Baer 判据证明 $\mathbb Q$（$\mathbb Z$-模）内射。
+  \item 对 $0\to\mathbb Z\xrightarrow{\times n}\mathbb Z\to\mathbb Z/n\to0$ 写出 $\Ext^\bullet_\mathbb Z(\mathbb Z/n,-)$ 与 $\Tor_\bullet^{\mathbb Z}(\mathbb Z/n,-)$ 的完整长正合列。
+\end{enumerate}
+
+\section{群上同调、extensions、spectral sequence（CE Ch.~XII, XIV, XV 节选）}
+
+\subsection{群上同调：定义与低阶词汇表}
+
+设 $G$ 有限（或任意群），$A$ 为 $G$-模（左 $Z[G]$-模）。
 \[
-\begin{gathered}
-\Lambda\text{ 左 hereditary}\\
-\iff\\
-\text{每个投射左 }\Lambda\text{-模的子模均投射}\\
-\iff\\
-\text{每个内射左 }\Lambda\text{-模的商模均内射}.
-\end{gathered}
+  H^n(G,A):=\Ext^n_{\mathbb Z[G]}(\mathbb Z,A),\qquad
+  H_n(G,A):=\Tor_n^{\mathbb Z[G]}(\mathbb Z,A).
+  \qquad(\text{CE, Ch.~XII})
 \]
-而 Proposition 6.2 只给出
+\textbf{标准上链复形（非齐次）}：$C^n(G,A)=\{f\colon G^n\to A\}$，
 \[
-\begin{gathered}
-\Lambda\text{ 左 semi-hereditary}\\
-\iff\\
-\text{每个投射左 }\Lambda\text{-模的}\\
-\text{有限生成子模均投射}.
-\end{gathered}
+  (\delta^n f)(g_0,\dots,g_n)
+  =g_0\cdot f(g_1,\dots,g_n)
+  +\sum_{i=1}^{n}(-1)^i f(g_0,\dots,g_{i-1}g_i,\dots,g_n)
+  +(-1)^{n+1}f(g_0,\dots,g_{n-1}).
 \]
+\keypoint 低阶含义（必须背）：
+\begin{itemize}
+  \item $H^0(G,A)=A^G$（不变量）。
+  \item $H^1(G,A)=\Der(G,A)/\text{主交叉同态}$；交叉同态 $f(gh)=f(g)+g\cdot f(h)$，主交叉同态 $f(g)=g\cdot a-a$。$A$ 平凡作用时 $H^1(G,A)=\Hom(G,A)$。$A=\mathbb Z$（平凡）时 $H^1(G,\mathbb Z)=\Hom(G,\mathbb Z)=0$（$G$ 有限）。
+  \item $H^2(G,A)=\{$以 $A$ 为中心核的扩张 $1\to A\to E\to G\to1$ 的等价类$\}$（CE, Ch.~XIV, \S4；Schreier 因子/因子集语言：$2$-上循环就是乘法法则的“扭曲项”）。$A$ 平凡时 $H^2(C_n,\mathbb Z)=\mathbb Z/n$（中心扩张由关系 $b^n=a^r$ 分类）。
+  \item 同调侧：$H_0(G,\mathbb Z)=\mathbb Z$；$H_1(G,\mathbb Z)=G^{\mathrm{ab}}$（群论基础例）。
+\end{itemize}
 
-\section{为何 6.2 没有相同的内射结论}
+\subsection{\keypoint 重点定理}
 
-Theorem 5.4 中从投射子模条件推出``内射模的商仍内射''时，设
-\[
-0\longrightarrow Q'\longrightarrow Q\longrightarrow Q''\longrightarrow0,
-\qquad Q\text{ 内射}.
-\]
-为验证 \(Q''\) 内射，必须对\textbf{任意}嵌入 \(P'\hookrightarrow P\) 和任意映射 \(P'\to Q''\) 构造延拓 \(P\to Q''\)。证明先利用 \(P'\) 的投射性将映射提升为 \(P'\to Q\)，再利用 \(Q\) 的内射性延拓为 \(P\to Q\)，最后复合 \(Q\twoheadrightarrow Q''\)。
+\begin{enumerate}
+  \item \textbf{长正合列}：$0\to A'\to A\to A''\to0$（$G$-模短正合列）$\Rightarrow$ 群上同调长正合列 $\cdots\to H^n(G,A')\to H^n(G,A)\to H^n(G,A'')\to H^{n+1}(G,A')\to\cdots$。同调侧同构（普通上同调的“模智”推论，来自 Ext/Tor 长正合列）。
+  \item \textbf{有限群湮灭}：$G$ 有限、$n\ge1$ 时 $|G|\cdot H^n(G,A)=0$（范数映射 $\operatorname{Cor}\circ\operatorname{Res}$ 即乘 $|G|$）。\keypoint 于是：$A$ 为 $\mathbb Q$-向量空间（或 $|G|$ 可逆于 $A$）$\Rightarrow H^n(G,A)=0\ (n\ge1)$；$A$ 有限 $\Rightarrow H^n(G,A)$ 有限。
+  \item \textbf{Shapiro 引理}：$H^n\bigl(G,\operatorname{Coind}_H^G A\bigr)\cong H^n(H,A)$（$\operatorname{Coind}_H^G A=\Hom_{\mathbb ZH}(\mathbb ZG,A)$；有限群时与 $\operatorname{Ind}$ 一致）。\keypoint 用法：把“大模”换到“子群上的小模”。
+  \item \textbf{Inflation--Restriction}（$N\trianglelefteq G$，低阶段）：
+  \[
+    0\to H^1(G/N,\,A^N)\to H^1(G,A)\to H^1(N,A)^{G/N}\to H^2(G/N,\,A^N)\to H^2(G,A)
+  \]
+  正合（更高次由 Hochschild--Serre 谱序列控制）。\keypoint 判定“$H^2(G,A)$ 从 $N$ 侧消失”的标准工具。
+  \item \textbf{Hochschild--Serre 谱序列}（$1\to N\to G\to G/N\to1$，CE Ch.~XVI 形式）：
+  \[
+    E_2^{pq}=H^p\bigl(G/N,\,H^q(N,A)\bigr)\ \Longrightarrow\ H^{p+q}(G,A).
+  \]
+  \keypoint 这是“群扩张计算 $H^\bullet(G,A)$”的通用入口。
+  \item \textbf{谱序列基础设定}（CE, Ch.~XV）：滤过复形 $\Rightarrow$ 谱序列 $(E_r^{pq},d_r)$，$d_r\colon E_r^{pq}\to E_r^{p+r,q-r+1}$，$E_{r+1}=H(E_r,d_r)$；双复形的“两个方向”版本：$E_2^{pq}=H^p_I H^q_{II}(C)\Rightarrow H^{p+q}(\Tot C)$。边同态：$E_2^{p0}\to H^p$、$H^p\to E_2^{0p}$。\keypoint 解题三问：①这是哪两个函子的复合？（找谱序列的“来源”）②$E_2$ 项是什么？③退化了没有？（$E_2$ 只有一行 $p=0$ 或一列 $q=0$ 非零 $\Rightarrow$ 无微分、$H^n\cong E_2^{0n}$ 沿边同态；或者按已知零项用“最低次非零项永不被打掉”递推。）
+\end{enumerate}
 
-因此，该论证要求任意子模 \(P'\subseteq P\) 均投射。若只知道 \(P'\) 有限生成时投射，便只能处理有限生成的嵌入；但内射性的定义要求处理所有嵌入，不能在此截断。等价地，Baer 判别法要求对每个左理想 \(I\subseteq\Lambda\) 的映射 \(I\to E\) 都可延拓到 \(\Lambda\)，而非只对有限生成理想成立。
+\subsection{\method 标准计算模板（必会）}
 
-所以 semi-hereditary 的有限性条件并不能推出
-\[
-\text{内射模的商仍内射}.
-\]
-若它能推出该结论，则由 Theorem 5.4 反推 \(\Lambda\) 已是 hereditary，矛盾于一般的严格差别。典型地，非 Noether 的 Pr\"ufer 整环可为 semi-hereditary 而非 hereditary，故必存在某个内射模有非内射商。
+\begin{itemize}
+  \item \textbf{算 $H^1(G,A)$}：查交叉同态；作用平凡则直接 $\Hom(G,A)$ 打分（$G$ 有限 $\Rightarrow\mathbb Z$ 情形为 $0$）。
+  \item \textbf{算 $H^2(G,A)$}：① 用扩张分类（$1\to A\to E\to G\to1$，写生成元与关系，数不变量）；② 或用长正合列 + Inflation--Restriction 降维；③ 或对有限的 $G$ 用“$|G|\cdot H^n=0$”配合已知结构。
+  \item \textbf{例题}：$H^1(C_n,\mathbb Z)=0$、$H^2(C_n,\mathbb Z)=\mathbb Z/n$；$G$ 有限时 $H^1(G,\mathbb C^\times)=\Hom(G,\mathbb C^\times)$；$H^2(G,\mathbb C^\times)$ 与 Schur 乘子口径（了解即可）。
+  \item \textbf{谱序列用法例}：对 $1\to C_p\to G\to H\to1$ 用 HS 谱序列，先看 $E_2^{pq}=H^p(H,H^q(C_p,A))$ 的零项，判断 $H^{\le2}(G,A)$ 哪些由 $H^{\le1}$ 与边同态直接读出。
+\end{itemize}
 
-\section{何时差异消失}
+\subsection{达标自测}
+\begin{enumerate}[label=(\arabic*)]
+  \item 证明 $H^0(G,A)=A^G$、$H^1(G,A)=\Der/\text{主}$，并写 $2$-上循环的（因子集）条件式。
+  \item 计算 $H^1(C_2,\mathbb Z)$、$H^2(C_2,\mathbb Z)$（用 $0\to\mathbb Z\to\mathbb Z[C_2]\to\mathbb Z\to0$ 的途径或扩张分类）。
+  \item 陈述 Shapiro 引理并核对 $H=1$ 的特殊情形：$H^n(G,\operatorname{Coind}_1^G A)\cong H^n(1,A)$，其中 $\operatorname{Coind}_1^G A=\Hom_\mathbb Z(\mathbb ZG,A)$ 满足 $H^0(G,\cdot)=\Hom_{\mathbb ZG}(\mathbb ZG,A)=A$、$H^n(G,\cdot)=0\ (n\ge1)$——与 $H^n(1,A)$ 的取值一致。
+  \item 用 Inflation--Restriction 说明：$N$ 可解/某阶消去时 $H^2(G,A)$ 的上界（理解“把问题压到 $G/N$”）。
+\end{enumerate}
 
-若 \(\Lambda\) 左 Noether，则每个左理想有限生成；于是 left semi-hereditary 自动等于 left hereditary。因此此时 Theorem 5.4 的内射商结论重新成立。
+\section{derived category 与现代语言（Gelfand--Manin Ch.~III--IV，概念补强）}
+
+\textbf{本轮只要求概念级，不刷题。}三句话拿住主线：
+\begin{itemize}
+  \item \textbf{derived category} $D(R)$：把链复形范畴在\textbf{拟同构}处局部化（拟同构被当作同构）。好处：$0\to A\to B\to C\to0$ 变成\textbf{三角形的等式} $A\to B\to C\to A[1]$，长正合列“自动”且函子式。
+  \item \textbf{三角范畴}：$D(R)$ 带平移 $[1]$ 与 distinguished triangles（$X\to Y\to\operatorname{Cone}(f)\to X[1]$）；映射锥 $\operatorname{Cone}(f)$ 是“同伦意义下的核+余核”。
+  \item \textbf{导出函子}：$RF\colon D(R)\to D(S)$ 由“先取内射（或 $K$-内射）替换再做 $F$”定义；$\operatorname{RHom}$、$-\otimes^{\mathrm L}-$、$R\Gamma$ 等都是这样来的；\keypoint 谱序列是“在导出范畴层面计算复合函子的各阶分量”的展开——学完 \S5 反过来理解 GM Ch.~III \S6 附近的 Grothendieck 谱序列更顺。
+\end{itemize}
+
+\section{30 分钟速查表（考前最后一页）}
+
+\begin{center}
+\begin{tabular}{|p{6.2cm}|p{8.6cm}|}
+\hline
+\textbf{对象} & \textbf{一句话结论} \\\hline
+Yoneda & $\operatorname{Nat}(\Hom(A,-),F)\cong F(A)$；$\Hom(A,-)\cong\Hom(B,-)\Rightarrow A\cong B$ \\\hline
+伴随 & $F\dashv G\Rightarrow F$ 保余极限、$G$ 保极限；unit/counit 三角 \\\hline
+同调 & $H_n=\ker d_n/\im d_{n+1}$；$0\to B_n\to Z_n\to H_n\to0$ \\\hline
+长正合列 & $0\to A\to B\to C\to0$（链映射）$\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$；$\partial=f^{-1}dg^{-1}$ \\\hline
+蛇/五引理 & $\ker$列与$\Coker$列正合；五引理证同构 \\\hline
+链同伦 & $f-g=ds+sd\Rightarrow H(f)=H(g)$；拟同构$=$同调同构 \\\hline
+投射/内射/平坦 & 提升性质/$K$ 性质/Baer；$\Ext^1(P,-)=0$；$\Tor_1(N,M)=0$；有限生成平坦$=$投射 \\\hline
+Ext/Tor & $\Ext^n=R^n\Hom$（平衡）；$\Tor_n=L_n\otimes$；$\Ext^0=\Hom$、$\Tor_0=\otimes$ \\\hline
+Ext 长正合 & 两个变量各一条；$\to\Ext^n(A'',-)\to\Ext^n(A,-)\to\Ext^n(A',-)\to\Ext^{n+1}(A'',-)\to$ \\\hline
+维数平移 & 投射消解下 $\Ext^{n+1}(A,M)=\Ext^n(A,M')$ \\\hline
+整体维数 & $\mathrm{gl.dim}=0\iff$ 半单；$=1\iff$ hereditary；$\mathrm{gl.dim}\,\mathbb Z=1$ \\\hline
+群上同调 & $H^n(G,A)=\Ext^n_{\mathbb ZG}(\mathbb Z,A)$；$H^0=A^G$；$H^1=\Der/\text{主}$；$H^2=\{A$-中心扩张$\}$ \\\hline
+有限群湮灭 & $n\ge1\Rightarrow |G|\cdot H^n(G,A)=0$；$\mathbb Q$-向量空间 $\Rightarrow0$ \\\hline
+Shapiro / I--R & $H^n(G,\operatorname{Coind}_H^G A)\cong H^n(H,A)$；$0\to H^1(G/N,A^N)\to H^1(G,A)\to H^1(N,A)^{G/N}\to H^2(G/N,A^N)\to H^2(G,A)$ \\\hline
+HS 谱序列 & $1\to N\to G\to G/N\to1$：$E_2^{pq}=H^p(G/N,H^q(N,A))\Rightarrow H^{p+q}(G,A)$ \\\hline
+谱序列退化 & $E_2$ 只有一行/一列 $\Rightarrow$ 无微分，$H^n\cong E_2^{0n}$（或 ${}^{n0}$）\\\hline
+derived category & 拟同构局部化；distinguished triangle $X\to Y\to\operatorname{Cone}(f)\to X[1]$；$RF$ 经内射替换 \\\hline
+\end{tabular}
+\end{center}
+
+\section{必做题优先级清单}
+
+按“考到概率 $\times$ 掌握收益”排序，第一轮只做这些：
+\begin{enumerate}
+  \item \textbf{必做（基础五件套）}：① Yoneda 的两个推论证明；② 蛇引理 chase + 长正合列连接同态；③ $\Ext^1_\mathbb Z(\mathbb Z/n,M)$、$\Tor_1^\mathbb Z(\mathbb Z/n,\mathbb Z/m)$ 全套计算；④ $H^1/H^2$ 低阶词汇表 + $C_n,\mathbb Z$ 计算；⑤ 短正合列分裂判定的三条件互推。
+  \item \textbf{必做（标准题）}：投射/内射/平坦的典型判定（$\mathbb Z$ 系）；维数平移递推 $\Ext^n$；Shapiro 与 Inflation--Restriction 各一题；一个能退化的谱序列题（HS 于 $N$ 平凡作用且 $H^{\ge1}(N,A)=0$）。
+  \item \textbf{可后置}：K\"unneth 证明、双复形谱序列内部构造、derived category 题（第一轮不刷）。
+  \item 每做完一项，在对应 \S 的自测题上打勾；\textbf{标准计算必须“闭卷从头写到底”}一次才算出关。
+\end{enumerate}
+
+\section*{容易踩的坑（常错点速记）}
+
+\begin{itemize}
+  \item 拟同构 $\not\Rightarrow$ 同伦等价；$\Ext^1(P,-)=0\ \forall P$ 才说明 $P$ 投射（单看 $\Ext^1(P,R)=0$ 不够）。
+  \item $\Ext$ 长正合列：第一变量\textbf{反变}（方向反转），第二变量协变；写错方向是考试高频失分点。
+  \item $\Tor_0=\otimes$，$\Tor_n$ 与“核”关系：$\Tor_1(A,B)=\ker(\cdots)$，不是余核。
+  \item 平坦 $\not\Rightarrow$ 投射（$\mathbb Q/\mathbb Z$、$\mathbb Q$ 上 $\otimes$ 正合）；局部化保持平坦。
+  \item $H^n(G,A)$ 的“$|G|$ 湮灭”只对 $n\ge1$；$H^0=A^G$ 不受影响。
+  \item 谱序列的 $E_2$ 项 $\neq H^\bullet$：先看退化，再读边同态。
+  \item 群环 $\mathbb ZG$ 上的投射模一般不是自由模（与域上 $kG$ 不同），不要默认直行套用。
+\end{itemize}
 
 \end{document}
