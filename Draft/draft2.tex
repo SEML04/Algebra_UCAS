@@ -99,7 +99,7 @@
 \subsection{达标自测}
 \begin{enumerate}[label=(\arabic*)]
   \item 证明 $\operatorname{Nat}(\Hom(A,-),\Hom(B,-))\cong\Hom(B,A)$（直接写 Yoneda 的 $A,B$ 情形）。
-  \item 证明 $G\colon\mathbf{Set}\to\mathbf{Grp}$（自由群）与忘却函子 $U\colon\mathbf{Grp}\to\mathbf{Set}$ 有 $F\dashv U$；推出 $F$ 保余积。
+  \item 证明 $G\colon\mathbf{Set}\to\mathbf{Grp}$（自由群）是忘却函子 $U\colon\mathbf{Grp}\to\mathbf{Set}$ 的\textbf{左伴随}，即 $G\dashv U$（$\Hom_{\mathbf{Grp}}(GX,Y)\cong\Hom_{\mathbf{Set}}(X,UY)$ 自然）；由此推出 $G$ 保余积：$G(A\sqcup B)\cong G(A)*G(B)$（集合的无交并映到群的自由积）。
   \item 判断：$\Hom(-,A)\colon\mathcal C^{op}\to\mathbf{Set}$ 的可表对象是什么？Yoneda 对反变函子怎么写？
   \item 证明“可表函子保极限”（任一可表函子 $\Hom(A,-)$ 保持任意存在的极限）。
 \end{enumerate}
