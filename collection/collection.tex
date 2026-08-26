@@ -4832,108 +4832,6 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 \end{proof}
 \end{example}
 
-\subsection{\texorpdfstring{Frobenius 补与 Frobenius 核：固定点自由作用、\(\varphi_h\) 双射与元素分解}{Frobenius 补与 Frobenius 核：固定点自由作用、phih 双射与元素分解}}\label{subsec:problem-frobenius-complement-kernel}
-
-\begin{example}
-（出处：Frobenius 群基本性质的标准习题）
-
-设 \(G\) 是有限群，\(H\) 是 \(G\) 的 \textbf{Frobenius 补}：对任意 \(t\notin H\) 满足
-\[
-  H\cap tHt^{-1}=\{1\}.
-\]
-Frobenius 核的标准构造如下：记
-\[
-  N:=\bigl\{g\in G\setminus\{1\}:\ \text{\(g\) 的任一共轭都不落入 }H\bigr\}
-  =G\setminus\bigcup_{t\in G}t(H\setminus\{1\})t^{-1},
-\]
-并令 \(K:=N\cup\{1\}\)（题中记号 “\(K=N\cup\{1\}\)” 即此意）。\textbf{Frobenius 定理}断言 \(K\trianglelefteq G\) 且 \(G=K\rtimes H\)；一般情形这需要群的特征标理论，本题不重证其存在性，而是把该结论作为已知前提（“对应的 Frobenius 核”），在它之上完成下列推导。
-
-\begin{enumerate}
-  \item 证明 \(K\) 是 \(G\) 的一个正规子群，且 \(G\) 是 \(H\) 与 \(K\) 的半直积；
-  \item 证明对任意 \(h\in H\setminus\{1\}\) 和任意 \(k\in K\)，若 \(hkh^{-1}=k\)，则必有 \(k=1\)（即 \(H\) 在 \(K\setminus\{1\}\) 上的共轭作用没有非平凡固定点）；
-  \item 利用上一小问证明：对固定的 \(h\in H\setminus\{1\}\)，映射
-  \[
-    \varphi_h\colon K\to K,\qquad k\longmapsto hkh^{-1}k^{-1}
-  \]
-  是 \(K\) 到自身的一一对应（双射）；
-  \item 由此推导：群 \(G\) 的任何非平凡元素 \(g\in G\) 要么落在 \(K\) 中，要么属于 \(H\) 的某个共轭子群。
-\end{enumerate}
-
-\textbf{解答：}
-
-\textbf{（1）\(K\trianglelefteq G\) 与半直积结构。} 先澄清一个易错点：\(K\cap H=\{1\}\) 与 \(KH=G\) 一起\textbf{并不足以}把 \(G\) 写成 \(K\) 与 \(H\) 的半直积——它们只保证每个元素 \(g\in G\) 有唯一分解 \(g=kh\)（\(k\in K,\ h\in H\)，集合层面的 Zappa--Szép 分解），而内部半直积还要求 \(K\trianglelefteq G\) 或 \(H\trianglelefteq G\) 至少有一个成立。反例：\(G=S_4\)，取
-\[
-  K=S_3=\operatorname{Stab}_{S_4}(4),\qquad H=\langle(1234)\rangle,
-\]
-则 \(|K||H|=6\cdot 4=24=|G|\)、\(K\cap H=\{1\}\)，故 \(KH=S_4\)；但 \(K\)（点稳定子，共轭后成别的点稳定子）与 \(H\)（四阶循环子群，共轭类不止一个）都不正规，\(S_4\) 并不是 \(K\) 与 \(H\) 的半直积。
-
-本题中 \(K\) 的正规性不是从这些条件“推”出来的，而是由 \textbf{Frobenius 定理}以已知结构 \(G=K\rtimes H\) 的形式提供的：\(K=N\cup\{1\}\) 只是“共轭不落入 \(H\)”的元素的集合（它共轭不变，但一般看不出是子群），“它构成正规子群且 \(G=K\rtimes H\)”本身就是该定理的非平凡内容。在此前提下，
-\[
-  K\trianglelefteq G,\qquad K\cap H=\{1\},\qquad KH=G,
-\]
-每个 \(g\in G\) 唯一分解为 \(g=kh\)（\(k\in K,\ h\in H\)），故 \(G\) 是 \(K\) 与 \(H\) 的内部半直积；注意题中 \(N=K\setminus\{1\}\) 不含单位元、不是子群，作为半直积因子的正规子群是 \(K\) 本身。
-
-\textbf{（2）共轭作用固定点自由。} 设 \(h\in H\setminus\{1\}\)，\(k\in K\) 且 \(hkh^{-1}=k\)。则
-\[
-  hk=kh\ \Longrightarrow\ h=khk^{-1},
-\]
-故 \(h\in kHk^{-1}\cap H\)。若 \(k\neq 1\)，则由 \(K\cap H=\{1\}\) 知 \(k\notin H\)；于是按 Frobenius 补的条件（取 \(t=k\notin H\)）
-\[
-  kHk^{-1}\cap H=\{1\},
-\]
-与 \(h\neq 1\) 且 \(h\in kHk^{-1}\cap H\) 矛盾。所以只能 \(k=1\)。
-
-\textbf{（3）\(\varphi_h\) 是双射。} 先证单射：设 \(\varphi_h(k_1)=\varphi_h(k_2)\)，即
-\[
-  hk_1h^{-1}k_1^{-1}=hk_2h^{-1}k_2^{-1}.
-\]
-左消 \(h\) 得
-\[
-  k_1h^{-1}k_1^{-1}=k_2h^{-1}k_2^{-1},
-\]
-左乘 \(k_2^{-1}\)、右乘 \(k_1\) 得
-\[
-  k_2^{-1}k_1\cdot h^{-1}=h^{-1}\cdot k_2^{-1}k_1,
-\]
-即
-\[
-  h\,(k_2^{-1}k_1)\,h^{-1}=k_2^{-1}k_1.
-\]
-令 \(x:=k_2^{-1}k_1\in K\)，按第（2）问，\(x\) 被 \(h\neq 1\) 的共轭固定，故 \(x=1\)，即 \(k_1=k_2\)。满射：\(K\) 是有限集，单射自动是满射，故 \(\varphi_h\) 是双射。
-
-\textbf{（4）元素分解：核或共轭补。} 取 \(g\in G\setminus\{1\}\)。按半直积唯一分解
-\[
-  g=kh\qquad (k\in K,\ h\in H).
-\]
-若 \(h=1\)，则 \(g=k\in K\)。若 \(h\neq 1\)，由第（3）问 \(\varphi_h\) 满射，存在 \(k'\in K\) 使
-\[
-  \varphi_h(k')=k^{-1},\qquad \text{即}\qquad hk'h^{-1}k'^{-1}=k^{-1}.
-\]
-于是 \(k^{-1}k'=hk'h^{-1}\)，两边取逆得
-\[
-  k'^{-1}k=hk'^{-1}h^{-1}.
-\]
-代入：
-\[
-  k'^{-1}gk'
-  =k'^{-1}(kh)k'
-  =(k'^{-1}k)\,h\,k'
-  =(hk'^{-1}h^{-1})\,h\,k'
-  =h(k'^{-1}k')
-  =h\in H,
-\]
-故 \(g\in k'Hk'^{-1}\)——即 \(g\) 属于 \(H\) 的某个共轭子群。\(\square\)
-
-\textbf{方法要点：}
-本题是 Frobenius 群“元素要么在核里、要么在某个共轭补里”的结构定理，四步环环相扣：
-（1）半直积结构（正规性与唯一分解）来自 \textbf{Frobenius 定理}这一已知前提——注意 \(K\cap H=\{1\}\)、\(KH=G\) 本身不足以构成半直积（\(S_4\) 反例），正规因子必须由定理保证；（2）把“补的条件”翻译成共轭作用固定点自由，关键在于 \(K\cap H=\{1\}\) 保证非平凡核元素不在 \(H\) 中；（3）是“固定点自由作用 \(\Longrightarrow\) 映射 \(k\mapsto hkh^{-1}k^{-1}\) 双射”的标准引理，单射靠共轭扭曲，满射靠有限性；（4）用 \(\varphi_h\) 的满射性把任意 \(g=kh\) 共轭化回 \(H\)。
-顺带可得集合层级的分解
-\[
-  G=\{1\}\sqcup (K\setminus\{1\})\sqcup \bigsqcup_{t}\bigl(tHt^{-1}\setminus\{1\}\bigr),
-\]
-且不同共轭补 \(tHt^{-1}\) 之间只在 \(\{1\}\) 相交（这正是 Frobenius 补的定义）。
-\end{example}
-
 \subsection{超越单扩张的真中间域}\label{subsec:problem-transcendental-simple}
 
 \begin{example}
@@ -9606,6 +9504,201 @@ and that \(\psi=\chi-1\) is the character of a representation of \(G\); determin
 “诱导表示不可约”的通用套路是：Mackey 不可约准则把它化约为“非平凡双陪集上的不相交性”；Bruhat 分解把双陪集数降到最少（这里只有 2 个）；两个一维特征标的不相交性即 \(\omega\neq\omega^{-1}\)，即 \(\omega^2\neq 1\)。本题与 \hyperref[subsec:problem-serre-a4-induced-klein]{\(A_4\) 诱导表示} 一题互补：那边按共轭类硬算特征标表，这里直接用 Mackey 准则免去整张表的计算；另外 \(\dim\operatorname{Ind}_H^G\chi_\omega=[G:H]=|k|+1\)（射影直线上的点数），可作为结果的自检。
 \end{example}
 
+\subsection{\texorpdfstring{Frobenius 补与 Frobenius 核：固定点自由作用、\(\varphi_h\) 双射与元素分解}{Frobenius 补与 Frobenius 核：固定点自由作用、phih 双射与元素分解}}\label{subsec:problem-frobenius-complement-kernel}
+
+\begin{example}
+（出处：Frobenius 群基本性质的标准习题；第 5 问（Frobenius 定理的重证）按 \textit{Jacobson - Basic Algebra II}, §5.15）
+
+设 \(G\) 是有限群，\(H\) 是 \(G\) 的 \textbf{Frobenius 补}：对任意 \(t\notin H\) 满足
+\[
+  H\cap tHt^{-1}=\{1\}.
+\]
+Frobenius 核的标准构造如下：记
+\[
+  N:=\bigl\{g\in G\setminus\{1\}:\ \text{\(g\) 的任一共轭都不落入 }H\bigr\}
+  =G\setminus\bigcup_{t\in G}t(H\setminus\{1\})t^{-1},
+\]
+并令 \(K:=N\cup\{1\}\)（题中记号 “\(K=N\cup\{1\}\)” 即此意）。\textbf{Frobenius 定理}断言 \(K\trianglelefteq G\) 且 \(G=K\rtimes H\)。第 1--4 问把该结论当作已知前提（“对应的 Frobenius 核”），在其上完成对固定点自由作用、\(\varphi_h\) 双射与元素分解的推导；第 5 问给出定理本身的完整重证——这也是本题被归入\textbf{表示论}的原因：该定理没有已知的免特征标证明（Jacobson, BAI II, p.~320）。
+
+\begin{enumerate}
+  \item 证明 \(K\) 是 \(G\) 的一个正规子群，且 \(G\) 是 \(H\) 与 \(K\) 的半直积；
+  \item 证明对任意 \(h\in H\setminus\{1\}\) 和任意 \(k\in K\)，若 \(hkh^{-1}=k\)，则必有 \(k=1\)（即 \(H\) 在 \(K\setminus\{1\}\) 上的共轭作用没有非平凡固定点）；
+  \item 利用上一小问证明：对固定的 \(h\in H\setminus\{1\}\)，映射
+  \[
+    \varphi_h\colon K\to K,\qquad k\longmapsto hkh^{-1}k^{-1}
+  \]
+  是 \(K\) 到自身的一一对应（双射）；
+  \item 由此推导：群 \(G\) 的任何非平凡元素 \(g\in G\) 要么落在 \(K\) 中，要么属于 \(H\) 的某个共轭子群。
+  \item 证明（重证 Frobenius 定理）：按上述构造定义的 \(K\) 是 \(G\) 的正规子群，且 \(G=K\rtimes H\)。
+\end{enumerate}
+
+\textbf{解答：}
+
+\textbf{（1）\(K\trianglelefteq G\) 与半直积结构。} 先澄清一个易错点：\(K\cap H=\{1\}\) 与 \(KH=G\) 一起\textbf{并不足以}把 \(G\) 写成 \(K\) 与 \(H\) 的半直积——它们只保证每个元素 \(g\in G\) 有唯一分解 \(g=kh\)（\(k\in K,\ h\in H\)，集合层面的 Zappa--Szép 分解），而内部半直积还要求 \(K\trianglelefteq G\) 或 \(H\trianglelefteq G\) 至少有一个成立。反例：\(G=S_4\)，取
+\[
+  K=S_3=\operatorname{Stab}_{S_4}(4),\qquad H=\langle(1234)\rangle,
+\]
+则 \(|K||H|=6\cdot 4=24=|G|\)、\(K\cap H=\{1\}\)，故 \(KH=S_4\)；但 \(K\)（点稳定子，共轭后成别的点稳定子）与 \(H\)（四阶循环子群，共轭类不止一个）都不正规，\(S_4\) 并不是 \(K\) 与 \(H\) 的半直积。
+
+本题中 \(K\) 的正规性不是从这些条件“推”出来的，而是由 \textbf{Frobenius 定理}以已知结构 \(G=K\rtimes H\) 的形式提供的：\(K=N\cup\{1\}\) 只是“共轭不落入 \(H\)”的元素的集合（它共轭不变，但一般看不出是子群），“它构成正规子群且 \(G=K\rtimes H\)”本身就是该定理的非平凡内容。在此前提下，
+\[
+  K\trianglelefteq G,\qquad K\cap H=\{1\},\qquad KH=G,
+\]
+每个 \(g\in G\) 唯一分解为 \(g=kh\)（\(k\in K,\ h\in H\)），故 \(G\) 是 \(K\) 与 \(H\) 的内部半直积；注意题中 \(N=K\setminus\{1\}\) 不含单位元、不是子群，作为半直积因子的正规子群是 \(K\) 本身（定理本身的证明见第（5）问）。
+
+\textbf{（2）共轭作用固定点自由。} 设 \(h\in H\setminus\{1\}\)，\(k\in K\) 且 \(hkh^{-1}=k\)。则
+\[
+  hk=kh\ \Longrightarrow\ h=khk^{-1},
+\]
+故 \(h\in kHk^{-1}\cap H\)。若 \(k\neq 1\)，则由 \(K\cap H=\{1\}\) 知 \(k\notin H\)；于是按 Frobenius 补的条件（取 \(t=k\notin H\)）
+\[
+  kHk^{-1}\cap H=\{1\},
+\]
+与 \(h\neq 1\) 且 \(h\in kHk^{-1}\cap H\) 矛盾。所以只能 \(k=1\)。
+
+\textbf{（3）\(\varphi_h\) 是双射。} 先证单射：设 \(\varphi_h(k_1)=\varphi_h(k_2)\)，即
+\[
+  hk_1h^{-1}k_1^{-1}=hk_2h^{-1}k_2^{-1}.
+\]
+左消 \(h\) 得
+\[
+  k_1h^{-1}k_1^{-1}=k_2h^{-1}k_2^{-1},
+\]
+左乘 \(k_2^{-1}\)、右乘 \(k_1\) 得
+\[
+  k_2^{-1}k_1\cdot h^{-1}=h^{-1}\cdot k_2^{-1}k_1,
+\]
+即
+\[
+  h\,(k_2^{-1}k_1)\,h^{-1}=k_2^{-1}k_1.
+\]
+令 \(x:=k_2^{-1}k_1\in K\)，按第（2）问，\(x\) 被 \(h\neq 1\) 的共轭固定，故 \(x=1\)，即 \(k_1=k_2\)。满射：\(K\) 是有限集，单射自动是满射，故 \(\varphi_h\) 是双射。
+
+\textbf{（4）元素分解：核或共轭补。} 取 \(g\in G\setminus\{1\}\)。按半直积唯一分解
+\[
+  g=kh\qquad (k\in K,\ h\in H).
+\]
+若 \(h=1\)，则 \(g=k\in K\)。若 \(h\neq 1\)，由第（3）问 \(\varphi_h\) 满射，存在 \(k'\in K\) 使
+\[
+  \varphi_h(k')=k^{-1},\qquad \text{即}\qquad hk'h^{-1}k'^{-1}=k^{-1}.
+\]
+于是 \(k^{-1}k'=hk'h^{-1}\)，两边取逆得
+\[
+  k'^{-1}k=hk'^{-1}h^{-1}.
+\]
+代入：
+\[
+  k'^{-1}gk'
+  =k'^{-1}(kh)k'
+  =(k'^{-1}k)\,h\,k'
+  =(hk'^{-1}h^{-1})\,h\,k'
+  =h(k'^{-1}k')
+  =h\in H,
+\]
+故 \(g\in k'Hk'^{-1}\)——即 \(g\) 属于 \(H\) 的某个共轭子群。\(\square\)
+
+\textbf{（5）Frobenius 定理的重证：\(K\trianglelefteq G\) 且 \(G=K\rtimes H\)。}（按 Jacobson, BAI II, §5.15）
+
+\emph{引理（诱导类函数的限制）。} 设 \(\varphi\) 是 \(H\) 上的类函数且 \(\varphi(1)=0\)，诱导类函数定义为
+\[
+  \varphi^G(a):=\frac{1}{|H|}\sum_{\substack{t\in G\\ t^{-1}at\in H}}\varphi(t^{-1}at),
+\]
+则
+\[
+  (\varphi^G)\big|_H=\varphi.
+\]
+证明：对 \(h\in H\setminus\{1\}\)，\(t^{-1}ht\in H\iff h\in tHt^{-1}\)；若 \(t\notin H\)，按 Frobenius 补的条件 \(tHt^{-1}\cap H=\{1\}\) 知这不可能，故求和只跑过 \(t\in H\)，而 \(\varphi\) 是类函数，得
+\[
+  \varphi^G(h)=\frac{1}{|H|}\sum_{t\in H}\varphi(t^{-1}ht)=\varphi(h);
+\]
+又
+\[
+  \varphi^G(1)=\frac{|G|}{|H|}\varphi(1)=0=\varphi(1).
+\]
+\(\square\)
+
+\textbf{第 1 步（计数）。} 若 \(g\in N_G(H)\setminus H\)，则 \(H=H\cap gHg^{-1}=\{1\}\)，与 \(H\neq\{1\}\) 相违，故 \(N_G(H)=H\)；于是 \(H\) 的共轭数为 \([G:H]\)，且不同共轭 \(t_1Ht_1^{-1}\neq t_2Ht_2^{-1}\) 两两交于 \(\{1\}\)。由 \(K\) 的定义：
+\[
+  |K|=|G|-\#\{H\text{ 的共轭}\}\cdot(|H|-1)
+  =|G|-\frac{|G|}{|H|}(|H|-1)=\frac{|G|}{|H|}=[G:H].
+\]
+
+\textbf{第 2 步（把 \(H\) 的不可约特征标延拓到 \(G\)）。} 设 \(\psi\) 为 \(H\) 的不可约复特征标，\(\psi\neq 1_H\)。令
+\[
+  \varphi:=\psi-\psi(1)\cdot 1_H,
+\]
+这是 \(H\) 的广义特征标（满足 \(\varphi(1)=0\)）。由引理 \((\varphi^G)|_H=\varphi\)；Frobenius 互反律给出
+\[
+  (\varphi^G,\varphi^G)_G=(\varphi,\varphi)_H=1+\psi(1)^2,
+  \qquad
+  (\varphi^G,1_G)_G=(\varphi,1_H)_H=-\psi(1).
+\]
+令
+\[
+  \psi^*:=\varphi^G+\psi(1)\cdot 1_G.
+\]
+则 \(\psi^*\) 是 \(G\) 的广义特征标，且
+\[
+  (\psi^*,\psi^*)_G=(1+\psi(1)^2)+2\psi(1)(-\psi(1))+\psi(1)^2=1,
+  \qquad
+  \psi^*(1)=\varphi^G(1)+\psi(1)=\psi(1)>0,
+\]
+限制为
+\[
+  (\psi^*)\big|_H=\varphi+\psi(1)\cdot 1_H=\psi.
+\]
+广义特征标范数为 \(1\)、次数为正者必不可约，故 \(\psi^*\) 是 \(G\) 的\textbf{不可约}复特征标且\textbf{延拓} \(\psi\)（\(\psi^*|_H=\psi\)）。
+
+\textbf{第 3 步（用核作交）。} 对上述每个 \(\psi\neq 1_H\)，记
+\[
+  \ker\psi^*:=\{g\in G:\ \psi^*(g)=\psi^*(1)\}
+\]
+（即对应表示之核），并令
+\[
+  K^*:=\bigcap_{\psi\neq 1_H}\ker\psi^*,
+\]
+则 \(K^*\trianglelefteq G\)（核的交仍为正规子群）。
+
+\textbf{\(K\subseteq K^*\)：} 若 \(k\in K\setminus\{1\}\)，则 \(k\) 的任一共轭都不落入 \(H\)，于是按定义 \(\varphi^G(k)=0\)（诱导公式中的求和为空集），故
+\[
+  \psi^*(k)=0+\psi(1)=\psi^*(1),
+\]
+即 \(k\in\ker\psi^*\) 对一切 \(\psi\) 成立，故 \(k\in K^*\)。
+
+\textbf{\(H\cap K^*=\{1\}\)：} 若 \(h\in H\cap K^*\)，则
+\[
+  \psi(h)=\psi^*(h)=\psi^*(1)=\psi(1)
+\]
+（\(\psi^*\) 延拓 \(\psi\)、\(h\in\ker\psi^*\)），即 \(h\) 属于 \(H\) 的一切不可约特征标之核。代入 \(H\) 的正则表示特征标 \(\rho_H=\sum_\psi\psi(1)\psi\)：
+\[
+  \rho_H(h)=\sum_\psi\psi(1)\psi(h)=\sum_\psi\psi(1)^2=\rho_H(1)=|H|,
+\]
+而正则特征标只在 \(1\) 处取 \(|H|\)、其余取 \(0\)，故 \(h=1\)。
+
+\textbf{第 4 步（收口）。} 由第 1 步 \(|G|=|H|\cdot|K|\)。又 \(K^*\le G\)、\(H\cap K^*=\{1\}\)，故
+\[
+  |HK^*|=\frac{|H|\cdot|K^*|}{|H\cap K^*|}=|H|\cdot|K^*|
+\]
+整除 \(|G|=|H|\cdot|K|\)，从而 \(|K^*|\mid|K|\)；而 \(K\subseteq K^*\) 给 \(|K^*|\ge|K|\)，于是 \(|K^*|=|K|\)、\(K=K^*\)。最后
+\[
+  K=K^*\trianglelefteq G,\qquad
+  H\cap K=\{1\},\qquad
+  |KH|=|K|\cdot|H|=|G|\ \Longrightarrow\ G=KH=K\rtimes H.
+\]
+\(\square\)
+
+\textbf{注（为什么本题属于表示论）。} \(K\) 的构造只是“共轭不落入 \(H\)”的元素的集合，初看连子群都不是；其正规性是 Frobenius 定理（1895）的深刻结论。证明的关键在第 2 步——把 \(H\) 的不可约特征标延拓为 \(G\) 的不可约特征标（“核之交”由此成为正规子群）；并且\textbf{目前没有无特征标的初等证明}（Jacobson, BAI II, p.~320 原话）。这与第 1--4 问的分工是：前者（第 5 问）证明“核是正规子群”，后者（第 1--4 问）在核已知正规的前提下推导固定点自由作用与元素分解。
+
+\textbf{方法要点：}
+本题是 Frobenius 群“元素要么在核里、要么在某个共轭补里”的结构定理，五步环环相扣：
+（1）半直积结构（正规性与唯一分解）来自 \textbf{Frobenius 定理}这一已知前提——注意 \(K\cap H=\{1\}\)、\(KH=G\) 本身不足以构成半直积（\(S_4\) 反例），正规因子必须由定理保证；（2）把“补的条件”翻译成共轭作用固定点自由，关键在于 \(K\cap H=\{1\}\) 保证非平凡核元素不在 \(H\) 中；（3）是“固定点自由作用 \(\Longrightarrow\) 映射 \(k\mapsto hkh^{-1}k^{-1}\) 双射”的标准引理，单射靠共轭扭曲，满射靠有限性；（4）用 \(\varphi_h\) 的满射性把任意 \(g=kh\) 共轭化回 \(H\)；（5）第 5 问是定理本身：诱导类函数把 \(H\) 的每个不可约特征标延拓成 \(G\) 的不可约特征标，核之交给出正规子群 \(K^*\)，再用 \(|K^*|=|K|\) 的计数（配合 \(K\subseteq K^*\)）收口为 \(K=K^*\trianglelefteq G\)。
+顺带可得集合层级的分解
+\[
+  G=\{1\}\sqcup (K\setminus\{1\})\sqcup \bigsqcup_{t}\bigl(tHt^{-1}\setminus\{1\}\bigr),
+\]
+且不同共轭补 \(tHt^{-1}\) 之间只在 \(\{1\}\) 相交（这正是 Frobenius 补的定义）。
+\end{example}
+
 \subsection{Schanuel 引理：两个投射表示的稳定同构}\label{subsec:problem-schanuel-lemma}
 
 \begin{example}
@@ -9782,7 +9875,6 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
 \begin{itemize}
   \item \hyperref[subsec:problem-upper-central-nilpotent]{[上中心列与幂零性] 有限群幂零（下中心列终止于 \(1\)）当且仅当上中心列在有限步到达 \(G\)；由此与 Theorem~4.8 一并推出 \(p\)-群必幂零。}
   \item \hyperref[subsec:problem-nilpotent-p-product]{[有限幂零群的结构] 有限群幂零当且仅当它是 \(p\)-群的直积；各 Sylow 子群正规且互素阶元可换，乘积映射即给出直积分解。}
-  \item \hyperref[subsec:problem-frobenius-complement-kernel]{[Frobenius 补与 Frobenius 核] 核 \(K\) 的正规性与半直积 \(G=K\rtimes H\) 由 Frobenius 定理保证（仅 \(K\cap H=\{1\}\)、\(KH=G\) 不足为半直积，\(S_4\) 反例）；\(H\) 在 \(K\setminus\{1\}\) 上的共轭作用固定点自由；固定 \(h\neq 1\) 时 \(\varphi_h\colon k\mapsto hkh^{-1}k^{-1}\) 是 \(K\) 的双射；由此每个非平凡元素要么落于核 \(K\)、要么属于某共轭补 \(tHt^{-1}\)。}
   \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
   \item \hyperref[subsec:problem-primitive-element-chain]{[中间域全序条件下有限扩张的原始元] 若有限扩张的含 \(F\) 中间域按照包含构成全序，则取最大真中间域外的元素即可生成整个扩张；其中 \([E:F]<\infty\) 不能省去。}
   \item \hyperref[subsec:problem-finite-extension-monomorphism-count]{[有限扩张到任意扩域的嵌入个数上界] 若 \([E:F]=n<\infty\)，则 \(E/F\) 到任意扩张域 \(K/F\) 的 \(F\)-嵌入个数至多为 \(n\)。}
@@ -9838,6 +9930,7 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
   \item \hyperref[subsec:problem-serre-center-idempotents]{[群代数中心的幂等元基] Serre Exercise 6.4 的 \(P_i=\frac{n_i}{g}\sum_s\chi_i(s^{-1})s\) 是正交幂等元且和为 \(1\)，构成 \(\operatorname{Cent}\mathbb C[G]\) 的基，并给出 2.6 节定理 8（典范分解投影）的另一证明；\(\omega_i(P_j)=\delta_{ij}\)。}
   \item \hyperref[subsec:problem-serre-permutation-induced-char]{[置换表示与诱导表示] Serre Exercise 7.2：\(G/H\) 置换表示特征标 \(\chi=\operatorname{Ind}_H^G(1)\)（固定点数=诱导公式），\(\chi-1\) 是特征标（平凡重数 1），其不可约 \(\iff\) \(G\) 在 \(G/H\) 上双重传递（\(\#(H\backslash G/H)=2\)）。}
   \item \hyperref[subsec:problem-serre-sl2-induced-mackey]{[\(\operatorname{SL}_2(k)\) 上由 Borel 子群诱导的特征标] Serre Exercise 7.4：\(G=\operatorname{SL}_2(k)\)，\(H\) 为满足 \(c=0\) 的上三角子群，\(\chi_\omega(\begin{smallmatrix}a&b\\0&a^{-1}\end{smallmatrix})=\omega(a)\)；用 Mackey 不可约准则（Prop 23）与 Bruhat 分解 \(G=H\sqcup HwH\) 归约为 \(\langle\chi_\omega^w,\chi_\omega\rangle_{H_w}=\frac{1}{|k^\times|}\sum_a\omega(a)^{-2}\)，故 \(\operatorname{Ind}_H^G\chi_\omega\) 不可约 \(\iff\omega^2\neq 1\)；本条目同时收录 Mackey 分解与两诱导特征标内积的公式组。}
+  \item \hyperref[subsec:problem-frobenius-complement-kernel]{[Frobenius 补与 Frobenius 核（特征标方法）] 核 \(K\) 的正规性与半直积 \(G=K\rtimes H\) 是 Frobenius 定理：用诱导类函数把 \(H\) 的不可约特征标延拓为 \(G\) 的不可约特征标，对核作交得正规子群 \(K^*\)，再由 \(|K^*|=|K|\) 收口（Jacobson BAI II §5.15；仅 \(K\cap H=\{1\}\)、\(KH=G\) 不足为半直积，\(S_4\) 反例）；\(H\) 在 \(K\setminus\{1\}\) 上共轭作用固定点自由，\(\varphi_h\colon k\mapsto hkh^{-1}k^{-1}\) 是 \(K\) 的双射，每个非平凡元素要么落于核 \(K\)、要么属于某共轭补 \(tHt^{-1}\)。}
   \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
 \end{itemize}
 
