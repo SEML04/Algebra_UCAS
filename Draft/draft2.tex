@@ -81,8 +81,9 @@
   \textit{证明技巧就一句：\keypoint “吃单位元”——一个自然变换完全由它在 $1_A$ 上的值决定；逆构造把 $x\in FA$ 映到 $f\mapsto(Ff)(x)$。}
 \item \textbf{Yoneda 嵌入}：$y\colon A\mapsto\Hom(A,-)$ 是全忠实函子 $\mathcal C^{op}\to[\mathcal C,\mathbf{Set}]$；
   \[
-    \Hom(A,B)\cong\Hom(B,-)\ A\ \Longleftrightarrow\ A\cong B.
+    \Hom(A,-)\cong\Hom(B,-)\ \Longleftrightarrow\ A\cong B
   \]
+  （把箭头方向反过来、取反变函子 $\Hom(-,A)$ 也成立：$\Hom(-,A)\cong\Hom(-,B)\iff A\cong B$。）
   \keypoint 用法：想证 $A\cong B$，改证（或已验证）代表函子 $\Hom(A,-)\cong\Hom(B,-)$；想证某对象有普适性质，就证对应函子可表。
   \item \textbf{可表 $\iff$ 存在泛对象}；\textbf{伴随 $\iff$ 双可表}：固定 $B$，$X\mapsto\Hom(B,GX)$ 由 $FB$ 表示。\keypoint 伴随自动给出：$F$ 保余极限（特别地余积、推出）、$G$ 保极限（积、等化子、拉回）。这是考试最爱：\textit{“证明 $F$ 保余积”——用伴随转成 $\Hom$ 的泛性质，不要硬追对象。}
 \end{enumerate}
