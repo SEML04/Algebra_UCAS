@@ -4841,11 +4841,12 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 \[
   H\cap tHt^{-1}=\{1\}.
 \]
-设 \(K\) 是对应的 \textbf{Frobenius 核}，且 \(G=K\rtimes H\)（半直积结构作为已知条件，其存在性由 Frobenius 定理保证）。记
+Frobenius 核的标准构造如下：记
 \[
-  N:=K\setminus\{1\}
+  N:=\bigl\{g\in G\setminus\{1\}:\ \text{\(g\) 的任一共轭都不落入 }H\bigr\}
+  =G\setminus\bigcup_{t\in G}t(H\setminus\{1\})t^{-1},
 \]
-为核的非平凡元素集合（题中记号 “\(K=N\cup\{1\}\)” 即此意）。
+并令 \(K:=N\cup\{1\}\)（题中记号 “\(K=N\cup\{1\}\)” 即此意）。\textbf{Frobenius 定理}断言 \(K\trianglelefteq G\) 且 \(G=K\rtimes H\)；一般情形这需要群的特征标理论，本题不重证其存在性，而是把该结论作为已知前提（“对应的 Frobenius 核”），在它之上完成下列推导。
 
 \begin{enumerate}
   \item 证明 \(K\) 是 \(G\) 的一个正规子群，且 \(G\) 是 \(H\) 与 \(K\) 的半直积；
@@ -4860,11 +4861,17 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 
 \textbf{解答：}
 
-\textbf{（1）\(K\trianglelefteq G\) 与半直积结构。} 半直积 \(G=K\rtimes H\) 中 \(K\) 就是正规因子：\(K\trianglelefteq G\)，且
+\textbf{（1）\(K\trianglelefteq G\) 与半直积结构。} 先澄清一个易错点：\(K\cap H=\{1\}\) 与 \(KH=G\) 一起\textbf{并不足以}把 \(G\) 写成 \(K\) 与 \(H\) 的半直积——它们只保证每个元素 \(g\in G\) 有唯一分解 \(g=kh\)（\(k\in K,\ h\in H\)，集合层面的 Zappa--Szép 分解），而内部半直积还要求 \(K\trianglelefteq G\) 或 \(H\trianglelefteq G\) 至少有一个成立。反例：\(G=S_4\)，取
 \[
-  K\cap H=\{1\},\qquad KH=G,
+  K=S_3=\operatorname{Stab}_{S_4}(4),\qquad H=\langle(1234)\rangle,
 \]
-每个元素 \(g\in G\) 有唯一分解 \(g=kh\)（\(k\in K,\ h\in H\)）——这正是 “\(G\) 是 \(H\) 与 \(K\) 的半直积” 的含义。注意题中 \(N=K\setminus\{1\}\) 不含单位元，不是子群；作为半直积因子的正规子群是 \(K\) 本身。
+则 \(|K||H|=6\cdot 4=24=|G|\)、\(K\cap H=\{1\}\)，故 \(KH=S_4\)；但 \(K\)（点稳定子，共轭后成别的点稳定子）与 \(H\)（四阶循环子群，共轭类不止一个）都不正规，\(S_4\) 并不是 \(K\) 与 \(H\) 的半直积。
+
+本题中 \(K\) 的正规性不是从这些条件“推”出来的，而是由 \textbf{Frobenius 定理}以已知结构 \(G=K\rtimes H\) 的形式提供的：\(K=N\cup\{1\}\) 只是“共轭不落入 \(H\)”的元素的集合（它共轭不变，但一般看不出是子群），“它构成正规子群且 \(G=K\rtimes H\)”本身就是该定理的非平凡内容。在此前提下，
+\[
+  K\trianglelefteq G,\qquad K\cap H=\{1\},\qquad KH=G,
+\]
+每个 \(g\in G\) 唯一分解为 \(g=kh\)（\(k\in K,\ h\in H\)），故 \(G\) 是 \(K\) 与 \(H\) 的内部半直积；注意题中 \(N=K\setminus\{1\}\) 不含单位元、不是子群，作为半直积因子的正规子群是 \(K\) 本身。
 
 \textbf{（2）共轭作用固定点自由。} 设 \(h\in H\setminus\{1\}\)，\(k\in K\) 且 \(hkh^{-1}=k\)。则
 \[
@@ -4919,7 +4926,7 @@ Lagrange 定理迫使 \(P_i\cap P_j=\{1\}\)。故 \((x,y)=1\)，即
 
 \textbf{方法要点：}
 本题是 Frobenius 群“元素要么在核里、要么在某个共轭补里”的结构定理，四步环环相扣：
-（1）半直积直接给出正规性与唯一分解；（2）把“补的条件”翻译成共轭作用固定点自由，关键在于 \(K\cap H=\{1\}\) 保证非平凡核元素不在 \(H\) 中；（3）是“固定点自由作用 \(\Longrightarrow\) 映射 \(k\mapsto hkh^{-1}k^{-1}\) 双射”的标准引理，单射靠共轭扭曲，满射靠有限性；（4）用 \(\varphi_h\) 的满射性把任意 \(g=kh\) 共轭化回 \(H\)。
+（1）半直积结构（正规性与唯一分解）来自 \textbf{Frobenius 定理}这一已知前提——注意 \(K\cap H=\{1\}\)、\(KH=G\) 本身不足以构成半直积（\(S_4\) 反例），正规因子必须由定理保证；（2）把“补的条件”翻译成共轭作用固定点自由，关键在于 \(K\cap H=\{1\}\) 保证非平凡核元素不在 \(H\) 中；（3）是“固定点自由作用 \(\Longrightarrow\) 映射 \(k\mapsto hkh^{-1}k^{-1}\) 双射”的标准引理，单射靠共轭扭曲，满射靠有限性；（4）用 \(\varphi_h\) 的满射性把任意 \(g=kh\) 共轭化回 \(H\)。
 顺带可得集合层级的分解
 \[
   G=\{1\}\sqcup (K\setminus\{1\})\sqcup \bigsqcup_{t}\bigl(tHt^{-1}\setminus\{1\}\bigr),
@@ -9775,7 +9782,7 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
 \begin{itemize}
   \item \hyperref[subsec:problem-upper-central-nilpotent]{[上中心列与幂零性] 有限群幂零（下中心列终止于 \(1\)）当且仅当上中心列在有限步到达 \(G\)；由此与 Theorem~4.8 一并推出 \(p\)-群必幂零。}
   \item \hyperref[subsec:problem-nilpotent-p-product]{[有限幂零群的结构] 有限群幂零当且仅当它是 \(p\)-群的直积；各 Sylow 子群正规且互素阶元可换，乘积映射即给出直积分解。}
-  \item \hyperref[subsec:problem-frobenius-complement-kernel]{[Frobenius 补与 Frobenius 核] 有限群 \(G=K\rtimes H\) 中 \(H\) 为 Frobenius 补（\(H\cap tHt^{-1}=\{1\}\)，\(t\notin H\)）时：\(H\) 在 \(K\setminus\{1\}\) 上的共轭作用固定点自由；固定 \(h\neq 1\) 时 \(\varphi_h\colon k\mapsto hkh^{-1}k^{-1}\) 是 \(K\) 的双射；由此每个非平凡元素要么落于核 \(K\)、要么属于某共轭补 \(tHt^{-1}\)。}
+  \item \hyperref[subsec:problem-frobenius-complement-kernel]{[Frobenius 补与 Frobenius 核] 核 \(K\) 的正规性与半直积 \(G=K\rtimes H\) 由 Frobenius 定理保证（仅 \(K\cap H=\{1\}\)、\(KH=G\) 不足为半直积，\(S_4\) 反例）；\(H\) 在 \(K\setminus\{1\}\) 上的共轭作用固定点自由；固定 \(h\neq 1\) 时 \(\varphi_h\colon k\mapsto hkh^{-1}k^{-1}\) 是 \(K\) 的双射；由此每个非平凡元素要么落于核 \(K\)、要么属于某共轭补 \(tHt^{-1}\)。}
   \item \hyperref[subsec:problem-transcendental-simple]{[超越单扩张的真中间域] 对纯超越单扩张 \(F(u)/F\)，任一真中间域都会使 \(u\) 变成代数元；而有限代数单扩张的中间域则只有有限多个。}
   \item \hyperref[subsec:problem-primitive-element-chain]{[中间域全序条件下有限扩张的原始元] 若有限扩张的含 \(F\) 中间域按照包含构成全序，则取最大真中间域外的元素即可生成整个扩张；其中 \([E:F]<\infty\) 不能省去。}
   \item \hyperref[subsec:problem-finite-extension-monomorphism-count]{[有限扩张到任意扩域的嵌入个数上界] 若 \([E:F]=n<\infty\)，则 \(E/F\) 到任意扩张域 \(K/F\) 的 \(F\)-嵌入个数至多为 \(n\)。}
