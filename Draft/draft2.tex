@@ -116,7 +116,14 @@
     H_n(f)\colon H_n(X)\longrightarrow H_n(Y),\qquad [x]\longmapsto[f(x)],
   \]
   良定义；$H_n$ 是函子（$H_n(\mathrm{id})=\mathrm{id}$、$H_n(g\circ f)=H_n(g)\circ H_n(f)$）。\textbf{正合}：$A\xrightarrow{f}B\xrightarrow{g}C$ 正合 $\iff\im f=\ker g$。
-  \item \textbf{链同伦}：$s\colon X_n\to Y_{n+1}$，$f-g=d_Ys+sd_X$。\keypoint 链同伦 $\Rightarrow$ 同调同构；\textbf{拟同构}：$H(f)$ 是同构的链映射（不需要同伦逆）。
+  \item \textbf{链同伦（映射之间）}：平行链映射 $f,g\colon X\to Y$，若存在同伦算子 $s\colon X_n\to Y_{n+1}$ 使
+  \[
+    f_n-g_n=d^Y_{n+1}\circ s_n+s_{n-1}\circ d^X_n
+    \qquad\text{（简记 } f-g=d_Ys+sd_X\text{）},
+  \]
+  则称 $f$ 与 $g$ \textbf{链同伦}（$f\simeq g$）。\keypoint 链同伦 $\Rightarrow H_n(f)=H_n(g)$（同调层面无差别）。
+  \item \textbf{链同伦等价（复形之间）}：链复形 $X,Y$ \textbf{链同伦等价}，若存在链映射 $f\colon X\to Y$、$g\colon Y\to X$ 互为\textbf{同伦逆}：$g\circ f\simeq\mathrm{id}_X$ 且 $f\circ g\simeq\mathrm{id}_Y$。\keypoint 这与“链同伦”不是同一概念：链同伦是\textbf{两条平行映射}间的关系，链同伦等价是\textbf{两个复形}间的等价，后者用前者定义；在\textbf{同伦范畴} $K$（对象=复形，态射=链映射的链同伦类）中，链同伦即“态射相等”、链同伦等价即“同构”。若 $\mathrm{id}_X\simeq 0$（$X$ 与零复形链同伦等价），称 $X$ \textbf{可缩}，$H_\bullet(X)=0$。
+  \item \textbf{拟同构}：$H_n(f)$ 对每个 $n$ 都是同构的链映射（不需要同伦逆）。\keypoint 关系链：\textbf{链同伦等价 $\Rightarrow$ 拟同构}（$H(f),H(g)$ 互逆），但\textbf{拟同构 $\not\Rightarrow$ 链同伦等价}——例：$X=0\to\mathbb Z\xrightarrow{\times2}\mathbb Z\to0$ 与 $Y=\mathbb Z/2$（集中在 $0$ 度）同调同为 $\mathbb Z/2$，却非同伦等价（同伦逆要求 $g_0\colon\mathbb Z/2\to\mathbb Z$，而 $\Hom(\mathbb Z/2,\mathbb Z)=0$）。
   \item \textbf{分裂短正合列}：$0\to A\to B\to C\to0$ 分裂 $\iff$ 存在收缩 $B\to A$（$\iff$ 存在截面 $C\to B$）$\iff$ $B\cong A\oplus C$。
 \end{itemize}
 
@@ -304,7 +311,7 @@ Yoneda & $\operatorname{Nat}(\Hom(A,-),F)\cong F(A)$；$\Hom(A,-)\cong\Hom(B,-)\
 同调 & $H_n=\ker d_n/\im d_{n+1}$；$0\to B_n\to Z_n\to H_n\to0$ \\\hline
 长正合列 & $0\to A\to B\to C\to0$（链映射）$\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$；$\partial=f^{-1}dg^{-1}$ \\\hline
 蛇/五引理 & $\ker$列与$\Coker$列正合；五引理证同构 \\\hline
-链同伦 & $f-g=ds+sd\Rightarrow H(f)=H(g)$；拟同构$=$同调同构 \\\hline
+链同伦/等价 & $f-g=d_Ys+sd_X\Rightarrow H(f)=H(g)$（映射对）；复形间链同伦等价$=$存在互为同伦逆的 $f,g$；等价$\Rightarrow$拟同构、逆不真 \\\hline
 投射/内射/平坦 & 提升性质/$K$ 性质/Baer；$\Ext^1(P,-)=0$；$\Tor_1(N,M)=0$；有限生成平坦$=$投射 \\\hline
 Ext/Tor & $\Ext^n=R^n\Hom$（平衡）；$\Tor_n=L_n\otimes$；$\Ext^0=\Hom$、$\Tor_0=\otimes$ \\\hline
 Ext 长正合 & 两个变量各一条；$\to\Ext^n(A'',-)\to\Ext^n(A,-)\to\Ext^n(A',-)\to\Ext^{n+1}(A'',-)\to$ \\\hline
