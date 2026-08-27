@@ -111,7 +111,11 @@
 \begin{itemize}
   \item \textbf{Abelian 范畴}：加性范畴（$\Hom$ 是 Abel 群、双线性复合、有限直和）+ 核/余核存在 + “单态射 = 其余核的核”、“满态射 = 其核的余核”。
   \item \textbf{复形} $X_\bullet$：$d_n\colon X_n\to X_{n-1}$（或上链 $d^n\colon C^n\to C^{n+1}$），$d^2=0$。\textbf{同调} $H_n(X_\bullet)=\ker d_n/\im d_{n+1}$。记号：$Z_n=\ker d_n$（闭链/cycles）、$B_n=\im d_{n+1}$（边界），$0\to B_n\to Z_n\to H_n\to0$ 正合。
-  \item \textbf{链映射} $f\colon X\to Y$（$fd_Y=d_Xf$）诱导 $H_n(f)$；\textbf{正合}：$A\xrightarrow{f}B\xrightarrow{g}C$ 正合 $\iff\im f=\ker g$。
+  \item \textbf{链映射} $f\colon X\to Y$：与微分交换，即对每个 $n$ 有 $f_{n-1}\circ d^X_n=d^Y_n\circ f_n$（简写 $f\circ d_X=d_Y\circ f$）。它把闭链送到闭链（$d_Yf(x)=fd_X(x)=0$）、把边界送到边界，故\textbf{诱导同态}
+  \[
+    H_n(f)\colon H_n(X)\longrightarrow H_n(Y),\qquad [x]\longmapsto[f(x)],
+  \]
+  良定义；$H_n$ 是函子（$H_n(\mathrm{id})=\mathrm{id}$、$H_n(g\circ f)=H_n(g)\circ H_n(f)$）。\textbf{正合}：$A\xrightarrow{f}B\xrightarrow{g}C$ 正合 $\iff\im f=\ker g$。
   \item \textbf{链同伦}：$s\colon X_n\to Y_{n+1}$，$f-g=d_Ys+sd_X$。\keypoint 链同伦 $\Rightarrow$ 同调同构；\textbf{拟同构}：$H(f)$ 是同构的链映射（不需要同伦逆）。
   \item \textbf{分裂短正合列}：$0\to A\to B\to C\to0$ 分裂 $\iff$ 存在收缩 $B\to A$（$\iff$ 存在截面 $C\to B$）$\iff$ $B\cong A\oplus C$。
 \end{itemize}
