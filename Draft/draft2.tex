@@ -138,7 +138,11 @@
   \[
     \cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots
   \]
-  连接同态公式：$\partial[c]=f^{-1}dg^{-1}c$（构造见蛇引理）。
+  连接同态公式（\keypoint 必须按顺序读，不是字面复合）：
+  \[
+    \partial[c]=\bigl[\,f_{n-1}^{-1}\,d_n^B\,g_n^{-1}(c)\,\bigr],
+  \]
+  其中 $g_n^{-1}(c)$ 是任意选取的 $B_n$ 中提升（$g_n$ 满射保证存在）；注意 $f^{-1}$ \emph{不是}作用在 $g^{-1}(c)$ 上，而是作用在 $d_n^B g_n^{-1}(c)$ 上——因为 $g_{n-1}d_n^B(b)=d_n^C g_n(b)=d_n^C(c)=0$，故 $d_n^B(b)\in\ker g_{n-1}=\im f_{n-1}$，$f^{-1}$ 这才存在。换提升 $b'=b+f(a)$ 时差 $f(d^A a)$（边界），同调类不变（构造见蛇引理）。
   \item \textbf{蛇引理}：交换图（横排正合，竖行有任意同态）
   \[
     \begin{array}{ccc}
@@ -157,7 +161,7 @@
 
 \begin{enumerate}
   \item \textbf{追元素（Ab 范畴取 $R$-模想）}：为证 $x\in\im g$，把 $x$ 沿可逆箭头抬一层、沿满射抓原像、沿单射唯一化；每步记下“回到哪一层”。
-  \item \textbf{连接同态公式} $\partial[c]=f^{-1}dg^{-1}c$ 每次直接写，不要现场推。
+  \item \textbf{连接同态公式} $\partial[c]=[f^{-1}d\,g^{-1}(c)]$（按序读：先取提升 $b=g^{-1}(c)$，再取 $d(b)$，最后对 $d(b)\in\im f$ 取 $f^{-1}$）每次直接写，不要现场推。
   \item \textbf{长正合列配五引理}是“证同构”的万能二段式：先造两个同长度正合列的交换图，再套五引理。
 \end{enumerate}
 
@@ -309,7 +313,7 @@
 Yoneda & $\operatorname{Nat}(\Hom(A,-),F)\cong F(A)$；$\Hom(A,-)\cong\Hom(B,-)\Rightarrow A\cong B$ \\\hline
 伴随 & $F\dashv G\Rightarrow F$ 保余极限、$G$ 保极限；unit/counit 三角 \\\hline
 同调 & $H_n=\ker d_n/\im d_{n+1}$；$0\to B_n\to Z_n\to H_n\to0$ \\\hline
-长正合列 & $0\to A\to B\to C\to0$（链映射）$\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$；$\partial=f^{-1}dg^{-1}$ \\\hline
+长正合列 & $0\to A\to B\to C\to0$（链映射）$\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$；$\partial[c]=[f^{-1}d\,g^{-1}(c)]$（顺序：取提升$b=g^{-1}c$、再 $d(b)\in\im f$、最后 $f^{-1}$）\\\hline
 蛇/五引理 & $\ker$列与$\Coker$列正合；五引理证同构 \\\hline
 链同伦/等价 & $f-g=d_Ys+sd_X\Rightarrow H(f)=H(g)$（映射对）；复形间链同伦等价$=$存在互为同伦逆的 $f,g$；等价$\Rightarrow$拟同构、逆不真 \\\hline
 投射/内射/平坦 & 提升性质/$K$ 性质/Baer；$\Ext^1(P,-)=0$；$\Tor_1(N,M)=0$；有限生成平坦$=$投射 \\\hline
