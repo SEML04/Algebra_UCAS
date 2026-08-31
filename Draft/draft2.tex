@@ -2,8 +2,10 @@
 \usepackage{geometry}
 \usepackage{amsmath,amssymb,amsthm}
 \usepackage{enumitem}
+\usepackage{longtable}
 \usepackage{hyperref}
 \geometry{margin=1in}
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2473}
 \setlist[itemize]{itemsep=0.35em, topsep=0.35em}
 \setlist[enumerate]{itemsep=0.35em, topsep=0.35em}
 
@@ -21,6 +23,7 @@
 % 《重点》标记
 \newcommand{\keypoint}{\text{\textbf{\ensuremath{\bigstar}}\;}}
 \newcommand{\method}{\text{\textbf{方法}}\;}
+\pdfstringdefDisableCommands{\def\keypoint{★}\def\method{方法 }}
 
 \title{同调代数快速通道（零基础直达做题）\\[0.5em]
 \large 范畴 $\to$ Abelian 范畴/复形/同调 $\to$ Ext/Tor $\to$ 群上同调与谱序列 $\to$ derived category 一览}
@@ -52,7 +55,7 @@
   \item 第 2 天：\S3 Abelian 范畴、复形、同调、长正合列（蛇引理、五引理必须会 chase）。
   \item 第 3 天：\S4 Ext/Tor 与维数（重点：投射/内射/平坦判定 + 长正合列 + 典型计算模板）。
   \item 第 4 天：\S5 群上同调（H$^0$--H$^2$ 词汇表 + 标准计算）+ extensions 分类。
-  \item 第 5 天：\S6 谱序列（概念 + 退化判据 + Hochschild--Serre 用法）+ \S7 速查表总复习 + 刷题。
+  \item 第 5 天：\S5 的谱序列部分（概念 + 退化判据 + Hochschild--Serre 用法）+ \S6 derived category 一览 + \S7 速查表总复习 + 刷题。
 \end{enumerate}
 
 \textbf{达标标准（每块末尾的“自测”能独立做出来才算过关）}：定义能默写、重点定理能陈述（条件一个不落）、下列“标准计算”能从头算到底。不会做难题没关系，考试同调题的 90\% 是“定义 + 长正合列 + 一个分解”的组合。
@@ -83,7 +86,7 @@
   \[
     \Hom(A,-)\cong\Hom(B,-)\ \Longleftrightarrow\ A\cong B
   \]
-  （把箭头方向反过来、取反变函子 $\Hom(-,A)$ 也成立：$\Hom(-,A)\cong\Hom(-,B)\iff A\cong B$。）
+  （反变版本同理成立：$\Hom(-,A)\cong\Hom(-,B)\iff A\cong B$。）
   \keypoint 用法：想证 $A\cong B$，改证（或已验证）代表函子 $\Hom(A,-)\cong\Hom(B,-)$；想证某对象有普适性质，就证对应函子可表。
   \item \textbf{可表 $\iff$ 存在泛对象}；\textbf{伴随 $\iff$ 双可表}：固定 $B$，$X\mapsto\Hom(B,GX)$ 由 $FB$ 表示。\keypoint 伴随自动给出：$F$ 保余极限（特别地余积、推出）、$G$ 保极限（积、等化子、拉回）。这是考试最爱：\textit{“证明 $F$ 保余积”——用伴随转成 $\Hom$ 的泛性质，不要硬追对象。}
 \end{enumerate}
@@ -153,7 +156,13 @@
   \]
   给出正合列 $0\to\ker f'\to\ker f\to\ker f''\to\Coker f'\to\Coker f\to\Coker f''\to0$。\keypoint 长正合列里的 $\partial$ 就是蛇引理中的连接同态；这是 homological algebra 的“发动机”。
   \item \textbf{五引理}：交换图中两行各 5 项正合，$f_1,f_2,f_4,f_5$ 为同构 $\Rightarrow f_3$ 为同构。\keypoint 考试用法：证“某个诱导映射是同构”，凑两个长正合列 + 五引理，避免直接 chase 大图。
-  \item \textbf{同调代数基本引理/比较引理}（CE, Ch.~III--V）：$P_\bullet\to A\to0$ 为投射消解、$C_\bullet$ 正合且 $\dots$，链映射存在且任意两个链映射同伦（同伦唯一）。这是“消解的唯一性（同伦意义下）”与《派生函子良定义》的基础。
+  \item \textbf{同调代数基本引理/比较引理}（CE, (V.Prop 1.1)(V.Prop 1.2)；内射对偶 (V.Prop 1.1a)(V.Prop 1.2a)；证明用 IV,3 的同伦语言）。
+
+  \textbf{陈述}：设 $P_\bullet\xrightarrow{\varepsilon}A\to0$ 为\textbf{投射}消解、$C_\bullet\xrightarrow{\varepsilon'}A'\to0$ 为\textbf{正合}消解（acyclic，各项不必投射），并给定同态 $\alpha\colon A\to A'$，则：① 存在链映射 $F\colon P_\bullet\to C_\bullet$ \textbf{提升增广}（$\varepsilon'\circ F_0=\alpha\circ\varepsilon$）；② 任意两个这样的链映射 $F,G$ 链同伦（\textbf{同伦唯一}）。
+
+  \textit{证明骨架（两问都只用“$P_n$ 投射 = 提升性质”逐次归纳）：}存在性——$n=0$ 沿满射 $\varepsilon'$ 提升；归纳步 $F_nd^P_{n+1}$ 落在 $\ker d^C_n=\im d^C_{n+1}$（\keypoint 此处用到 $C_\bullet$ 正合），再沿 $d^C_{n+1}$ 提升出 $F_{n+1}$。同伦唯一性——取 $r_n=F_n-G_n$，同样归纳地构造 $s_n\colon P_n\to C_{n+1}$ 使 $r_n=d^Cs_n+s_{n-1}d^P$。
+
+  \keypoint \textbf{两个直接推论}：① \textbf{消解的同伦唯一性}——对同一 $A$ 的任意两个投射消解取 $\alpha=\mathrm{id}_A$，得互为同伦逆的链映射，即链同伦等价（CE V \S1 在 (V.Prop 1.2) 后的推注）；② \textbf{导出函子良定义}——换消解时上述同伦等价经 $\Hom(-,B)$ 诱导\textbf{互逆同构}，故 $\Ext^n$ 与消解选取无关；且 $\alpha$ 的任意两个提升同伦、诱导映射相同，故 $\Ext^n(A,B)\to\Ext^n(A',B)$ 只依赖 $\alpha$ 本身（$R^nF$ 是\textbf{函子}）。这就是“消解的唯一性（同伦意义下）”与《派生函子良定义》的基础。
   \item \textbf{加性函子的正合性}：$F$ 左正合 $\iff$ 保有限直和且 $0\to A\to B\to C\to0$ 正合 $\Rightarrow0\to FA\to FB\to FC$ 正合；右正合类似取尾巴。\keypoint 判定套路：$\Hom(A,-)$ 左正合、$\Hom(-,B)$ 反变将满射映为单射（反变左正合）、$A\otimes-$ 右正合。
 \end{enumerate}
 
@@ -171,6 +180,7 @@
   \item 证明“链同伦保持同调”：$f-g=d_Ys+sd_X$ 时 $H(f)=H(g)$。
   \item 对 $0\to A\to B\to C\to0$，写同调长正合列并在“$A=C=0$”时读出结论。
   \item 证明 $\Hom(A,-)$ 左正合、$A\otimes-$ 右正合（用定义）。
+  \item 完整陈述比较引理（\S3.2 第 4 条，条件一个不落），并用它证明：同一模的任意两个投射消解链同伦等价；进而说明 $\Ext^n$ 不依赖消解的选取。
 \end{enumerate}
 
 \section{tensor、flat、projective、injective、Ext、Tor（CE Ch.~VI；背景 A--M）}
@@ -182,44 +192,62 @@
   \item \textbf{内射模}：每个单射 $i\colon A\to B$ 与 $f\colon A\to I$ 可延拓到 $B$。\keypoint \textbf{Baer 判据}：$I$ 内射 $\iff$ 每个 $R$-同态（由任意左理想 $J$ 出发）$J\to I$ 都能延拓为 $R\to I$。判定向量模：$\Hom_\mathbb Z(-,\mathbb Q/\mathbb Z)$ 保正合 $\Rightarrow$ divisible $\mathbb Z$-模内射（$\mathbb Q,\mathbb Q/\mathbb Z$ 内射；$\mathbb Z$ 不内射）。
   \item \textbf{平坦模}：$N'\hookrightarrow N\Rightarrow N'\otimes M\hookrightarrow N\otimes M$ 保持单射。等价：$\Tor_1^R(N,M)=0\ \forall N$。\keypoint 链：自由 $\Rightarrow$ 投射 $\Rightarrow$ 平坦；平坦 $\not\Rightarrow$ 投射（如 $\mathbb Q$ 作为 $\mathbb Z$-模）。\textbf{有限生成平坦 $=$ 有限表示平坦 $=$ 投射}（Noether 或有限表示情形）；局部环上有限生成平坦 $\Rightarrow$ 自由。
   \item \textbf{消解（resolution）}：投射消解 $\cdots\to P_1\to P_0\to A\to0$（每个 $R$-模都有：取自由模覆盖再迭代）；内射消解 $0\to A\to I^0\to I^1\to\cdots$（Grothendieck 保证 $R\text{-}\mathbf{Mod}$ 内射足够多）。\keypoint 消解是同调计算的“原料”。
-  \item \textbf{Ext 与 Tor 定义}：
+  \item \textbf{Ext 与 Tor 定义}：若 $P_\bullet\twoheadrightarrow A$ 是投射消解、
+  $B\hookrightarrow I^\bullet$ 是内射消解，则
   \[
-    \Ext_R^n(A,B):=(R^n\Hom_R(A,-))(B)=(R^n\Hom_R(-,B))(A),
-    \qquad
-    \Tor_n^R(A,B):=(L_n(-\otimes_RB))(A)=(L_n(A\otimes_R-))(B).
+    \Ext_R^n(A,B)
+    :=H^n\!\bigl(\Hom_R(P_\bullet,B)\bigr)
+    \cong H^n\!\bigl(\Hom_R(A,I^\bullet)\bigr).
   \]
-  左右两侧一致（\textbf{平衡性}，CE, Ch.~VI, \S1）。低阶：$\Ext_R^0=\Hom_R$，$\Tor_0^R(A,B)=A\otimes_RB$。
+  因而 $\Ext_R^n(A,B)=(R^n\Hom_R(A,-))(B)$；写作
+  $(R^n\Hom_R(-,B))(A)$ 时，应理解为对反变函子 $\Hom_R(-,B)$
+  的导出，而不能把它当作普通协变右导函子。若 $A$ 是右 $R$-模、
+  $B$ 是左 $R$-模，则
+  \[
+    \Tor_n^R(A,B):=H_n(P_\bullet\otimes_R B)
+    \cong H_n(A\otimes_R Q_\bullet),
+  \]
+  其中 $Q_\bullet\twoheadrightarrow B$ 是投射消解；这就是 $\Tor$ 的
+  \textbf{平衡性}（CE, Ch.~VI, \S1）。交换环上可省略左右模的区别。
+  低阶：$\Ext_R^0=\Hom_R$，$\Tor_0^R(A,B)=A\otimes_RB$。
 \end{itemize}
 
 \subsection{\keypoint 重点定理}
 
 \begin{enumerate}
   \item \textbf{Ext 长正合列}（两变量各一条）：
-  \[
+  \begin{multline*}
     0\to A'\to A\to A''\to0
     \ \Longrightarrow\
-    \cdots\to\Ext^n_R(A'',B)\to\Ext^n_R(A,B)\to\Ext^n_R(A',B)\to\Ext^{n+1}_R(A'',B)\to\cdots;
-  \]
-  \[
+    \cdots\to\Ext^n_R(A'',B)\to\Ext^n_R(A,B)\\
+    \to\Ext^n_R(A',B)\to\Ext^{n+1}_R(A'',B)\to\cdots;
+  \end{multline*}
+  \begin{multline*}
     0\to B'\to B\to B''\to0
     \ \Longrightarrow\
-    \cdots\to\Ext^n_R(A,B'')\to\Ext^n_R(A,B)\to\Ext^n_R(A,B')\to\Ext^{n+1}_R(A,B'')\to\cdots.
-  \]
+    \cdots\to\Ext^n_R(A,B'')\to\Ext^n_R(A,B)\\
+    \to\Ext^n_R(A,B')\to\Ext^{n+1}_R(A,B'')\to\cdots.
+  \end{multline*}
   \textbf{Tor 长正合列}：$0\to B'\to B\to B''\to0$ $\Rightarrow$
   \[
     \cdots\to\Tor_n^R(A,B')\to\Tor_n^R(A,B)\to\Tor_n^R(A,B'')\to\Tor^R_{n-1}(A,B')\to\cdots.
   \]
   （Tor 对两个变量都左右正合、长正合列在两个变量方向都有。）
-  \item \textbf{维数平移（dimension shifting）}：$0\to M\to P\to M'\to0$ 且 $P$ 投射 $\Rightarrow\Ext_R^{n+1}(A,M)\cong\Ext_R^n(A,M')$；Tor 同理。\keypoint 这是递推计算的最主要工具。
-  \item \textbf{维数与环性质}：$\pd_R(A)\le n\iff\Ext_R^{n+1}(A,-)=0$；$\id_R(A)\le n\iff\Ext_R^{n+1}(-,A)=0$；\textbf{整体维数} $\mathrm{gl.dim}\,R=\sup_A\pd_RA$。
+  \item \textbf{维数平移（dimension shifting）}：$0\to M\to P\to M'\to0$ 且 $P$ 投射 $\Rightarrow\Ext_R^{n+1}(A,M)\cong\Ext_R^n(A,M')$（$n\ge1$）；Tor 同理。\keypoint 这是递推计算的最主要工具。
+  \item \textbf{维数与环性质}：
+  \[
+    \pd_R(A)\le n\iff\Ext_R^{n+1}(A,-)=0;\qquad
+    \id_R(A)\le n\iff\Ext_R^{n+1}(-,A)=0.
+  \]
+  \textbf{整体维数} $\mathrm{gl.dim}\,R=\sup_A\pd_RA$。
   \keypoint 速查：$\mathrm{gl.dim}\,R=0\iff R$ 半单 Artin；$\mathrm{gl.dim}\,R\le1\iff R$ hereditary（子模投射性）；域/PID：$\mathrm{gl.dim}\,\mathbb Z=1$、$\mathrm{gl.dim}\,k=0$；$\mathrm{gl.dim}\,R[x]=\mathrm{gl.dim}\,R+1$（Hilbert syzygy，CE/背景）。
-  \item \textbf{消解唯一性（同伦意义下）}：任意两个投射消解给出同构的 $\Ext$（\S3.4 比较引理的应用）——所以“换消解”不影响答案，选最顺手的消解算。
+  \item \textbf{消解唯一性（同伦意义下）}：任意两个投射消解给出同构的 $\Ext$（\S3.2 第 4 条“比较引理”的应用）——所以“换消解”不影响答案，选最顺手的消解算。
   \item \textbf{K\"unneth / 系数}（CE, Ch.~VI, \S3，了解）：双复形的两个方向取同调可换序（谱序列的雏形）；$H_n(X\otimes Y)$ 与 $H_n(X)\otimes H_m(Y)$ 的关系有一阶 Tor 修正项。
 \end{enumerate}
 
 \subsection{\method 标准计算模板（必会）}
 
-\textbf{模板：算 $\Ext^1_R(A,B)$}——① 写出 $A$ 的短投射消解 $0\to P_1\to P_0\to A\to0$；② 作用 $\Hom_R(-,B)$ 得 $0\to\Hom(A,B)\to\Hom(P_0,B)\to\Hom(P_1,B)\to0$（一般只左正合，尾巴用余核）；③ $\Ext^1(A,B)=\Coker\bigl(\Hom(P_0,B)\to\Hom(P_1,B)\bigr)$。
+\textbf{模板：算 $\Ext^1_R(A,B)$}——① 写出 $A$ 的短投射消解 $0\to P_1\to P_0\to A\to0$；② 作用 $\Hom_R(-,B)$ 得 $0\to\Hom(A,B)\to\Hom(P_0,B)\to\Hom(P_1,B)$（一般只左正合，尾项不必为 $0$）；③ $\Ext^1(A,B)=\Coker\bigl(\Hom(P_0,B)\to\Hom(P_1,B)\bigr)$。
 
 \textbf{例题 1}：$\mathbb Z$ 上 $\Ext^1_\mathbb Z(\mathbb Z/p,\ M)=M/pM$，$\Hom_\mathbb Z(\mathbb Z/p,M)=M[p]$（$p$-挠）。用 $0\to\mathbb Z\xrightarrow{\times p}\mathbb Z\to\mathbb Z/p\to0$：$\Hom(\mathbb Z,M)=M$，$(\times p)^*$ 是 $m\mapsto pm$。
 \textbf{例题 2}：$\Tor_1^\mathbb Z(\mathbb Z/p,\ \mathbb Z/q)=\mathbb Z/(p,q)$（张量化同一消解）。
@@ -238,19 +266,19 @@
 
 \subsection{群上同调：定义与低阶词汇表}
 
-设 $G$ 有限（或任意群），$A$ 为 $G$-模（左 $Z[G]$-模）。
+设 $G$ 有限（或任意群），$A$ 为 $G$-模（左 $\mathbb Z[G]$-模）。
 \[
   H^n(G,A):=\Ext^n_{\mathbb Z[G]}(\mathbb Z,A),\qquad
   H_n(G,A):=\Tor_n^{\mathbb Z[G]}(\mathbb Z,A).
   \qquad(\text{CE, Ch.~XII})
 \]
 \textbf{标准上链复形（非齐次）}：$C^n(G,A)=\{f\colon G^n\to A\}$，
-\[
+\begin{multline*}
   (\delta^n f)(g_0,\dots,g_n)
   =g_0\cdot f(g_1,\dots,g_n)
-  +\sum_{i=1}^{n}(-1)^i f(g_0,\dots,g_{i-1}g_i,\dots,g_n)
+  +\sum_{i=1}^{n}(-1)^i f(g_0,\dots,g_{i-1}g_i,\dots,g_n)\\
   +(-1)^{n+1}f(g_0,\dots,g_{n-1}).
-\]
+\end{multline*}
 \keypoint 低阶含义（必须背）：
 \begin{itemize}
   \item $H^0(G,A)=A^G$（不变量）。
@@ -259,10 +287,48 @@
   \item 同调侧：$H_0(G,\mathbb Z)=\mathbb Z$；$H_1(G,\mathbb Z)=G^{\mathrm{ab}}$（群论基础例）。
 \end{itemize}
 
+\textbf{\(H^2(G,A)\) 与群扩张的乘法结构。}
+核心问题是：已知正规核为 Abel 群 \(A\)、商群为 \(G\)，短正合列
+\[
+  1\longrightarrow A\xrightarrow{\iota}E\xrightarrow{\pi}G\longrightarrow 1
+\]
+能给出多少个本质不同的群 \(E\)。选取集合截面 \(s\colon G\to E\)（\(\pi s=\mathrm{id}_G\)，通常取 \(s(1)=1\)）后，每个 \(E\) 中元素可唯一写作 \(\iota(a)s(g)\)，于是集合上可识别为 \(A\times G\)。群结构的全部额外信息由
+\[
+  s(g)s(h)=\iota(f(g,h))s(gh)
+\]
+给出，其中 \(f\colon G\times G\to A\) 是因子集。若 \(G\) 对 \(A\) 的作用由共轭诱导，则在 \(A\times G\) 上的乘法为
+\[
+  (a,g)(a',h)=\bigl(a+g\cdot a'+f(g,h),\,gh\bigr).
+\]
+中心扩张时 \(A\subset Z(E)\)，作用是平凡的，公式退化为
+\[
+  (a,g)(a',h)=\bigl(a+a'+f(g,h),\,gh\bigr).
+\]
+
+结合律正好等价于 \(f\) 是 \(2\)-上循环：
+\[
+  g\cdot f(h,k)-f(gh,k)+f(g,hk)-f(g,h)=0,
+\]
+也就是 \(\delta^2 f=0\)。若改变截面 \(s'(g)=\iota(\phi(g))s(g)\)，则因子集变为
+\[
+  f'(g,h)-f(g,h)=g\cdot\phi(h)-\phi(gh)+\phi(g)=(\delta^1\phi)(g,h).
+\]
+因此只由重选代表元产生的差别应被模掉：
+\[
+  H^2(G,A)=Z^2(G,A)/B^2(G,A)
+  \quad\leftrightarrow\quad
+  \{\text{以 }A\text{ 为核、商为 }G\text{ 的扩张等价类}\}.
+\]
+特别地，当 \(G=A=\mathbb Z/2\mathbb Z\) 且作用平凡时，
+\[
+  H^2(\mathbb Z/2,\mathbb Z/2)\cong\mathbb Z/2.
+\]
+零类对应分裂扩张 \(\mathbb Z/2\times\mathbb Z/2\)；非零类可取 \(f(1,1)=1\)，对应“进位”乘法，从而得到 \(\mathbb Z/4\mathbb Z\)。
+
 \subsection{\keypoint 重点定理}
 
 \begin{enumerate}
-  \item \textbf{长正合列}：$0\to A'\to A\to A''\to0$（$G$-模短正合列）$\Rightarrow$ 群上同调长正合列 $\cdots\to H^n(G,A')\to H^n(G,A)\to H^n(G,A'')\to H^{n+1}(G,A')\to\cdots$。同调侧同构（普通上同调的“模智”推论，来自 Ext/Tor 长正合列）。
+  \item \textbf{长正合列}：$0\to A'\to A\to A''\to0$（$G$-模短正合列）$\Rightarrow$ 群上同调长正合列 $\cdots\to H^n(G,A')\to H^n(G,A)\to H^n(G,A'')\to H^{n+1}(G,A')\to\cdots$。同调侧同理（上同调情形的“模拟”，来自 $\Ext/\Tor$ 长正合列）。
   \item \textbf{有限群湮灭}：$G$ 有限、$n\ge1$ 时 $|G|\cdot H^n(G,A)=0$（范数映射 $\operatorname{Cor}\circ\operatorname{Res}$ 即乘 $|G|$）。\keypoint 于是：$A$ 为 $\mathbb Q$-向量空间（或 $|G|$ 可逆于 $A$）$\Rightarrow H^n(G,A)=0\ (n\ge1)$；$A$ 有限 $\Rightarrow H^n(G,A)$ 有限。
   \item \textbf{Shapiro 引理}：$H^n\bigl(G,\operatorname{Coind}_H^G A\bigr)\cong H^n(H,A)$（$\operatorname{Coind}_H^G A=\Hom_{\mathbb ZH}(\mathbb ZG,A)$；有限群时与 $\operatorname{Ind}$ 一致）。\keypoint 用法：把“大模”换到“子群上的小模”。
   \item \textbf{Inflation--Restriction}（$N\trianglelefteq G$，低阶段）：
@@ -284,7 +350,11 @@
   \item \textbf{算 $H^1(G,A)$}：查交叉同态；作用平凡则直接 $\Hom(G,A)$ 打分（$G$ 有限 $\Rightarrow\mathbb Z$ 情形为 $0$）。
   \item \textbf{算 $H^2(G,A)$}：① 用扩张分类（$1\to A\to E\to G\to1$，写生成元与关系，数不变量）；② 或用长正合列 + Inflation--Restriction 降维；③ 或对有限的 $G$ 用“$|G|\cdot H^n=0$”配合已知结构。
   \item \textbf{例题}：$H^1(C_n,\mathbb Z)=0$、$H^2(C_n,\mathbb Z)=\mathbb Z/n$；$G$ 有限时 $H^1(G,\mathbb C^\times)=\Hom(G,\mathbb C^\times)$；$H^2(G,\mathbb C^\times)$ 与 Schur 乘子口径（了解即可）。
-  \item \textbf{谱序列用法例}：对 $1\to C_p\to G\to H\to1$ 用 HS 谱序列，先看 $E_2^{pq}=H^p(H,H^q(C_p,A))$ 的零项，判断 $H^{\le2}(G,A)$ 哪些由 $H^{\le1}$ 与边同态直接读出。
+  \item \textbf{谱序列用法例}：对 $1\to C_p\to G\to H\to1$ 用 HS 谱序列，先看
+  \[
+    E_2^{pq}=H^p\bigl(H,\,H^q(C_p,A)\bigr)
+  \]
+  的零项，判断 $H^{\le2}(G,A)$ 哪些由 $H^{\le1}$ 与边同态直接读出。
 \end{itemize}
 
 \subsection{达标自测}
@@ -304,22 +374,26 @@
   \item \textbf{导出函子}：$RF\colon D(R)\to D(S)$ 由“先取内射（或 $K$-内射）替换再做 $F$”定义；$\operatorname{RHom}$、$-\otimes^{\mathrm L}-$、$R\Gamma$ 等都是这样来的；\keypoint 谱序列是“在导出范畴层面计算复合函子的各阶分量”的展开——学完 \S5 反过来理解 GM Ch.~III \S6 附近的 Grothendieck 谱序列更顺。
 \end{itemize}
 
-\section{30 分钟速查表（考前最后一页）}
+\section{30 分钟速查表（考前速查）}
 
-\begin{center}
-\begin{tabular}{|p{6.2cm}|p{8.6cm}|}
+\begin{longtable}{|p{6.2cm}|p{8.6cm}|}
 \hline
 \textbf{对象} & \textbf{一句话结论} \\\hline
+\endfirsthead
+\hline
+\textbf{对象} & \textbf{一句话结论} \\\hline
+\endhead
 Yoneda & $\operatorname{Nat}(\Hom(A,-),F)\cong F(A)$；$\Hom(A,-)\cong\Hom(B,-)\Rightarrow A\cong B$ \\\hline
 伴随 & $F\dashv G\Rightarrow F$ 保余极限、$G$ 保极限；unit/counit 三角 \\\hline
 同调 & $H_n=\ker d_n/\im d_{n+1}$；$0\to B_n\to Z_n\to H_n\to0$ \\\hline
-长正合列 & $0\to A\to B\to C\to0$（链映射）$\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$；$\partial[c]=[f^{-1}d\,g^{-1}(c)]$（顺序：取提升$b=g^{-1}c$、再 $d(b)\in\im f$、最后 $f^{-1}$）\\\hline
+长正合列 & $0\to A\to B\to C\to0$（链映射）$\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$；$\partial[c]=[f^{-1}d\,g^{-1}(c)]$（顺序：取提升 $b=g^{-1}c$、再 $d(b)\in\im f$、最后 $f^{-1}$）\\\hline
 蛇/五引理 & $\ker$列与$\Coker$列正合；五引理证同构 \\\hline
 链同伦/等价 & $f-g=d_Ys+sd_X\Rightarrow H(f)=H(g)$（映射对）；复形间链同伦等价$=$存在互为同伦逆的 $f,g$；等价$\Rightarrow$拟同构、逆不真 \\\hline
+比较引理 & 投射消解 $P_\bullet$ + 正合消解 $C_\bullet$ + $\alpha\colon A\to A'$ $\Rightarrow$ 存在链映射提升 $\alpha$、任意两个同伦；$\Rightarrow$ 消解同伦唯一、$\Ext/\Tor$ 不依赖消解、$R^nF$ 是函子 \\\hline
 投射/内射/平坦 & 提升性质/$K$ 性质/Baer；$\Ext^1(P,-)=0$；$\Tor_1(N,M)=0$；有限生成平坦$=$投射 \\\hline
-Ext/Tor & $\Ext^n=R^n\Hom$（平衡）；$\Tor_n=L_n\otimes$；$\Ext^0=\Hom$、$\Tor_0=\otimes$ \\\hline
+Ext/Tor & $\Ext^n=H^n\Hom(P_\bullet,B)=H^n\Hom(A,I^\bullet)$；$\Tor_n=H_n(P_\bullet\otimes B)$（平衡）；$\Ext^0=\Hom$、$\Tor_0=\otimes$ \\\hline
 Ext 长正合 & 两个变量各一条；$\to\Ext^n(A'',-)\to\Ext^n(A,-)\to\Ext^n(A',-)\to\Ext^{n+1}(A'',-)\to$ \\\hline
-维数平移 & 投射消解下 $\Ext^{n+1}(A,M)=\Ext^n(A,M')$ \\\hline
+维数平移 & 投射消解下 $\Ext^{n+1}(A,M)=\Ext^n(A,M')$（$n\ge1$） \\\hline
 整体维数 & $\mathrm{gl.dim}=0\iff$ 半单；$=1\iff$ hereditary；$\mathrm{gl.dim}\,\mathbb Z=1$ \\\hline
 群上同调 & $H^n(G,A)=\Ext^n_{\mathbb ZG}(\mathbb Z,A)$；$H^0=A^G$；$H^1=\Der/\text{主}$；$H^2=\{A$-中心扩张$\}$ \\\hline
 有限群湮灭 & $n\ge1\Rightarrow |G|\cdot H^n(G,A)=0$；$\mathbb Q$-向量空间 $\Rightarrow0$ \\\hline
@@ -327,14 +401,13 @@ Shapiro / I--R & $H^n(G,\operatorname{Coind}_H^G A)\cong H^n(H,A)$；$0\to H^1(G
 HS 谱序列 & $1\to N\to G\to G/N\to1$：$E_2^{pq}=H^p(G/N,H^q(N,A))\Rightarrow H^{p+q}(G,A)$ \\\hline
 谱序列退化 & $E_2$ 只有一行/一列 $\Rightarrow$ 无微分，$H^n\cong E_2^{0n}$（或 ${}^{n0}$）\\\hline
 derived category & 拟同构局部化；distinguished triangle $X\to Y\to\operatorname{Cone}(f)\to X[1]$；$RF$ 经内射替换 \\\hline
-\end{tabular}
-\end{center}
+\end{longtable}
 
 \section{必做题优先级清单}
 
 按“考到概率 $\times$ 掌握收益”排序，第一轮只做这些：
 \begin{enumerate}
-  \item \textbf{必做（基础五件套）}：① Yoneda 的两个推论证明；② 蛇引理 chase + 长正合列连接同态；③ $\Ext^1_\mathbb Z(\mathbb Z/n,M)$、$\Tor_1^\mathbb Z(\mathbb Z/n,\mathbb Z/m)$ 全套计算；④ $H^1/H^2$ 低阶词汇表 + $C_n,\mathbb Z$ 计算；⑤ 短正合列分裂判定的三条件互推。
+  \item \textbf{必做（基础五件套）}：① Yoneda 的两个推论证明；② 蛇引理 chase + 长正合列连接同态；③ $\Ext^1_\mathbb Z(\mathbb Z/n,M)$、$\Tor_1^\mathbb Z(\mathbb Z/n,\mathbb Z/m)$ 全套计算；④ $H^1/H^2$ 低阶词汇表 + $H^\bullet(C_n,\mathbb Z)$ 计算；⑤ 短正合列分裂判定的三条件互推。
   \item \textbf{必做（标准题）}：投射/内射/平坦的典型判定（$\mathbb Z$ 系）；维数平移递推 $\Ext^n$；Shapiro 与 Inflation--Restriction 各一题；一个能退化的谱序列题（HS 于 $N$ 平凡作用且 $H^{\ge1}(N,A)=0$）。
   \item \textbf{可后置}：K\"unneth 证明、双复形谱序列内部构造、derived category 题（第一轮不刷）。
   \item 每做完一项，在对应 \S 的自测题上打勾；\textbf{标准计算必须“闭卷从头写到底”}一次才算出关。
@@ -350,6 +423,73 @@ derived category & 拟同构局部化；distinguished triangle $X\to Y\to\operat
   \item $H^n(G,A)$ 的“$|G|$ 湮灭”只对 $n\ge1$；$H^0=A^G$ 不受影响。
   \item 谱序列的 $E_2$ 项 $\neq H^\bullet$：先看退化，再读边同态。
   \item 群环 $\mathbb ZG$ 上的投射模一般不是自由模（与域上 $kG$ 不同），不要默认直行套用。
+\end{itemize}
+
+\section{考纲逐词条：同调代数名词定义总览（2024 硕转博大纲（五））}
+
+\textbf{对照对象}：资格考试大纲“（五）同调代数”5 条，逐名词给出概念定义与一条考试口径；与 \S2--\S6 正文互补，可作“闭卷默写定义”的检查单。教材口径：CE Ch.~I--VI, XII, XIV--XVI；GM Ch.~I--IV。
+
+\subsection{范畴、函子、自然变换、可表函子、Yoneda 引理}
+
+\begin{itemize}
+  \item \textbf{范畴} $\mathcal C$：对象类 $\operatorname{Ob}\mathcal C$ + 态射集 $\Hom_{\mathcal C}(A,B)$ + 结合复合 + 单位态射 $1_A$。例：$\mathbf{Set},\ \mathbf{Grp},\ R\text{-}\mathbf{Mod},\ \mathbf{Ch}(R)$。
+  \item \textbf{函子} $F\colon\mathcal C\to\mathcal D$：协变 = 保复合与单位；反变 = $\mathcal C^{op}\to\mathcal D$（箭头反向）。忠实（态射集单射）/ 满（态射集满射）/ \textbf{本质满}（每对象同构于某 $FX$）。
+  \item \textbf{自然变换} $\alpha\colon F\Rightarrow G$：一族态射 $\alpha_A\colon FA\to GA$，使自然性方框 $\alpha_B\circ F(f)=G(f)\circ\alpha_A$ 对一切 $f$ 交换；各分量可逆 = \textbf{自然同构}。
+  \item \textbf{可表函子}：$F\colon\mathcal C\to\mathbf{Set}$ 可表 $\Longleftrightarrow\ \exists A$ 与自然同构 $F\cong\Hom_{\mathcal C}(A,-)$；等价地存在\textbf{泛元素} $u\in FA$，使每个 $x\in FB$ 唯一来自某个 $f\colon A\to B$。
+  \item \textbf{Yoneda 引理}：$\operatorname{Nat}(\Hom_{\mathcal C}(A,-),F)\cong F(A)$，$\Phi\mapsto\Phi_A(1_A)$；推论：$\Hom(A,-)\cong\Hom(B,-)\Rightarrow A\cong B$（反变版本同理）。
+\end{itemize}
+
+\subsection{加性范畴、Abel 范畴、复形与同调、长正合列与同伦}
+
+\begin{itemize}
+  \item \textbf{加性范畴}：$\Hom$ 是 Abel 群且复合双线性 + 零对象 + 有限双积（直积 $=$ 直和）。
+  \item \textbf{Abel 范畴}：加性 + 核/余核存在 + 单态射 = 其余核的核、满态射 = 其核的余核。原型 $R\text{-}\mathbf{Mod}$ 与 $\mathbf{Ch}(R)$。
+  \item \textbf{复形}：满足 $d\circ d=0$ 的序列 $\cdots\to C_n\to C_{n-1}\to\cdots$（上链 $C^n\to C^{n+1}$）；闭链 $Z_n=\ker d_n$、边界 $B_n=\im d_{n+1}$。
+  \item \textbf{同调}：$H_n(C_\bullet)=\ker d_n/\im d_{n+1}$；链映射诱导 $H_n(f)$；在 $H_\bullet$ 上同构的链映射 = \textbf{拟同构}。
+  \item \textbf{同调长正合列}：复形短正合列 $0\to A\to B\to C\to0\Rightarrow\cdots\to H_n(A)\to H_n(B)\to H_n(C)\xrightarrow{\partial}H_{n-1}(A)\to\cdots$，连接同态 $\partial$ 来自蛇引理。
+  \item \textbf{同伦}：$f-g=d_Ys+sd_X$（$s$ 为链同伦）$\Rightarrow H(f)=H(g)$；同伦等价 $\Rightarrow$ 拟同构、逆不真；比较引理给出消解在同伦意义下唯一（$\Ext/\Tor$ 与消解选择无关）。
+\end{itemize}
+
+\subsection{张量积、平坦模、射影模、内射模}
+
+\begin{itemize}
+  \item \textbf{张量积}：$M\otimes_RN$ 由 $m\otimes n$ 生成、满足平衡双线性关系，是平衡双线性映射的泛对象；$-\otimes_RN$ 右正合（左正合性丢失正是 $\Tor_1$ 的由来）。
+  \item \textbf{平坦模}：$-\otimes_RM$ 正合 $\Longleftrightarrow\ \Tor_1(N,M)=0\ \forall N$（交换环上只查所有理想的 $\Tor_1(R/I,M)=0$，即理想判据）；自由 $\Rightarrow$ 投射 $\Rightarrow$ 平坦；$\mathbb Z$ 上平坦 $\Longleftrightarrow$ 无挠（$\mathbb Q$ 平坦非投射）；有限生成平坦 = 投射；局部化保持平坦。
+  \item \textbf{射影模}：$\Hom_R(P,-)$ 正合、提升性质、自由模的直和因子、$\Ext^1_R(P,-)=0$ 四种刻画等价；$\mathbb Z$ 上投射 = 自由。
+  \item \textbf{内射模}：$\Hom_R(-,I)$ 正合 $\Longleftrightarrow$ 延拓性质 $\Longleftrightarrow$ Baer 判据（左理想出发的同态可延拓到 $R$）；$\mathbb Z$-模内射 $\Longleftrightarrow$ divisible（$\mathbb Q,\mathbb Q/\mathbb Z$ 内射；$\mathbb Z$ 不内射）。
+\end{itemize}
+
+\subsection{导函子、Ext 与 Tor、同调维数、群的上同调}
+
+\begin{itemize}
+  \item \textbf{导函子}：右正合 $F$ 的左导函子 $L_nF(A)=H_n(F(P_\bullet))$（$P_\bullet\twoheadrightarrow A$ 为投射消解）；左正合 $G$ 的右导函子 $R^nG(B)=H^n(G(I^\bullet))$（$B\hookrightarrow I^\bullet$ 为内射消解）；与消解选择无关，短正合列给出长正合列。
+  \item \textbf{$\Ext$}：
+  \[
+    \Ext_R^n(A,B)
+    =H^n\Hom_R(P_\bullet,B)
+    =H^n\Hom_R(A,I^\bullet).
+  \]
+  其中 $\Ext^0=\Hom$，而 $\Ext^1_R(A,B)$ 分类短正合扩张
+  $0\to B\to E\to A\to0$ 的等价类。
+  \item \textbf{$\Tor$}：$\Tor_n^R(A,B)=H_n(P_\bullet\otimes_RB)$（平衡性：用 $A$ 或 $B$ 的投射消解皆可）；$\Tor_0=\otimes$；速算 $\Tor_1^\mathbb Z(\mathbb Z/a,M)=M[a]$。
+  \item \textbf{同调维数}：$\pd_RA=\sup\{n\mid\Ext_R^n(A,-)\neq0\}$；$\id_RA=\sup\{n\mid\Ext_R^n(-,A)\neq0\}$；整体维数 $\mathrm{gl.dim}\,R=\sup_A\pd_RA$：$=0$ $\Longleftrightarrow$ 半单 Artin、$\le1$ $\Longleftrightarrow$ hereditary、$\mathrm{gl.dim}\,\mathbb Z=1$。
+  \item \textbf{群的上同调}：$H^n(G,A)=\Ext^n_{\mathbb Z[G]}(\mathbb Z,A)$（即不变量函子 $(-)^G$ 的右导函子）；$H^0=A^G$、$H^1=\Der/\text{主交叉同态}$、$H^2=\{$以 $A$ 为中心核的扩张等价类$\}$；同调侧 $H_n(G,A)=\Tor_n^{\mathbb Z[G]}(\mathbb Z,A)$，$H_1(G,\mathbb Z)=G^{\mathrm{ab}}$；$G$ 有限时 $n\ge1\Rightarrow|G|\cdot H^n(G,A)=0$。
+\end{itemize}
+
+\subsection{Koszul 复形、谱序列、导出范畴}
+
+\begin{itemize}
+  \item \textbf{Koszul 复形}：对 $x=(x_1,\dots,x_n)$，这里
+  $x_i\in R$，整体上 $x\in R^n$；记号
+  $(x)$ 表示由这些元素生成的理想
+  $(x_1,\dots,x_n)\subseteq R$，因此 $R/(x)$ 即商环
+  $R/(x_1,\dots,x_n)$。
+  \[
+    K_\bullet(x):\ 0\longrightarrow\Lambda^n(R^n)\longrightarrow\cdots\longrightarrow\Lambda^1(R^n)\longrightarrow R\longrightarrow R/(x)\longrightarrow0,
+  \]
+  其中 $\Lambda^k(R^n)$ 为 $R^n$ 的 $k$ 次外幂、微分是“楔上 $x_i$”的交替和。$x$ 为 $R$-正则序列 $\Longleftrightarrow$ $K_\bullet(x)$ 是 $R/(x)$ 的自由消解；$x$ 为 $M$-正则序列 $\Longleftrightarrow\ H_i(K_\bullet(x)\otimes_RM)=0\ (i\ge1)$。用于深度、维数理论。
+  \item \textbf{谱序列}：滤过复形给出各页 $(E_r^{pq},d_r)$，$d_r\colon E_r^{pq}\to E_r^{p+r,q-r+1}$，$E_{r+1}=H(E_r,d_r)$，收敛写作 $E_2^{pq}\Rightarrow H^{p+q}$；双复形版本 $E_2^{pq}=H^p_IH^q_{II}(C)\Rightarrow H^{p+q}(\Tot C)$；Grothendieck 复合函子版与 Hochschild--Serre：$E_2^{pq}=H^p(G/N,H^q(N,A))\Rightarrow H^{p+q}(G,A)$。退化情形（$E_2$ 只有一行或一列非零）$\Rightarrow$ 无微分，边同态给出同构。
+  \item \textbf{导出范畴}：$\mathbf{Ch}(R)$ 在拟同构处局部化得 $D(R)$（拟同构被当作同构）；三角范畴结构：平移 $[1]$、distinguished triangle $X\to Y\to\operatorname{Cone}(f)\to X[1]$（映射锥 $\operatorname{Cone}(f)$ 是“同伦意义下的核+余核”）；导出函子 $RF$ 由内射（$K$-内射）替换定义，$\operatorname{RHom}$、$-\otimes^{\mathrm L}-$ 均如此；$\Ext_R^n(A,B)=\Hom_{D(R)}(A,B[n])$。
 \end{itemize}
 
 \end{document}

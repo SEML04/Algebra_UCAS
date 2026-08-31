@@ -960,6 +960,76 @@ Matlis 对偶是在完备 Noether 局部环上把 Noetherian 模与 Artinian 模
 \end{enumerate}
 \end{remark}
 
+\subsection{\texorpdfstring{\(\operatorname{Hom}\)、张量积与极限/余极限}{Hom、张量积与极限/余极限}}\label{subsec:hom-tensor-limits}
+
+\begin{remark}
+\phantomsection\label{rem:hom-tensor-limits}
+在模范畴中，\(\operatorname{Hom}\)、\(\otimes\) 与极限/余极限的关系，核心来自伴随性：
+\[
+  -\otimes_A M \dashv \operatorname{Hom}_A(M,-).
+\]
+因此左伴随保余极限，右伴随保极限。
+
+\textbf{张量积：} 对固定 \(A\)-模 \(M\)，函子
+\[
+  -\otimes_A M
+\]
+保任意余极限，特别地
+\[
+  \left(\varinjlim_i N_i\right)\otimes_A M
+  \cong
+  \varinjlim_i (N_i\otimes_A M),
+  \qquad
+  \left(\bigoplus_i N_i\right)\otimes_A M
+  \cong
+  \bigoplus_i(N_i\otimes_A M).
+\]
+但它一般不保逆极限；若 \(M\) flat，则它保有限极限意义下的左正合性，等价于张量短正合列仍正合。
+
+\textbf{第二变量的 \(\operatorname{Hom}\)：} 对固定 \(M\)，函子
+\[
+  \operatorname{Hom}_A(M,-)
+\]
+保任意极限，特别地
+\[
+  \operatorname{Hom}_A\!\left(M,\varprojlim_i N_i\right)
+  \cong
+  \varprojlim_i \operatorname{Hom}_A(M,N_i).
+\]
+它一般不保余极限；若 \(M\) finitely presented，则对 filtered colimit 有
+\[
+  \operatorname{Hom}_A\!\left(M,\varinjlim_i N_i\right)
+  \cong
+  \varinjlim_i \operatorname{Hom}_A(M,N_i).
+\]
+
+\textbf{第一变量的 \(\operatorname{Hom}\)：} 对固定 \(N\)，函子
+\[
+  \operatorname{Hom}_A(-,N)
+\]
+是反变的，所以它把第一变量的余极限变成极限：
+\[
+  \operatorname{Hom}_A\!\left(\varinjlim_i M_i,N\right)
+  \cong
+  \varprojlim_i \operatorname{Hom}_A(M_i,N),
+\]
+特别地
+\[
+  \operatorname{Hom}_A\!\left(\bigoplus_i M_i,N\right)
+  \cong
+  \prod_i\operatorname{Hom}_A(M_i,N).
+\]
+
+因此实用记忆法是：
+\[
+  \begin{aligned}
+  \otimes &\text{ 喜欢 colimit},\\
+  \operatorname{Hom}(M,-)&\text{ 喜欢 limit},\\
+  \operatorname{Hom}(-,N)&\text{ 反向把 colimit 变成 limit}.
+  \end{aligned}
+\]
+\end{remark}
+
 \subsection{\texorpdfstring{Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)}{Artin-Rees 预备引理中的 Qn 与 Mn*}}\label{subsec:artin-rees-qn}
 
 \begin{remark}
@@ -1358,6 +1428,109 @@ Krull 交定理最常用的形式是：若 \(A\) 是 Noether 环，\(I\subset A\
 \end{itemize}
 \end{remark}
 
+\begin{remark}
+\phantomsection\label{rem:semisimple-short-exact-sequence}
+短正合列
+\[
+  0\longrightarrow A\longrightarrow M\longrightarrow B\longrightarrow 0
+\]
+中，若 \(M\) 是半单模，则 \(A\) 与 \(B\) 都是半单模，并且该短正合列必分裂。
+
+理由是：半单模的任意子模都是直和因子，所以
+\[
+  M\cong A\oplus A'
+\]
+对某个子模 \(A'\) 成立；于是
+\[
+  B\cong M/A\cong A',
+\]
+而半单模的直和因子仍半单。因此半单性可从中项下降到子模与商模。
+
+反向不成立：即使 \(A\) 与 \(B\) 都半单，扩张 \(M\) 也未必半单。标准例子是 \(\mathbb Z\)-模
+\[
+  0\longrightarrow 2\mathbb Z_4
+  \longrightarrow \mathbb Z_4
+  \longrightarrow \mathbb Z_2
+  \longrightarrow 0.
+\]
+这里
+\[
+  2\mathbb Z_4\cong\mathbb Z_2,\qquad
+  \mathbb Z_4/2\mathbb Z_4\cong\mathbb Z_2
+\]
+都是单模，因而半单；但 \(\mathbb Z_4\) 不是半单 \(\mathbb Z\)-模，因为其子模 \(2\mathbb Z_4\) 没有补模，等价地上面的短正合列不分裂。
+
+所以“\(M\) 半单”是一个全局条件：它要求 \(M\) 的全部子模都可作直和因子；只知道某个短正合列的左右两端半单，并不能排除非平凡扩张。
+\end{remark}
+
+\subsection{Hochschild--Serre 谱序列的二维图像}\label{subsec:hs-spectral-sequence-plane}
+
+\begin{remark}
+\phantomsection\label{rem:hs-spectral-sequence-plane}
+Hochschild--Serre 谱序列处理群扩张
+\[
+  1\to N\to G\to G/N\to 1
+\]
+上的群上同调。其标准形式为
+\[
+  E_2^{p,q}=H^p\bigl(G/N,\ H^q(N,A)\bigr)
+  \Longrightarrow H^{p+q}(G,A).
+\]
+这里 \(E_r^{p,q}\) 表示第 \(r\) 页上位于二维坐标 \((p,q)\) 的 Abel 群或模；横坐标 \(p\) 来自外层群 \(G/N\)，纵坐标 \(q\) 来自内层正规子群 \(N\)，总次数是 \(p+q\)。
+
+\[
+\begin{array}{c|cccc}
+q & & & & \\
+2 & E_r^{0,2} & E_r^{1,2} & E_r^{2,2} & \cdots\\
+1 & E_r^{0,1} & E_r^{1,1} & E_r^{2,1} & \cdots\\
+0 & E_r^{0,0} & E_r^{1,0} & E_r^{2,0} & \cdots\\
+\hline
+  & 0 & 1 & 2 & p
+\end{array}
+\]
+
+在 \(E_2\) 页上，每个格点具体就是
+\[
+\begin{array}{c|ccc}
+q=2 & H^0(G/N,H^2(N,A)) & H^1(G/N,H^2(N,A)) & \cdots\\
+q=1 & H^0(G/N,H^1(N,A)) & H^1(G/N,H^1(N,A)) & \cdots\\
+q=0 & H^0(G/N,A^N)      & H^1(G/N,A^N)      & H^2(G/N,A^N)\\
+\hline
+    & p=0 & p=1 & p=2
+\end{array}
+\]
+所以它的直观含义是：先计算 \(N\) 的上同调 \(H^q(N,A)\)，再把这些结果作为 \(G/N\)-模去计算 \(G/N\) 的上同调。
+
+这是上同调型谱序列，微分方向为
+\[
+  d_r^{p,q}:E_r^{p,q}\longrightarrow E_r^{p+r,q-r+1}.
+\]
+也就是说，\(d_2\) 从 \((p,q)\) 向右走 \(2\) 格、向下走 \(1\) 格；\(d_3\) 向右走 \(3\) 格、向下走 \(2\) 格。
+式子
+\[
+  E_{r+1}=H(E_r,d_r)
+\]
+中的 \(H\) 不是重新计算一次群上同调，而是在第 \(r\) 页这张二维表上对微分 \(d_r\) 取“核模像”：
+\[
+  E_{r+1}^{p,q}
+  =
+  \frac{\ker\bigl(d_r:E_r^{p,q}\to E_r^{p+r,q-r+1}\bigr)}
+       {\operatorname{im}\bigl(d_r:E_r^{p-r,q+r-1}\to E_r^{p,q}\bigr)}.
+\]
+因此这里的 \(H\) 应理解为当前页复形的上同调；它的作用是杀掉会被 \(d_r\) 打出去的部分，并模掉从前一个格点打进来的部分。
+
+最后的
+\[
+  E_2^{p,q}\Longrightarrow H^{p+q}(G,A)
+\]
+并不是说 \(E_\infty^{p,q}=H^{p+q}(G,A)\)，而是说 \(E_\infty^{p,q}\) 给出目标群上同调的滤过分次片：
+\[
+  E_\infty^{p,q}\cong
+  F^pH^{p+q}(G,A)/F^{p+1}H^{p+q}(G,A).
+\]
+一句话：HS 谱序列把 \(H^\bullet(G,A)\) 拆成“先看 \(N\)，再看 \(G/N\)”的二维计算；每一页通过微分修正上一页，最终留下目标上同调的分层信息。
+\end{remark}
+
 \subsection{Semi-simple rings 与 hereditary rings}\label{subsec:semisimple-hereditary}
 
 \begin{remark}
@@ -1711,9 +1884,9 @@ KS 不要求有限长度，不能说明所有模都有 indecomposable 直和分�
 
 \textbf{要解决的问题。} 在处理有限群表示时，常会先\textbf{诱导}再\textbf{限制}，而这两个函子一般不可交换：
 \[
-  \operatorname{Res}_K^G\operatorname{Ind}_H^G\ \not\cong\ \text{某种 “}\operatorname{Ind}_K^G\text{”} 的简单形式.
+  \operatorname{Res}_K^G\operatorname{Ind}_H^G\ \not\cong\ \operatorname{Ind}_K^G(\cdots).
 \]
-Mackey 分解定理回答的正是：\(\operatorname{Ind}_H^G W\) 限制到另一子群 \(K\) 后，如何按 \((K,H)\)-双陪集拆成更小的诱导表示的直和。
+也就是说，它不等于某个单纯的 \(\operatorname{Ind}_K^G\) 形式。Mackey 分解定理回答的正是：\(\operatorname{Ind}_H^G W\) 限制到另一子群 \(K\) 后，如何按 \((K,H)\)-双陪集拆成更小的诱导表示的直和。
 
 \medskip
 
@@ -9629,9 +9802,12 @@ Frobenius 核的标准构造如下：记
 \]
 这是 \(H\) 的广义特征标（满足 \(\varphi(1)=0\)）。由引理 \((\operatorname{Ind}_H^G(\varphi))|_H=\varphi\)；Frobenius 互反律给出
 \[
-  (\operatorname{Ind}_H^G(\varphi),\operatorname{Ind}_H^G(\varphi))_G=(\varphi,\varphi)_H=1+\psi(1)^2,
-  \qquad
-  (\operatorname{Ind}_H^G(\varphi),1_G)_G=(\varphi,1_H)_H=-\psi(1).
+  \begin{aligned}
+  (\operatorname{Ind}_H^G(\varphi),\operatorname{Ind}_H^G(\varphi))_G
+  &=(\varphi,\varphi)_H=1+\psi(1)^2,\\
+  (\operatorname{Ind}_H^G(\varphi),1_G)_G
+  &=(\varphi,1_H)_H=-\psi(1).
+  \end{aligned}
 \]
 令
 \[
@@ -9639,9 +9815,12 @@ Frobenius 核的标准构造如下：记
 \]
 则 \(\psi^*\) 是 \(G\) 的广义特征标，且
 \[
-  (\psi^*,\psi^*)_G=(1+\psi(1)^2)+2\psi(1)(-\psi(1))+\psi(1)^2=1,
-  \qquad
-  \psi^*(1)=\operatorname{Ind}_H^G(\varphi)(1)+\psi(1)=\psi(1)>0,
+  \begin{aligned}
+  (\psi^*,\psi^*)_G
+  &=(1+\psi(1)^2)+2\psi(1)(-\psi(1))+\psi(1)^2=1,\\
+  \psi^*(1)
+  &=\operatorname{Ind}_H^G(\varphi)(1)+\psi(1)=\psi(1)>0,
+  \end{aligned}
 \]
 限制为
 \[
@@ -9776,6 +9955,264 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
 这正是投射分解中“第一 syzygy 在稳定意义下唯一”的基本来源。
 \end{example}
 
+
+\subsection{\texorpdfstring{用标准上链复形计算 \(H^1(C_2,\mathbb Z)\) 与 \(H^2(C_2,\mathbb Z)\)}{用标准上链复形计算 H1(C2,Z) 与 H2(C2,Z)}}\label{subsec:problem-c2-cohomology-cochains}
+
+\begin{example}
+（出处：《同调代数快速通道》（\texttt{Draft/draft2.tex}）\S5.4 达标自测题 (2)。）
+
+计算 \(H^1(C_2,\mathbb Z)\)、\(H^2(C_2,\mathbb Z)\)，其中 \(C_2=\langle\sigma\mid\sigma^2=1\rangle\)，并令 \(C_2\) 在 \(\mathbb Z\) 上平凡作用。
+
+\textbf{解答：}
+
+使用群上同调的非齐次标准上链复形
+\[
+  0\longrightarrow C^0(G,\mathbb Z)
+  \xrightarrow{\delta^0}C^1(G,\mathbb Z)
+  \xrightarrow{\delta^1}C^2(G,\mathbb Z)
+  \xrightarrow{\delta^2}C^3(G,\mathbb Z)\longrightarrow\cdots,
+\]
+其中
+\[
+  C^n(G,\mathbb Z)=\{f:G^n\to \mathbb Z\}.
+\]
+为简化计算，可取归一化子复形，即规定只需看所有变量都非单位元的取值；它与完整标准复形给出同一上同调。
+
+因为 \(C_2\) 只有一个非单位元 \(\sigma\)，归一化 \(n\)-上链由一个整数决定：
+\[
+  C^n_{\mathrm{nor}}(C_2,\mathbb Z)\cong \mathbb Z,\qquad
+  f\longmapsto f(\sigma,\dots,\sigma).
+\]
+
+\textbf{第一步：计算 \(H^1\)。}
+
+对 \(a\in C^0(G,\mathbb Z)=\mathbb Z\)，由于作用平凡，
+\[
+  (\delta^0a)(g)=g\cdot a-a=0,
+\]
+所以 \(B^1=\operatorname{im}\delta^0=0\)。
+
+设 \(f\in C^1_{\mathrm{nor}}(G,\mathbb Z)\)，记 \(f(\sigma)=m\)。非齐次微分为
+\[
+  (\delta^1f)(g,h)=g\cdot f(h)-f(gh)+f(g).
+\]
+在平凡作用下代入 \((g,h)=(\sigma,\sigma)\)，并用归一化条件 \(f(1)=0\)，得
+\[
+  (\delta^1f)(\sigma,\sigma)
+  =
+  f(\sigma)-f(1)+f(\sigma)
+  =
+  2m.
+\]
+因此
+\[
+  Z^1=\ker\delta^1=\{m\in\mathbb Z:2m=0\}=0,
+\]
+从而
+\[
+  H^1(C_2,\mathbb Z)=Z^1/B^1=0.
+\]
+
+\textbf{第二步：计算 \(H^2\)。}
+
+设 \(c\in C^2_{\mathrm{nor}}(G,\mathbb Z)\)，记
+\[
+  c(\sigma,\sigma)=n.
+\]
+非齐次微分为
+\[
+  (\delta^2c)(g,h,k)
+  =
+  g\cdot c(h,k)-c(gh,k)+c(g,hk)-c(g,h).
+\]
+在平凡作用下代入 \((\sigma,\sigma,\sigma)\)，并用归一化条件
+\[
+  c(1,\sigma)=c(\sigma,1)=0,
+\]
+得到
+\[
+  (\delta^2c)(\sigma,\sigma,\sigma)
+  =
+  c(\sigma,\sigma)-c(1,\sigma)+c(\sigma,1)-c(\sigma,\sigma)
+  =
+  0.
+\]
+所以每个 \(2\)-上链都是 \(2\)-上循环：
+\[
+  Z^2=C^2_{\mathrm{nor}}(G,\mathbb Z)\cong\mathbb Z.
+\]
+另一方面，由上一段计算
+\[
+  \delta^1(f)(\sigma,\sigma)=2f(\sigma),
+\]
+故
+\[
+  B^2=\operatorname{im}\delta^1=2\mathbb Z.
+\]
+于是
+\[
+  H^2(C_2,\mathbb Z)=Z^2/B^2\cong \mathbb Z/2\mathbb Z.
+\]
+
+\textbf{结论：}
+\[
+  H^1(C_2,\mathbb Z)=0,\qquad
+  H^2(C_2,\mathbb Z)\cong\mathbb Z/2\mathbb Z.
+\]
+
+\textbf{方法要点：}
+这个计算展示了标准上链复形的实际用法：先写出 \(C^n(G,A)\)，再用 \(\delta^n\) 计算 \(Z^n=\ker\delta^n\) 与 \(B^n=\operatorname{im}\delta^{n-1}\)，最后取商。对 \(C_2\) 的平凡 \(\mathbb Z\)-系数，归一化复形把计算压缩为整数上的“乘 \(2\)”映射，因此奇偶性正是 \(H^2\cong\mathbb Z/2\mathbb Z\) 的来源。
+\end{example}
+
+
+\subsection{标准上链复形与归一化上链复形的同伦等价}\label{subsec:problem-normalized-cochain-homotopy}
+
+\begin{example}
+（出处：Hu Yongquan《Algebra I》中群上同调的标准上链复形；背景对应 \texttt{Draft/draft2.tex} \S5.）
+
+解释为什么群上同调的标准上链复形与归一化上链复形是链同伦等价，因此计算得到的上同调群相同。
+
+\textbf{解答：}
+
+设 \(G\) 是群，\(A\) 是 \(G\)-模。非齐次标准上链复形为
+\[
+  C^n(G,A)=\{f:G^n\to A\},
+\]
+其微分为
+\[
+\begin{aligned}
+(\delta f)(g_1,\dots,g_{n+1})
+={}&g_1f(g_2,\dots,g_{n+1})\\
+&+\sum_{i=1}^{n}(-1)^if(g_1,\dots,g_ig_{i+1},\dots,g_{n+1})\\
+&+(-1)^{n+1}f(g_1,\dots,g_n).
+\end{aligned}
+\]
+归一化上链复形取
+\[
+  C^n_{\mathrm{nor}}(G,A)
+  =
+  \{f\in C^n(G,A): f(g_1,\dots,g_n)=0
+  \text{ whenever some }g_i=1\}.
+\]
+它是 \(C^\bullet(G,A)\) 的子复形，因为若 \(f\) 在含单位元的输入上为零，则 \(\delta f\) 仍在含单位元的输入上为零；相邻两项在微分公式中会相互抵消。
+
+真正的结构来源是 bar resolution。标准复形 \(C^\bullet(G,A)\) 可看成
+\[
+  \operatorname{Hom}_{\mathbb ZG}(B_\bullet,A),
+\]
+其中 \(B_\bullet\) 是标准 bar resolution；归一化复形可看成
+\[
+  \operatorname{Hom}_{\mathbb ZG}(\overline B_\bullet,A),
+\]
+其中 \(\overline B_\bullet\) 是 normalized bar resolution，即把含有退化项的生成元商掉。这里“退化项”就是某个位置出现单位元 \(1\) 的项。
+
+令 \(D_\bullet\subset B_\bullet\) 为退化项生成的子复形，则有短正合列
+\[
+  0\longrightarrow D_\bullet
+  \longrightarrow B_\bullet
+  \longrightarrow \overline B_\bullet
+  \longrightarrow 0.
+\]
+单纯模的标准事实给出：退化子复形 \(D_\bullet\) 是可缩的，即存在同伦算子 \(h\) 使
+\[
+  dh+hd=\operatorname{id}_{D_\bullet}.
+\]
+直观上，\(h\) 由“再插入一个单位元”的退化算子交错相加得到；因此所有含单位元的退化部分只贡献零同调。
+
+于是商映射
+\[
+  B_\bullet\longrightarrow \overline B_\bullet
+\]
+是链同伦等价。对它施加
+\[
+  \operatorname{Hom}_{\mathbb ZG}(-,A)
+\]
+后得到上链复形之间的同伦等价
+\[
+  C^\bullet_{\mathrm{nor}}(G,A)
+  \simeq
+  C^\bullet(G,A).
+\]
+特别地，二者拟同构，所以
+\[
+  H^n(C^\bullet_{\mathrm{nor}}(G,A))
+  \cong
+  H^n(C^\bullet(G,A))
+  =
+  H^n(G,A).
+\]
+
+\textbf{方法要点：}
+归一化复形不是改变群上同调的定义，而是删掉标准复形中可缩的退化部分。实际计算时可以直接使用归一化上链，因为每个标准上同调类都有归一化代表，且归一化复形中的上边缘关系与标准复形给出的上边缘关系一致。
+\end{example}
+
+
+\subsection{\texorpdfstring{\(\mathbb Q\) 是平坦而非投射的 \(\mathbb Z\)-模，\(\mathbb Z/p\) 非平坦}{Q 是平坦而非投射的 Z-模，Z/p 非平坦}}\label{subsec:problem-q-flat-not-projective}
+
+\begin{example}
+（出处：《同调代数快速通道》（\texttt{Draft/draft2.tex}）\S4.4 达标自测题 (2)；知识点对应 Cartan--Eilenberg Ch.~VI（背景 Atiyah--Macdonald）。）
+
+证明 \(\mathbb Q\) 是平坦而非投射的 \(\mathbb Z\)-模；\(\mathbb Z/p\mathbb Z\)（\(p\) 为素数）不是平坦的 \(\mathbb Z\)-模。
+
+\textbf{解答：}
+
+\textbf{第一步：准备判据。} 对 \(a\ge 1\)，由短正合列
+\[
+  0\longrightarrow \mathbb Z\xrightarrow{\times a}\mathbb Z\longrightarrow \mathbb Z/a\mathbb Z\longrightarrow 0
+\]
+张量 \(M\) 得
+\[
+  \operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/a\mathbb Z,\ M)
+  \ \cong\ \ker\bigl(M\xrightarrow{\times a}M\bigr)
+  \ =:\ M[a],
+\]
+即 \(M\) 的 \(a\)-挠子模；特别地
+\[
+  \operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/a\mathbb Z,\ \mathbb Q)=\mathbb Q[a]=0,
+\]
+因为 \(\mathbb Q\) 无挠；又 \(\operatorname{Tor}_1^{\mathbb Z}(\mathbb Z,\ -)=0\)（\(\mathbb Z\) 自由）。
+
+\textbf{第二步：\(\mathbb Q\) 平坦。} 任意 \(\mathbb Z\)-模 \(N\) 是它的有限生成子模的滤过余极限 \(N=\varinjlim N_i\)，而有限生成 Abel 群
+\[
+  N_i\cong \mathbb Z^{r_i}\oplus \bigoplus_j \mathbb Z/a_{ij}\mathbb Z.
+\]
+\(\operatorname{Tor}_1\) 与滤过余极限交换，于是由第一步
+\[
+  \operatorname{Tor}_1^{\mathbb Z}(N_i,\mathbb Q)=0
+  \ \Longrightarrow\ \operatorname{Tor}_1^{\mathbb Z}(N,\mathbb Q)=0.
+\]
+由标准判据“\(M\) 平坦 \(\iff\operatorname{Tor}_1(-,M)=0\)”，\(\mathbb Q\) 是平坦 \(\mathbb Z\)-模。\emph{（更快：\(\mathbb Q=S^{-1}\mathbb Z\) 是局部化、也是自由模的滤过余极限；局部化函子与滤过余极限都保持正合。）}
+
+\textbf{第三步：\(\mathbb Q\) 非投射。} 先证
+\[
+  \operatorname{Hom}_{\mathbb Z}(\mathbb Q,\mathbb Z)=0.
+\]
+任意 \(f\in\operatorname{Hom}_{\mathbb Z}(\mathbb Q,\mathbb Z)\) 的像 \(\operatorname{im}f\cong\mathbb Q/\ker f\) 是 \(\mathbb Q\) 的商群，仍是 divisible 群；而 \(\mathbb Z\) 的非零子群 \(n\mathbb Z\) 都不是 divisible（例如乘以 \(2\) 在 \(n\mathbb Z\) 上不满）。故 \(\operatorname{im}f=0\)，即 \(f=0\)。
+
+若 \(\mathbb Q\) 投射，则它是某个自由模 \(F=\mathbb Z^{(I)}\) 的直和因子，故有单射 \(i\colon\mathbb Q\hookrightarrow F\)。取坐标投影 \(\pi_j\colon F\to\mathbb Z\) 使 \(\pi_j\circ i\neq 0\)（否则 \(i(\mathbb Q)\subseteq\bigcap_j\ker\pi_j=0\)，与单射矛盾），便得到非零同态 \(\mathbb Q\to\mathbb Z\)，与上面矛盾。故 \(\mathbb Q\) 非投射。
+
+\textbf{第四步：\(\mathbb Z/p\mathbb Z\) 非平坦。} 由第一步
+\[
+  \operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/p\mathbb Z,\ \mathbb Z/p\mathbb Z)
+  \cong(\mathbb Z/p\mathbb Z)[p]=\mathbb Z/p\mathbb Z\neq 0,
+\]
+违反平坦判据 \(\operatorname{Tor}_1(-,M)=0\)，故 \(\mathbb Z/p\mathbb Z\) 非平坦。（等价地：理想 \(p\mathbb Z\hookrightarrow\mathbb Z\) 张量 \(\mathbb Z/p\mathbb Z\) 后，映射
+\[
+  p\mathbb Z\otimes_{\mathbb Z}\mathbb Z/p\mathbb Z\ \cong\ \mathbb Z/p\mathbb Z
+  \ \longrightarrow\ \mathbb Z\otimes_{\mathbb Z}\mathbb Z/p\mathbb Z\ \cong\ \mathbb Z/p\mathbb Z
+\]
+是乘以 \(p\)，即零映射、非单射：理想判据直接失败。）
+
+\textbf{方法要点：}
+\begin{itemize}
+  \item 速记公式：\(\operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/a\mathbb Z,M)\cong M[a]\)；\(M\) 平坦 \(\iff\operatorname{Tor}_1(-,M)=0\)。在 \(\mathbb Z\) 上这归结为“平坦 \(\iff\) 无挠”：\(\mathbb Q\) 无挠故平坦，\(\mathbb Z/p\mathbb Z\) 有挠故不平坦。
+  \item \(\mathbb Q\) 是“平坦 \(\not\Rightarrow\) 投射”的标准反例（非有限生成，“有限生成平坦 \(\Rightarrow\) 投射”不适用）。关键观察是 divisible 模到自由模的同态必为零。
+  \item 同一判据的两个方向：用 \(\operatorname{Tor}_1=0\) 证平坦、用 \(\operatorname{Tor}_1\neq 0\) 证非平坦；“自 Tor” \(\operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/p,\mathbb Z/p)=\mathbb Z/p\) 是必背计算。
+  \item 相关整理：见 \hyperref[subsec:topic-flat-modules]{专题整理：平坦模的性质总览}。
+\end{itemize}
+\end{example}
+
+
 \newpage
 
 \section*{索引}
@@ -9805,6 +10242,7 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
   \item \hyperref[subsec:categorical-view]{[范畴论视角] Artin/Noether 的形式对偶更适合用 Matlis 对偶理解。}
   \item \hyperref[rem:limits-colimits-padic]{[\hyperref[subsec:limits-colimits]{极限、余极限与始对象/终对象的辨析}] 分清极限/余极限先看过渡态射方向：\(\mathbb Z_p\) 来自 \(\varprojlim \mathbb Z/p^n\mathbb Z\)，而 Prüfer \(p\)-群来自 \(\varinjlim \mathbb Z/p^n\mathbb Z\)。}
   \item \hyperref[rem:initial-terminal-limits]{[\hyperref[subsec:limits-colimits]{极限、余极限与始对象/终对象的辨析}] 始对象是“唯一流出”，终对象是“唯一流入”；colimit 对应始对象的泛性质，limit 对应终对象的泛性质。}
+  \item \hyperref[rem:hom-tensor-limits]{[\hyperref[subsec:hom-tensor-limits]{\(\operatorname{Hom}\)、张量积与极限/余极限}] \(\otimes\) 保余极限，\(\operatorname{Hom}(M,-)\) 保极限，\(\operatorname{Hom}(-,N)\) 反变地把第一变量余极限变成极限。}
   \item \hyperref[subsec:artin-rees-qn]{[Artin-Rees 预备引理中的 \(Q_n\) 与 \(M_n^*\)] Artin-Rees 预备引理里，核心是证明 \(M_n^*=A^*\!\cdot Q_n\) 为有限生成 \(A^*\)-模，而 \(Q_n\) 与 \(M_n^*\) 的生成元处在不同直和环境中。}
   \item \hyperref[rem:krull-intersection]{[\hyperref[subsec:krull-intersection]{Krull 交定理}] Noether 情形下 \(\bigcap_{n\ge 0} I^nM\) 描述的是完备化映射的核；若 \(I\subset \operatorname{Jac}(A)\)，它就必为 \(0\)。}
   \item \hyperref[rem:completion-spec-not-surjective]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] completion 的谱映射不自动满射；flat 不等于 faithfully flat，\(\mathbb Z\to \mathbb Z_2\) 给出标准反例。}
@@ -9813,6 +10251,8 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
   \item \hyperref[rem:prop8510-graded-recovery]{[\hyperref[subsec:iadic-subspace-topology]{\(I\)-adic 滤过、\(I\)-adic 拓扑与子模诱导结构}] Prop 8.5.10 说明：在完备且 \(\bigcap_{n\ge 0}M_n=0\) 的情形下，\(G(M)\) 的有限生成性与 Noether 性可分别恢复 \(M\) 的对应性质。}
   \item \hyperref[rem:split-projective-injective]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列分裂等价于有截面、收缩或直和分解；projective / injective / flat 分别由 \(\operatorname{Hom}(P,-)\)、\(\operatorname{Hom}(-,I)\)、\(-\otimes_A F\) 的正合性刻画。}
   \item \hyperref[rem:short-exact-nonsplit-reducible]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 短正合列只给出子模与商模，不自动给出补模；中项是否可分解取决于是否分裂。}
+  \item \hyperref[rem:semisimple-short-exact-sequence]{[\hyperref[subsec:split-projective-injective]{短正合列的分裂与投射模/内射模}] 半单中项会使短正合列分裂并使两端半单，但两端半单不排除非平凡扩张，\(\mathbb Z_4\) 给出反例。}
+  \item \hyperref[rem:hs-spectral-sequence-plane]{[\hyperref[subsec:hs-spectral-sequence-plane]{Hochschild--Serre 谱序列的二维图像}] \(E_r^{p,q}\) 是第 \(r\) 页二维表上的格点，微分 \(d_r\) 按上同调方向取核模像，最终给出 \(H^{p+q}(G,A)\) 的滤过分次片。}
   \item \hyperref[rem:semisimple-hereditary]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] semi-simple 强于 hereditary，因为“每个左理想是 \(\Lambda\) 的直和因子”强于“每个左理想是 projective \(\Lambda\)-模”。}
   \item \hyperref[rem:projective-vs-summand]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] projective 模只保证是某个自由模的直和因子，不一定是 \(\Lambda\) 本身的直和因子；\(\mathbb Z\) 给出 hereditary 非 semi-simple 的标准反例。}
   \item \hyperref[rem:semihereditary-injective-quotient]{[\hyperref[subsec:semisimple-hereditary]{Semi-simple rings 与 hereditary rings}] semi-hereditary 只控制有限生成子模，无法检验内射性所需的任意嵌入；左 Noether 时才与 hereditary 重合。}
@@ -9932,6 +10372,9 @@ Schanuel 引理说的是：同一个模 \(M\) 的两个投射表示
   \item \hyperref[subsec:problem-serre-sl2-induced-mackey]{[\(\operatorname{SL}_2(k)\) 上由 Borel 子群诱导的特征标] Serre Exercise 7.4：\(G=\operatorname{SL}_2(k)\)，\(H\) 为满足 \(c=0\) 的上三角子群，\(\chi_\omega(\begin{smallmatrix}a&b\\0&a^{-1}\end{smallmatrix})=\omega(a)\)；用 Mackey 不可约准则（Prop 23）与 Bruhat 分解 \(G=H\sqcup HwH\) 归约为 \(\langle\chi_\omega^w,\chi_\omega\rangle_{H_w}=\frac{1}{|k^\times|}\sum_a\omega(a)^{-2}\)，故 \(\operatorname{Ind}_H^G\chi_\omega\) 不可约 \(\iff\omega^2\neq 1\)；本条目同时收录 Mackey 分解与两诱导特征标内积的公式组。}
   \item \hyperref[subsec:problem-frobenius-complement-kernel]{[Frobenius 补与 Frobenius 核（特征标方法）] 核 \(K\) 的正规性与半直积 \(G=K\rtimes H\) 是 Frobenius 定理：用诱导类函数把 \(H\) 的不可约特征标延拓为 \(G\) 的不可约特征标，对核作交得正规子群 \(K^*\)，再由 \(|K^*|=|K|\) 收口（Jacobson BAI II §5.15；仅 \(K\cap H=\{1\}\)、\(KH=G\) 不足为半直积，\(S_4\) 反例）；\(H\) 在 \(K\setminus\{1\}\) 上共轭作用固定点自由，\(\varphi_h\colon k\mapsto hkh^{-1}k^{-1}\) 是 \(K\) 的双射，每个非平凡元素要么落于核 \(K\)、要么属于某共轭补 \(tHt^{-1}\)。}
   \item \hyperref[subsec:problem-schanuel-lemma]{[Schanuel 引理] 同一模 \(M\) 的两个投射表示 \(P_i\twoheadrightarrow M\) 满足稳定同构 \(P_1\oplus N_2\cong P_2\oplus N_1\)。}
+  \item \hyperref[subsec:problem-c2-cohomology-cochains]{[\(C_2\) 的群上同调计算] 归一化上链复形中 \(\delta^1\) 是乘 \(2\)，故 \(H^1=0\)、\(H^2\cong\mathbb Z/2\mathbb Z\)。}
+  \item \hyperref[subsec:problem-normalized-cochain-homotopy]{[标准上链复形与归一化上链复形] 归一化复形删去的是 bar resolution 中可缩的退化子复形，因此与标准复形链同伦等价并给出同一群上同调。}
+  \item \hyperref[subsec:problem-q-flat-not-projective]{[\(\mathbb Q\) 平坦非投射与 \(\mathbb Z/p\) 非平坦] 用 \(\operatorname{Tor}_1\) 判据说明 \(\mathbb Q\) 无挠故平坦但非投射，而 \(\mathbb Z/p\mathbb Z\) 的自 Tor 非零故非平坦。}
 \end{itemize}
 
 \end{document}
