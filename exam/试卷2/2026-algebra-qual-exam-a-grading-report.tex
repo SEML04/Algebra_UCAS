@@ -1,0 +1,69 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,booktabs,geometry,enumitem}
+\geometry{margin=2.5cm}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{2026 Algebra Qual Exam A 评阅报告}}
+\author{答卷：2026-algebra-qual-answer-a.pdf}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{总评}
+
+答卷覆盖了全部十题，主要结论大多正确，计算题与标准结构定理掌握较好。主要扣分点集中在：若干证明只写出结论而缺少关键条件说明；第 5 题中心单代数的同构证明过于简略；第 10 题 Ext 只从投射分解一侧说明，未完整解释导出函子语境。
+
+\[
+\boxed{\text{总分：}132/150}
+\]
+
+\begin{center}
+\begin{tabular}{c c p{9.5cm}}
+\toprule
+题号 & 得分 & 评语 \\
+\midrule
+1 & 14 & 分裂域、次数、Galois 群 \(D_4\) 与阶 \(2\) 子群判断正确；固定域只说明次数，若写出对应固定域会更完整。\\
+2 & 13 & 不可约、不可分、正规方向正确；中间域链基本正确，但“全部中间域”的唯一性论证略简。\\
+3 & 15 & Smith 标准形计算正确，得到 \(\mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z/48\)，非循环判断正确。\\
+4 & 11 & composition series 与 JH 不变量方向正确；KS 唯一性所需输入写得过略，应强调有限长度、Fitting 引理或局部自同态环等条件。\\
+5 & 12 & Brauer 逆元和分裂形式结论正确；但 \(A\otimes_F A^{op}\to \operatorname{End}_F(A)\) 的单射/维数或双中心化证明不足。\\
+6 & 14 & Jacobson 根幂零、\(R/J\) 半单 Artinian、simple Artinian 结论正确；Nakayama 使用条件可再写清楚。\\
+7 & 13 & Sylow \(q\)-子群正规与两 Sylow 均正规时结构基本正确；第 (2) 中应更清楚指出在题设 \(p\nmid(q-1)\) 下 Sylow \(p\)-子群已经正规。\\
+8 & 13 & Maschke、群代数半单分解、Abel 群不可约表示一维均正确；Maschke 的平均投影证明写法较混乱。\\
+9 & 14 & Tor 长正合列、flat 判别和 \(\mathbb Z/2\) 非平坦例子正确；长正合列开头可写得更标准。\\
+10 & 13 & projective 的 Hom 判别与分裂判别正确；projective resolution 与 Ext 定义只给出投射分解侧，未说明其作为右导出函子的等价观点。\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{主要失分点}
+
+\begin{enumerate}
+  \item 第 4 题应把 JH 与 KS 区分清楚：JH 讨论 composition factors 的多重集唯一，KS 讨论 indecomposable direct summands 的唯一。
+  \item 第 5 题中，标准映射
+  \[
+    A\otimes_F A^{op}\longrightarrow \operatorname{End}_F(A),\qquad
+    a\otimes b^{op}\mapsto (x\mapsto axb)
+  \]
+  需要说明是代数同态，且由中心单性与维数相等推出同构。
+  \item 第 7 题的 Sylow 计数应避免混用 \(n_p,n_q\)。在题设下 \(n_p\mid q\)、\(n_p\equiv1\pmod p\)，所以 \(n_p=1\)。
+  \item 第 8 题 Maschke 定理建议直接写平均投影：
+  \[
+    \pi'(v)=\frac1{|G|}\sum_{g\in G}g\pi(g^{-1}v),
+  \]
+  其中 \(\pi\) 是任意线性投影。
+  \item 第 10 题 Ext 的定义应写为：固定第一变量时用投射分解，或固定第二变量时用内射分解；两种构造给出同一 \(\operatorname{Ext}_R^n(M,N)\)。
+\end{enumerate}
+
+\section*{复习建议}
+
+\begin{enumerate}
+  \item 对结构定理题继续保持计算准确性，特别是 Smith 标准形、Sylow 计数、半单分解。
+  \item 证明题要补足“为什么映射是同构”“为什么列分裂”“为什么链穷尽所有对象”等关键环节。
+  \item 同调代数题要统一写清楚：平坦性对应 \(-\otimes_R M\) 正合，投射性对应 \(\operatorname{Hom}_R(P,-)\) 正合，Ext/Tor 来自相应导出函子。
+\end{enumerate}
+
+\end{document}

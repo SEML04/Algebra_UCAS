@@ -1,0 +1,199 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm,geometry,enumitem}
+\geometry{margin=2.5cm}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{2026 Algebra Qual Exam A 参考解答}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{第 1 题}
+
+令 \(\alpha=\sqrt[4]{2}\)。分裂域为
+\[
+  K=\mathbb Q(\alpha,i).
+\]
+因 \(X^4-2\) Eisenstein 不可约，\([\mathbb Q(\alpha):\mathbb Q]=4\)，且 \(\mathbb Q(\alpha)\subset \mathbb R\)，故 \(i\notin\mathbb Q(\alpha)\)，从而 \([K:\mathbb Q]=8\)。设
+\[
+  \sigma(\alpha)=i\alpha,\ \sigma(i)=i,\qquad
+  \tau(\alpha)=\alpha,\ \tau(i)=-i.
+\]
+则 \(\sigma^4=\tau^2=1,\ \tau\sigma\tau=\sigma^{-1}\)，故
+\[
+  \operatorname{Gal}(K/\mathbb Q)\simeq D_4.
+\]
+阶 \(2\) 子群为
+\[
+  \langle\sigma^2\rangle,\quad \langle\tau\rangle,\quad
+  \langle\sigma\tau\rangle,\quad
+  \langle\sigma^2\tau\rangle,\quad
+  \langle\sigma^3\tau\rangle.
+\]
+其对应固定域次数均为 \(4\)。
+
+\section*{第 2 题}
+
+若 \(X^{p^n}-a\) 可约，则纯不可分多项式的某个较小 \(p\)-次根已落入 \(F\)，最终推出 \(a\in F^p\)，矛盾。因此 \(X^{p^n}-a\) 不可约，\([E:F]=p^n\)。其导数为 \(0\)，故扩张不可分。又
+\[
+  X^{p^n}-a=(X-\alpha)^{p^n}
+\]
+在 \(E[X]\) 中完全分裂，所以 \(E/F\) 正规。中间域恰为
+\[
+  F\subset F(\alpha^{p^{n-1}})\subset F(\alpha^{p^{n-2}})\subset\cdots
+  \subset F(\alpha^p)\subset F(\alpha).
+\]
+
+\section*{第 3 题}
+
+有限生成 PID 模结构定理给出
+\[
+  M\simeq R^r\oplus R/(d_1)\oplus\cdots\oplus R/(d_s),
+  \qquad d_1\mid d_2\mid\cdots\mid d_s.
+\]
+本题关系矩阵为
+\[
+\begin{pmatrix}
+2&0&2\\
+4&6&0\\
+0&12&8
+\end{pmatrix}.
+\]
+Smith 标准形的不变量满足：所有元素最大公因数为 \(2\)，所有 \(2\times2\) 子式最大公因数为 \(4\)，行列式绝对值为 \(192\)。故
+\[
+  d_1=2,\qquad d_1d_2=4,\qquad d_1d_2d_3=192,
+\]
+即 \((d_1,d_2,d_3)=(2,2,48)\)。因此
+\[
+  M\simeq \mathbb Z/2\mathbb Z\oplus \mathbb Z/2\mathbb Z\oplus \mathbb Z/48\mathbb Z,
+\]
+不是循环群。
+
+\section*{第 4 题}
+
+若 \(M\) 同时 Noetherian 与 Artinian，则反复取极大真子模得到降链，Artinian 保证终止；每一步商模均为 simple，因此存在 composition series。Jordan--Hölder 定理说明所有 composition series 的 simple factors 在重排与同构意义下唯一，因而给出 composition factors 的多重集和长度。
+
+Krull--Schmidt 定理讨论的是
+\[
+  M=M_1\oplus\cdots\oplus M_r
+\]
+中 indecomposable summands 的唯一性。有限长度模满足 Fitting 引理，从而 indecomposable summand 的自同态环为 local ring；由此可得分解在重排与同构意义下唯一。
+
+\section*{第 5 题}
+
+定义
+\[
+  \Phi:A\otimes_F A^{op}\longrightarrow \operatorname{End}_F(A),
+  \qquad
+  a\otimes b^{op}\mapsto (x\mapsto axb).
+\]
+这是 \(F\)-代数同态。因 \(A\) 为中心单 \(F\)-代数，左、右正则作用互为中心化子，故 \(\Phi\) 单射；又
+\[
+  \dim_F(A\otimes_F A^{op})=(\dim_F A)^2=\dim_F\operatorname{End}_F(A),
+\]
+所以 \(\Phi\) 为同构。于是
+\[
+  [A][A^{op}]=[A\otimes_F A^{op}]=[\operatorname{End}_F(A)]=1
+\]
+于 Brauer 群中，故 \([A^{op}]=[A]^{-1}\)。若 \(E/F\) 分裂 \(A\)，则
+\[
+  A_E=A\otimes_F E\simeq M_n(E).
+\]
+
+\section*{第 6 题}
+
+设 \(J=\operatorname{rad}R\)。因 \(R\) 左 Artinian，链
+\[
+  J\supset J^2\supset\cdots
+\]
+稳定，取 \(J^n=J^{n+1}\)。将 \(J^n\) 看作有限生成左 \(R\)-模，由 \(J\cdot J^n=J^n\) 与 Nakayama 引理得 \(J^n=0\)。故 \(J\) 幂零。
+
+商环 \(R/J\) 左 Artinian 且 Jacobson 根为 \(0\)，因此是半单 Artinian 环。若 \(R\) 还是 simple Artinian ring，则由 Wedderburn--Artin 定理
+\[
+  R\simeq M_m(D)
+\]
+其中 \(D\) 为除环。
+
+\section*{第 7 题}
+
+Sylow 计数给出
+\[
+  n_q\mid p^2,\qquad n_q\equiv1\pmod q.
+\]
+由 \(p<q\) 且 \(p\nmid(q-1)\)，排除 \(n_q=p,p^2\)，故 \(n_q=1\)，Sylow \(q\)-子群正规。
+
+对 Sylow \(p\)-子群，
+\[
+  n_p\mid q,\qquad n_p\equiv1\pmod p.
+\]
+在题设 \(p\nmid(q-1)\) 下，\(n_p\neq q\)，故 \(n_p=1\)。因此 Sylow \(p\)-子群也正规。若两 Sylow 子群均正规，则
+\[
+  G\simeq P\times Q,
+\]
+其中 \(|P|=p^2,\ |Q|=q\)。故
+\[
+  G\simeq C_{p^2}\times C_q\simeq C_{p^2q}
+  \quad\text{或}\quad
+  G\simeq (C_p\times C_p)\times C_q.
+\]
+
+\section*{第 8 题}
+
+Maschke 定理：若 \(\operatorname{char}k\nmid |G|\)，则任意 \(k[G]\)-子模均有 \(G\)-不变补模，因此 \(k[G]\) 半单。证明中取任意线性投影 \(\pi:V\to W\)，平均化为
+\[
+  \pi'(v)=\frac1{|G|}\sum_{g\in G}g\pi(g^{-1}v),
+\]
+则 \(\pi'\) 是 \(G\)-同态投影。
+
+由 Wedderburn--Artin 定理，
+\[
+  k[G]\simeq \bigoplus_i M_{n_i}(k),
+\]
+其中 \(n_i=\dim_k V_i\)，\(V_i\) 遍历不可约表示。并且
+\[
+  |G|=\sum_i n_i^2.
+\]
+若 \(G\) Abel，则 \(k[G]\) 交换，故每个矩阵块只能为 \(M_1(k)\)，所有不可约表示均为一维。
+
+\section*{第 9 题}
+
+由短正合列 \(0\to A'\to A\to A''\to0\) 张量 \(B\)，得到长正合列开头
+\[
+  \operatorname{Tor}_1^R(A,B)\to
+  \operatorname{Tor}_1^R(A'',B)\to
+  A'\otimes_R B\to A\otimes_R B\to A''\otimes_R B\to0.
+\]
+若 \(B\) 平坦，则 \(-\otimes_R B\) 正合，即
+\[
+  0\to A'\otimes_R B\to A\otimes_R B\to A''\otimes_R B\to0
+\]
+正合。反例：\(\mathbb Z/2\mathbb Z\) 不是平坦 \(\mathbb Z\)-模，因为
+\[
+  0\to \mathbb Z\xrightarrow{\times2}\mathbb Z\to \mathbb Z/2\mathbb Z\to0
+\]
+张量 \(\mathbb Z/2\mathbb Z\) 后，\(\times2\) 变为零映射，左端单射性失效。
+
+\section*{第 10 题}
+
+\(P\) 为 projective 当且仅当 \(\operatorname{Hom}_R(P,-)\) 保持满射，等价于该函子正合。也等价于任意满射 \(M\twoheadrightarrow P\) 均分裂，即存在 \(P\to M\) 使复合为 \(\operatorname{id}_P\)。
+
+取 \(M\) 的投射分解
+\[
+  \cdots\to P_2\to P_1\to P_0\to M\to0.
+\]
+对其作用 \(\operatorname{Hom}_R(-,N)\)，得到上链复形
+\[
+  0\to \operatorname{Hom}_R(P_0,N)\to \operatorname{Hom}_R(P_1,N)\to\operatorname{Hom}_R(P_2,N)\to\cdots.
+\]
+定义
+\[
+  \operatorname{Ext}_R^n(M,N)
+  =H^n\bigl(\operatorname{Hom}_R(P_\bullet,N)\bigr).
+\]
+等价地，也可取 \(N\) 的内射分解并计算 \(\operatorname{Hom}_R(M,I^\bullet)\) 的上同调。
+
+\end{document}

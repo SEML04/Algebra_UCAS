@@ -1,0 +1,71 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,booktabs,longtable,geometry,enumitem}
+\geometry{margin=2.5cm}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{2026 Algebra Qual Exam B 评阅报告}}
+\author{答卷：2026-algebra-qual-answer-b.pdf}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{总评}
+
+答卷完成了全部十题，基础结构定理、Galois 对应、半单环和 \(S_3\) 特征标表掌握较好。主要问题是部分证明停留在结论层面：第 2 题范数满射证明不成立，第 7 题 Frobenius 互反律未给出证明，第 9 题未说明蛇引理推出长正合列的机制，第 10 题没有给出正则序列下 Koszul 复形的同调结论。
+
+\[
+\boxed{\text{总分：}119/150}
+\]
+
+\section*{逐题评分}
+
+\begin{longtable}{c c p{10cm}}
+\toprule
+题号 & 得分 & 评语 \\
+\midrule
+\endhead
+1 & 14 & \(\mathbb Q(\zeta_p)/\mathbb Q\) 的 Galois 性、Galois 群 \((\mathbb Z/p\mathbb Z)^\times\)、子群-中间域对应基本正确；\(p=7\) 时三次子域可再明确写成固定域或实三次子域。\\
+2 & 12 & 有限域扩张 Galois 与 \(F_{q^m}\subset F_{q^n}\iff m\mid n\) 正确；范数公式正确，但满射证明有漏洞，不能用“每个 \(F_q^\times\) 元素都是 \(n\) 次幂”来证明。\\
+3 & 10 & 半单模的子模为直和因子与单模直和分解思路正确；第 (3) 小问基本空缺，未说明有限长度时 composition factors 的重数由 Jordan--Hölder 唯一确定。\\
+4 & 14 & elementary divisors 与 invariant factors 的表述和互换方法基本正确；例子的初等因子 \((X-1),X^2,X^3\) 正确。\\
+5 & 14 & Wedderburn--Artin 定理陈述正确，\(J(R)=0\) 与 simple ring 不必半单 Artinian 的反例方向正确；第 (2) 的证明可直接由半单环 Jacobson 根为零推出。\\
+6 & 13 & 最大子域的中心化子、维数公式与分裂形式结论基本正确；需要更清楚引用中心化子定理，并说明 \(A\) 是中心除代数时最大子域的使用条件。\\
+7 & 11 & 诱导表示与诱导特征标公式正确，Frobenius 互反律陈述正确；但第 (2) 要求证明，答卷基本只写结论，扣分较多。\\
+8 & 15 & \(S_3\) 共轭类、复不可约特征标表、行正交与列正交均正确。\\
+9 & 11 & 蛇引理的正合列与连接同态构造方向正确；第 (3) 小问未完成，未说明短正合复形如何给出同调长正合列。\\
+10 & 5 & Koszul 复形的基本形式写出一部分；但正则序列时的同调结论未写出，\(k[x,y]\) 中 \(x,y\) 的计算也未完成。\\
+\bottomrule
+\end{longtable}
+
+\section*{主要失分点}
+
+\begin{enumerate}
+  \item 第 2 题范数满射应使用有限域乘法群循环性：\(F_{q^n}^{\times}\to F_q^\times\) 的范数在生成元上指数为 \((q^n-1)/(q-1)\)，像的阶为 \(q-1\)。
+  \item 第 7 题不能只写 Frobenius 互反律公式，应至少说明由
+  \[
+    \operatorname{Hom}_G(\operatorname{Ind}_H^G W,V)
+    \simeq
+    \operatorname{Hom}_H(W,\operatorname{Res}_H^G V)
+  \]
+  得到特征标内积相等。
+  \item 第 9 题连接同态的良定性写得较好，但还需说明把短正合复形逐次数应用蛇引理并拼接，得到同调长正合列。
+  \item 第 10 题正则序列的核心结论是
+  \[
+    H_0(K_\bullet(x;R))\simeq R/(x_1,\dots,x_n),\qquad
+    H_i(K_\bullet(x;R))=0\quad(i>0).
+  \]
+  对 \(R=k[x,y]\)、序列 \(x,y\)，应得到 \(H_0\simeq k\)，\(H_1=H_2=0\)。
+\end{enumerate}
+
+\section*{答卷共性问题总结}
+
+\begin{enumerate}
+  \item 结构定理和表格计算较稳，但证明型题目经常缺少“为什么该映射良定/满射/同构”的中间环节。
+  \item 对“陈述并证明”的题目，不能只陈述定理；至少要写出核心构造和关键等价。
+  \item 同调代数部分需要补强：蛇引理、长正合列、Koszul 复形的同调结论必须能直接写出。
+\end{enumerate}
+
+\end{document}

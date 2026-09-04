@@ -1,0 +1,149 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+\setlist{itemsep=0.25em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\title{\textbf{2026-algebra-qual-exam 批改报告}}
+\author{批卷人：中科院硕转博考试阅卷组}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{总评}
+
+答卷整体完成度较高，主要结论多数正确，尤其是有限域、矩阵环、特征标表和基本同调计算部分较稳。主要失分来自三类问题：一是分类题中漏项或阶数不核对；二是引用半单、Jacobson 根、Wedderburn--Artin 等定理时没有核对全部条件；三是范畴论/Yoneda 部分只写出结论而缺少互逆构造与自然性验证。
+
+\[
+  \boxed{\text{总分 }125/150}
+\]
+
+\begin{center}
+\begin{tabular}{c|c|L{8.5cm}}
+\toprule
+题号 & 得分 & 主要扣分原因\\
+\midrule
+1 & 13/15 & 分裂域、次数、Galois 群判断基本正确；中间域与子群对应写得不够清楚，缺少逐一对应说明。\\
+2 & 14/15 & 有限域 Galois 性、Frobenius 生成和子域对应基本正确；(a) 中 \(x^q-x\) 分裂域表述略快。\\
+3 & 12/15 & 结构定理叙述正确；72 阶交换群分类漏写一项 \(\mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z/18\)，且有一项阶数写成 36。\\
+4 & 12/15 & Schur 引理正确；半单模三条件等价证明有跳步，尤其是从“单子模之和”到“直和”需要 maximal independent family/Zorn 或标准引理。\\
+5 & 10/15 & \(J(R)\) 的定义和判别法有思路；(c) 中把 \(J(R)\) 与 nilradical 混同，且 \(R/J(R)\) 半单需要有限维 Artin 代数的标准定理支撑。\\
+6 & 13/15 & \(M_n(D)\) 单环、中心和自然模单性基本正确；\(\operatorname{End}_R(V)\cong D^{op}\) 的反环乘法方向说明不足。\\
+7 & 13/15 & Sylow 定理与 \(pq\) 阶群证明框架正确；应明确证明两个 Sylow 子群都正规，并说明直积后因互素而循环。\\
+8 & 14/15 & \(S_3\) 共轭类、维数、特征标表和标准表示不可约基本正确；正交关系验证略简略。\\
+9 & 8/10 & 张量右正合与平坦定义基本正确；(a) 中核等于像的证明表达较乱，需用张量积生成元关系说明。\\
+10 & 9/10 & Ext/Tor 结果基本正确；Tor 计算中 \(i=0\)、\(i=1\) 的来源和映射记号不够清楚。\\
+11 & 7/10 & Yoneda 的核心公式写出；但反向构造、互逆验证、全忠实性的自然同构说明不足。\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{逐题评语}
+
+\subsection*{第 1 题}
+
+(a) 分解 \(x^3-2=(x-\alpha)(x-\omega\alpha)(x-\omega^2\alpha)\) 正确，\(K=\mathbb Q(\alpha,\omega)\) 是分裂域也正确。次数证明中应明确 \(\mathbb Q(\alpha)\) 是实域，不含非实的 \(\omega\)，故 \([K:\mathbb Q]=3\cdot2=6\)。
+
+(b) 由三次不可约且判别式非平方推出 Galois 群为 \(S_3\) 可以接受。中间域列表基本是对的，但应同时写出对应子群：\(S_3,A_3\)、三个 2 阶子群、\(\{1\}\) 分别对应 \(\mathbb Q,\mathbb Q(\omega)\)、三个三次域、\(K\)。
+
+(c) 判断正确：\(\mathbb Q(\sqrt[3]{2})/\mathbb Q\) 非正规，故非 Galois。
+
+\subsection*{第 2 题}
+
+整体正确。有限域是 \(x^{p^n}-x\) 的分裂域，故正规；有限域扩张可分，故 Galois。Frobenius 的阶为 \(n\) 应写明：固定域为 \(\mathbb F_p\)，且 \(\sigma^n=\mathrm{id}\)。子域唯一性由有限域乘法群或 Galois 对应给出均可。
+
+\subsection*{第 3 题}
+
+结构定理叙述正确，但分类有关键漏项。72 阶交换群共有
+\[
+  3\cdot2=6
+\]
+类。你列出的第五项 \(\mathbb Z/2\oplus\mathbb Z/18\) 阶数为 \(36\)，应为
+\[
+  \mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z/18.
+\]
+分类题必须逐项核对阶数和整除链。
+
+\subsection*{第 4 题}
+
+(a) Schur 引理证明完整。(b) 中三条件等价的方向写得过快；特别是“单子模之和”不自动等于“有限直和”，一般需要取极大直和族并证明其和为 \(M\)。(c) 的结论正确，但应从 (b) 或分裂性质推出：子模是单子模直和，商模由单模像生成。
+
+\subsection*{第 5 题}
+
+(a)(b) 有基本思路，但非交换环语境下应使用极大左理想刻画 Jacobson 根，避免把 \(R/\mathfrak m\) 说成“域”。(c) 中 \(J(R)\) 幂零来自有限维代数是 Artinian，Jacobson 根在 Artinian 环中幂零；\(R/J(R)\) 半单来自 Artin--Wedderburn 定理。不能简单写成 \(J(R)=\mathrm{Nil}(R)\)。
+
+\subsection*{第 6 题}
+
+整体较好。\(M_n(D)\) 的双边理想对应 \(D\) 的双边理想，故单；中心计算正确。自然模 \(V=D^n\) 单且 \(R\simeq V^{\oplus n}\) 正确。最后 \(\operatorname{End}_R(V)\cong D^{op}\) 中，应明确 \(R\)-线性自同态由右乘 \(D\) 元给出，复合顺序反转，所以是反环。
+
+\subsection*{第 7 题}
+
+Sylow 定理叙述可接受。证明 \(pq\) 阶群循环时，应写：
+\[
+  n_q\mid p,\quad n_q\equiv1\pmod q \Rightarrow n_q=1,
+\]
+故 \(q\)-Sylow 正规；又
+\[
+  n_p\mid q,\quad n_p\equiv1\pmod p,
+\]
+且 \(q\not\equiv1\pmod p\)，故 \(n_p=1\)。两个 Sylow 子群均正规，直积为 \(C_p\times C_q\simeq C_{pq}\)。
+
+\subsection*{第 8 题}
+
+特征标表正确：
+\[
+\begin{array}{c|ccc}
+ & 1 & (12) & (123)\\
+\hline
+\chi_{\mathrm{triv}}&1&1&1\\
+\chi_{\mathrm{sgn}}&1&-1&1\\
+\chi_{\mathrm{std}}&2&0&-1
+\end{array}
+\]
+注意列顺序若写成 \((1),(123),(12)\)，数值也要同步调整。标准表示不可约可由 \(\langle\chi_{\mathrm{std}},\chi_{\mathrm{std}}\rangle=1\) 得出。
+
+\subsection*{第 9 题}
+
+(a) 右正合性结论正确，但核等于像的证明应避免只对单个张量 \(m\otimes b\) 讨论；一般元素是有限和 \(\sum_i m_i\otimes b_i\)。标准证明可由张量积作为右正合函子的构造或自由模表示推出。(b)(c) 基本正确。
+
+\subsection*{第 10 题}
+
+Ext 部分结果正确：
+\[
+  \operatorname{Ext}^0_{\mathbb Z}(\mathbb Z/n,\mathbb Z)=0,\quad
+  \operatorname{Ext}^1_{\mathbb Z}(\mathbb Z/n,\mathbb Z)\cong\mathbb Z/n,\quad
+  \operatorname{Ext}^i=0\ (i\ge2).
+\]
+Tor 部分应清楚区分：
+\[
+  \operatorname{Tor}_0^{\mathbb Z}(\mathbb Z/n,\mathbb Z/m)\cong \mathbb Z/(n,m),
+  \quad
+  \operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/n,\mathbb Z/m)\cong \mathbb Z/(n,m),
+\]
+且 \(i\ge2\) 为 \(0\)。
+
+\subsection*{第 11 题}
+
+Yoneda 引理的方向正确，但证明不完整。应给出从 \(x\in F(A)\) 到自然变换 \(\eta^x\) 的构造：
+\[
+  \eta^x_X(f)=F(f)(x),\qquad f:A\to X,
+\]
+再验证它与 \(\eta\mapsto \eta_A(\mathrm{id}_A)\) 互逆。(b) 中应说明取 \(F=\operatorname{Hom}(B,-)\) 后得到 \(\operatorname{Hom}(B,A)\)，并由此推出 Yoneda 嵌入在 Hom 集上给出双射，所以全忠实。
+
+\section*{答卷共性问题总结}
+
+\begin{enumerate}
+  \item \textbf{结论多、条件少。} 多处引用标准定理时没有写出前提，例如 Artinian、半单、正规可分、反环方向等。
+  \item \textbf{分类题必须核对阶数。} 第 3 题中一项阶数写错，这是最容易避免也最伤分的错误。
+  \item \textbf{“存在分解”与“证明分解”要区分。} 半单模、短正合列分裂、单子模直和分解都需要明确使用标准判据。
+  \item \textbf{范畴论题不能只写公式。} Yoneda 类题目必须写构造、自然性、互逆三步，否则只能给部分分。
+  \item \textbf{非交换环要注意左右与反环。} Jacobson 根、矩阵环自然模自同态环都涉及左/右方向，不能按交换环直觉省略。
+\end{enumerate}
+
+\end{document}

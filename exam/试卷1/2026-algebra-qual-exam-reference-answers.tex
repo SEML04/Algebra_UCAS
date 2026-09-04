@@ -1,0 +1,414 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage[a4paper,margin=2.4cm]{geometry}
+\usepackage{array,booktabs}
+\usepackage{enumitem}
+\setlist{itemsep=0.25em}
+
+\title{\textbf{2026-algebra-qual-exam 参考答案与错误剖析}}
+\author{批卷人：中科院硕转博考试阅卷组}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{第 1 题（15 分）}
+
+\textbf{解答：}
+记 \(\alpha=\sqrt[3]{2}\)。在 \(\mathbb C\) 中
+\[
+  x^3-2=(x-\alpha)(x-\omega\alpha)(x-\omega^2\alpha),
+\]
+故分裂域为 \(K=\mathbb Q(\alpha,\omega)\)。由 Eisenstein 判别法，\(x^3-2\) 在 \(\mathbb Q\) 上不可约，故 \([\mathbb Q(\alpha):\mathbb Q]=3\)。又 \(\mathbb Q(\alpha)\subset\mathbb R\)，而 \(\omega\notin\mathbb R\)，所以 \(\omega\notin\mathbb Q(\alpha)\)，从而
+\[
+  [K:\mathbb Q]=[\mathbb Q(\alpha,\omega):\mathbb Q(\alpha)]\,[\mathbb Q(\alpha):\mathbb Q]=2\cdot3=6.
+\]
+
+扩张 \(K/\mathbb Q\) 是特征 \(0\) 下的分裂域，故 Galois。Galois 群忠实作用在三根上，嵌入 \(S_3\)。因阶数为 \(6\)，得
+\[
+  \operatorname{Gal}(K/\mathbb Q)\cong S_3.
+\]
+可取
+\[
+  \sigma(\alpha)=\omega\alpha,\quad \sigma(\omega)=\omega,\qquad
+  \tau(\alpha)=\alpha,\quad \tau(\omega)=\omega^2,
+\]
+则 \(\sigma^3=\tau^2=1,\ \tau\sigma\tau=\sigma^{-1}\)。
+
+中间域与子群对应为
+\[
+\begin{array}{c|c}
+\text{子群} & \text{固定域}\\
+\hline
+S_3 & \mathbb Q\\
+A_3=\langle\sigma\rangle & \mathbb Q(\omega)\\
+\langle\tau\rangle,\ \langle\sigma\tau\rangle,\ \langle\sigma^2\tau\rangle
+& \mathbb Q(\alpha),\ \mathbb Q(\omega\alpha),\ \mathbb Q(\omega^2\alpha)\\
+\{1\} & K
+\end{array}
+\]
+最后，\(\mathbb Q(\alpha)/\mathbb Q\) 不是 Galois，因为它只含实根 \(\alpha\)，不含另外两个非实根，故不是 \(x^3-2\) 的分裂域，也非正规扩张。
+
+\textbf{答卷错误剖析：}
+答卷主线正确，但中间域部分应明确写出每个子群和固定域的对应关系；仅列出域名不够完整。
+
+\section*{第 2 题（15 分）}
+
+\textbf{解答：}
+有限域 \(\mathbb F_q\) 是多项式
+\[
+  x^q-x
+\]
+在 \(\mathbb F_p\) 上的全部根组成的域，故 \(\mathbb F_q/\mathbb F_p\) 正规；有限域扩张可分，故为 Galois 扩张。Frobenius
+\[
+  \sigma(x)=x^p
+\]
+是 \(\mathbb F_q\) 的自同构，且 \(\sigma^n=\mathrm{id}\)。若 \(\sigma^r=\mathrm{id}\)，则所有元素都满足 \(x^{p^r}=x\)，故 \(\mathbb F_q\subseteq\mathbb F_{p^r}\)，从而 \(n\mid r\)。所以 \(\sigma\) 的阶为 \(n\)，
+\[
+  \operatorname{Gal}(\mathbb F_q/\mathbb F_p)=\langle\sigma\rangle\cong\mathbb Z/n\mathbb Z.
+\]
+
+若 \(d\mid n\)，则 \(\mathbb F_q\) 中有唯一子域 \(\mathbb F_{p^d}\)，它由 \(x^{p^d}-x\) 的根给出。反过来，任一子域含 \(p^d\) 个元素，其中 \(d\mid n\)。故中间域与 \(n\) 的正因子一一对应。
+
+若 \(f\in\mathbb F_p[x]\) 不可约且 \(\deg f=n\)，取根 \(\alpha\)。则
+\[
+  \mathbb F_p(\alpha)\cong \mathbb F_{p^n},
+\]
+故 \(f\) 在 \(\mathbb F_{p^n}\) 中有根。Frobenius 保持 \(f\) 的根集，所以
+\[
+  \alpha,\alpha^p,\ldots,\alpha^{p^{n-1}}
+\]
+都是根；它们互异，否则 \(\alpha\in\mathbb F_{p^r}\) 对某个 \(r<n\)，矛盾于 \(\deg f=n\)。因此这正是全部根。
+
+\textbf{答卷错误剖析：}
+答卷基本正确；应更清楚说明 \(\mathbb F_q\) 是 \(x^q-x\) 的分裂域，以及 Frobenius 的阶为何正好是 \(n\)。
+
+\section*{第 3 题（15 分）}
+
+\textbf{解答：}
+PID 上有限生成模结构定理的不变因子形式为：若 \(D\) 是 PID，则任意有限生成 \(D\)-模 \(M\) 可写为
+\[
+  M\cong D^r\oplus D/(d_1)\oplus\cdots\oplus D/(d_s),
+\]
+其中 \(d_1\mid d_2\mid\cdots\mid d_s\)，且这些不变因子唯一到相伴元为止。
+
+72 阶交换群满足 \(72=2^3\cdot3^2\)。按初等因子分解，2-部分有
+\[
+  \mathbb Z/8,\quad \mathbb Z/4\oplus\mathbb Z/2,\quad
+  \mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z/2,
+\]
+3-部分有
+\[
+  \mathbb Z/9,\quad \mathbb Z/3\oplus\mathbb Z/3.
+\]
+合并为不变因子形式，共六类：
+\[
+\begin{aligned}
+&\mathbb Z/72,\\
+&\mathbb Z/3\oplus\mathbb Z/24,\\
+&\mathbb Z/2\oplus\mathbb Z/36,\\
+&\mathbb Z/6\oplus\mathbb Z/12,\\
+&\mathbb Z/2\oplus\mathbb Z/2\oplus\mathbb Z/18,\\
+&\mathbb Z/2\oplus\mathbb Z/6\oplus\mathbb Z/6.
+\end{aligned}
+\]
+
+\textbf{答卷错误剖析：}
+答卷写出六项，但其中第五项少了一个 \(\mathbb Z/2\)，导致阶数只有 \(36\)。分类题要逐项检查阶数和整除链。
+
+\section*{第 4 题（15 分）}
+
+\textbf{解答：}
+若 \(M\) 是单 \(R\)-模，任取 \(0\neq f\in\operatorname{End}_R(M)\)。则 \(\ker f\) 是子模，故为 \(0\)；\(\operatorname{im}f\) 是非零子模，故为 \(M\)。于是 \(f\) 是同构，\(\operatorname{End}_R(M)\) 是除环。
+
+下面证明三条件等价。若 \(M\) 的每个子模都是直和项，则取所有单子模的和 \(S\)。若 \(S\neq M\)，则 \(S\) 有补模 \(T\neq0\)。取 \(0\neq t\in T\)，由 \(Rt\) 中取极小非零子模可得一个单子模包含在 \(T\) 中，矛盾于 \(S\) 已含所有单子模。因此 \(M\) 是单子模之和。
+
+若 \(M\) 是单子模之和，取极大直和族 \(\bigoplus_i S_i\)。若其和不为 \(M\)，可再加入一个不含于该和的单子模，矛盾。因此
+\[
+  M=\bigoplus_i S_i.
+\]
+直和当然是和。反过来，若 \(M=\bigoplus_i S_i\) 为单模直和，则任意子模 \(N\subset M\) 也是某些单模的直和，并且在 \(M\) 中有补模，故每个子模都是直和项。
+
+半单模的子模是直和项，因而仍是单模直和；商模 \(M/N\) 同构于补模，也半单。
+
+\textbf{答卷错误剖析：}
+Schur 引理部分正确；半单模等价刻画中，答卷缺少“极大直和族”或等价标准引理来证明从单子模之和到单子模直和。
+
+\section*{第 5 题（15 分）}
+
+\textbf{解答：}
+Jacobson 根可定义为
+\[
+  J(R)=\bigcap_{\mathfrak m\in\operatorname{Max}_l(R)}\mathfrak m,
+\]
+即所有极大左理想之交。对商环有
+\[
+  J(R/J(R))=0,
+\]
+因为 \(R/J(R)\) 的极大左理想正对应 \(R\) 中包含 \(J(R)\) 的极大左理想，交起来只剩 \(0\)。
+
+证明判别法。若 \(x\in J(R)\)，则对任意 \(a\in R\)，若 \(1-ax\) 不左可逆，则其生成的左理想包含在某个极大左理想 \(\mathfrak m\) 中。因 \(x\in J(R)\subset\mathfrak m\)，有 \(ax\in\mathfrak m\)，于是
+\[
+  1=(1-ax)+ax\in\mathfrak m,
+\]
+矛盾。故 \(1-ax\) 可逆。反过来，若对任意 \(a\)，\(1-ax\) 可逆，而 \(x\notin J(R)\)，则存在极大左理想 \(\mathfrak m\) 使 \(x\notin\mathfrak m\)。由极大性 \(Rx+\mathfrak m=R\)，故存在 \(a\in R,m\in\mathfrak m\) 使 \(ax+m=1\)，即 \(1-ax=m\in\mathfrak m\)，不可能可逆，矛盾。
+
+若 \(R\) 是域 \(F\) 上有限维代数，则 \(R\) 是左 Artinian 环。Artinian 环的 Jacobson 根幂零，故 \(J(R)^N=0\) 对某个 \(N\) 成立；且 \(R/J(R)\) 是半本原 Artinian 环，由 Wedderburn--Artin 定理为半单代数。
+
+\textbf{答卷错误剖析：}
+答卷把 \(J(R)\) 与 nilradical 混同，这是危险表述；有限维代数情形应通过 Artinian 条件与 Wedderburn--Artin 定理证明。
+
+\section*{第 6 题（15 分）}
+
+\textbf{解答：}
+设 \(R=M_n(D)\)。任一非零双边理想 \(I\subset R\) 含非零矩阵 \(X\)。用矩阵单位 \(E_{ij}\) 左右乘，可从 \(X\) 中取出某个非零条目 \(x\in D\)。因 \(D\) 是除环，可进一步得到某个矩阵单位 \(E_{ij}\in I\)，再由矩阵单位生成全环，故 \(I=R\)。所以 \(R\) 是单环。
+
+若 \(A=(a_{ij})\in Z(R)\)，与所有 \(E_{ii}\) 交换得 \(A\) 为对角矩阵；再与 \(E_{ij}\) 交换得所有对角元相等且属于 \(Z(D)\)。因此
+\[
+  Z(R)=\{\lambda I_n:\lambda\in Z(D)\}.
+\]
+
+令 \(V=D^n\)。任取 \(0\neq v\in V\)，可用矩阵把 \(v\) 送到任意基向量，再生成整个 \(V\)，故 \(V\) 单。作为左 \(R\)-模，
+\[
+  R\simeq Re_{11}\oplus\cdots\oplus Re_{nn}\simeq V^{\oplus n},
+\]
+故 \(R\) 是半单左模，从而是半单环。
+
+任一 \(R\)-线性映射 \(T:V\to V\) 与全部左矩阵乘法交换，因此由 \(T(e_1)\) 决定，且必须等于右乘某个 \(d\in D\)。复合满足
+\[
+  (v d_1)d_2=v(d_1d_2),
+\]
+对应到自同态乘法时顺序反转，故
+\[
+  \operatorname{End}_R(V)\cong D^{op}.
+\]
+
+\textbf{答卷错误剖析：}
+答卷主线正确；最后应明确说明为什么出现 \(D^{op}\)，即右乘给自同态而复合顺序与 \(D\) 的乘法相反。
+
+\section*{第 7 题（15 分）}
+
+\textbf{解答：}
+Sylow 定理：若 \(|G|=p^am\)，\((p,m)=1\)，则 \(G\) 有 \(p^a\) 阶子群；任意两个 Sylow \(p\)-子群共轭；Sylow \(p\)-子群个数 \(n_p\) 满足
+\[
+  n_p\equiv1\pmod p,\qquad n_p\mid m.
+\]
+
+设 \(|G|=pq\)，\(p<q\)，且 \(q\not\equiv1\pmod p\)。对 \(q\)-Sylow 子群，
+\[
+  n_q\mid p,\qquad n_q\equiv1\pmod q,
+\]
+故 \(n_q=1\)，所以 \(Q\triangleleft G\)。对 \(p\)-Sylow 子群，
+\[
+  n_p\mid q,\qquad n_p\equiv1\pmod p.
+\]
+由于 \(q\not\equiv1\pmod p\)，不能有 \(n_p=q\)，故 \(n_p=1\)，所以 \(P\triangleleft G\)。于是
+\[
+  G=PQ,\qquad P\cap Q=1,
+\]
+且两个正规子群互相交换，所以
+\[
+  G\simeq P\times Q\simeq C_p\times C_q\simeq C_{pq}.
+\]
+取 \(p=3,q=5\)，有 \(5\not\equiv1\pmod3\)，故任意 15 阶群循环。
+
+\textbf{答卷错误剖析：}
+答卷思路正确，但应同时证明两个 Sylow 子群正规；从商群循环不能直接跳到全群循环，关键是两个互素阶正规子群的直积。
+
+\section*{第 8 题（15 分）}
+
+\textbf{解答：}
+\(S_3\) 的共轭类为
+\[
+  \{1\},\qquad \{(12),(13),(23)\},\qquad \{(123),(132)\},
+\]
+大小分别为 \(1,3,2\)。共轭类个数为 \(3\)，故不可约复表示有 \(3\) 个。由
+\[
+  |S_3|=\sum_i d_i^2
+\]
+得维数只能为 \(1,1,2\)。
+
+特征标表为
+\[
+\begin{array}{c|ccc}
+ & 1 & (12) & (123)\\
+\hline
+\chi_{\mathrm{triv}}&1&1&1\\
+\chi_{\mathrm{sgn}}&1&-1&1\\
+\chi_{\mathrm{std}}&2&0&-1
+\end{array}
+\]
+第一正交关系为
+\[
+  \langle\chi_i,\chi_j\rangle
+  =
+  \frac1{6}\sum_{g\in S_3}\chi_i(g)\overline{\chi_j(g)}
+  =
+  \delta_{ij}.
+\]
+代入上表即可逐项验证。
+
+置换表示 \(\rho\) 的特征标等于固定点数：
+\[
+  \chi_\rho=(3,1,0)
+\]
+对应列 \(1,(12),(123)\)。标准表示特征标为
+\[
+  \chi_{\mathrm{std}}=\chi_\rho-\chi_{\mathrm{triv}}=(2,0,-1).
+\]
+计算
+\[
+  \langle\chi_{\mathrm{std}},\chi_{\mathrm{std}}\rangle
+  =
+  \frac16(1\cdot4+3\cdot0+2\cdot1)=1,
+\]
+故标准表示不可约。
+
+\textbf{答卷错误剖析：}
+答卷结果基本正确；注意列顺序必须与特征标取值一致，标准表示应明确为置换表示减去平凡表示。
+
+\section*{第 9 题（10 分）}
+
+\textbf{解答：}
+张量积函子 \(M\otimes_R-\) 是右正合的。具体地，由 \(B\to C\to0\) 满射可得
+\[
+  M\otimes_R B\to M\otimes_R C\to0
+\]
+满射。又 \(C\cong B/f(A)\)，故
+\[
+  M\otimes_R C\cong M\otimes_R(B/f(A))
+  \cong (M\otimes_R B)/\operatorname{im}(1\otimes f),
+\]
+从而
+\[
+  M\otimes_R A\to M\otimes_R B\to M\otimes_R C\to0
+\]
+正合。
+
+\(M\) 是平坦右 \(R\)-模，定义为函子
+\[
+  M\otimes_R-:{}_R\mathrm{Mod}\to\mathrm{Ab}
+\]
+正合。于是对任意短正合列
+\[
+  0\to A\to B\to C\to0
+\]
+都有
+\[
+  0\to M\otimes_R A\to M\otimes_R B\to M\otimes_R C\to0
+\]
+正合。
+
+取 \(\mathbb Z\)-模短正合列
+\[
+  0\to\mathbb Z\xrightarrow{\times n}\mathbb Z\to\mathbb Z/n\mathbb Z\to0.
+\]
+若 \(\mathbb Z/n\mathbb Z\) 平坦，张量后左端仍单射。但张量 \(\mathbb Z/n\mathbb Z\) 后得到乘 \(n\) 映射
+\[
+  \mathbb Z/n\mathbb Z\xrightarrow{\times n}\mathbb Z/n\mathbb Z,
+\]
+它是零映射，不是单射。因此 \(\mathbb Z/n\mathbb Z\) 非平坦。
+
+\textbf{答卷错误剖析：}
+答卷结论正确；右正合性证明中应处理一般有限和，而不能只看单个纯张量。
+
+\section*{第 10 题（10 分）}
+
+\textbf{解答：}
+使用投射分解
+\[
+  0\to\mathbb Z\xrightarrow{\times n}\mathbb Z\to\mathbb Z/n\mathbb Z\to0.
+\]
+对 \(\operatorname{Hom}_{\mathbb Z}(-,\mathbb Z)\) 得复形
+\[
+  0\to\operatorname{Hom}(\mathbb Z,\mathbb Z)
+  \xrightarrow{\times n}
+  \operatorname{Hom}(\mathbb Z,\mathbb Z)\to0,
+\]
+即
+\[
+  0\to\mathbb Z\xrightarrow{\times n}\mathbb Z\to0.
+\]
+所以
+\[
+  \operatorname{Ext}^0_{\mathbb Z}(\mathbb Z/n,\mathbb Z)=0,\quad
+  \operatorname{Ext}^1_{\mathbb Z}(\mathbb Z/n,\mathbb Z)\cong\mathbb Z/n,
+\]
+且 \(i\ge2\) 时 \(\operatorname{Ext}^i=0\)。
+
+对 \(-\otimes_{\mathbb Z}\mathbb Z/m\mathbb Z\) 得
+\[
+  0\to \mathbb Z/m\mathbb Z
+  \xrightarrow{\times n}
+  \mathbb Z/m\mathbb Z\to0.
+\]
+因此
+\[
+  \operatorname{Tor}_1^{\mathbb Z}(\mathbb Z/n,\mathbb Z/m)
+  =
+  \ker(\times n:\mathbb Z/m\to\mathbb Z/m)
+  \cong \mathbb Z/(n,m),
+\]
+并且
+\[
+  \operatorname{Tor}_0^{\mathbb Z}(\mathbb Z/n,\mathbb Z/m)
+  =
+  \operatorname{coker}(\times n)
+  \cong \mathbb Z/(n,m).
+\]
+高阶 \(i\ge2\) 为 \(0\)。
+
+\textbf{答卷错误剖析：}
+答卷结果基本正确；应明确 Tor 的 \(0\) 阶来自余核、\(1\) 阶来自核，二者虽同构但来源不同。
+
+\section*{第 11 题（10 分）}
+
+\textbf{解答：}
+对自然变换
+\[
+  \eta:\operatorname{Hom}_{\mathcal C}(A,-)\Rightarrow F
+\]
+定义
+\[
+  \Phi(\eta)=\eta_A(\mathrm{id}_A)\in F(A).
+\]
+反过来，给定 \(x\in F(A)\)，定义自然变换 \(\eta^x\) 为：对任意对象 \(X\) 和态射 \(f:A\to X\)，令
+\[
+  \eta^x_X(f)=F(f)(x).
+\]
+自然性来自函子性：若 \(u:X\to Y\)，则
+\[
+  F(u)(\eta^x_X(f))=F(u)F(f)(x)=F(uf)(x)=\eta^x_Y(uf).
+\]
+显然
+\[
+  \eta^x_A(\mathrm{id}_A)=x.
+\]
+另一方面，对任意 \(\eta\)，由自然性应用于 \(f:A\to X\) 得
+\[
+  \eta_X(f)=F(f)(\eta_A(\mathrm{id}_A)).
+\]
+故两构造互逆，得到
+\[
+  \operatorname{Nat}(\operatorname{Hom}_{\mathcal C}(A,-),F)\cong F(A).
+\]
+
+取 \(F=\operatorname{Hom}_{\mathcal C}(B,-)\)，得
+\[
+  \operatorname{Nat}(\operatorname{Hom}(A,-),\operatorname{Hom}(B,-))
+  \cong
+  \operatorname{Hom}(B,A).
+\]
+这说明函子
+\[
+  \mathcal C^{op}\to\operatorname{Fun}(\mathcal C,\mathbf{Set}),
+  \qquad A\mapsto\operatorname{Hom}_{\mathcal C}(A,-)
+\]
+在任意两个对象之间诱导 Hom 集双射，所以是全忠实的。
+
+\textbf{答卷错误剖析：}
+答卷写出了核心公式，但缺少从 \(F(A)\) 到自然变换的构造，以及互逆验证；这是 Yoneda 引理证明中最关键的部分。
+
+\end{document}

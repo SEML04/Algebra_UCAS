@@ -1,0 +1,210 @@
+% !TEX program = xelatex
+\documentclass[11pt]{article}
+\usepackage[UTF8]{ctex}
+\usepackage{amsmath,amssymb,amsthm,geometry,enumitem}
+\geometry{margin=2.5cm}
+\setlist{itemsep=2pt,topsep=4pt}
+
+\title{\textbf{2026 Algebra Qual Exam B 参考解答}}
+\author{}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{第 1 题}
+
+\(\mathbb Q(\zeta_p)\) 是 \(X^p-1\) 的分裂域，特征为 \(0\)，故为 Galois 扩张。其极小多项式为
+\[
+  \Phi_p(X)=X^{p-1}+X^{p-2}+\cdots+X+1,
+\]
+故 \([\mathbb Q(\zeta_p):\mathbb Q]=p-1\)。任一自同构由 \(\zeta_p\mapsto \zeta_p^a\) 决定，其中 \(a\in(\mathbb Z/p\mathbb Z)^\times\)，因此
+\[
+  \operatorname{Gal}(\mathbb Q(\zeta_p)/\mathbb Q)\simeq(\mathbb Z/p\mathbb Z)^\times.
+\]
+中间域与 \((\mathbb Z/p\mathbb Z)^\times\) 的子群反序对应。若 \(p=7\)，则 Galois 群为循环群 \(C_6\)，唯一的三次子域对应唯一的阶 \(2\) 子群，例如
+\[
+  \mathbb Q(\zeta_7+\zeta_7^{-1})
+\]
+是该三次子域，其相对 \(\mathbb Q\) 的 Galois 群为 \(C_3\)。
+
+\section*{第 2 题}
+
+\(F_{q^n}\) 是 \(X^{q^n}-X\) 的分裂域，且有限域均完美，故 \(F_{q^n}/F_q\) 为 Galois 扩张。其 Galois 群由 Frobenius 自同构
+\[
+  \varphi:x\mapsto x^q
+\]
+生成，阶为 \(n\)，故 \(\operatorname{Gal}(F_{q^n}/F_q)\simeq C_n\)。
+
+有限域 \(F_{q^m}\subset F_{q^n}\) 当且仅当 \(q^m-1\mid q^n-1\)，等价于 \(m\mid n\)。范数为
+\[
+  N_{F_{q^n}/F_q}(x)=x\cdot x^q\cdots x^{q^{n-1}}
+  =x^{1+q+\cdots+q^{n-1}}
+  =x^{(q^n-1)/(q-1)}.
+\]
+对 \(x=0\) 范数为 \(0\)。在乘法群上，\(F_{q^n}^\times\) 为循环群；若 \(g\) 为生成元，则 \(N(g)\) 在 \(F_q^\times\) 中阶为 \(q-1\)，所以范数满射。
+
+\section*{第 3 题}
+
+若 \(M\) 半单，则 \(M\) 是 simple submodules 的直和。任取子模 \(N\subset M\)，可在所有与 \(N\) 交为零的 simple summands 直和中用 Zorn 引理取极大者 \(L\)。若 \(N\oplus L\neq M\)，商模中存在 simple 子模，可提升得到更大的直和，矛盾。因此
+\[
+  M=N\oplus L.
+\]
+所以任意子模都是直和因子，且 \(M\) 是单模直和。若 \(M\) 有有限长度，则 Jordan--Hölder 定理说明任一 composition series 的 simple factors 在重排和同构意义下唯一，因此各 simple factor 的重数由 \(M\) 唯一确定。
+
+\section*{第 4 题}
+
+有限生成 torsion PID 模有 invariant factor 分解
+\[
+  M\simeq D/(d_1)\oplus\cdots\oplus D/(d_r),
+  \qquad d_1\mid d_2\mid\cdots\mid d_r,
+\]
+也有 elementary divisor 分解
+\[
+  M\simeq \bigoplus_{i,j}D/(p_i^{e_{ij}}).
+\]
+将每个 \(d_j\) 分解为素元幂乘积即可由 invariant factors 得 elementary divisors；反向则把同一“列”中的互素素幂相乘，利用中国剩余定理合并。
+
+在 \(D=k[X]\) 中，
+\[
+  k[X]/(X^2(X-1))\simeq k[X]/(X^2)\oplus k[X]/(X-1).
+\]
+故
+\[
+  k[X]/(X^2(X-1))\oplus k[X]/(X^3)
+  \simeq k[X]/(X-1)\oplus k[X]/(X^2)\oplus k[X]/(X^3).
+\]
+
+\section*{第 5 题}
+
+Wedderburn--Artin 定理：半单 Artinian 环同构于有限个矩阵除环的直积
+\[
+  R\simeq \prod_{i=1}^r M_{n_i}(D_i).
+\]
+矩阵除环 \(M_n(D)\) 的 Jacobson radical 为 \(0\)，直积的 radical 为各 radical 的直积，因此 \(J(R)=0\)。
+
+simple ring 不必为半单 Artinian。半单 Artinian 还要求 Artinian 条件；例如 Weyl algebra \(A_1(F)\) 在适当条件下是 simple ring，但不是 Artinian，因此不是半单 Artinian。
+
+\section*{第 6 题}
+
+设 \(A\) 为有限维中心除 \(F\)-代数，\(E\subset A\) 为最大子域。显然 \(E\subset C_A(E)\)。若 \(C_A(E)\neq E\)，取 \(x\in C_A(E)\setminus E\)，则 \(E(x)\) 是包含 \(E\) 的更大交换子域，矛盾。因此
+\[
+  C_A(E)=E.
+\]
+由中心化子定理
+\[
+  [E:F]\,[C_A(E):F]=[A:F],
+\]
+故
+\[
+  [A:F]=[E:F]^2.
+\]
+若 \(E\) 是 \(A\) 的分裂域，则
+\[
+  A\otimes_F E\simeq M_n(E),
+  \qquad n=[E:F]=\sqrt{[A:F]}.
+\]
+
+\section*{第 7 题}
+
+诱导表示可定义为
+\[
+  \operatorname{Ind}_H^G W=\mathbb C[G]\otimes_{\mathbb C[H]}W.
+\]
+若 \(\chi\) 是 \(H\) 的特征标，则
+\[
+  (\operatorname{Ind}_H^G\chi)(g)
+  =\frac{1}{|H|}\sum_{\substack{x\in G\\x^{-1}gx\in H}}
+  \chi(x^{-1}gx).
+\]
+Frobenius 互反律为
+\[
+  \operatorname{Hom}_G(\operatorname{Ind}_H^G W,V)
+  \simeq
+  \operatorname{Hom}_H(W,\operatorname{Res}_H^G V),
+\]
+在特征标内积形式下即
+\[
+  \langle \operatorname{Ind}_H^G\chi,\psi\rangle_G
+  =
+  \langle \chi,\operatorname{Res}_H^G\psi\rangle_H.
+\]
+因此给定 \(H\)-不可约表示 \(\chi\) 与 \(G\)-不可约表示 \(\psi\)，\(\operatorname{Res}_H^G\psi\) 中 \(\chi\) 的重数等于 \(\operatorname{Ind}_H^G\chi\) 中 \(\psi\) 的重数。
+
+\section*{第 8 题}
+
+\(S_3\) 的共轭类为
+\[
+  \{1\},\qquad \{(12),(13),(23)\},\qquad \{(123),(132)\}.
+\]
+其复不可约特征标表为
+\[
+\begin{array}{c|ccc}
+&1&(12)&(123)\\
+\hline
+\chi_{\mathrm{triv}}&1&1&1\\
+\chi_{\mathrm{sgn}}&1&-1&1\\
+\chi_{\mathrm{std}}&2&0&-1
+\end{array}
+\]
+行正交为
+\[
+  \frac1{|S_3|}\sum_{g\in S_3}\chi_i(g)\overline{\chi_j(g)}=\delta_{ij}.
+\]
+列正交为
+\[
+  \sum_i\chi_i(C)\overline{\chi_i(C')}
+  =0\quad(C\neq C'),\qquad
+  \sum_i|\chi_i(C)|^2=|C_G(c)|.
+\]
+
+\section*{第 9 题}
+
+蛇引理：给定两行正合的交换图
+\[
+\begin{array}{ccccccccc}
+0&\to&A'&\to&A&\to&A''&\to&0\\
+ &&\downarrow&&\downarrow&&\downarrow&&\\
+0&\to&B'&\to&B&\to&B''&\to&0,
+\end{array}
+\]
+存在自然正合列
+\[
+\begin{aligned}
+0&\to\ker(A'\to B')\to\ker(A\to B)\to\ker(A''\to B'')\\
+&\xrightarrow{\delta}
+\operatorname{coker}(A'\to B')\to\operatorname{coker}(A\to B)\to
+\operatorname{coker}(A''\to B'')\to0.
+\end{aligned}
+\]
+连接同态构造为：取 \(\bar a''\in\ker(A''\to B'')\)，提升到 \(a\in A\)，其像 \(b\in B\) 落入 \(B'\) 的像，取对应的 \(b'\in B'\)，定义
+\[
+  \delta(\bar a'')=\overline{b'}\in \operatorname{coker}(A'\to B').
+\]
+良定性由两行正合与交换性验证。短正合复形逐次数形成上述图，连续应用蛇引理并拼接连接同态，即得到同调长正合列。
+
+\section*{第 10 题}
+
+令 \(F=Re_1\oplus\cdots\oplus Re_n\)。Koszul 复形为
+\[
+  K_r(x;R)=\bigwedge^r F,
+\]
+微分
+\[
+  d(e_{i_1}\wedge\cdots\wedge e_{i_r})
+  =
+  \sum_{j=1}^r(-1)^{j-1}x_{i_j}
+  e_{i_1}\wedge\cdots\wedge\widehat{e_{i_j}}\wedge\cdots\wedge e_{i_r}.
+\]
+若 \(x_1,\dots,x_n\) 是 \(R\)-正则序列，则
+\[
+  H_0(K_\bullet(x;R))\simeq R/(x_1,\dots,x_n),\qquad
+  H_i(K_\bullet(x;R))=0\quad(i>0).
+\]
+对 \(R=k[x,y]\)，\(x,y\) 是正则序列，故
+\[
+  H_0(K_\bullet(x,y;R))\simeq k[x,y]/(x,y)\simeq k,\qquad
+  H_1=H_2=0.
+\]
+
+\end{document}
