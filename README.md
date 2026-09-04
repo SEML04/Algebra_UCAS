@@ -31,10 +31,10 @@ All materials are intended solely for study and informal academic reference.
 
 ## Description en français
 
-Ce dépôt contient des documents de révision en algèbre préparés pour mon examen de qualification en vue du passage du master au doctorat à l'Institut de mathématiques de l'Académie chinoise des sciences.
+Ce dépôt contient des documents de révision en algèbre préparés pour mon examen de qualification pour un programme doctoral à l'AMSS, CAS.
 
 Le document principal `collection/collection.pdf` ainsi que les trois séries d'exercices dans `exam/Test 1`, `exam/Test 2` et `exam/Test 3` ont été principalement rédigés et organisés avec l'aide de l'IA. Par conséquent, aucune garantie n'est donnée concernant la validité mathématique, la complétude des preuves, la fluidité de la rédaction ou la cohérence de la mise en page. Ces documents sont fournis uniquement à titre de référence.
 
-Tous les documents sont destinés uniquement à l'étude personnelle et à l'échange académique informel. S'ils sont utiles, ils peuvent servir de support complémentaire de révision, mais ils ne doivent pas être considérés comme des solutions officielles, des manuels ou une banque d'exercices fiable.
+Tous les documents sont destinés uniquement à l'étude et à la référence académique informelle.
 
 </details>
